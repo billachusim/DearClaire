@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_session_type_featured"
+        android:icon="@drawable/outline_trending_up_black_24"
+        android:title="@string/session_type_trending" />
+
+    <item
+        android:id="@+id/nav_session_type_following"
+        android:icon="@drawable/ic_outline_add"
+        android:title="@string/session_type_following" />
+
+    <item
+        android:id="@+id/nav_session_type_diary"
+        android:icon="@drawable/outline_calendar_today_black_24"
+        android:title="@string/session_type_diary" />
+
+    <item
+        android:id="@+id/nav_session_type_chat"
+        android:icon="@drawable/ic_forum_black_24dp"
+        android:title="Chat" />
+
+    <item
+        android:id="@+id/nav_session_type_archived"
+        android:icon="@drawable/ego_icon"
+        android:title="@string/ego"
+
+        />
+
+</menu>

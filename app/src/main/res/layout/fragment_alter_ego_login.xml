@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.mobymagic.clairediary.vo.Status" />
+
+        <variable
+            name="resource"
+            type="com.mobymagic.clairediary.vo.Resource" />
+
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/alter_ego_login_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/colorPrimary"
+        tools:context=".ui.alteregologin.AlterEgoLoginFragment">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/alter_ego_login_form_card"
+            style="@style/AuthCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@string/font_family_medium"
+                    android:text="@string/alter_ego_login_page_title"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@string/font_family_regular"
+                    android:text="@string/alter_ego_login_page_subtitle"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/alter_ego_login_id_input_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp">
+
+                    <EditText
+                        android:id="@+id/alter_ego_login_id_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@string/font_family_regular"
+                        android:hint="@string/alter_ego_login_hint_claire_id"
+                        android:inputType="textEmailAddress"
+                        android:maxLength="50" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/alter_ego_login_access_code_input_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp">
+
+                    <EditText
+                        android:id="@+id/alter_ego_login_access_code_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@string/font_family_regular"
+                        android:hint="@string/alter_ego_login_hint_access_code"
+                        android:inputType="textPassword"
+                        android:maxLength="20" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <include
+                    layout="@layout/layout_auth_error_state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:resource="@{resource}" />
+
+                <Button
+                    android:id="@+id/alter_ego_login_button"
+                    style="@style/WideColoredButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/alter_ego_login_action_login" />
+
+                <Button
+                    android:id="@+id/alter_ego_request_access_button"
+                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/alter_ego_login_action_request_access"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:id="@+id/alter_ego_donate_button"
+                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/alter_ego_login_action_donate"
+                    android:textAllCaps="false" />
+
+            </LinearLayout>
+
+            <include
+                layout="@layout/layout_auth_loading_state"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:resource="@{resource}" />
+
+        </androidx.cardview.widget.CardView>
+
+        <ImageView
+            style="@style/AuthAppLogo"
+            android:layout_width="@dimen/auth_app_logo_size"
+            android:layout_height="@dimen/auth_app_logo_size"
+            android:layout_alignTop="@id/alter_ego_login_form_card"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="-32dp"
+            android:contentDescription="@null"
+            android:elevation="@dimen/auth_app_logo_elevation" />
+
+        <FrameLayout
+            android:id="@+id/alter_ego_login_splash_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="4dp" />
+
+    </RelativeLayout>
+
+</layout>

@@ -1,0 +1,35 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        tools:context=".ui.alteregointro.AlterEgoIntroSlideFragment">
+
+        <ImageView
+            android:id="@+id/alter_ego_intro_slide_image"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/ic_product_logo_144dp" />
+
+        <TextView
+            android:id="@+id/alter_ego_intro_slide_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@string/font_family_regular"
+            android:gravity="center_horizontal"
+            android:paddingTop="16dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/secondary_text_dark"
+            tools:text="The intro to alter ego" />
+
+    </LinearLayout>
+
+</layout>

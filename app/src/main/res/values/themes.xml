@@ -1,0 +1,39 @@
+<resources>
+
+    <!-- App Theme Start -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/theme_primary</item>
+        <item name="colorPrimaryDark">@color/theme_primary_dark</item>
+        <item name="colorAccent">@color/theme_accent</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+    </style>
+    <!-- App Theme End -->
+
+    <!-- Rave Payment Theme Start -->
+    <style name="RaveTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/theme_primary</item>
+        <item name="colorPrimaryDark">@color/theme_primary_dark</item>
+        <item name="colorAccent">@color/theme_accent</item>
+        <item name="OTPButtonStyle">@style/WideColoredButton</item>
+        <item name="PayButtonStyle">@style/WideColoredButton</item>
+        <item name="PinButtonStyle">@style/WideColoredButton</item>
+        <item name="OTPHeaderStyle">@style/otpHeaderStyle</item>
+        <item name="TabLayoutStyle">@style/RaveTabLayoutStyle</item>
+        <item name="PinHeaderStyle">@style/pinHeaderStyle</item>
+        <item name="SavedCardButtonStyle">@style/WideColoredButton</item>
+    </style>
+
+    <style name="RaveTabLayoutStyle" parent="Widget.Design.TabLayout">
+        <item name="tabBackground">@color/theme_primary</item>
+        <item name="tabIndicatorColor">@android:color/white</item>
+        <item name="tabTextAppearance">@style/RaveTabTextAppearance</item>
+        <item name="tabSelectedTextColor">@color/primary_text_light</item>
+    </style>
+
+    <style name="RaveTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textColor">@color/secondary_text_light</item>
+    </style>
+    <!-- Rave Payment Theme End -->
+
+</resources>

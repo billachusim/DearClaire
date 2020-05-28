@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_session_type_assigned"
+        android:icon="@drawable/outline_favorite_border_black_24"
+        android:title="@string/session_type_assigned" />
+
+    <item
+        android:id="@+id/nav_session_type_non_assigned"
+        android:icon="@drawable/outline_calendar_today_black_24"
+        android:title="@string/session_type_non_assigned" />
+
+    <item
+        android:id="@+id/nav_session_type_all"
+        android:icon="@drawable/outline_access_time_black_24"
+        android:title="@string/session_type_all" />
+
+</menu>

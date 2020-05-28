@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!--<ImageButton-->
+            <!--android:id="@+id/audio_start_audio_button"-->
+            <!--android:layout_width="40dp"-->
+            <!--android:layout_height="40dp"-->
+            <!--android:background="@drawable/oval_white"-->
+            <!--android:contentDescription="@string/common_action_play"-->
+            <!--android:padding="16dp"-->
+            <!--app:backgroundTintColor='@{"#d3d3d3"}'-->
+            <!--app:srcCompat="@drawable/ic_round_play_arrow_white_24"-->
+            <!--tools:backgroundTint="#d3d3d3" />-->
+
+            <com.google.android.exoplayer2.ui.PlayerView
+                android:id="@+id/player"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                app:controller_layout_id="@layout/custom_exo_media_ui"
+                app:hide_on_touch="false"
+                app:show_timeout="-1">
+
+            </com.google.android.exoplayer2.ui.PlayerView>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</layout>

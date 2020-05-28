@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        tools:context=".ui.audio.AudioPlayerFragment">
+
+        <include
+            android:id="@+id/session_audio_view"
+            layout="@layout/layout_audio"
+            android:layout_width="match_parent"
+            android:layout_height="80dp" />
+
+        <ImageButton
+            android:id="@+id/audio_fragment_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:contentDescription="@string/create_session_content_desc_remove_audio"
+            android:padding="4dp"
+            android:tint="@color/active_icon_dark"
+            app:srcCompat="@drawable/ic_round_clear_white_24" />
+    </LinearLayout>
+</layout>

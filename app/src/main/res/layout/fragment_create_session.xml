@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.mobymagic.clairediary.vo.Status" />
+
+        <variable
+            name="loadingResource"
+            type="com.mobymagic.clairediary.vo.Resource" />
+
+        <variable
+            name="draftSession"
+            type="com.mobymagic.clairediary.vo.Session" />
+
+    </data>
+
+    <FrameLayout
+        android:id="@+id/create_session_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        app:backgroundTintColor='@{draftSession != null ? draftSession.colorHex : "#C7E59A"}'
+        tools:background="@color/theme_primary"
+        tools:context=".ui.createsession.CreateSEssionFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/create_session_message_invisible_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/create_session_hint_type_message"
+                    android:visibility="invisible"
+                    app:autoSizeMaxTextSize="56sp"
+                    app:autoSizeMinTextSize="14sp"
+                    app:autoSizeStepGranularity="2sp"
+                    app:autoSizeTextType="uniform" />
+
+                <com.vanniktech.emoji.EmojiEditText
+                    android:id="@+id/create_session_message_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:gravity="center_vertical"
+                    android:hint="@string/create_session_hint_type_message"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:maxLength="2500"
+                    android:text="@{draftSession.message}"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="@android:color/white" />
+
+            </FrameLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/audio_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="5dp"
+                app:cardUseCompatPadding="true"
+                app:contentPadding="8dp"
+                app:visibleGone="@{draftSession.audioUrl != null}">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="4dp"
+                    android:paddingLeft="4dp"
+                    tools:ignore="RtlSymmetry">
+
+
+                    <include
+                        android:id="@+id/audio_view"
+                        layout="@layout/layout_play"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal" />
+
+                    <ImageButton
+                        android:id="@+id/create_session_remove_audio_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:contentDescription="@string/create_session_content_desc_remove_audio"
+                        android:padding="4dp"
+                        android:paddingStart="8dp"
+                        android:paddingLeft="8dp"
+                        android:tint="@color/active_icon_dark"
+                        app:srcCompat="@drawable/ic_round_clear_white_24" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/create_session_photo_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="horizontal" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="8dp"
+                android:paddingLeft="8dp"
+                android:paddingEnd="8dp"
+                android:paddingRight="8dp"
+                android:paddingBottom="8dp">
+
+                <ImageButton
+                    android:id="@+id/create_session_emoji_toggle_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:contentDescription="@string/common_content_desc_show_emoji"
+                    android:padding="8dp"
+                    app:srcCompat="@drawable/ic_round_insert_emoticon_white_24" />
+
+                <ImageButton
+                    android:id="@+id/create_session_add_photo_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:contentDescription="@string/create_session_content_desc_add_photo"
+                    android:padding="8dp"
+                    app:srcCompat="@drawable/ic_round_photo_camera_white_24" />
+
+                <ImageButton
+                    android:id="@+id/create_session_record_audio_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:contentDescription="@string/create_session_content_desc_record_audio"
+                    android:padding="8dp"
+                    app:srcCompat="@drawable/ic_round_keyboard_voice_white_24" />
+
+                <ImageButton
+                    android:id="@+id/create_session_font_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:contentDescription="@string/create_session_content_desc_change_font"
+                    android:padding="8dp"
+                    app:srcCompat="@drawable/round_text_fields_white_24" />
+
+                <ImageButton
+                    android:id="@+id/create_session_change_background_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:contentDescription="@string/create_session_content_desc_change_background"
+                    android:padding="8dp"
+                    app:srcCompat="@drawable/round_palette_white_24" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/create_session_submit_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:contentDescription="@string/create_session_content_desc_submit_session"
+                    android:src="@mipmap/ic_launcher_round"
+                    app:spin="@{true}" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/create_session_loading_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#99FFFFFF"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:visibleGone="@{loadingResource.status == Status.LOADING}">
+
+            <com.github.ybq.android.spinkit.SpinKitView
+                style="@style/SpinKitView.ChasingDots"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                app:SpinKit_Color="@color/theme_primary" />
+
+            <TextView
+                android:id="@+id/progress_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center_horizontal"
+                android:maxLines="3"
+                android:text="@{loadingResource.message}"
+                app:visibleGone="@{loadingResource.message != null}" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</layout>

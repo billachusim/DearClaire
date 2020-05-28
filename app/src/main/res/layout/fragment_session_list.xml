@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.mobymagic.clairediary.vo.Status" />
+
+        <variable
+            name="sessionResource"
+            type="com.mobymagic.clairediary.vo.Resource" />
+
+        <variable
+            name="alert"
+            type="com.mobymagic.clairediary.vo.Alert" />
+
+        <variable
+            name="retryCallback"
+            type="com.mobymagic.clairediary.ui.common.RetryCallback" />
+
+        <variable
+            name="empty"
+            type="com.mobymagic.clairediary.vo.Empty" />
+
+        <variable
+            name="emptyCallback"
+            type="com.mobymagic.clairediary.ui.common.EmptyCallback" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginRight="5dp"
+                    app:cardBackgroundColor="#3B3E40"
+                    app:cardUseCompatPadding="true"
+                    app:visibleGone="@{alert != null}">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="16dp"
+                        android:paddingLeft="16dp"
+                        android:paddingTop="16dp"
+                        android:paddingEnd="8dp"
+                        android:paddingRight="8dp"
+                        android:paddingBottom="16dp">
+
+                        <androidx.emoji.widget.EmojiTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text='@{alert != null ? alert.message : ""}'
+                            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                            android:textColor="@color/primary_text_light"
+                            tools:text="This is a sample alert" />
+
+                        <ImageButton
+                            android:id="@+id/session_list_dismiss_alert_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:contentDescription="@string/sessions_home_action_content_desc_dismiss_alert"
+                            android:padding="8dp"
+                            app:srcCompat="@drawable/ic_round_close_24_white" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/session_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="LinearLayoutManager"
+                    tools:listitem="@layout/item_session" />
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <include
+            layout="@layout/layout_loading_error_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:callback="@{() -> retryCallback.retry()}"
+            app:resource="@{sessionResource}" />
+
+        <include
+            layout="@layout/layout_empty_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:callback="@{() -> emptyCallback.onEmptyButtonClicked()}"
+            app:empty="@{empty}" />
+
+    </FrameLayout>
+
+</layout>

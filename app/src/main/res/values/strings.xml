@@ -1,0 +1,414 @@
+<resources>
+
+    <string name="app_name">Dear Claire</string>
+    <string name="app_catch_phrase">Secret Diary Chat</string>
+
+    <!-- Common Messages Start -->
+    <string name="common_message_loading">Loading…</string>
+    <string name="common_error_login_again">Please login again to continue</string>
+    <string name="common_chooser_title_share_using">Share using</string>
+    <string name="common_message_share_app">Tap this link to install %1$s - The Dear Diary That Replies %2$s</string>
+    <string name="common_message_hare_app">Have you heard of %1$s?
+It\'s like a secret social Diary network 🌸 An app where you can start or follow private discussions, write or record anything and give or get advices, completely free and anonymous 💕 🔐
+Tap this link to read more about it and install on your Android phone.
+%2$s</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="common_content_desc_remove_photo">Remove photo</string>
+    <string name="common_title_claire">Dear Claire</string>
+    <string name="common_title_alter_ego_mode">Alter-Ego Mode</string>
+    <string name="common_action_play">Play</string>
+    <string name="common_action_pause">Pause</string>
+    <string name="common_audio_permission_needed">Audio permission needed to record audio</string>
+    <string name="common_audio_permission_denied">Audio permission denied</string>
+    <string name="common_feedback">Feedback</string>
+    <string name="error_no_email_clients">No email client installed. Please install an email app from playstore.</string>
+
+    <string name="new_session_saving">Saving session…</string>
+    <string name="new_session_save_error">An error occurred while saving new session. Please try again.</string>
+    <string name="session_updating">Updating session…</string>
+    <string name="session_update_error">An error occurred while updating session. Please try again.</string>
+    <string name="session_deleting">Deleting session…</string>
+    <string name="session_delete_error">An error occurred while deleting session. Please try again.</string>
+
+    <string name="new_comment_saving">Saving comment…</string>
+    <string name="new_comment_save_error">An error occurred while saving comment. Please try again.</string>
+    <string name="comment_updating">Updating comment…</string>
+    <string name="comment_update_error">An error occurred while updating comment. Please try again.</string>
+
+    <string name="new_user_saving">Saving user…</string>
+    <string name="new_user_save_error">An error occurred while saving user. Please try again.</string>
+    <string name="user_updating">Updating user…</string>
+    <string name="user_update_error">An error occurred while updating user. Please try again.</string>
+
+    <string name="common_content_desc_show_emoji">Show emoji</string>
+    <string name="common_content_desc_show_keyboard">Show keyboard</string>
+    <!-- Common Messages End -->
+
+    <!-- File Upload Messages Start -->
+    <string name="file_uploading">Uploading…</string>
+    <string name="file_uploading_with_percent">Uploading %1$d</string>
+    <string name="file_upload_error">An error occurred while uploading files. Please try again.</string>
+    <!-- File Upload Messages End -->
+
+    <!-- Common Actions Start -->
+    <string name="common_action_retry">Retry</string>
+    <!-- Common Actions End -->
+
+    <!-- Session Types Page Start -->
+    <string name="session_type_diary">Diary</string>
+    <string name="session_type_trending">Trending</string>
+    <string name="session_type_archived">Archived</string>
+    <string name="session_type_chat">Chat</string>
+    <string name="session_type_following">Followed</string>
+    <string name="session_type_assigned">Assigned</string>
+    <string name="session_type_non_assigned">New</string>
+    <string name="session_type_all">All</string>
+    <!-- Session Types Page End -->
+
+    <!-- Session Home Page Start -->
+    <string name="session_home_action_how_to_use">How Claire Works</string>
+    <string name="session_home_action_join_discussion">On Instagram</string>
+    <string name="session_home_action_settings">Settings</string>
+    <string name="session_home_action_share_app">Send Claire To Someone</string>
+    <string name="sessions_home_action_content_desc_dismiss_alert">Dismiss</string>
+    <!-- Session Home Page End -->
+
+    <!-- Session Detail Page Start -->
+    <string name="session_detail_content_desc_submit_comment">Submit comment</string>
+    <string name="session_detail_content_desc_record_audio">Record audio</string>
+    <string name="session_detail_content_desc_add_photo">Add photo</string>
+    <string name="session_detail_hint_enter_reply">Positive vibes only, no ads…</string>
+    <string name="session_detail_hint_enter_advice">Enter advice…</string>
+    <string name="session_detail_error_message_or_audio_empty">Please enter a message or record an audio</string>
+    <string name="session_detail_content_desc_comment_remove_audio">Remove audio</string>
+    <string name="session_detail_content_desc_share_response">Share response</string>
+    <string name="session_detail_comment_share_message">Here is an advice I received from Dear Claire - Secret Diary Chat: %s</string>
+    <string name="session_detail_unfeature_session">Remove session from trending</string>
+    <string name="session_detail_action_edit_session">Edit session</string>
+    <string name="session_detail_featured_notice">Trending Notice: Hello Darling, this diary session is currently visible on the Trending Sessions. You are completely anonymous. However, to remove this session from public view, just tap the star icon 🌟 next to the Title.</string>
+    <string name="session_detail_action_edit_comment">Edit advice</string>
+    <string name="session_detail_action_me_too">Me2🌸</string>
+    <string name="session_detail_me_too_count">%1$s</string>
+    <!-- Session Detail Page End -->
+
+    <!-- Create Session Page Start -->
+    <string name="create_session_page_title">New session</string>
+    <string name="new_post_action_content_desc_removed_attached_file">Remove attached file</string>
+    <string name="new_post_action_send">SAVE and SEND</string>
+    <string name="new_post_hint_title">Message title</string>
+    <string name="new_post_hint_message">Start your message with Dear Claire, …</string>
+    <string name="new_post_attach_files">Attach files:</string>
+    <string name="create_session_hint_type_message">Start your text or voice note with Dear Claire</string>
+    <string name="create_session_content_desc_add_photo">Add photo</string>
+    <string name="create_session_content_desc_submit_session">Submit session</string>
+    <string name="create_session_content_desc_record_audio">Record audio</string>
+    <string name="create_session_content_desc_change_font">Change font</string>
+    <string name="create_session_content_desc_change_background">Change background</string>
+    <string name="create_session_content_desc_remove_audio">Remove audio</string>
+    <string name="create_session_content_desc_remove_photo">Remove photo</string>
+    <string name="create_session_error_title_empty">Please enter a title for your session</string>
+    <string name="create_session_error_message_or_audio_empty">Please enter a message or record an audio</string>
+    <string name="create_session_error_message_too_short">Message characters must be greater than 100</string>
+    <string name="create_session_select_photo">Select photo</string>
+    <string name="create_session_record_audio_title">Record audio</string>
+    <string name="create_session_record_audio_message">Press to record</string>
+    <string name="create_session_record_audio_action_ok">OK</string>
+    <string name="crate_session_title_select_font">Select font</string>
+    <string name="crate_session_title_enter_title">Enter title</string>
+    <string name="crate_session_hint_type_title">What\'s the session about?</string>
+    <string name="create_session_action_submit">Save</string>
+    <string name="create_session_action_submit_and_save">Send And Save</string>
+    <string name="create_session_privacy_mode">Do you want other users to reply and follow this diary session?</string>
+    <string name="create_session_enable_replies">Do you want Claire to reply and follow this diary session?</string>
+    <string name="create_session_inactivity_message">Go on darling 🌸. Tell me how you feel.</string>
+    <!-- Create Session Page End -->
+
+    <!-- Create Profile Page Start -->
+    <string name="create_profile_page_title">Welcome To Claire</string>
+    <string name="create_profile_page_subtitle">Quickly create an anonymous account</string>
+    <string name="create_profile_hint_nickname">Nickname</string>
+    <string name="create_profile_input_error_nickname_claire_not_allowed">Using claire in your nickname is not allowed</string>
+    <string name="create_profile_input_error_nickname_invalid">Please enter a nickname with more than 3 characters</string>
+    <string name="create_profile_input_error_gender_invalid">Please select a gender</string>
+    <string name="create_profile_action_create_profile">Submit</string>
+    <string-array name="create_profile_genders">
+        <item>Select gender</item>
+        <item>Male</item>
+        <item>Female</item>
+        <item>Others</item>
+    </string-array>
+    <!-- Create Profile Page End -->
+
+    <!-- Sign Up Page Start -->
+    <string name="sign_up_page_title">Create an account</string>
+    <string name="sign_up_page_subtitle">It\'s free</string>
+    <string name="sign_up_hint_email">Email</string>
+    <string name="sign_up_hint_secret_code">Secret code</string>
+    <string name="sign_up_action_sign_up">Sign Up</string>
+    <string name="sign_up_already_have_account">Already have an account?</string>
+    <string name="sign_up_action_sign_in">Sign In</string>
+    <string name="sign_up_error_weak_secret_code">The secret code is weak. Please use a different one and try again.</string>
+    <string name="sign_up_error_invalid_email">The email address is invalid. Please use a different one and try again.</string>
+    <string name="sign_up_error_user_exists">A user already exists with the email address. Please use a different one and try again.</string>
+    <string name="sign_up_error_nickname_exists">The nickname already exists. Please select another one.</string>
+    <string name="sign_up_error_generic">An error occurred while signing up. Please try again.</string>
+    <string name="sign_up_signing_up">Signing Up…</string>
+    <string name="sign_up_input_error_email_invalid">Please enter a valid email address</string>
+    <string name="sign_up_input_error_secret_invalid">Please enter a secret with 6 or more characters</string>
+    <!-- Sign Up Page End -->
+
+    <!-- Sign In Page Start -->
+    <string name="sign_in_page_title">Sign In</string>
+    <string name="sign_in_page_subtitle">Welcome back, darling.</string>
+    <string name="sign_in_hint_email">Email</string>
+    <string name="sign_in_action_sign_in">Open Up</string>
+    <string name="sign_in_hint_secret_code">Secret code</string>
+    <string name="sign_in_error_invalid_email">No account with the given email. Please sign up</string>
+    <string name="sign_in_error_invalid_secret_code">The secret code is incorrect. Please update and try again.</string>
+    <string name="sign_in_error_generic">An error occurred while signing in. Please try again.</string>
+    <string name="sign_in_signing_in">Signing In…</string>
+    <string name="sign_in_input_error_email_invalid">Please enter a valid email address</string>
+    <string name="sign_in_input_error_secret_invalid">Please enter a secret with 6 or more characters</string>
+    <string name="sign_in_action_forgot_secret_code">Forgotten secret code?</string>
+    <!-- Sign In Page End -->
+
+    <!-- Splash Page Start -->
+    <string name="splash_loading_message">Loading…</string>
+    <!-- Splash Page End -->
+
+    <!-- Lock Screen Page Start -->
+    <string name="lock_screen_title">Unlock Claire</string>
+    <string name="lock_screen_subtitle">You\'ll never be not truly loved</string>
+    <string name="lock_screen_hint_enter_secret_code">Enter secret code</string>
+    <string name="lock_screen_action_unlock">Open Up</string>
+    <string name="lock_screen_action_forgot_secret_code">Forgotten secret code?</string>
+    <string name="lock_screen_error_secret_code_empty">Please enter your secret code</string>
+    <string name="lock_screen_error_secret_code_incorrect">Secret code is incorrect</string>
+    <string name="lock_screen_welcome_message">It\'s Claire O\'clock!</string>
+    <!-- Lock Screen Page End -->
+
+    <!-- Forgot Secret Code Page Start -->
+    <string name="forgot_secret_code_title">Forgot secret code</string>
+    <string name="forgot_secret_code_subtitle">Use your email to reset your secret code</string>
+    <string name="forgot_secret_code_hint_enter_email">Enter your email</string>
+    <string name="forgot_secret_code_action_reset_code">Reset code</string>
+    <string name="forgot_secret_code_action_open_inbox">Open inbox</string>
+    <string name="forgot_secret_code_error_no_email_client">No email app found</string>
+    <string name="forgot_secret_code_error_email_empty">Please enter your email</string>
+    <string name="forgot_secret_code_error_email_invalid">Please enter a valid email</string>
+    <string name="forgot_secret_code_reset_link_sent">Your secret code reset link was sent to your email. Please check your email inbox.</string>
+    <string name="forgot_secret_code_error_invalid_email">No account with the given email. Please sign up</string>
+    <string name="forgot_secret_code_error_generic">An error occurred while sending reset email. Please try again.</string>
+    <string name="forgot_secret_code_loading">Loading…</string>
+    <!-- Forgot Secret Code Page End -->
+
+    <!-- Onboarding Page Start -->
+    <string name="onboarding_action_sign_up">Create an account</string>
+    <string name="onboarding_action_sign_in">Already have an account?</string>
+    <string name="onboarding_caption_anonymous">Your identity is completely anonymous</string>
+    <!-- Onboarding Page End -->
+
+    <!-- Session List Page Start -->
+    <string name="session_list_empty_diary">Your diary is empty. Use the button below to create a new session.\n\nIf you had diary sessions in the previous version, please don\'t panic, your old diary sessions with Claire are gradually being restored.</string>
+    <string name="session_list_empty_following">You are not following any diary session at the moment.
+        Please browse the Trending Sessions tab and follow diary sessions of your interest. Remember, positive vibes only and no ads 🌸.</string>
+    <string name="session_list_empty_archived">You have not archived any session yet.</string>
+    <string name="session_list_empty_featured">No session is currently trending.</string>
+    <string name="session_list_empty_assigned">You are not following any sessions yet.</string>
+    <string name="session_list_empty_non_assigned">There are no new sessions</string>
+    <string name="session_list_empty_flagged">No session has been flagged.</string>
+    <string name="session_list_empty_all">No sessions.</string>
+    <string name="no_public_sessions">No Public sessions.</string>
+    <string name="session_list_action_start_session">Start Session</string>
+    <string name="session_list_alert_trending">Welcome to Trending Sessions Tab 🌸\n\nThis page shows permitted, public, and trending diary sessions.\nYour diary session can not appear here without your notice.\nPlease contribute positive vibes only and no ads or you might permanently lose access to Claire.</string>
+    <string name="session_list_alert_diary">This is your Diary Sessions Tab 📝\n\nOpen Up 🌸 Write or record anything and if you wish, I can read or listen to it and reply you.\nEvery session is strictly between you and I (Claire), unless you set it for public; Whichever, your secrets remain secret and you\'ll never be not truly loved. 💕</string>
+    <string name="session_list_alert_new_alter_ego">Welcome to Alter Ego Mode 🌸\n\nYou are Claire right now. Remember your pledge:\n\n💕Be a true friend. Encourage them in their good plans, sympathise with them in their pains, advice them to stay optimistic and make them feel good about themselves. 💕</string>
+    <string name="session_list_action_archive">Archive session</string>
+    <string name="session_list_action_unarchive">Unarchive session</string>
+    <string name="session_list_action_feature">Make session trend</string>
+    <string name="session_list_action_unfeature">Remove session from trending</string>
+    <string name="session_list_confirmation_set_featured">Set this session as Trending?</string>
+    <string name="session_list_confirmation_set_unfeatured">Remove this session from Trending?</string>
+    <string name="session_list_confirmation_set_archived">Archive this session?</string>
+    <string name="session_list_confirmation_set_unarchived">Unarchive this session?</string>
+    <!-- Session List Page End -->
+
+    <!-- Notification Channels Start -->
+    <string name="notification_channel_name_reminder">Reminder</string>
+    <string name="notification_channel_desc_reminder">Reminds you to write a session every day</string>
+    <string name="notification_channel_name_session_update">Sessions update</string>
+    <string name="notification_channel_desc_session_update">Informs you about updates on your session</string>
+    <string name="notification_channel_name_announcements">Announcements</string>
+    <string name="notification_channel_desc_announcements">Announcements about recent updates</string>
+    <!-- Notification Channels End -->
+
+    <!-- Daily Reminder Start -->
+    <string name="daily_reminder_title">Claireminder</string>
+    <string-array name="daily_reminder_messages">
+        <item>It\'s about that time of day you talk to me</item>
+        <item>It\'s Claire O\'clock</item>
+        <item>You asked me to check on you by this time. How are you?</item>
+        <item>Hope you are feeling fine?</item>
+        <item>Tell me about today, will you?</item>
+        <item>So, what\'s happening?</item>
+        <item>So, what\'s happening?</item>
+        <item>What\'s popping?</item>
+        <item>If you don\'t tell me, how will I know?</item>
+        <item>It\'s about time we talk.</item>
+        <item>How do you do, darling? It\'s time.</item>
+        <item>You set your reminder to write me by this time.</item>
+        <item>I\'m here because you asked me to. What\'s up?</item>
+        <item>How is everything?</item>
+        <item>Would you like to talk? You normally do by this time.</item>
+        <item>You set this time to write to me. I\'m waiting.</item>
+        <item>I want to know how you are doing?</item>
+        <item>Wetin dey happen there?</item>
+        <item>Don\'t forget to check on me</item>
+    </string-array>
+    <!-- Daily Reminder End -->
+
+    <!-- Audio Start -->
+    <string name="audio_error_download_failed">Audio download failed</string>
+    <string name="audio_error_play_failed">An error occurred while playing audio</string>
+    <!-- Audio End -->
+
+    <!-- Settings Page Start -->
+    <string name="settings_page_title">Settings</string>
+    <string name="settings_title_session_update_notification_enabled">Session update notification</string>
+    <string name="settings_summary_session_update_notification_enabled">Notifies you of new replies to your session</string>
+    <string name="settings_title_daily_reminder_enabled">Claireminder</string>
+    <string name="settings_summary_daily_reminder_enabled">Reminds you daily to write on Claire</string>
+    <string name="settings_title_daily_reminder_time">Claireminder time</string>
+    <string name="settings_summary_daily_reminder_hour">Select the hour to be reminded daily (24 hours format)</string>
+    <string name="settings_title_select_theme">Select theme</string>
+    <string name="settings_summary_select_theme">Select your preferred theme</string>
+    <string-array name="settings_theme_names">
+        <item>Claireish</item>
+        <item>Boyish</item>
+        <item>Girlish</item>
+        <item>Ladyish</item>
+        <item>Guyish</item>
+        <item>Manish</item>
+        <item>Womanish</item>
+    </string-array>
+    <!-- Settings Page End -->
+
+    <!-- Alter Ego Intro Page Start -->
+    <string name="alter_ego_intro_page_title">Alter-Ego Mode</string>
+    <string name="alter_ego_intro_slide_1_text">Become Claire 🌸 for a month or a year and spread positive
+        vibes of true friendship to strangers all over the world.</string>
+    <string name="alter_ego_intro_slide_2_text">Just like the Diary Mode, the Alter-Ego Mode is completely anonymous.
+        No one (including the programmers) can know who sent a diary session and no one knows who responds.</string>
+    <string name="alter_ego_intro_slide_3_text">Be a true friend, sympathise with them in their pain,
+        encourage them in their good plans, advice them to stay optimistic and make them feel good about themselves.</string>
+    <string name="alter_ego_intro_slide_4_text">Alter-Ego Mode gives you special access to Claire\'s Inbox
+        so you too can spread positive vibes by responding to Diary Sessions of your interest.</string>
+    <string name="alter_ego_intro_action_donate">Donate</string>
+    <string name="alter_ego_intro_action_request_access">Request Access</string>
+    <!-- Alter Ego Intro Page End -->
+
+    <!-- Alter Ego Orientation Page Start -->
+    <string name="alter_ego_orientation_page_title">Alter-Ego Orientation</string>
+    <string name="alter_ego_orientation_first_header">Hello Darling🌸\n\nWelcome to your Clairentation.\n\nNone of the details discussed here will be made public. The personal details you are about to provide are needed to confirm your gender and qualification for access to Alter-Ego Mode.\n\nAlso as an Alter-Ego, you automatically become an elite member of our little secret group of Claires Of The World 🌸 therefore, for the many benefits that will come to you in the future for being a Claire, we hope to reach you via the details you will provide.</string>
+    <string name="alter_ego_orientation_full_name">Full name</string>
+    <string name="alter_ego_orientation_full_address">Full address</string>
+    <string name="alter_ego_orientation_phone_number">Phone number</string>
+    <string name="alter_ego_orientation_age">Age</string>
+    <string name="alter_ego_orientation_name_of_school_or_occupation">Name Of School Or Occupation</string>
+    <string name="alter_ego_orientation_best_friend_or_relative_name">Name of best friend or relative</string>
+    <string name="alter_ego_orientation_phone_of_best_friend_or_relative">Phone number of best friend or relative</string>
+    <string name="alter_ego_orientation_amount_donated">Amount donated</string>
+    <string name="alter_ego_orientation_email_address">Email address</string>
+    <string name="alter_ego_orientation_facebook_name">Facebook name</string>
+    <string name="alter_ego_orientation_instagram_username">Instagram username</string>
+    <string name="alter_ego_orientation_short_bio">Short bio</string>
+    <string name="alter_ego_orientation_second_header">Please Answer The Following Questions With Yes Or No</string>
+    <string name="alter_ego_orientation_random_posts">Are you truly interested in becoming an Alter-Ego not just to read random people\'s Diary Sessions but to reply them with happy vibes and good advices?</string>
+    <string name="alter_ego_orientation_world_better_place">Do you believe that the world will be a better place if people treat other people like themselves wish to be treated?</string>
+    <string name="alter_ego_orientation_following_on_instagram">Are you following @socialfaculty on Instagram?</string>
+    <string name="alter_ego_orientation_learn_on_instagram">Did you first learn about Claire on Instagram?</string>
+    <string name="alter_ego_orientation_rated_on_playstore">Have you rated Claire Diary five stars with a short review on Playstore?</string>
+    <string name="alter_ego_orientation_believe_claire_project">Do you truly believe in the Claire Project? That everyone deserves a true friend in need and indeed?</string>
+    <string name="alter_ego_orientation_ready_to_be_claire">Are you ready to become Claire now?</string>
+    <string name="alter_ego_orientation_third_header">Thank you so much for coming this far ♥ 🌸\n\nPlease tap the button below for final Clairentation and receive your Alter-Ego login details via WhatsApp.</string>
+    <string name="alter_ego_orientation_action_continue_to_whatsapp">Continue to WhatsApp</string>
+    <!-- Alter Ego Orientation Page End -->
+
+    <!-- How Claire Works Page Start -->
+    <string name="how_claire_works_page_title">How Claire works</string>
+    <string name="how_claire_works_read_title">Read How Claire Works</string>
+    <string name="how_claire_works_details">Open Up 🌸 Write or record anything and get advice from Claire secret diary.</string>
+    <string name="how_claire_works_read_alter_ego_works_title">Read How Alter Ego Works</string>
+    <string name="how_claire_works_donate_to_claire">Donate To Support Claire</string>
+    <!-- How Claire Works Page End -->
+
+    <!-- Alter Ego Login Page Start -->
+    <string name="alter_ego_login_page_title">Alter Ego Login</string>
+    <string name="alter_ego_login_page_subtitle">Switch to the powerful side of you</string>
+    <string name="alter_ego_login_hint_claire_id">claireID</string>
+    <string name="alter_ego_login_hint_access_code">One time access</string>
+    <string name="alter_ego_login_action_login">Switch In</string>
+    <string name="alter_ego_login_action_request_access">Request Access</string>
+    <string name="alter_ego_login_action_donate">Donate</string>
+    <string name="alter_ego_input_error_claire_id_invalid">Claire id must be greater than 6 characters</string>
+    <string name="alter_ego_input_error_access_code_invalid">Access code must be greater than 4 characters</string>
+    <string name="alter_ego_login_incorrect">Alter ego credentials is incorrect</string>
+    <string name="alter_ego_login_correct">You are in!</string>
+    <!-- Alter Ego Login Page End -->
+
+    <!-- Donate Page Start -->
+    <string name="donate_amount_page_title">Select amount</string>
+    <string name="donate_amount_200_naira">₦200 (Less than $1)</string>
+    <string name="donate_amount_500_naira">₦500 (Less than $2)</string>
+    <string name="donate_amount_1000_naira">₦1000 (Less than $4)</string>
+    <string name="donate_amount_2000_naira">₦2000 (Less than $7)</string>
+    <!-- Donate Page End -->
+
+    <!-- Comment List Page Start -->
+    <string name="comment_action_thanks">Thanks💕</string>
+    <string name="ellipseExtension">…more</string>
+    <string name="follow">Follow</string>
+    <string name="do_you_want_to_follow_this_session">Do you want to %1$s this Diary Session?</string>
+    <string name="cannot_follow_your_own_session">You cannot follow your own session</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Coming Soon; you can chat privately anonymously with Claire or anyone.</string>
+    <string name="your_avartar">Your Avartar</string>
+    <string name="nick_name">Nick Name: </string>
+    <string name="session">Session</string>
+    <string name="me_toos">Me Toos</string>
+    <string name="thank_yous">Thank yous</string>
+    <string name="best_advice">Best Advice</string>
+    <string name="nickname">Nickname</string>
+    <!-- Comment List Page End -->
+
+    <string name="claire_vartar">ClaireVartar 💕</string>
+    <string name="new_claire_vartar_saving">Saving claireVartar…</string>
+    <string name="new_claire_vartar_save_error">An error occurred while saving new claireVartar. Please try again.</string>
+    <string name="claire_vartar_updating">Updating claireVartar…</string>
+    <string name="claire_vartar_update_error">An error occurred while updating claireVartar. Please try again.</string>
+    <string name="claire_vartar_deleting">Deleting claireVartar…</string>
+    <string name="claire_vartar_delete_error">An error occurred while deleting claireVartar. Please try again.</string>
+    <string name="select_your_avartar">Select Your Avartar</string>
+    <string name="select_your_clairevartar">Select your Clairevartar</string>
+    <string name="avartar_tribute">Avatars courtesy of freepik.com and emojiisland.com</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="best_session">Popular Session</string>
+    <string name="activities">Activities</string>
+    <string name="your_activities">Your Activities</string>
+    <string name="comments">Comments</string>
+    <string name="prev">Prev</string>
+    <string name="next">Next</string>
+    <string name="reactions">Reactions</string>
+    <string name="advice">Advice</string>
+    <string name="ego">Ego</string>
+    <string name="follows">Follows</string>
+    <string name="coming_soon">Coming Soon</string>
+    <string name="request_chat">Request Chat</string>
+    <string name="title_activity_chat">ChatActivity</string>
+    <string name="title_activity_example">Example</string>
+    <string name="currentDate">currentDate</string>
+
+</resources>

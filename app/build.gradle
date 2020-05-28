@@ -1,0 +1,148 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'io.fabric'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        applicationId "com.mobymagic.clairediary"
+        minSdkVersion 19
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode 37
+        versionName "3.5.2"
+        multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            useProguard false
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            multiDexEnabled true
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+    buildToolsVersion = '28.0.3'
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    // Support Library
+    //noinspection GradleCompatible
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.exifinterface:exifinterface:1.2.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.preference:preference:1.1.1'
+    implementation 'androidx.legacy:legacy-preference-v14:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+
+    // Firebase
+    implementation 'com.google.firebase:firebase-core:17.4.2'
+    implementation 'com.google.firebase:firebase-messaging:20.2.0'
+    implementation 'com.google.firebase:firebase-auth:19.3.1'
+    implementation 'com.google.firebase:firebase-storage:19.1.1'
+    implementation 'com.google.firebase:firebase-firestore:21.4.3'
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
+    implementation 'com.firebaseui:firebase-ui-storage:3.3.1'
+    implementation 'com.google.firebase:firebase-database:19.3.0'
+
+    // Architecture components
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    kapt 'androidx.lifecycle:lifecycle-compiler:2.2.0'
+    implementation 'androidx.room:room-runtime:2.2.5'
+    kapt 'androidx.room:room-compiler:2.2.5'
+    //implementation "android.arch.navigation:navigation-fragment-ktx:$archNavVersion"
+    //implementation "android.arch.navigation:navigation-ui-ktx:$archNavVersion"
+
+    // UI
+    implementation 'com.github.ybq:Android-SpinKit:1.2.0'
+    implementation 'com.github.migellal:dayview:0.0.1'
+    implementation 'com.vanniktech:emoji-google:0.6.0'
+    implementation 'com.fujiyuu75:sequent:0.2.1'
+    implementation 'com.fxn769:pix:1.0.3'
+    implementation 'com.github.adrielcafe:AndroidAudioRecorder:0.3.0'
+    implementation 'com.vstechlab.easyfonts:easyfonts:1.0.0'
+    implementation 'com.cleveroad:splittransformation:0.9.0'
+    implementation 'com.github.garretyoder:Colorful:2.3.3'
+    implementation "com.thejuki:k-form-master:6.4.0"
+    implementation 'com.flaviofaria:kenburnsview:1.0.7'
+    implementation 'com.github.hotchemi:android-rate:1.0.1'
+
+    // Networking
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    kapt "com.github.bumptech.glide:compiler:$glideVersion"
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.7.2'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+
+    // Misc
+    implementation 'com.github.Flutterwave:rave-android:1.0.38'
+    implementation 'id.zelory:compressor:2.1.0'
+    implementation 'com.evernote:android-job:1.4.2'
+    implementation 'com.karumi:dexter:6.1.2'
+    //implementation 'androidx.core:core-ktx:1.0.0-alpha1'
+
+    // Debug tools
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+
+    // DI
+    implementation "org.koin:koin-android-architecture:$koin_version"
+    testImplementation "org.koin:koin-test:$koin_version"
+
+
+    implementation('com.crashlytics.sdk.android:crashlytics:2.10.1@aar') {
+        transitive = true
+    }
+    implementation('com.crashlytics.sdk.android:answers:1.4.7@aar') {
+        transitive = true
+    }
+
+    // Local tests
+    testImplementation "junit:junit:$junitVersion"
+    testImplementation "org.mockito:mockito-core:2.19.0"
+    testImplementation "com.nhaarman:mockito-kotlin:1.5.0"
+    testImplementation 'androidx.arch.core:core-testing:2.1.0'
+
+    // Android tests
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.2.0'
+    //androidTestImplementation "android.arch.navigation:navigation-testing-ktx:$archNavVersion"
+    implementation 'androidx.multidex:multidex:2.0.1'
+
+    implementation 'com.google.android.exoplayer:exoplayer:2.8.4'
+    implementation 'com.github.sundeepk:compact-calendar-view:3.0.0'
+
+    implementation 'com.github.nekocode:Badge:2.0'
+    implementation 'com.veinhorn.scrollgalleryview:library:1.0.8'
+    implementation 'androidx.emoji:emoji:1.0.0'
+    implementation 'com.github.lguipeng:BubbleView:1.0.1'
+
+}
+
+apply plugin: 'com.google.gms.google-services'

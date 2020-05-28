@@ -1,0 +1,66 @@
+<resources>
+
+    <style name="WideColoredButton" parent="Base.Widget.AppCompat.Button.Colored">
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:paddingLeft">32dp</item>
+        <item name="android:paddingStart">32dp</item>
+        <item name="android:paddingRight">32dp</item>
+        <item name="android:paddingEnd">32dp</item>
+    </style>
+
+    <style name="AuthAppLogo">
+        <item name="android:elevation">2dp</item>
+        <item name="android:src">@drawable/ic_product_logo_128dp</item>
+        <item name="android:background">@drawable/oval_white</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:contentDescription">@null</item>
+    </style>
+
+    <style name="AuthCard" parent="CardView.Light">
+        <item name="cardUseCompatPadding">true</item>
+        <item name="contentPadding">16dp</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:layout_centerInParent">true</item>
+    </style>
+
+    <style name="BigDonateButton" parent="@style/Widget.AppCompat.Button.Colored">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:paddingTop">20dp</item>
+        <item name="android:paddingBottom">20dp</item>
+        <item name="android:paddingLeft">32dp</item>
+        <item name="android:paddingRight">32dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="DialogFragmentTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:paddingRight">0dp</item>
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="DialogFragmentAnimatedTheme" parent="DialogFragmentTheme">
+        <item name="android:windowAnimationStyle">@style/MyAnimation.Window</item>
+    </style>
+
+    <style name="MyAnimation.Window" parent="@android:style/Animation.Activity">
+        <item name="android:windowEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_left</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+</resources>

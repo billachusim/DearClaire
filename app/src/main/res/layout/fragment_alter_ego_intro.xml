@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.alteregointro.AlterEgoIntroFragment">
+
+        <include
+            android:id="@+id/app_bar"
+            layout="@layout/layout_app_bar" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/alterEgoIntroPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="350dp" />
+
+                <com.cleveroad.splittransformation.SquareViewPagerIndicator
+                    android:id="@+id/alterEgoIntroPageIndicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="16dp" />
+
+                <TextView
+                    android:id="@+id/alterEgoIntroDetailsTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@string/font_family_regular"
+                    android:paddingStart="16dp"
+                    android:paddingLeft="16dp"
+                    android:paddingTop="32dp"
+                    android:paddingEnd="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingBottom="32dp"
+                    app:html="@{@string/common_how_alter_ego_works}" />
+
+                <Button
+                    android:id="@+id/alterEgoIntroDonateButton"
+                    style="@style/BigDonateButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/alter_ego_intro_action_donate"
+                    android:textColor="@android:color/white" />
+
+                <Button
+                    android:id="@+id/alterEgoIntroRequestAccessButton"
+                    style="@style/BigDonateButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_trans_black_rect"
+                    android:text="@string/alter_ego_intro_action_request_access"
+                    android:textColor="@color/primary_text_dark" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</layout>

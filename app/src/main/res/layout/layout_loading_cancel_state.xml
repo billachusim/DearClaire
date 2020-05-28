@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.mobymagic.clairediary.vo.Status" />
+
+        <variable
+            name="resource"
+            type="com.mobymagic.clairediary.vo.Resource" />
+
+        <variable
+            name="callback"
+            type="com.mobymagic.clairediary.ui.common.CancelCallback" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/container_default_padding"
+        app:visibleGone="@{resource.status == Status.LOADING}">
+
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:id="@+id/progress_bar"
+            style="@style/SpinKitView.ChasingDots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            app:SpinKit_Color="@color/theme_primary"
+            app:visibleGone="@{resource.status == Status.LOADING}" />
+
+        <TextView
+            android:id="@+id/error_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:ellipsize="end"
+            android:gravity="center_horizontal"
+            android:maxLines="5"
+            android:text="@{resource.message}"
+            app:visibleGone="@{resource.message != null}"
+            tools:text="Loading some data..." />
+
+        <Button
+            android:id="@+id/retry_button"
+            style="@style/WideColoredButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:onClick="@{() -> callback.cancel()}"
+            android:text="@string/cancel"
+            app:visibleGone="@{resource.status == Status.ERROR}" />
+
+    </LinearLayout>
+
+</layout>

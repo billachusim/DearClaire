@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="imageUrl"
+            type="String" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="56dp"
+        android:layout_height="56dp">
+
+        <ImageView
+            android:id="@+id/create_session_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"
+            android:tint="@color/color_scrim_dark"
+            app:imageUrl="@{imageUrl}"
+            tools:src="@drawable/default_thumbnail" />
+
+        <ImageButton
+            android:id="@+id/create_session_remove_image_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|end"
+            android:background="?android:attr/selectableItemBackground"
+            android:contentDescription="@string/create_session_content_desc_remove_photo"
+            android:padding="4dp"
+            app:srcCompat="@drawable/round_clear_white_18" />
+
+    </FrameLayout>
+
+</layout>

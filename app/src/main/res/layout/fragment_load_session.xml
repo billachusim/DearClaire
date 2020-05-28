@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="resource"
+            type="com.mobymagic.clairediary.vo.Resource" />
+
+        <variable
+            name="retryCallback"
+            type="com.mobymagic.clairediary.ui.common.RetryCallback" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.loadsession.LoadSessionFragment">
+
+        <include
+            layout="@layout/layout_loading_error_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:callback="@{() -> retryCallback.retry()}"
+            app:resource="@{resource}" />
+
+    </FrameLayout>
+
+</layout>

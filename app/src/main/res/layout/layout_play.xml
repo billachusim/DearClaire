@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <ImageButton
+            android:id="@+id/start_audio_button"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/oval_accent"
+            android:contentDescription="@string/common_action_play"
+            android:padding="16dp"
+            app:srcCompat="@drawable/ic_round_play_arrow_white_24"
+            tools:backgroundTint="#d3d3d3" />
+
+    </LinearLayout>
+</layout>

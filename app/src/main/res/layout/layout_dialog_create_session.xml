@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <EditText
+            android:id="@+id/create_session_title_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/crate_session_hint_type_title"
+            android:inputType="textCapSentences"
+            android:maxLength="200" />
+
+        <Spinner
+            android:id="@+id/create_session_mood_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp" />
+
+        <Switch
+            android:id="@+id/create_session_privacy_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:drawablePadding="16dp"
+            android:text="@string/create_session_privacy_mode"
+            app:drawableTintColor="@{@color/active_icon_dark}"
+            app:startDrawable="@{@drawable/round_lock_white_24}" />
+
+        <Switch
+            android:id="@+id/create_session_replies_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:checked="true"
+            android:drawablePadding="16dp"
+            android:text="@string/create_session_enable_replies"
+            app:drawableTintColor="@{@color/active_icon_dark}"
+            app:startDrawable="@{@drawable/round_reply_white_24}" />
+
+    </LinearLayout>
+
+</layout>

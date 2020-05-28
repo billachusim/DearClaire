@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="PREF_KEY_SESSION_UPDATE_NOTIFICATION_ENABLED"
+        android:summary="@string/settings_summary_session_update_notification_enabled"
+        android:title="@string/settings_title_session_update_notification_enabled" />
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="PREF_KEY_DAILY_REMINDER_ENABLED"
+        android:summary="@string/settings_summary_daily_reminder_enabled"
+        android:title="@string/settings_title_daily_reminder_enabled" />
+
+    <com.mobymagic.clairediary.widgets.NumberPickerPreference
+        android:key="PREF_KEY_DAILY_REMINDER_HOUR"
+        android:summary="@string/settings_summary_daily_reminder_hour"
+        android:title="@string/settings_title_daily_reminder_time"
+        app:curValue="8"
+        app:maxValue="22"
+        app:minValue="1" />
+
+    <ListPreference
+        android:defaultValue="Clairish"
+        android:entries="@array/settings_theme_names"
+        android:entryValues="@array/settings_theme_names"
+        android:key="PREF_THEME"
+        android:summary="@string/settings_summary_select_theme"
+        android:title="@string/settings_title_select_theme" />
+
+</PreferenceScreen>

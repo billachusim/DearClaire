@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <com.mobymagic.clairediary.widgets.AudioCircularProgressView
+        android:id="@+id/circularProgress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true" />
+
+    <ImageView
+        android:id="@+id/progressImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/circularProgress"
+        android:layout_alignLeft="@id/circularProgress"
+        android:layout_alignTop="@id/circularProgress"
+        android:layout_alignEnd="@id/circularProgress"
+        android:layout_alignRight="@id/circularProgress"
+        android:layout_alignBottom="@id/circularProgress"
+        android:layout_centerInParent="true"
+        android:contentDescription="@null"
+        android:padding="8.5dp"
+        app:srcCompat="@drawable/ic_round_play_arrow_white_24" />
+
+</RelativeLayout>

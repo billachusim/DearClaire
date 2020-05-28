@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="empty"
+            type="com.mobymagic.clairediary.vo.Empty" />
+
+        <variable
+            name="callback"
+            type="com.mobymagic.clairediary.ui.common.EmptyCallback" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/container_default_padding"
+        app:visibleGone="@{empty != null}">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@null"
+            android:src="@{empty.icon}" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="12dp"
+            android:gravity="center_horizontal"
+            android:text="@{empty.message}"
+            tools:text="The page is currently empty" />
+
+        <Button
+            style="@style/WideColoredButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:onClick="@{() -> callback.onEmptyButtonClicked()}"
+            android:text="@{empty.buttonText}"
+            app:visibleGone="@{empty.buttonText != null}" />
+
+    </LinearLayout>
+
+</layout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.mobymagic.clairediary.vo.Status" />
+
+        <variable
+            name="resource"
+            type="com.mobymagic.clairediary.vo.Resource" />
+
+    </data>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:ellipsize="end"
+        android:gravity="center_horizontal"
+        android:maxLines="5"
+        android:padding="8dp"
+        android:text="@{resource.message}"
+        android:textColor="@color/text_error"
+        app:visibleGone="@{resource.status == Status.ERROR}"
+        tools:text="An error occurred while connecting. Please try again later." />
+
+</layout>
