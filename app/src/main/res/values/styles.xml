@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="WideColoredButton" parent="Base.Widget.AppCompat.Button.Colored">
         <item name="android:paddingTop">16dp</item>
@@ -10,7 +10,7 @@
     </style>
 
     <style name="AuthAppLogo">
-        <item name="android:elevation">2dp</item>
+        <item name="android:elevation" tools:ignore="NewApi">2dp</item>
         <item name="android:src">@drawable/ic_product_logo_128dp</item>
         <item name="android:background">@drawable/oval_white</item>
         <item name="android:padding">16dp</item>

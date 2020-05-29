@@ -49,6 +49,7 @@ class ArchiveSessionListFragment : DataBoundNavFragment<FragmentArchiveSessionLi
 
     override fun getPageTitle(): String {
         return "Your Session"
+
     }
 
     override fun getLayoutRes() = R.layout.fragment_archive_session_list
@@ -62,6 +63,7 @@ class ArchiveSessionListFragment : DataBoundNavFragment<FragmentArchiveSessionLi
 
         setupListeners()
         observeSessions()
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

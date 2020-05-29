@@ -73,6 +73,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:layout_margin="4dp"
             tools:context=".ui.geustego.GuestEgoFragment">
 
 
@@ -83,7 +84,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp">
+                >
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -93,31 +94,19 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
+                        android:layout_height="96dp"
                         android:orientation="horizontal"
                         tools:context=".ui.ego.EgoFragment">
 
-                        <!-- TODO: Update blank fragment layout -->
-                        <!--<ImageView-->
-                        <!--android:id="@+id/sessions_home_app_logo"-->
-                        <!--android:layout_width="56dp"-->
-                        <!--android:layout_height="56dp"-->
-                        <!--android:layout_marginTop="@dimen/nav_header_vertical_spacing"-->
-                        <!--android:padding="8dp"-->
-                        <!--android:src="@drawable/ic_product_logo_128dp"-->
-                        <!--android:background="@drawable/oval_white"-->
-                        <!--android:contentDescription="@null"/>-->
                         <ImageView
                             android:id="@+id/user_avartar"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
                             android:layout_margin="8dp"
                             android:background="@drawable/oval_white"
                             android:contentDescription="@string/your_avartar"
                             android:scaleType="fitCenter"
                             android:src="@drawable/ic_product_logo_128dp"
-                            android:text="@string/hello_blank_fragment"
                             app:avatarUrl="@{imageUrl}"
                             tools:background="@drawable/oval_white" />
 
@@ -125,10 +114,8 @@
                             android:id="@+id/diary_session_count_container"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_margin="4dp"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_weight="1">
+                            android:layout_margin="2dp"
+                            android:layout_weight="1.5">
 
                             <TextView
                                 android:id="@+id/number_of_sessions_TextView"
@@ -136,6 +123,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_alignStart="@id/sessions_TextView"
                                 android:layout_alignEnd="@id/sessions_TextView"
+                                android:fontFamily="sans-serif-black"
                                 android:text="@{numberOfSessions}"
                                 android:textAlignment="center"
                                 android:textAppearance="?android:textAppearanceLarge"
@@ -146,43 +134,28 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/number_of_sessions_TextView"
-                                android:layout_marginTop="2dp"
-                                android:layout_marginEnd="2dp"
-                                android:layout_marginBottom="2dp"
-                                android:padding="1dp"
+                                android:layout_margin="4dp"
+                                android:fontFamily="sans-serif-medium"
                                 android:text="@string/session"
                                 android:textStyle="bold"
                                 tools:text="Sessions" />
 
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_below="@id/sessions_TextView"
-                                android:layout_alignStart="@id/sessions_TextView"
-                                android:layout_alignLeft="@id/sessions_TextView"
-                                android:layout_alignEnd="@id/sessions_TextView"
-                                android:layout_alignRight="@id/sessions_TextView"
-                                android:layout_margin="2dp"
-                                android:scaleType="fitCenter"
-                                app:srcCompat="@drawable/claire_icon_svg" />
                         </RelativeLayout>
 
                         <RelativeLayout
                             android:id="@+id/me_too_count_container"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_margin="4dp"
-                            android:layout_weight="1"
-                            app:layout_constraintStart_toEndOf="@id/user_avartar">
+                            android:layout_margin="2dp"
+                            android:layout_weight="1.7">
 
                             <TextView
                                 android:id="@+id/follow_count_textView"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignStart="@id/follows_TextView"
-                                android:layout_alignLeft="@id/follows_TextView"
                                 android:layout_alignEnd="@id/follows_TextView"
-                                android:layout_alignRight="@id/follows_TextView"
+                                android:fontFamily="sans-serif-black"
                                 android:text="@{numberOfMeeToos}"
                                 android:textAlignment="center"
                                 android:textAppearance="?android:textAppearanceLarge"
@@ -193,21 +166,11 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/follow_count_textView"
-                                android:layout_margin="2dp"
+                                android:layout_margin="4dp"
+                                android:fontFamily="sans-serif-medium"
                                 android:text="@string/follows"
                                 android:textStyle="bold" />
 
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_below="@id/follows_TextView"
-                                android:layout_alignStart="@id/follows_TextView"
-                                android:layout_alignLeft="@id/follows_TextView"
-                                android:layout_alignEnd="@id/follows_TextView"
-                                android:layout_alignRight="@id/follows_TextView"
-                                android:layout_margin="2dp"
-                                android:scaleType="fitCenter"
-                                app:srcCompat="@drawable/ic_outline_add_red" />
                         </RelativeLayout>
 
                         <RelativeLayout
@@ -216,7 +179,6 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="4dp"
                             android:layout_weight="1"
-                            android:orientation="vertical"
                             app:layout_constraintStart_toEndOf="@id/user_avartar">
 
                             <TextView
@@ -224,9 +186,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignStart="@id/adviceTextView"
-                                android:layout_alignLeft="@id/adviceTextView"
                                 android:layout_alignEnd="@id/adviceTextView"
-                                android:layout_alignRight="@id/adviceTextView"
+                                android:fontFamily="sans-serif-black"
                                 android:text="@{numberOfComments}"
                                 android:textAlignment="center"
                                 android:textAppearance="?android:textAppearanceLarge"
@@ -237,22 +198,11 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/number_of_comments_text_view"
-                                android:layout_margin="2dp"
-                                android:padding="1dp"
+                                android:layout_margin="4dp"
+                                android:fontFamily="sans-serif-medium"
                                 android:text="@string/advice"
                                 android:textStyle="bold" />
 
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_below="@id/adviceTextView"
-                                android:layout_alignStart="@id/adviceTextView"
-                                android:layout_alignLeft="@id/adviceTextView"
-                                android:layout_alignEnd="@id/adviceTextView"
-                                android:layout_alignRight="@id/adviceTextView"
-                                android:layout_margin="2dp"
-                                android:scaleType="fitCenter"
-                                app:srcCompat="@drawable/comment_icon_red" />
                         </RelativeLayout>
 
 
@@ -262,7 +212,6 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="4dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -270,47 +219,39 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
-                            android:layout_alignParentLeft="true"
-                            android:layout_gravity="start"
                             android:layout_toStartOf="@+id/user_type_text_view"
-                            android:layout_toLeftOf="@+id/user_type_text_view"
-                            android:drawablePadding="4dp"
-
+                            android:layout_marginStart="16dp"
                             android:hint="@string/nickname"
                             android:text="@{nickName}"
-
                             android:textAppearance="?android:textAppearanceMedium"
+                            android:fontFamily="sans-serif-medium"
                             android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/user_type_text_view"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentTop="true"
-                            android:layout_centerHorizontal="true"
+                            android:layout_centerInParent="true"
                             android:layout_gravity="center"
-                            android:layout_marginTop="0dp"
-                            android:layout_marginEnd="8dp"
-                            android:layout_marginRight="8dp"
-                            android:background="#721fb6"
                             android:drawablePadding="4dp"
                             android:text="@{userType}"
                             android:textAlignment="center"
                             android:textAppearance="?android:textAppearanceLarge"
                             android:textColor="@color/white"
+                            backgroundColorHex="#0a00b6"
                             android:textStyle="bold"
+                            app:adminBadge="@{userType}"
                             tools:text="Admin" />
-                        />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/add_friend_image"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            android:layout_gravity="end"
-                            android:layout_marginEnd="8dp"
-                            android:layout_marginRight="8dp"
+                            android:layout_toEndOf="@+id/user_type_text_view"
+                            android:gravity="center_horizontal"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginEnd="16dp"
                             android:text="@string/request_chat"
                             android:textAppearance="?android:textAppearance"
                             android:textColor="@color/theme_accent"
@@ -323,7 +264,6 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
                 app:backgroundColorHex="@{bestSession.colorHex}">
 
                 <LinearLayout
@@ -334,12 +274,12 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:padding="2dp"
+                        android:gravity="start"
                         android:text="@string/best_session"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:textColor="@color/secondary_text_light"
-                        android:textStyle="bold" />
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textColor="@color/white"
+                        android:fontFamily="sans-serif-medium"
+                        android:textStyle="italic" />
 
                     <androidx.emoji.widget.EmojiTextView
                         android:id="@+id/best_session_title_text_view"
@@ -350,11 +290,11 @@
                         android:maxLines="1"
                         android:padding="8dp"
                         android:text="@{bestSession.title}"
-                        android:textAppearance="?android:textAppearanceMedium"
-                        android:textColor="@color/secondary_text_light"
+                        android:textAppearance="?android:textAppearanceSmall"
+                        android:textColor="@color/white"
                         android:textStyle="bold"
                         app:backgroundColorHex="@{bestSession.colorHex}"
-                        tools:text="hfhfhfhfhfhfhhhhhhh" />
+                        tools:text="Test Title" />
 
                     <androidx.emoji.widget.EmojiTextView
                         android:id="@+id/best_session_text_view"
@@ -362,79 +302,13 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:gravity="start"
-                        android:maxLines="2"
-                        android:padding="8dp"
+                        android:maxLines="3"
+                        android:padding="2dp"
                         android:text="@{bestSession.message}"
                         android:textAppearance="?android:textAppearanceSmall"
-                        android:textColor="@color/secondary_text_light"
+                        android:textColor="@color/white"
                         app:backgroundColorHex="@{bestSession.colorHex}"
-                        tools:text="hfhfhfhfhfhfhhhhhhh" />
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center">
-
-                        <RelativeLayout
-                            android:id="@+id/best_seesion_like_count_layout"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            android:layout_gravity="end"
-                            android:layout_margin="4dp"
-                            android:layout_marginEnd="8dp"
-                            android:layout_marginRight="8dp"
-                            android:gravity="end">
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/best_seesion_like_count"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@{String.valueOf(bestSession.meToos.size())}"
-                                android:textColor="@color/white"
-                                tools:text="22 " />
-
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:id="@+id/best_seesion_like_count_image"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="4dp"
-                                android:layout_marginLeft="4dp"
-                                android:layout_toEndOf="@id/best_seesion_like_count"
-                                android:layout_toRightOf="@id/best_seesion_like_count"
-                                app:srcCompat="@drawable/high_five_icon"
-                                tools:text="22 " />
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="4dp"
-                            android:layout_marginEnd="8dp"
-                            android:layout_marginRight="16dp"
-                            android:layout_toStartOf="@id/best_seesion_like_count_layout"
-                            android:layout_toLeftOf="@id/best_seesion_like_count_layout"
-                            android:gravity="start">
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/best_seesion_follow_count"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@{String.valueOf(bestSession.followers.size())}"
-                                android:textColor="@color/white"
-                                tools:text="22 " />
-
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:id="@+id/best_seesion_follow_count_image"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_toEndOf="@id/best_seesion_follow_count"
-                                android:layout_toRightOf="@id/best_seesion_follow_count"
-                                app:srcCompat="@drawable/ic_outline_add_red"
-                                tools:text="22 " />
-                        </RelativeLayout>
-                    </RelativeLayout>
+                        tools:text="Test Session is all about Claire to the world" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

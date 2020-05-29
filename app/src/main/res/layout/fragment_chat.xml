@@ -13,12 +13,12 @@
         android:layout_height="wrap_content"
         app:tabIndicatorColor="@color/colorAccent"
         app:tabSelectedTextColor="@color/theme_primary"
-        app:tabTextColor="@android:color/darker_gray"></com.google.android.material.tabs.TabLayout>
+        app:tabTextColor="@android:color/darker_gray" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"></androidx.viewpager.widget.ViewPager>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </LinearLayout>

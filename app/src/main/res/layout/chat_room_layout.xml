@@ -32,7 +32,7 @@
                 android:layout_marginEnd="2dp"
                 android:layout_marginRight="2dp"
                 android:contentDescription="@null"
-                app:srcCompat="@drawable/claire_icon_svg" />
+                app:srcCompat="@drawable/dummy_claire_vartar" />
 
             <TextView
                 android:id="@+id/session_detail_nickname_text"

@@ -75,7 +75,6 @@ class EgoArchiveFragment : DataBoundNavFragment<FragmentEgoArchiveBinding>(), Co
     }
 
     override fun onMonthScroll(firstDayOfNewMonth: Date?) {
-        binding.calenderDayTextView.text = binding.compactcalendarView.firstDayOfCurrentMonth.toString()
         val calendar: Calendar = Calendar.getInstance()
         calendar.time = firstDayOfNewMonth
         calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH))

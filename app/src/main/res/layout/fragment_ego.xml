@@ -204,10 +204,10 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="8dp"
                                 android:layout_toEndOf="@id/edit_user_nickname"
-                                android:fontFamily="sans-serif-condensed"
                                 android:hint="@string/nickname"
                                 android:text="@{nickName}"
                                 android:textAppearance="?android:textAppearanceMedium"
+                                android:fontFamily="sans-serif-medium"
                                 android:textStyle="bold" />
 
                             <androidx.appcompat.widget.AppCompatImageView
@@ -320,7 +320,7 @@
                         android:textColor="@color/white"
                         android:textStyle="bold"
                         app:backgroundColorHex="@{bestSession.colorHex}"
-                        tools:text="hfhfhfhfhfhfhhhhhhh" />
+                        tools:text="Test Title" />
 
                     <androidx.emoji.widget.EmojiTextView
                         android:id="@+id/best_session_text_view"
@@ -329,12 +329,11 @@
                         android:ellipsize="end"
                         android:gravity="start"
                         android:maxLines="2"
-                        android:padding="2dp"
                         android:text="@{bestSession.message}"
                         android:textAppearance="?android:textAppearanceSmall"
                         android:textColor="@color/white"
                         app:backgroundColorHex="@{bestSession.colorHex}"
-                        tools:text="hfhfhfhfhfhfhhhhhhh" />
+                        tools:text="Test Session it's all about Claire." />
 
                 </LinearLayout>
 
@@ -355,9 +354,7 @@
                 <androidx.viewpager.widget.ViewPager
                     android:id="@+id/activity_archive_view_pager"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
         </LinearLayout>
 
