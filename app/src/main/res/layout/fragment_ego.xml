@@ -56,14 +56,11 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="0.5dp">
+                android:layout_height="wrap_content">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -159,7 +156,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="2dp"
-                            android:layout_weight="1"
+                            android:layout_weight="1.5"
                             app:layout_constraintStart_toEndOf="@id/user_avartar">
 
                             <TextView
@@ -290,7 +287,6 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="2dp"
                 app:backgroundColorHex="@{bestSession.colorHex}">
 
                 <LinearLayout
