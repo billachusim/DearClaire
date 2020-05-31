@@ -38,7 +38,7 @@
         android:layout_marginRight="5dp"
         app:cardBackgroundColorHex="@{session.colorHex}"
         app:cardUseCompatPadding="true"
-        app:contentPadding="16dp"
+        app:contentPadding="4dp"
         tools:cardBackgroundColor="#9BDAF3">
 
         <LinearLayout

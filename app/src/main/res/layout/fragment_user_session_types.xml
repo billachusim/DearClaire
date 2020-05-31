@@ -15,17 +15,12 @@
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/divider" />
-
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/sessionTypesTab"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:itemIconTint="@color/tab_icon_text_colors"
-            app:itemTextColor="@color/tab_icon_text_colors"
+            app:itemTextColor="@color/active_icon_light"
             app:menu="@menu/bottom_nav_user_session_types" />
 
     </LinearLayout>

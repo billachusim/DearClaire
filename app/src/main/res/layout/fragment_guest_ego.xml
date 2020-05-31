@@ -93,7 +93,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="96dp"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         tools:context=".ui.ego.EgoFragment">
 
@@ -101,7 +101,7 @@
                             android:id="@+id/user_avartar"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
-                            android:layout_margin="8dp"
+                            android:layout_gravity="top"
                             android:background="@drawable/oval_white"
                             android:contentDescription="@string/your_avartar"
                             android:scaleType="fitCenter"
@@ -276,7 +276,7 @@
                         android:gravity="start"
                         android:paddingHorizontal="2dp"
                         android:text="@string/best_session"
-                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textAppearance="?android:textAppearanceSmall"
                         android:textColor="@color/white"
                         android:fontFamily="sans-serif-medium"
                         android:textStyle="italic" />
@@ -288,7 +288,6 @@
                         android:ellipsize="end"
                         android:gravity="center"
                         android:maxLines="1"
-                        android:padding="8dp"
                         android:text="@{bestSession.title}"
                         android:textAppearance="?android:textAppearanceSmall"
                         android:textColor="@color/white"
@@ -313,7 +312,7 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="10dp"
+                        android:layout_height="8dp"
                         android:background="@color/theme_primary_dark"/>
 
                 </LinearLayout>

@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.crashlytics.android.answers.Answers
 import com.crashlytics.android.answers.CustomEvent
@@ -13,7 +12,6 @@ import com.mobymagic.clairediary.AppExecutors
 import com.mobymagic.clairediary.MainActivity
 import com.mobymagic.clairediary.R
 import com.mobymagic.clairediary.databinding.FragmentGuestEgoBinding
-import com.mobymagic.clairediary.repository.SessionRepository
 import com.mobymagic.clairediary.repository.UserRepository
 import com.mobymagic.clairediary.ui.auth.AuthViewModel
 import com.mobymagic.clairediary.ui.clairevartar.ClaireVartarFragment
@@ -36,8 +34,8 @@ import org.koin.android.ext.android.inject
 import timber.log.Timber
 
 /**
- * A simple [Fragment] subclass.
- * Use the [EgoFragment.newInstance] factory method to
+ * A simple Fragment subclass.
+ * Use the EgoFragment.newInstance factory method to
  * create an instance of this fragment.
  *
  */
@@ -55,7 +53,6 @@ class GuestEgoFragment : DataBoundNavFragment<FragmentGuestEgoBinding>() {
     private val sessionDetailViewModel: SessionDetailViewModel by inject()
     private val audioUtil: AudioUtil by inject()
     private var sessionListImageAdapter by autoCleared<SessionDetailImageAdapter>()
-    private val sessionRepository: SessionRepository by inject()
 
     private var adapter by autoCleared<GuestEgoSessionListAdapter>()
 
@@ -76,9 +73,9 @@ class GuestEgoFragment : DataBoundNavFragment<FragmentGuestEgoBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Timber.d("onViewCreated")
-        userId = requireArguments().getString(ARG_USER_ID)
-        nickname = requireArguments().getString(ARG_NICK_NAME)
-        avatar = requireArguments().getString(ARG_AVATAR)
+        userId = requireArguments().getString(ARG_USER_ID).toString()
+        nickname = requireArguments().getString(ARG_NICK_NAME).toString()
+        avatar = requireArguments().getString(ARG_AVATAR).toString()
         sessionListType = requireArguments().getSerializable(ARG_SESSION_LIST_TYPE) as SessionListType
         user = userRepository.getLoggedInUser()
         egoViewModel.userId = userId
@@ -111,7 +108,7 @@ class GuestEgoFragment : DataBoundNavFragment<FragmentGuestEgoBinding>() {
 
     companion object {
 
-        val CLAIRE_VARTAR_REQUEST_CODE = 1000
+        const val CLAIRE_VARTAR_REQUEST_CODE = 1000
         private const val ARG_USER_ID = "ARG_USER_ID"
         private const val ARG_GEUST_ID = "ARG_GEUST_ID"
         private const val ARG_NICK_NAME = "ARG_NICK_NAME"
@@ -139,7 +136,7 @@ class GuestEgoFragment : DataBoundNavFragment<FragmentGuestEgoBinding>() {
 
     private fun initRecyclerViewAdapter() {
         val fromAlterEgo = SessionListType.isAlterEgo(sessionListType)
-        sessionListImageAdapter = SessionDetailImageAdapter(appExecutors) { imageUrl ->
+        sessionListImageAdapter = SessionDetailImageAdapter(appExecutors) {
 
         }
         adapter = GuestEgoSessionListAdapter(appExecutors, fromAlterEgo, user?.userId!!, { session, shouldOpenCommentBox ->
@@ -209,35 +206,35 @@ class GuestEgoFragment : DataBoundNavFragment<FragmentGuestEgoBinding>() {
                 if (it.data?.size == null || it.data.isEmpty()) {
                     binding.numberOfSessions = "---"
                 } else {
-                    binding.numberOfSessions = it.data.get(0).numberOfSessions.toString()
+                    binding.numberOfSessions = it.data[0].numberOfSessions.toString()
                 }
 
-            } else if (it.status.equals(Status.ERROR) || it.status.equals(Status.LOADING)) {
+            } else if (it.status == Status.ERROR || it.status == Status.LOADING) {
                 binding.numberOfSessions = "---"
             }
         })
 
-        egoViewModel.getUserBestSession().observe(viewLifecycleOwner, Observer { it ->
+        egoViewModel.getUserBestSession().observe(viewLifecycleOwner, Observer {
             if (it?.status?.equals(Status.LOADING)!!) {
                 bestSession.message = "Loading Best Session"
                 binding.bestSession = bestSession
                 binding.bestSessionTextView.setOnClickListener {
 
                 }
-            } else if (it.status.equals(Status.ERROR)) {
+            } else if (it.status == Status.ERROR) {
                 bestSession.message = "An error ocurred while loading Session," +
                         " please click to try agian"
                 binding.bestSession = bestSession
                 binding.bestSessionTextView.setOnClickListener {
                     egoViewModel.retryLoadingBestSession()
                 }
-            } else if (it.status.equals(Status.SUCCESS)) {
-                if (it.data == null || it.data.size < 1) {
+            } else if (it.status == Status.SUCCESS) {
+                if (it.data == null || it.data.isEmpty()) {
                     bestSession.message = "Unavailable"
-                } else if (it.data.size > 0) {
-                    val bestSession: Session = it.data.get(0)
+                } else if (it.data.isNotEmpty()) {
+                    val bestSession: Session = it.data[0]
                     binding.bestSession = bestSession
-//                    binding.bestSeesionLikeCount.text = it.data.get(0).followers.count()
+//                    binding.bestSessionLikeCount.text = it.data.get(0).followers.count()
                     binding.bestSessionTextView.setOnClickListener {
 
                         getNavController()
@@ -257,8 +254,8 @@ class GuestEgoFragment : DataBoundNavFragment<FragmentGuestEgoBinding>() {
                 }
 
                 Status.SUCCESS -> {
-                    if (it.data != null && it.data.size > 0) {
-                        binding.numberOfComments = it.data.get(0).numberOfComments.toString()
+                    if (it.data != null && it.data.isNotEmpty()) {
+                        binding.numberOfComments = it.data[0].numberOfComments.toString()
                     } else {
                         binding.numberOfComments = "---"
                     }
@@ -292,7 +289,7 @@ class GuestEgoFragment : DataBoundNavFragment<FragmentGuestEgoBinding>() {
     }
 
     private fun createClickListeners() {
-        val showClaireVartarDialog = View.OnClickListener {
+        View.OnClickListener {
             val fm = fragmentManager
             val claireVartarFragment = ClaireVartarFragment()
             claireVartarFragment.setTargetFragment(this, CLAIRE_VARTAR_REQUEST_CODE)

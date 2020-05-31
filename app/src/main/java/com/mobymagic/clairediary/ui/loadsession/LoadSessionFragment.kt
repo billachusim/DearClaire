@@ -26,20 +26,20 @@ class LoadSessionFragment : DataBoundNavFragment<FragmentLoadSessionBinding>() {
 
     override var requiresAuthentication: Boolean = false
 
-    var sessionListType: SessionListType = SessionListType.DIARY
+    private var sessionListType: SessionListType = SessionListType.DIARY
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val sessionId = arguments!!.getString(ARG_SESSION_ID)
-        val isAlterEgo = arguments!!.getString(IS_ALTER_EGO)
+        val sessionId = requireArguments().getString(ARG_SESSION_ID)
+        val isAlterEgo = requireArguments().getString(IS_ALTER_EGO)
 
         // if the person is coming from alter ego then fake an alter ego tab
         if (isAlterEgo == "true") {
             sessionListType = SessionListType.ASSIGNED
         }
         if (sessionWithIdLiveData == null) {
-            sessionWithIdLiveData = sessionRepository.getSessionWithId(sessionId)
-            sessionWithIdLiveData?.observe(this, Observer { sessionResource ->
+            sessionWithIdLiveData = sessionId?.let { sessionRepository.getSessionWithId(it) }
+            sessionWithIdLiveData?.observe(viewLifecycleOwner, Observer { sessionResource ->
                 binding.resource = sessionResource
                 if (sessionResource?.status == Status.SUCCESS) {
                     if (sessionResource.data != null) {
@@ -55,7 +55,7 @@ class LoadSessionFragment : DataBoundNavFragment<FragmentLoadSessionBinding>() {
     private fun navigateToSessionDetail(session: Session) {
         Timber.d("Navigating to session detail: %s", session)
         sessionWithIdLiveData?.removeObservers(this)
-        val userId = arguments!!.getString(ARG_USER_ID, null)
+        val userId = requireArguments().getString(ARG_USER_ID, null)
         val sessionDetailFragment = SessionDetailFragment.newInstance(session, userId, sessionListType)
         getNavController().removeFromBackstack(this)
         getNavController().navigate(sessionDetailFragment, true)

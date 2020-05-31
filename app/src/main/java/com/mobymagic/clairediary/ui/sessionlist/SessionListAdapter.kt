@@ -134,7 +134,7 @@ class SessionListAdapter(
 
         binding.sessionActionButton.visibility = View.VISIBLE
 
-        binding.sessionListMeTooCountText.text = item.meToos.size.toString()
+        binding.sessionListMeTooCountText.text = item.meToos!!.size.toString()
 
         setupSessionPhotoList(binding, context, appExecutors)
 
@@ -190,7 +190,7 @@ class SessionListAdapter(
             binding.sessionActionButton.setVisibleOrGone(item.userId == userId)
         }
         try {
-            getCommentCountCallBack.invoke(item.sessionId).observe(context as LifecycleOwner, Observer {
+            getCommentCountCallBack.invoke(item.sessionId.toString()).observe(context as LifecycleOwner, Observer {
                 when (it?.status) {
                     Status.SUCCESS -> {
                         if (it.data != null) {

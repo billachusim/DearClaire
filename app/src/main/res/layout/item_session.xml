@@ -36,10 +36,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="2dp"
         android:layout_marginEnd="5dp"
-        android:layout_marginRight="5dp"
         app:cardBackgroundColorHex="@{session.colorHex}"
         app:cardUseCompatPadding="true"
         app:contentPadding="16dp"
@@ -53,7 +51,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
+                android:layout_gravity="start"
                 android:orientation="horizontal">
 
                 <TextView
@@ -62,12 +60,9 @@
                     android:layout_height="match_parent"
                     android:ellipsize="end"
                     android:fontFamily="@string/font_family_regular"
-                    android:gravity="end"
+                    android:gravity="start"
+                    android:layout_margin="6dp"
                     android:maxLines="1"
-                    android:paddingStart="16dp"
-                    android:paddingLeft="16dp"
-                    android:paddingEnd="16dp"
-                    android:paddingRight="16dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                     android:textColor="@color/secondary_text_light"
                     app:timeAgoWithDate="@{session.timeCreated}"
@@ -77,15 +72,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
+                android:layout_margin="6dp"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/session_detail_user_image"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginEnd="2dp"
-                    android:layout_marginRight="2dp"
+                    android:layout_gravity="start"
                     android:contentDescription="@null"
                     app:avatarUrl="@{session.userAvatarUrl}"
                     tools:src="@drawable/default_thumbnail" />
@@ -94,21 +88,15 @@
                     android:id="@+id/session_detail_nickname_text"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginLeft="4dp"
                     android:layout_weight="1"
                     android:ellipsize="end"
                     android:fontFamily="@string/font_family_regular"
                     android:maxLines="1"
-                    android:paddingStart="2dp"
-                    android:paddingLeft="2dp"
-                    android:paddingEnd="16dp"
-                    android:paddingRight="16dp"
                     android:text="@{session.userNickname}"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="8dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textColor="@color/primary_text_light"
-                    android:textIsSelectable="true"
+                    android:textColor="@color/white"
                     tools:text="Elvis Chidera " />
 
                 <TextView
@@ -116,16 +104,11 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginLeft="4dp"
                     android:layout_weight="1"
                     android:ellipsize="end"
                     android:fontFamily="@string/font_family_regular"
                     android:maxLines="1"
-                    android:paddingStart="2dp"
-                    android:paddingLeft="2dp"
-                    android:paddingEnd="16dp"
-                    android:paddingRight="16dp"
+                    android:gravity="end"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                     android:textColor="@color/primary_text_light"
                     android:textIsSelectable="true"
@@ -149,14 +132,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
                         android:ellipsize="end"
-                        android:fontFamily="@string/font_family_medium"
                         android:gravity="center_horizontal"
+
                         android:maxLines="2"
-                        android:paddingEnd="8dp"
-                        android:paddingRight="8dp"
                         android:text="@{session.title}"
                         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                         android:textColor="@color/primary_text_light"
+                        android:fontFamily="@string/font_family_medium"
                         tools:ignore="RtlSymmetry"
                         tools:text="Title of my first session" />
 
@@ -165,13 +147,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@string/font_family_regular"
-                        android:paddingEnd="8dp"
-                        android:paddingRight="8dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                         android:textColor="@color/secondary_text_light"
-                        android:textSize="14sp"
+                        android:textSize="15sp"
                         tools:ignore="RtlSymmetry"
-                        tools:text="The content of my first diary session created on Claired" />
+                        tools:text="The content of my first diary session created on Claire" />
 
                 </LinearLayout>
 
@@ -218,9 +198,21 @@
                 android:orientation="horizontal"
                 app:visibleGone="@{userAvailable}">
 
+                <TextView
+                    android:id="@+id/session_list_me_too_count_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/secondary_text_light"
+                    tools:text="132" />
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:layout_marginTop="11dp"
                     android:orientation="horizontal">
 
                     <Button
@@ -232,26 +224,17 @@
                         android:textAllCaps="false"
                         android:textColor="@color/primary_text_light" />
 
-                    <TextView
-                        android:id="@+id/session_list_me_too_count_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingStart="8dp"
-                        android:paddingLeft="8dp"
-                        android:paddingEnd="8dp"
-                        android:paddingRight="8dp"
-                        android:textColor="@color/secondary_text_light"
-                        app:layout_constraintStart_toEndOf="@id/session_detail_me_too_button"
-                        app:layout_constraintTop_toBottomOf="@id/session_detail_me_too_button"
-                        tools:text="132" />
+
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="11dp"
                     android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:orientation="horizontal">
+                    android:gravity="bottom"
+                    android:orientation="horizontal"
+                    tools:ignore="RelativeOverlap">
 
                     <ImageButton
                         android:id="@+id/session_list_comment_button"
@@ -259,7 +242,6 @@
                         android:layout_height="wrap_content"
                         android:background="@android:color/transparent"
                         android:contentDescription="@string/session_detail_content_desc_submit_comment"
-                        android:padding="16dp"
                         app:srcCompat="@drawable/ic_baseline_comment"
                         tools:backgroundTint="@android:color/transparent" />
 
@@ -268,13 +250,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:paddingStart="8dp"
-                        android:paddingLeft="8dp"
-                        android:paddingEnd="8dp"
-                        android:paddingRight="8dp"
+                        android:layout_margin="5dp"
                         android:textColor="@color/secondary_text_light"
-                        app:layout_constraintStart_toEndOf="@id/session_detail_me_too_button"
-                        app:layout_constraintTop_toBottomOf="@id/session_detail_me_too_button"
                         tools:text="132" />
                 </LinearLayout>
             </RelativeLayout>
@@ -284,33 +261,24 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:orientation="horizontal"
-                android:paddingStart="8dp"
-                android:paddingLeft="8dp"
-                android:paddingEnd="8dp"
-                android:paddingRight="8dp"
                 app:visibleGone="@{!isFromAlterEgo &amp; userAvailable}">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:textColor="@color/secondary_text_light"
+                    android:textColor="@color/white"
                     app:srcCompat="@drawable/ic_outline_add"
-                    app:visibleGone="@{!isFromAlterEgo &amp; userAvailable }"
-                    tools:text="@string/follow" />
+                    app:visibleGone="@{!isFromAlterEgo &amp; userAvailable }"/>
 
                 <TextView
                     android:id="@+id/session_list_follow"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_horizontal"
-                    android:paddingStart="8dp"
-                    android:paddingLeft="1dp"
-                    android:paddingEnd="8dp"
-                    android:paddingRight="8dp"
                     android:text="@{followText}"
-                    android:textColor="@color/secondary_text_light"
-                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    android:textSize="17sp"
                     app:visibleGone="@{!isFromAlterEgo &amp; userAvailable }"
                     tools:text="@string/follow" />
 
@@ -319,10 +287,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:paddingStart="8dp"
-                    android:paddingLeft="8dp"
-                    android:paddingEnd="8dp"
-                    android:paddingRight="8dp"
+                    android:layout_marginHorizontal="8dp"
                     android:text="@{String.valueOf(followCount)}"
                     android:textColor="@color/secondary_text_light"
                     android:textSize="16sp"

@@ -144,7 +144,7 @@ class CreateSessionViewModel(
             session: Session
     ) {
         val uploadLiveData = fileRepository.uploadFiles(fileWrappers)
-        addSessionLiveData.addSource(uploadLiveData, { filesResource ->
+        addSessionLiveData.addSource(uploadLiveData) { filesResource ->
             Timber.d("File resource: %s", filesResource)
             when {
                 filesResource?.status == Status.LOADING -> {
@@ -156,10 +156,10 @@ class CreateSessionViewModel(
                 }
                 filesResource?.status == Status.SUCCESS -> {
                     addSessionLiveData.removeSource(uploadLiveData)
-                    session.imageUrls.clear()
+                    session.imageUrls?.clear()
                     for (fileWrapper in filesResource.data!!) {
                         if (fileWrapper.fileType == FileRepository.FileType.PHOTO) {
-                            session.imageUrls.add(fileWrapper.uploadUrl.toString())
+                            session.imageUrls?.add(fileWrapper.uploadUrl.toString())
                         } else if (fileWrapper.fileType == FileRepository.FileType.AUDIO) {
                             session.audioUrl = fileWrapper.uploadUrl.toString()
                         }
@@ -167,7 +167,7 @@ class CreateSessionViewModel(
                     saveSession(addSessionLiveData, session)
                 }
             }
-        })
+        }
     }
 
     private fun getFileWrappers(session: Session): List<FileRepository.FileWrapper> {
@@ -181,7 +181,7 @@ class CreateSessionViewModel(
             )
         }
 
-        for (imageUrl in session.imageUrls) {
+        for (imageUrl in session.imageUrls!!) {
             wrapperList.add(
                     FileRepository.FileWrapper(
                             File(imageUrl),
@@ -194,9 +194,9 @@ class CreateSessionViewModel(
     }
 
     private fun isInputValid(session: Session): Boolean {
-        if (session.title.isEmpty())
+        if (session.title?.isEmpty()!!)
             return false
-        else if (session.message.isEmpty() && session.audioUrl == null)
+        else if (session.message!!.isEmpty() && session.audioUrl == null)
             return false
         /*else if(session.message.length < 100 && session.audioUrl == null)
             return false*/
@@ -205,11 +205,11 @@ class CreateSessionViewModel(
     }
 
     private fun getInputError(session: Session): String? {
-        return if (session.title.isEmpty())
+        return if (session.title!!.isEmpty())
             androidUtil.getString(R.string.create_session_error_title_empty)
-        else if (session.message.isEmpty() && session.audioUrl == null)
+        else if (session.message!!.isEmpty() && session.audioUrl == null)
             androidUtil.getString(R.string.create_session_error_message_or_audio_empty)
-        else if (session.message.length < 100 && session.audioUrl == null)
+        else if (session.message!!.length < 100 && session.audioUrl == null)
             androidUtil.getString(R.string.create_session_error_message_too_short)
         else
             null
@@ -228,13 +228,13 @@ class CreateSessionViewModel(
 
             // Copy any non empty value from the current session into the draft session
             session.colorHex = curSession.colorHex
-            if (curSession.message.isNotEmpty()) {
+            if (curSession.message!!.isNotEmpty()) {
                 session.message = curSession.message
             }
-            if (curSession.title.isNotEmpty()) {
+            if (curSession.title!!.isNotEmpty()) {
                 session.title = curSession.title
             }
-            if (curSession.imageUrls.isNotEmpty()) {
+            if (curSession.imageUrls!!.isNotEmpty()) {
                 session.imageUrls = curSession.imageUrls
             }
             if (curSession.audioUrl != null) {
@@ -307,14 +307,14 @@ class CreateSessionViewModel(
     fun addPhotos(photoUris: List<String>) {
         Timber.d("Adding photos to session: %s", photoUris)
         val session = sessionLiveData.value!!
-        session.imageUrls.addAll(photoUris)
+        session.imageUrls?.addAll(photoUris)
         sessionLiveData.value = session
     }
 
     fun removePhoto(photoUri: String) {
         Timber.d("Removing photo: %s", photoUri)
         val session = sessionLiveData.value!!
-        session.imageUrls.remove(photoUri)
+        session.imageUrls?.remove(photoUri)
         sessionLiveData.value = session
     }
 

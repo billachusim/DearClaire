@@ -8,7 +8,6 @@ import androidx.lifecycle.Observer
 import com.mobymagic.clairediary.AppExecutors
 import com.mobymagic.clairediary.R
 import com.mobymagic.clairediary.databinding.FragmentEgoActivityBinding
-import com.mobymagic.clairediary.ui.common.CancelCallback
 import com.mobymagic.clairediary.ui.common.DataBoundNavFragment
 import com.mobymagic.clairediary.ui.sessiondetail.SessionDetailFragment
 import com.mobymagic.clairediary.ui.sessionlist.SessionListType
@@ -27,11 +26,11 @@ class EgoActivityFragment : DataBoundNavFragment<FragmentEgoActivityBinding>() {
     override fun getLayoutRes() = R.layout.fragment_ego_activity
 
     override fun getPageTitle(): String {
-        return "Ego"
+        return "Dear Claire"
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        userId = requireArguments().getString(userIdKey)
+        userId = requireArguments().getString(userIdKey).toString()
         egoViewModel.userId = userId
         createObservers()
         setupRecyclerView()
@@ -113,13 +112,6 @@ class EgoActivityFragment : DataBoundNavFragment<FragmentEgoActivityBinding>() {
         })
     }
 
-    private fun setupListeners() {
-        binding.cancelCallback = object : CancelCallback {
-            override fun cancel() {
-            }
-        }
-    }
-
     companion object {
         /**
          * Use this factory method to create a new instance of
@@ -127,7 +119,7 @@ class EgoActivityFragment : DataBoundNavFragment<FragmentEgoActivityBinding>() {
          *
          * @return A new instance of fragment EgoActivityFragment.
          */
-        val userIdKey = "USER_ID"
+        const val userIdKey = "USER_ID"
 
         @JvmStatic
         fun newInstance(userId: String): EgoActivityFragment {

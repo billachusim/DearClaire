@@ -21,6 +21,10 @@ class ChatFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    fun getPageTitle(): String {
+        return "Dear Claire"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -44,9 +48,9 @@ class ChatFragment : Fragment() {
 
     private fun setupViewPager(viewPager: ViewPager) {
         val adapter = ChatAdapter(fragmentManager)
-        adapter.addFragment(ChatRoomsFragment(), "Chat Room")
-        adapter.addFragment(PrivateChatFragment(), "Private Chat")
-        adapter.addFragment(RequestFragment(), "Requests")
+        adapter.addFragment(ChatRoomsFragment(), "Chat Rooms")
+        adapter.addFragment(PrivateChatFragment(), "Secret Chat")
+        adapter.addFragment(RequestFragment(), "Chat Requests")
         viewPager.adapter = adapter
     }
 

@@ -15,19 +15,19 @@ data class Session(
         @field:JvmField
         var audioUrl: String?,
         @field:JvmField
-        var colorHex: String,
+        var colorHex: String?,
         @field:JvmField
         var featured: Boolean,
         @field:JvmField
         var flagged: Boolean,
         @field:JvmField
-        var imageUrls: MutableList<String>,
+        var imageUrls: ArrayList<String>?,
         @field:JvmField
-        var message: String,
+        var message: String?,
         @field:JvmField
-        var respondentUserId: String,
+        var respondentUserId: String?,
         @field:JvmField
-        var sessionId: String,
+        var sessionId: String?,
         @field:JvmField
         @ServerTimestamp
         var timeCreated: Date?,
@@ -35,25 +35,25 @@ data class Session(
         @ServerTimestamp
         var timeLastActivity: Date?,
         @field:JvmField
-        var title: String,
+        var title: String?,
         @field:JvmField
-        var userAvatarUrl: String,
+        var userAvatarUrl: String?,
         @field:JvmField
-        var userId: String,
+        var userId: String?,
         @field:JvmField
-        var userNickname: String,
+        var userNickname: String?,
         @field:JvmField
         var private: Boolean,
         @field:JvmField
         var repliesEnabled: Boolean,
         @field:JvmField
-        var font: String,
+        var font: String?,
         @field:JvmField
         var meTooFollowCount: Int = 0,
         @field:JvmField
         var moodId: Int = Mood.NO_MODE_ID,
         @field:JvmField
-        var meToos: MutableList<String> = mutableListOf(),
+        var meToos: ArrayList<String>? = ArrayList(),
         @field:JvmField
         var followers: MutableList<String> = mutableListOf()
 
@@ -89,7 +89,7 @@ data class Session(
             "#9BDAF3",
             false,
             false,
-            mutableListOf<String>(),
+            ArrayList<String>(),
             "",
             "",
             "",

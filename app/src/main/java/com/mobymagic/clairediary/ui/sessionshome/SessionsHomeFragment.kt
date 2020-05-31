@@ -62,7 +62,7 @@ class SessionsHomeFragment : DataBoundNavFragment<FragmentSessionsHomeBinding>()
         super.onViewCreated(view, savedInstanceState)
         (activity as AppCompatActivity).setSupportActionBar(binding.appBar.toolbar)
 
-        userId = requireArguments().getString(ARG_USER_ID)
+        userId = requireArguments().getString(ARG_USER_ID).toString()
 
         if (TextUtils.isEmpty(userId)) {
             userId = authViewModel.getUserId()

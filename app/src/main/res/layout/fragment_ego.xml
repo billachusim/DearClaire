@@ -343,9 +343,12 @@
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/frag2_tabs"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="27dp"
+                    app:tabBackground="@color/theme_primary_dark"
+                    app:tabIndicatorColor="@color/black"
+                    app:tabIndicatorHeight="4dp"
                     app:tabMode="fixed"
-                    app:tabBackground="@color/theme_primary_dark" />
+                    app:tabSelectedTextColor="@color/white" />
 
                 <androidx.viewpager.widget.ViewPager
                     android:id="@+id/activity_archive_view_pager"

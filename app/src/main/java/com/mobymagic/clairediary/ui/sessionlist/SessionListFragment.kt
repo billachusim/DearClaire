@@ -55,7 +55,7 @@ class SessionListFragment : DataBoundNavFragment<FragmentSessionListBinding>() {
         super.onViewCreated(view, savedInstanceState)
         Timber.d("onViewCreated")
         sessionListType = requireArguments().getSerializable(ARG_SESSION_LIST_TYPE) as SessionListType
-        userId = requireArguments().getString(ARG_USER_ID)
+        userId = requireArguments().getString(ARG_USER_ID).toString()
         sessionListViewModel.userId = userId
 
         setupListeners()
@@ -114,8 +114,8 @@ class SessionListFragment : DataBoundNavFragment<FragmentSessionListBinding>() {
                 sessionDetailViewModel, audioUtil, exoPlayerUtil, sessionListImageAdapter, this,
 
                 { session ->
-                    getNavController().navigateToWithAuth(GuestEgoFragment.newInstance(session.userId,
-                            "", session.userNickname, session.userAvatarUrl, sessionListType))
+                    getNavController().navigateToWithAuth(GuestEgoFragment.newInstance(session.userId.toString(),
+                            "", session.userNickname.toString(), session.userAvatarUrl.toString(), sessionListType))
                 },
                 {
                     sessionListViewModel.getNumberOfCommentsForSessions(it)

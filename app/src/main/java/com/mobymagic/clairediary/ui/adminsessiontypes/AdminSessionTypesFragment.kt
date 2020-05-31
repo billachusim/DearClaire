@@ -31,8 +31,10 @@ class AdminSessionTypesFragment : DataBoundNavFragment<FragmentAdminSessionTypes
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val userId = arguments!!.getString(ARG_USER_ID)
-        setupPager(userId)
+        val userId = requireArguments().getString(ARG_USER_ID)
+        if (userId != null) {
+            setupPager(userId)
+        }
         setupBottomNav()
 
         if (savedInstanceState == null) {
@@ -89,11 +91,11 @@ class AdminSessionTypesFragment : DataBoundNavFragment<FragmentAdminSessionTypes
     private fun setupPager(userId: String) {
         val sessionTypeItems = listOf(
                 PagerAdapter.Item(
-                        getString(R.string.session_type_assigned),
+                        getString(R.string.session_type_advised),
                         SessionListFragment.newInstance(SessionListType.ASSIGNED, userId)
                 ),
                 PagerAdapter.Item(
-                        getString(R.string.session_type_non_assigned),
+                        getString(R.string.session_type_new),
                         SessionListFragment.newInstance(SessionListType.NON_ASSIGNED, userId)
                 ),
                 PagerAdapter.Item(

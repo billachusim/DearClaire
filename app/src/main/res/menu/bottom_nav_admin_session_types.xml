@@ -4,12 +4,12 @@
     <item
         android:id="@+id/nav_session_type_assigned"
         android:icon="@drawable/outline_favorite_border_black_24"
-        android:title="@string/session_type_assigned" />
+        android:title="@string/session_type_advised" />
 
     <item
         android:id="@+id/nav_session_type_non_assigned"
         android:icon="@drawable/outline_calendar_today_black_24"
-        android:title="@string/session_type_non_assigned" />
+        android:title="@string/session_type_new" />
 
     <item
         android:id="@+id/nav_session_type_all"

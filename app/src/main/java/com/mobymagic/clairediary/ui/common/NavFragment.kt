@@ -40,7 +40,7 @@ abstract class NavFragment : androidx.fragment.app.Fragment(), Serializable {
      * Called when the phone back button is pressed. Navigation fragments that want to perform
      * an action when the back button is pressed should override this method and return true.
      * The default implementation returns false
-     * @return true if the back buttion pressed was handled by the fragment, false otherwise
+     * @return true if the back button pressed was handled by the fragment, false otherwise
      */
     open fun onBackPressed() = false
 

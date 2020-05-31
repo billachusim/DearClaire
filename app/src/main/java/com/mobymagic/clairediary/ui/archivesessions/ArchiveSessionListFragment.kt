@@ -57,7 +57,7 @@ class ArchiveSessionListFragment : DataBoundNavFragment<FragmentArchiveSessionLi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Timber.d("onViewCreated")
-        userId = requireArguments().getString(ARG_USER_ID)
+        userId = requireArguments().getString(ARG_USER_ID).toString()
         archiveSessionViewModel.userId = userId
         date = requireArguments().getSerializable(ARG_DATE) as Date
 

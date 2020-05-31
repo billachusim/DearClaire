@@ -48,11 +48,11 @@ class SessionDetailViewModel(
 
     fun toggleMeToo(userId: String, session: Session): Session {
         var shouldIncreaseMeTooCount = true
-        if (session.meToos.contains(userId)) {
-            session.meToos.remove(userId)
+        if (session.meToos!!.contains(userId)) {
+            session.meToos!!.remove(userId)
             shouldIncreaseMeTooCount = false
         } else {
-            session.meToos.add(userId)
+            session.meToos!!.add(userId)
         }
 
         sessionRepository.updateSession(session, userId, UserActivityType.MEETOO,
@@ -61,7 +61,7 @@ class SessionDetailViewModel(
     }
 
     fun toggleFollowers(userId: String, session: Session): Session {
-        var shouldIncrementFollow: Boolean
+        val shouldIncrementFollow: Boolean
         if (session.followers.contains(userId)) {
             session.followers.remove(userId)
             shouldIncrementFollow = false
@@ -78,7 +78,7 @@ class SessionDetailViewModel(
     }
 
     private fun initAddCommentLiveData() {
-        addCommentLiveData = Transformations.switchMap(sessionLiveData, { session ->
+        addCommentLiveData = Transformations.switchMap(sessionLiveData) { session ->
             val comment = commentLiveData.value!!
             val user = userRepository.getLoggedInUser()
             when {
@@ -99,7 +99,7 @@ class SessionDetailViewModel(
                     errorLiveData
                 }
             }
-        })
+        }
     }
 
     private fun submitComment(
@@ -134,7 +134,7 @@ class SessionDetailViewModel(
     ) {
         if (editingComment) {
             val updateCommentLiveData = commentRepository.updateComment(session, comment)
-            addCommentLiveData.addSource(updateCommentLiveData, { commentResource ->
+            addCommentLiveData.addSource(updateCommentLiveData) { commentResource ->
                 Timber.d("Comment resource: %s", commentResource)
                 addCommentLiveData.value = commentResource
 
@@ -148,10 +148,10 @@ class SessionDetailViewModel(
                 } else if (commentResource?.status == Status.ERROR) {
                     addCommentLiveData.removeSource(updateCommentLiveData)
                 }
-            })
+            }
         } else {
             val saveCommentLiveData = commentRepository.addComment(session, comment)
-            addCommentLiveData.addSource(saveCommentLiveData, { commentResource ->
+            addCommentLiveData.addSource(saveCommentLiveData) { commentResource ->
                 Timber.d("Comment resource: %s", commentResource)
                 addCommentLiveData.value = commentResource
 
@@ -164,7 +164,7 @@ class SessionDetailViewModel(
                 } else if (commentResource?.status == Status.ERROR) {
                     addCommentLiveData.removeSource(saveCommentLiveData)
                 }
-            })
+            }
         }
     }
 
@@ -175,7 +175,7 @@ class SessionDetailViewModel(
             comment: Comment
     ) {
         val uploadLiveData = fileRepository.uploadFiles(fileWrappers)
-        addCommentLiveData.addSource(uploadLiveData, { filesResource ->
+        addCommentLiveData.addSource(uploadLiveData) { filesResource ->
             Timber.d("File resource: %s", filesResource)
             when {
                 filesResource?.status == Status.LOADING -> {
@@ -198,7 +198,7 @@ class SessionDetailViewModel(
                     saveComment(addCommentLiveData, session, comment)
                 }
             }
-        })
+        }
     }
 
     private fun getFileWrappers(comment: Comment): List<FileRepository.FileWrapper> {

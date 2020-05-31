@@ -23,23 +23,25 @@ class DonateUtil(context: Context) {
         val builderSingle = AlertDialog.Builder(activity)
         builderSingle.setTitle(R.string.donate_amount_page_title)
 
-        val arrayAdapter = ArrayAdapter<PaymentPlan>(
+        val arrayAdapter = ArrayAdapter(
                 activity,
                 android.R.layout.select_dialog_singlechoice,
                 paymentPlans
         )
 
-        builderSingle.setNegativeButton(android.R.string.cancel, { dialog, _ -> dialog.dismiss() })
+        builderSingle.setNegativeButton(android.R.string.cancel) { dialog, _ -> dialog.dismiss() }
 
-        builderSingle.setAdapter(arrayAdapter, { dialog, which ->
+        builderSingle.setAdapter(arrayAdapter) { dialog, which ->
             dialog.dismiss()
-            val amount = arrayAdapter.getItem(which).amount
-            makePayment(activity, user, amount, currency, country)
-        })
+            val amount = arrayAdapter.getItem(which)?.amount
+            if (amount != null) {
+                makePayment(activity, user, amount, currency, country)
+            }
+        }
         builderSingle.show()
     }
 
-    fun makePayment(
+    private fun makePayment(
             activity: Activity,
             user: User,
             amount: Double,

@@ -50,10 +50,7 @@
             android:resource="@drawable/ic_stat_notification" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/colorPrimary" /> <!-- FCM End -->
-        <meta-data
-            android:name="io.fabric.ApiKey"
-            android:value="5ee20e858c5d420adee2a636398cd08f3c4d84bf" />
+            android:resource="@color/common_google_signin_btn_text_dark_disabled" /> <!-- FCM End -->
 
         <activity
             android:name=".ui.gallery.GalleryActivity"

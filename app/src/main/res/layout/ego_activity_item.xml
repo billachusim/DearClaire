@@ -27,8 +27,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="1dp"
-            android:background="@color/cardview_light_background">
+            android:layout_margin="1dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -44,7 +43,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="start"
-                        android:padding="2dp"
                         android:textAlignment="textStart"
                         android:textAppearance="?android:textAppearanceSmall"
                         app:timeAgo="@{userActivity.dateCreated}"
@@ -54,7 +52,6 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
                         app:resourceId="@{imagePath}"
                         tools:srcCompat="@drawable/ego_icon" />
                 </RelativeLayout>
@@ -64,8 +61,7 @@
                     android:id="@+id/activity_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="start"
-                    android:padding="2dp"
+                    android:gravity="center_horizontal"
                     android:text="@{userActivityText}"
                     android:textAlignment="center"
                     android:textAppearance="?android:textAppearanceSmall"

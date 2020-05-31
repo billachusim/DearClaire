@@ -12,7 +12,7 @@
             android:id="@+id/create_session_title_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/crate_session_hint_type_title"
+            android:hint="@string/create_session_hint_type_title"
             android:inputType="textCapSentences"
             android:maxLength="200" />
 

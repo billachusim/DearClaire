@@ -30,10 +30,10 @@ class HelpFragment : DataBoundNavFragment<FragmentHelpBinding>() {
         super.onActivityCreated(savedInstanceState)
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        val userId = arguments!!.getString(ARG_USER_ID)
+        val userId = requireArguments().getString(ARG_USER_ID)
 
         binding.howAlterEgoWorksCard.setOnClickListener {
-            val alterEgoIntro = AlterEgoIntroFragment.newInstance(userId)
+            val alterEgoIntro = AlterEgoIntroFragment.newInstance(userId.toString())
             getNavController().navigate(alterEgoIntro, true)
         }
 
@@ -49,11 +49,11 @@ class HelpFragment : DataBoundNavFragment<FragmentHelpBinding>() {
 
         binding.donateSupportClaireCard.setOnClickListener {
             val curLoggedInUser = userRepository.getLoggedInUser()
-            donateUtil.donate(activity!!, curLoggedInUser!!)
+            donateUtil.donate(requireActivity(), curLoggedInUser!!)
         }
 
         binding.feedbackCard.setOnClickListener {
-            androidUtil.sendMail(context!!, "", "thesocialfaculty@gmail.com")
+            androidUtil.sendMail(requireContext(), "", "thesocialfaculty@gmail.com")
         }
     }
 

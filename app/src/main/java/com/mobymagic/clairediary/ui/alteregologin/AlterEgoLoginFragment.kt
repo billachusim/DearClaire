@@ -41,7 +41,7 @@ class AlterEgoLoginFragment : DataBoundNavFragment<FragmentAlterEgoLoginBinding>
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        userId = arguments!!.getString(ARG_USER_ID)
+        userId = requireArguments().getString(ARG_USER_ID).toString()
         initForm()
         observeLoginResult()
 
@@ -76,7 +76,7 @@ class AlterEgoLoginFragment : DataBoundNavFragment<FragmentAlterEgoLoginBinding>
 
         binding.alterEgoDonateButton.setOnClickListener {
             val curLoggedInUser = userRepository.getLoggedInUser()
-            donateUtil.donate(activity!!, curLoggedInUser!!)
+            donateUtil.donate(requireActivity(), curLoggedInUser!!)
         }
 
         val clearErrorTextWatcher = ClearErrorTextWatcher(
@@ -106,7 +106,7 @@ class AlterEgoLoginFragment : DataBoundNavFragment<FragmentAlterEgoLoginBinding>
     }
 
     private fun observeLoginResult() {
-        signInViewModel.getLoginResultLiveData().observe(this, Observer { userResource ->
+        signInViewModel.getLoginResultLiveData().observe(viewLifecycleOwner, Observer { userResource ->
             Timber.d("Login resource: %s", userResource)
             binding.resource = userResource
             handleSignUpResult(userResource!!)
@@ -116,14 +116,14 @@ class AlterEgoLoginFragment : DataBoundNavFragment<FragmentAlterEgoLoginBinding>
     private fun handleSignUpResult(userResource: Resource<User>) {
         if (userResource.status == Status.SUCCESS) {
             if (userResource.data == null) {
-                Toast.makeText(context!!, R.string.alter_ego_login_incorrect, Toast.LENGTH_LONG)
+                Toast.makeText(requireContext(), R.string.alter_ego_login_incorrect, Toast.LENGTH_LONG)
                         .show()
             } else {
-                Toast.makeText(context!!, R.string.alter_ego_login_correct, Toast.LENGTH_LONG)
+                Toast.makeText(requireContext(), R.string.alter_ego_login_correct, Toast.LENGTH_LONG)
                         .show()
 
                 val intent = Intent(Constants.EVENT_OPEN_ALTER_EGO)
-                LocalBroadcastManager.getInstance(context!!).sendBroadcast(intent)
+                LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
                 getNavController().removeFromBackstack(this)
                 getNavController().remove(this)
             }

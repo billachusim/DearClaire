@@ -76,7 +76,7 @@ class CommentRepository(
      */
     fun getComments(session: Session, lastComment: Comment?): LiveData<Resource<List<Comment>>> {
         Timber.d("Getting comments for session: %s. Last comment: %s", session, lastComment)
-        val query = firestore.collection(COLLECTION_SESSIONS).document(session.sessionId)
+        val query = firestore.collection(COLLECTION_SESSIONS).document(session.sessionId.toString())
                 .collection(COLLECTION_COMMENTS).whereEqualTo("flagged", false)
                 .orderBy("timeCreated", Query.Direction.ASCENDING).limit(LIMIT_COMMENTS_RESULT)
 
@@ -103,7 +103,7 @@ class CommentRepository(
         )
 
         // Set the comment document id
-        val newCommentRef = firestore.collection(COLLECTION_SESSIONS).document(session.sessionId)
+        val newCommentRef = firestore.collection(COLLECTION_SESSIONS).document(session.sessionId.toString())
                 .collection(COLLECTION_COMMENTS).document()
         comment.commentId = newCommentRef.id
         comment.flagged = false
@@ -144,7 +144,7 @@ class CommentRepository(
 
         // Get a reference to the comment to update
         val commentToUpdateRef =
-                firestore.collection(COLLECTION_SESSIONS).document(session.sessionId)
+                firestore.collection(COLLECTION_SESSIONS).document(session.sessionId.toString())
                         .collection(COLLECTION_COMMENTS).document(comment.commentId)
 
         // Save comment into the Firestore database

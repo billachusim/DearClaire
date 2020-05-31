@@ -47,7 +47,7 @@ class EgoFragment : DataBoundNavFragment<FragmentEgoBinding>() {
 
 
     override fun getPageTitle(): String {
-        return "Ego"
+        return "Dear Claire"
     }
 
     override fun getLayoutRes() = R.layout.fragment_ego
@@ -55,7 +55,7 @@ class EgoFragment : DataBoundNavFragment<FragmentEgoBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Timber.d("onViewCreated")
-        userId = requireArguments().getString(ARG_USER_ID)
+        userId = requireArguments().getString(ARG_USER_ID).toString()
         egoViewModel.userId = userId
         if (userId == "") {
             authViewModel.authenticateForOpenViews(this, activity as MainActivity)
@@ -82,7 +82,7 @@ class EgoFragment : DataBoundNavFragment<FragmentEgoBinding>() {
 
     companion object {
 
-        val CLAIRE_VARTAR_REQUEST_CODE = 1000
+        const val CLAIRE_VARTAR_REQUEST_CODE = 1000
         private const val ARG_USER_ID = "ARG_USER_ID"
 
         fun newInstance(
@@ -134,10 +134,10 @@ class EgoFragment : DataBoundNavFragment<FragmentEgoBinding>() {
                 if (it.data?.size == null || it.data.isEmpty()) {
                     binding.numberOfSessions = "---"
                 } else {
-                    binding.numberOfSessions = it.data.get(0).numberOfSessions.toString()
+                    binding.numberOfSessions = it.data[0].numberOfSessions.toString()
                 }
 
-            } else if (it.status.equals(Status.ERROR) || it.status == Status.LOADING) {
+            } else if (it.status == Status.ERROR || it.status == Status.LOADING) {
                 binding.numberOfSessions = "---"
             }
         })
@@ -150,8 +150,8 @@ class EgoFragment : DataBoundNavFragment<FragmentEgoBinding>() {
 
                 }
             } else if (it.status == Status.ERROR) {
-                bestSession.message = "An error ocurred while loading Session," +
-                        " please click to try agian"
+                bestSession.message = "An error occurred while loading Session," +
+                        " please click to try again"
                 binding.bestSession = bestSession
                 binding.bestSessionTextView.setOnClickListener {
                     egoViewModel.retryLoadingBestSession()
@@ -160,7 +160,7 @@ class EgoFragment : DataBoundNavFragment<FragmentEgoBinding>() {
                 if (it.data == null || it.data.isEmpty()) {
                     bestSession.message = "Unavailable"
                 } else if (it.data.isNotEmpty()) {
-                    val bestSession: Session = it.data.get(0)
+                    val bestSession: Session = it.data[0]
                     binding.bestSession = bestSession
 //                    binding.bestSessionLikeCount.text = it.data.get(0).followers.count()
                     binding.bestSessionTextView.setOnClickListener {
@@ -183,7 +183,7 @@ class EgoFragment : DataBoundNavFragment<FragmentEgoBinding>() {
 
                 Status.SUCCESS -> {
                     if (it.data != null && it.data.isNotEmpty()) {
-                        binding.numberOfComments = it.data.get(0).numberOfComments.toString()
+                        binding.numberOfComments = it.data[0].numberOfComments.toString()
                     } else {
                         binding.numberOfComments = "---"
                     }
@@ -281,12 +281,12 @@ class EgoFragment : DataBoundNavFragment<FragmentEgoBinding>() {
                     userRepository.updateUser(user!!).observe(this, Observer {
                         if (it?.status?.equals(Status.SUCCESS)!!) {
                             Toast.makeText(activity,
-                                    "Clairevartar saved successfully",
+                                    "Clairevatar saved successfully",
                                     Toast.LENGTH_SHORT).show()
                             refreshUser()
-                        } else if (it.status.equals(Status.ERROR)) {
+                        } else if (it.status == Status.ERROR) {
                             Toast.makeText(activity,
-                                    "An error Occured while saving your clairevartar",
+                                    "An error Occurred while saving your clairevatar",
                                     Toast.LENGTH_SHORT).show()
                         }
                     })
@@ -298,7 +298,7 @@ class EgoFragment : DataBoundNavFragment<FragmentEgoBinding>() {
     private fun validateUsernameInput(): Boolean {
         val username = binding.editNicknameInput.text.toString()
         if (TextUtils.isEmpty(username)) {
-            Toast.makeText(context, "You username cannot contain be empty", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "You username cannot be empty", Toast.LENGTH_SHORT).show()
             return false
         }
         if (username.contains("claire", false)) {

@@ -17,12 +17,16 @@ import com.mobymagic.clairediary.util.PrefUtil
 import com.mobymagic.clairediary.util.filters.FollowingSessionFilter
 import com.mobymagic.clairediary.util.filters.ResultFilter
 import com.mobymagic.clairediary.util.filters.TrendingSessionFilter
-import com.mobymagic.clairediary.vo.*
+import com.mobymagic.clairediary.vo.Resource
+import com.mobymagic.clairediary.vo.Session
+import com.mobymagic.clairediary.vo.UserActivity
+import com.mobymagic.clairediary.vo.UserActivityType
 import com.mobymagic.clairediary.vo.counters.Counter
 import com.mobymagic.clairediary.vo.counters.Shard
 import com.mobymagic.clairediary.vo.counters.UserSessionCounter
 import timber.log.Timber
 import java.util.*
+import kotlin.math.floor
 
 const val PREF_KEY_DRAFT_SESSION = "PREF_KEY_DRAFT_SESSION"
 const val COLLECTION_SESSIONS = "sessions"
@@ -307,21 +311,6 @@ class SessionRepository(
         return FirestoreListLiveData(androidUtil, query, Session::class.java, null)
     }
 
-    /**
-     * Get user sessions that have been created
-     * @param lastSession The last session from previous request. Used for pagination
-     * @return LiveData
-     */
-    fun getUserBestPublicSession(userId: String): LiveData<Resource<List<Session>>> {
-        Timber.d("Getting best sessions for user: %s", userId)
-        val query = firestore.collection(COLLECTION_SESSIONS)
-                .whereEqualTo("userId", userId)
-                .whereEqualTo("private", false)
-                .orderBy("meTooFollowCount", Query.Direction.DESCENDING)
-                .limit(1)
-        return FirestoreListLiveData(androidUtil, query, Session::class.java, null)
-    }
-
 
     /**
      * Get all sessions that have been created
@@ -389,7 +378,7 @@ class SessionRepository(
                       fromAlterEgo: Boolean? = null): LiveData<Resource<Session>> {
         Timber.d("Updating session: %s", session)
         val updateSessionRequestLiveData = MutableLiveData<Resource<Session>>()
-        session.meTooFollowCount = session.meToos.count() + session.followers.count()
+        session.meTooFollowCount = session.meToos!!.count() + session.followers.count()
         // Set resource into loading state
         updateSessionRequestLiveData.value = Resource.loading(
                 androidUtil
@@ -398,7 +387,7 @@ class SessionRepository(
 
         // Get a reference to the session to update
         val sessionToUpdateRef =
-                firestore.collection(COLLECTION_SESSIONS).document(session.sessionId)
+                firestore.collection(COLLECTION_SESSIONS).document(session.sessionId.toString())
 
         // Update the session by merging changes
         sessionToUpdateRef.set(session, SetOptions.merge())
@@ -421,7 +410,7 @@ class SessionRepository(
                     }
                     if (shouldIncrementMeeToo != null) {
                         try {
-                            incrementUserMeeTooCount(session.userId, Counter(), shouldIncrementMeeToo)
+                            incrementUserMeeTooCount(session.userId.toString(), Counter(), shouldIncrementMeeToo)
                         } catch (ex: Exception) {
                             ex.printStackTrace()
                         }
@@ -429,7 +418,7 @@ class SessionRepository(
 
                     if (shouldIncrementFollow != null) {
                         try {
-                            incrementUserFollowCount(session.userId, Counter(), shouldIncrementFollow)
+                            incrementUserFollowCount(session.userId.toString(), Counter(), shouldIncrementFollow)
                         } catch (ex: Exception) {
                             ex.printStackTrace()
                         }
@@ -447,40 +436,6 @@ class SessionRepository(
     }
 
     /**
-     * Deletes the given session from the database
-     * @param session The session to delete
-     * @return LiveData
-     */
-    fun deleteSession(session: Session) {
-        Timber.d("Deleting session: %s", session)
-        val deleteSessionRequestLiveData = MutableLiveData<Resource<AsyncRequest>>()
-
-        // Set resource into loading state
-        deleteSessionRequestLiveData.value = Resource.loading(
-                androidUtil
-                        .getString(R.string.session_deleting)
-        )
-
-        // Get a reference to the session to delete
-        val sessionToDeleteRef =
-                firestore.collection(COLLECTION_SESSIONS).document(session.sessionId)
-
-        // Delete the session from the database
-        sessionToDeleteRef.delete()
-                .addOnSuccessListener { documentReference ->
-                    Timber.d("Session successfully deleted: %s", documentReference)
-                    deleteSessionRequestLiveData.value = Resource.success(AsyncRequest())
-                }
-                .addOnFailureListener { exception ->
-                    Timber.e(exception, "Error deleting session")
-                    deleteSessionRequestLiveData.value = Resource.error(
-                            androidUtil
-                                    .getString(R.string.session_delete_error)
-                    )
-                }
-    }
-
-    /**
      * get session counter by user Id
      */
     fun getUserSessionCounter(userId: String): LiveData<Resource<List<UserSessionCounter>>> {
@@ -494,7 +449,7 @@ class SessionRepository(
     /**
      * get session counter by user Id
      */
-    fun getUserSessionCounterValue(userId: String): UserSessionCounter? {
+    private fun getUserSessionCounterValue(userId: String): UserSessionCounter? {
         var userSessionCounter: UserSessionCounter? = null
         Timber.d("Getting all user session counters for user %s", userId)
         val query = firestore.collection(COLLECTION_USER_SESSION_COUNTERS)
@@ -503,7 +458,7 @@ class SessionRepository(
         query.addSnapshotListener { querySnapshot, firestoreException ->
             Timber.d("query snapshot %s", firestoreException?.message)
             if (querySnapshot?.documents != null && querySnapshot.documents.size > 0) {
-                userSessionCounter = querySnapshot.documents.get(0).toObject(UserSessionCounter::class.java)
+                userSessionCounter = querySnapshot.documents[0].toObject(UserSessionCounter::class.java)
             }
         }
         return userSessionCounter
@@ -529,7 +484,7 @@ class SessionRepository(
 
     }
 
-    fun createUserSessionCount(userSessionCounter: UserSessionCounter) {
+    private fun createUserSessionCount(userSessionCounter: UserSessionCounter) {
         Timber.d("Adding new userSessionCounter: %s", userSessionCounter)
 
         // Set the session document id
@@ -547,7 +502,7 @@ class SessionRepository(
                 }
     }
 
-    fun updateUserSessionCount(userSessionCounter: UserSessionCounter) {
+    private fun updateUserSessionCount(userSessionCounter: UserSessionCounter) {
         Timber.d("Updating userSessionCounter: %s", userSessionCounter)
 
         // Get a reference to the session to update
@@ -575,7 +530,7 @@ class SessionRepository(
             val userActivity = UserActivity()
             userActivity.activityType = userActivityType
             userActivity.clientId = userId
-            userActivity.sessionId = session.sessionId
+            userActivity.sessionId = session.sessionId.toString()
             userActivity.userId = session.userId
 
             if (fromAlterEgo != null && !fromAlterEgo) {
@@ -640,13 +595,13 @@ class SessionRepository(
         return FirestoreListLiveData(androidUtil, query, UserActivity::class.java, null)
     }
 
-    fun incrementUserFollowCount(userId: String, counter: Counter, shouldIncrementFollow: Boolean = true) {
+    private fun incrementUserFollowCount(userId: String, counter: Counter, shouldIncrementFollow: Boolean = true) {
         Thread(Runnable {
             firestore.runTransaction { it ->
                 it.apply {
-                    val shardId = Math.floor(Math.random() * counter.numberOfShards).toInt()
+                    val shardId = floor(Math.random() * counter.numberOfShards).toInt()
                     var shard: Shard? = null
-                    val query = firestore.collection(COLLECTION_USER_FOLLOW_COUNTERS)
+                    firestore.collection(COLLECTION_USER_FOLLOW_COUNTERS)
                             .document(userId).collection(COLLECTION_USER_FOLLOW_SHARDS)
                             .document(shardId.toString()).get().addOnCompleteListener {
 
@@ -654,10 +609,10 @@ class SessionRepository(
                                     shard = Shard(it.result!!.data!!["count"] as Long)
                                 }
                                 if (shard == null) {
-                                    if (shouldIncrementFollow) {
-                                        shard = Shard(1)
+                                    shard = if (shouldIncrementFollow) {
+                                        Shard(1)
                                     } else {
-                                        shard = Shard(-1)
+                                        Shard(-1)
                                     }
                                     createFollowShard(userId, shard!!, shardId)
                                 } else {
@@ -699,7 +654,7 @@ class SessionRepository(
                 }
     }
 
-    fun updateUserFollowCountShard(userId: String, shard: Shard, shardId: Int) {
+    private fun updateUserFollowCountShard(userId: String, shard: Shard, shardId: Int) {
         Timber.d("Updating user follow shard: %s", shard)
 
         val shardToUpdatRef =
@@ -731,13 +686,13 @@ class SessionRepository(
     }
 
 
-    fun incrementUserMeeTooCount(userId: String, counter: Counter, shouldIncrementMeeToo: Boolean = true) {
+    private fun incrementUserMeeTooCount(userId: String, counter: Counter, shouldIncrementMeeToo: Boolean = true) {
         Thread(Runnable {
             firestore.runTransaction {
                 it.apply {
-                    val shardId = Math.floor(Math.random() * counter.numberOfShards).toInt()
+                    val shardId = floor(Math.random() * counter.numberOfShards).toInt()
                     var shard: Shard? = null
-                    val query = firestore.collection(COLLECTION_USER_MEE_TOO_COUNTERS)
+                    firestore.collection(COLLECTION_USER_MEE_TOO_COUNTERS)
                             .document(userId).collection(COLLECTION_USER_MEE_TOO_SHARDS)
                             .document(shardId.toString()).get().addOnCompleteListener {
 
@@ -790,7 +745,7 @@ class SessionRepository(
                 }
     }
 
-    fun updateUserMeeTooCountShard(userId: String, shard: Shard, shardId: Int) {
+    private fun updateUserMeeTooCountShard(userId: String, shard: Shard, shardId: Int) {
         Timber.d("Updating user mee too shard: %s", shard)
 
         // Get a reference to the session to update

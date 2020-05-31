@@ -38,7 +38,7 @@ class CommentListFragment : DataBoundNavFragment<FragmentCommentListBinding>() {
     override fun getPageTitle(): Nothing? = null
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-        session = arguments!!.getParcelable(ARG_SESSION)
+        session = requireArguments().getParcelable(ARG_SESSION)!!
         super.onActivityCreated(savedInstanceState)
         initRecyclerView()
         initRecyclerViewAdapter()
@@ -52,14 +52,14 @@ class CommentListFragment : DataBoundNavFragment<FragmentCommentListBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedViewModel = ViewModelProviders.of(activity!!).get(SharedViewModel::class.java)
+        sharedViewModel = ViewModelProviders.of(requireActivity()).get(SharedViewModel::class.java)
     }
 
     private fun initRecyclerViewAdapter() {
-        val userId = arguments!!.getString(ARG_USER_ID)
-        val tabType = arguments!!.getSerializable(ARG_TAB_TYPE) as SessionListType
+        val userId = requireArguments().getString(ARG_USER_ID)
+        val tabType = requireArguments().getSerializable(ARG_TAB_TYPE) as SessionListType
 
-        val rvAdapter = CommentListAdapter(appExecutors, userId, tabType, audioUtil, exoPlayerUtil,
+        val rvAdapter = CommentListAdapter(appExecutors, userId.toString(), tabType, audioUtil, exoPlayerUtil,
                 { comment ->
                     // Handle comment click
                 },
@@ -67,13 +67,13 @@ class CommentListFragment : DataBoundNavFragment<FragmentCommentListBinding>() {
                     val subject = getString(R.string.app_name)
                     val message =
                             getString(R.string.session_detail_comment_share_message, comment.message)
-                    androidUtil.shareText(context!!, subject, message)
+                    androidUtil.shareText(requireContext(), subject, message)
                 },
                 {
                     showEditCommentView(it)
                 },
                 {
-                    commentListViewModel.toggleThanks(userId, session, it)
+                    commentListViewModel.toggleThanks(userId.toString(), session, it)
                 }, this, {
             if (!it.isUserAdmin) {
                 getNavController().navigateToWithAuth(GuestEgoFragment.newInstance(it.userId,
@@ -95,7 +95,7 @@ class CommentListFragment : DataBoundNavFragment<FragmentCommentListBinding>() {
     private fun initRecyclerView() {
         commentListViewModel.setSession(session)
 
-        commentListViewModel.getCommentList().observe(this, Observer { result ->
+        commentListViewModel.getCommentList().observe(viewLifecycleOwner, Observer { result ->
             Timber.d("Comment resource: %s", result)
             sharedViewModel.setNumberOfComments(result?.data?.size)
             binding.commentResource = result

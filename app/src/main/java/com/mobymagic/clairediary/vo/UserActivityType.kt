@@ -4,12 +4,12 @@ import com.mobymagic.clairediary.R
 
 class UserActivityType {
     companion object {
-        val FOLLOW: String = "follow"
-        val MEETOO: String = "meetoo"
-        val THANKS: String = "thanks"
-        val SESSION: String = "session"
-        val COMMENT: String = "comment"
-        val ADVICE: String = "advice"
+        val FOLLOW: String = "Follow"
+        val MEETOO: String = "Me2"
+        val THANKS: String = "Thanks"
+        val SESSION: String = "Session"
+        val COMMENT: String = "Comment"
+        val ADVICE: String = "Advice"
 
         fun getActivityRepresentation(activity: String): String {
             when (activity) {
@@ -24,6 +24,9 @@ class UserActivityType {
                 }
                 ADVICE -> {
                     return "adviced"
+                }
+                THANKS -> {
+                    return "thanked"
                 }
             }
             return "followed"
@@ -40,12 +43,14 @@ class UserActivityType {
                 COMMENT -> {
                     return R.drawable.comment_icon_red
                 }
-
+                THANKS -> {
+                    return R.drawable.double_hearts
+                }
                 ADVICE -> {
                     return R.drawable.comment_icon_red
                 }
             }
-            return return R.drawable.ic_outline_add
+            return R.drawable.ic_outline_add_red
         }
     }
 }

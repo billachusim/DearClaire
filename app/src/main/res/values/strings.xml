@@ -8,8 +8,8 @@
     <string name="common_error_login_again">Please login again to continue</string>
     <string name="common_chooser_title_share_using">Share using</string>
     <string name="common_message_share_app">Tap this link to install %1$s - The Dear Diary That Replies %2$s</string>
-    <string name="common_message_hare_app">Have you heard of %1$s?
-It\'s like a secret social Diary network 🌸 An app where you can start or follow private discussions, write or record anything and give or get advices, completely free and anonymous 💕 🔐
+    <string name="common_message_hare_app">Have you heard about this app called Dear Claire?
+It\'s like a secret diary chat 🌸 An app where you can write or record anything anonymously and get advice free 💕 🔐 You can also follow people\'s secrets and earn cash for your advice.
 Tap this link to read more about it and install on your Android phone.
 %2$s</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -61,8 +61,8 @@ Tap this link to read more about it and install on your Android phone.
     <string name="session_type_archived">Archived</string>
     <string name="session_type_chat">Chat</string>
     <string name="session_type_following">Followed</string>
-    <string name="session_type_assigned">Assigned</string>
-    <string name="session_type_non_assigned">New</string>
+    <string name="session_type_advised">Advised</string>
+    <string name="session_type_new">New</string>
     <string name="session_type_all">All</string>
     <!-- Session Types Page End -->
 
@@ -114,9 +114,9 @@ Tap this link to read more about it and install on your Android phone.
     <string name="create_session_record_audio_title">Record audio</string>
     <string name="create_session_record_audio_message">Press to record</string>
     <string name="create_session_record_audio_action_ok">OK</string>
-    <string name="crate_session_title_select_font">Select font</string>
-    <string name="crate_session_title_enter_title">Enter title</string>
-    <string name="crate_session_hint_type_title">What\'s the session about?</string>
+    <string name="create_session_title_select_font">Select font</string>
+    <string name="create_session_title_enter_title">Enter Title</string>
+    <string name="create_session_hint_type_title">What\'s the session about?</string>
     <string name="create_session_action_submit">Save</string>
     <string name="create_session_action_submit_and_save">Send And Save</string>
     <string name="create_session_privacy_mode">Do you want other users to reply and follow this diary session?</string>
@@ -215,15 +215,15 @@ Tap this link to read more about it and install on your Android phone.
         Please browse the Trending Sessions tab and follow diary sessions of your interest. Remember, positive vibes only and no ads 🌸.</string>
     <string name="session_list_empty_archived">You have not archived any session yet.</string>
     <string name="session_list_empty_featured">No session is currently trending.</string>
-    <string name="session_list_empty_assigned">You are not following any sessions yet.</string>
+    <string name="session_list_empty_assigned">You have not advised any sessions yet.</string>
     <string name="session_list_empty_non_assigned">There are no new sessions</string>
     <string name="session_list_empty_flagged">No session has been flagged.</string>
     <string name="session_list_empty_all">No sessions.</string>
     <string name="no_public_sessions">No Public sessions.</string>
     <string name="session_list_action_start_session">Start Session</string>
-    <string name="session_list_alert_trending">Welcome to Trending Sessions Tab 🌸\n\nThis page shows permitted, public, and trending diary sessions.\nYour diary session can not appear here without your notice.\nPlease contribute positive vibes only and no ads or you might permanently lose access to Claire.</string>
-    <string name="session_list_alert_diary">This is your Diary Sessions Tab 📝\n\nOpen Up 🌸 Write or record anything and if you wish, I can read or listen to it and reply you.\nEvery session is strictly between you and I (Claire), unless you set it for public; Whichever, your secrets remain secret and you\'ll never be not truly loved. 💕</string>
-    <string name="session_list_alert_new_alter_ego">Welcome to Alter Ego Mode 🌸\n\nYou are Claire right now. Remember your pledge:\n\n💕Be a true friend. Encourage them in their good plans, sympathise with them in their pains, advice them to stay optimistic and make them feel good about themselves. 💕</string>
+    <string name="session_list_alert_trending">Welcome to Trending Sessions Tab 🌸\n\nThis page shows permitted trending diary sessions.\nYour diary session can not appear here without your notice.\nPlease contribute positive vibes only and no ads or you might permanently lose access to Claire.</string>
+    <string name="session_list_alert_diary">This is your Diary Sessions Tab 📝\n\nOpen Up 🌸 Write or record anything and if you wish, I can read or listen to it and reply you.\nEvery session is strictly between you and I (Claire), unless you set it public for users; still, you are completely anonymous and will never be not truly loved 💕</string>
+    <string name="session_list_alert_new_alter_ego">Welcome to Alter Ego Mode 🌸\n\nYou are Claire right now. Remember your pledge:\n\n💕Be a true friend. Encourage them in their good plans, sympathise with them in their pains, advice them to stay optimistic and make them feel good about themselves 💕</string>
     <string name="session_list_action_archive">Archive session</string>
     <string name="session_list_action_unarchive">Unarchive session</string>
     <string name="session_list_action_feature">Make session trend</string>

@@ -20,7 +20,7 @@ class UserSessionTypesFragment : DataBoundNavFragment<FragmentUserSessionTypesBi
 
     override fun getLayoutRes() = R.layout.fragment_user_session_types
 
-    override fun getPageTitle(): Nothing? = null
+    override fun getPageTitle() = "Dear Claire"
 
     private val authViewModel: AuthViewModel by inject()
 
@@ -29,7 +29,9 @@ class UserSessionTypesFragment : DataBoundNavFragment<FragmentUserSessionTypesBi
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val userId = requireArguments().getString(ARG_USER_ID)
-        setupPager(userId)
+        if (userId != null) {
+            setupPager(userId)
+        }
         setupBottomNav()
         selectedPage = arguments?.getInt(PAGE_SELECTED)
         if (selectedPage != null) {
@@ -80,7 +82,7 @@ class UserSessionTypesFragment : DataBoundNavFragment<FragmentUserSessionTypesBi
     private fun setupPager(userId: String) {
         val sessionTypeItems = listOf(
                 PagerAdapter.Item(
-                        getString(R.string.session_type_assigned),
+                        getString(R.string.session_type_advised),
                         SessionListFragment.newInstance(SessionListType.TRENDING, userId)
                 ),
                 PagerAdapter.Item(

@@ -4,6 +4,7 @@ package com.mobymagic.clairediary.ui.ego
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.github.sundeepk.compactcalendarview.CompactCalendarView
 import com.github.sundeepk.compactcalendarview.domain.Event
@@ -34,14 +35,13 @@ class EgoArchiveFragment : DataBoundNavFragment<FragmentEgoArchiveBinding>(), Co
     private val formatForDayComparison = SimpleDateFormat("yyyyMMdd")
 
     override fun getPageTitle(): String {
-        return "Ego"
+        return "Dear Claire"
     }
-
 
     override fun getLayoutRes() = R.layout.fragment_ego_archive
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        userId = requireArguments().getString(EgoActivityFragment.userIdKey)
+        userId = requireArguments().getString(EgoActivityFragment.userIdKey).toString()
         egoViewModel.userId = userId
         createObservers()
         createListeners()
@@ -65,7 +65,7 @@ class EgoArchiveFragment : DataBoundNavFragment<FragmentEgoArchiveBinding>(), Co
 
     override fun onDayClick(dateClicked: Date?) {
         val evenForDay: List<Event> = binding.compactcalendarView.getEventsForMonth(dateClicked!!)
-        val sessionsForDay: List<Session> = evenForDay.map {
+        evenForDay.map {
             it.data as Session
         }.filter {
             formatForDayComparison.format(it.timeCreated) == formatForDayComparison.format(dateClicked)
@@ -80,6 +80,10 @@ class EgoArchiveFragment : DataBoundNavFragment<FragmentEgoArchiveBinding>(), Co
         calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH))
         val currentDate = df.format(binding.compactcalendarView.firstDayOfCurrentMonth)
         binding.currentDate = currentDate
+
+        Toast.makeText(activity, currentDate,
+                Toast.LENGTH_SHORT).show()
+
         egoViewModel.retryLoadingUserSessionsByDate(userId, firstDayOfNewMonth!!, calendar.time)
                 .observe(this, androidx.lifecycle.Observer {
                     eventObserverFunction(it)
@@ -93,7 +97,7 @@ class EgoArchiveFragment : DataBoundNavFragment<FragmentEgoArchiveBinding>(), Co
             Status.ERROR -> {
             }
             Status.SUCCESS -> {
-                if (loadsessionResource.data != null && loadsessionResource.data.size > 0) {
+                if (loadsessionResource.data != null && loadsessionResource.data.isNotEmpty()) {
                     for (session in loadsessionResource.data) {
                         val ev1 = Event(Color.GREEN, session.timeCreated?.time!!,
                                 session)
@@ -105,7 +109,7 @@ class EgoArchiveFragment : DataBoundNavFragment<FragmentEgoArchiveBinding>(), Co
     }
 
     companion object {
-        const val userIdKey = "USER_ID"
+        private const val userIdKey = "USER_ID"
 
         @JvmStatic
         fun newInstance(userId: String) =

@@ -109,7 +109,7 @@ class GuestEgoSessionListAdapter(
         binding.isFromAlterEgo = isFromAlterEgo
 
 
-        binding.sessionListMeTooCountText.text = item.meToos.size.toString()
+        binding.sessionListMeTooCountText.text = item.meToos?.size.toString()
 
         setupSessionPhotoList(binding, context, appExecutors)
 
