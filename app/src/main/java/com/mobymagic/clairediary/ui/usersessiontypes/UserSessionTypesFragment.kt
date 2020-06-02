@@ -55,10 +55,11 @@ class UserSessionTypesFragment : DataBoundNavFragment<FragmentUserSessionTypesBi
                 R.id.nav_session_type_featured -> {
                     binding.sessionTypesPager.setCurrentItem(0, true)
                 }
-                R.id.nav_session_type_following -> {
 
+                R.id.nav_session_type_following -> {
                     binding.sessionTypesPager.setCurrentItem(1, true)
                 }
+
                 R.id.nav_session_type_diary -> {
                     binding.sessionTypesPager.setCurrentItem(2, true)
                 }
@@ -68,7 +69,6 @@ class UserSessionTypesFragment : DataBoundNavFragment<FragmentUserSessionTypesBi
                 }
 
                 R.id.nav_session_type_archived -> {
-
                     binding.sessionTypesPager.setCurrentItem(4, true)
                 }
 

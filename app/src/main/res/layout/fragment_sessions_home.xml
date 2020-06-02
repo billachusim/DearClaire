@@ -30,10 +30,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|end"
                 android:layout_marginStart="@dimen/fab_margin"
-                android:layout_marginLeft="@dimen/fab_margin"
                 android:layout_marginTop="@dimen/fab_margin"
                 android:layout_marginEnd="@dimen/fab_margin"
-                android:layout_marginRight="@dimen/fab_margin"
                 android:layout_marginBottom="70dp"
                 android:src="@mipmap/ic_launcher_round"
                 app:spin="@{true}" />

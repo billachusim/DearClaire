@@ -237,15 +237,7 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
         } else {
             binding.sessionDetailMessageText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20f)
         }
-        updateFollowText()
-        binding.sessionDetailFollow.setOnClickListener {
-            if (session.userId == userId) {
-                Toast.makeText(context, "You cannot follow your own Session", Toast.LENGTH_LONG).show()
-            } else {
-                showFollowingDialog(binding)
-            }
 
-        }
         binding.sessionDetailUserImage.setOnClickListener {
             getNavController().navigateToWithAuth(GuestEgoFragment.newInstance(binding.session!!.userId.toString(),
                     "", binding.session!!.userNickname.toString(),

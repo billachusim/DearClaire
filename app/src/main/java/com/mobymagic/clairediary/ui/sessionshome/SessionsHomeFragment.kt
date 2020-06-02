@@ -216,7 +216,7 @@ class SessionsHomeFragment : DataBoundNavFragment<FragmentSessionsHomeBinding>()
 
     private fun setupAppRateDialog() {
         AppRate.with(context)
-                .setInstallDays(0)
+                .setInstallDays(3)
                 .setRemindInterval(15)
                 .monitor()
 
@@ -250,15 +250,6 @@ class SessionsHomeFragment : DataBoundNavFragment<FragmentSessionsHomeBinding>()
         private const val USER_LOGGED_IN = "USER_LOGGED_IN"
         private const val PAGE_SELECTED = "PAGE_SELECTED"
 
-
-//        fun newInstance(userId: String, userType: User.UserType): SessionsHomeFragment {
-//            val sessionsHomeFragment = SessionsHomeFragment()
-//            val args = Bundle()
-//            args.putString(ARG_USER_ID, userId)
-//            args.putSerializable(ARG_USER_TYPE, userType)
-//            sessionsHomeFragment.arguments = args
-//            return sessionsHomeFragment
-//        }
 
         fun newInstance(userId: String, userType: User.UserType, userLoggedIn: Boolean,
                         selectedPageId: Int?): SessionsHomeFragment {

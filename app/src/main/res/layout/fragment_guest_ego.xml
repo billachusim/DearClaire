@@ -76,10 +76,6 @@
             tools:context=".ui.geustego.GuestEgoFragment">
 
 
-            <include
-                android:id="@+id/appBar"
-                layout="@layout/layout_app_bar"/>
-
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -219,7 +215,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
                             android:layout_toStartOf="@+id/user_type_text_view"
-                            android:layout_marginStart="16dp"
+                            android:layout_marginStart="12dp"
                             android:hint="@string/nickname"
                             android:text="@{nickName}"
                             android:textAppearance="?android:textAppearanceMedium"

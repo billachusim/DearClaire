@@ -33,7 +33,6 @@ android {
     dataBinding {
         enabled = true
     }
-    buildToolsVersion = '28.0.3'
     compileOptions {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
@@ -69,11 +68,9 @@ dependencies {
     // Architecture components
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    kapt 'androidx.lifecycle:lifecycle-compiler:2.2.0'
+    kapt 'android.arch.lifecycle:common-java8:'
     implementation 'androidx.room:room-runtime:2.2.5'
     kapt 'androidx.room:room-compiler:2.2.5'
-    //implementation "android.arch.navigation:navigation-fragment-ktx:$archNavVersion"
-    //implementation "android.arch.navigation:navigation-ui-ktx:$archNavVersion"
 
     // UI
     implementation 'com.github.ybq:Android-SpinKit:1.2.0'

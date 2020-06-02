@@ -11,13 +11,14 @@ class UserActivityType {
         val COMMENT: String = "Comment"
         val ADVICE: String = "Advice"
 
+
         fun getActivityRepresentation(activity: String): String {
             when (activity) {
                 FOLLOW -> {
-                    return "followed "
+                    return "followed"
                 }
                 MEETOO -> {
-                    return "reacted to "
+                    return "reacted to"
                 }
                 COMMENT -> {
                     return "commented on"
@@ -29,7 +30,7 @@ class UserActivityType {
                     return "thanked"
                 }
             }
-            return "followed"
+            return activity + "ed"
         }
 
         fun getImageSource(userActivity: UserActivity): Int {
@@ -50,7 +51,7 @@ class UserActivityType {
                     return R.drawable.comment_icon_red
                 }
             }
-            return R.drawable.ic_outline_add_red
+            return R.drawable.ic_outline_add
         }
     }
 }

@@ -33,7 +33,6 @@ import timber.log.Timber
  */
 class EgoFragment : DataBoundNavFragment<FragmentEgoBinding>() {
 
-
     private val userRepository: UserRepository by inject()
     private val egoViewModel: EgoViewModel by inject()
     private var user: User? = null
@@ -51,7 +50,6 @@ class EgoFragment : DataBoundNavFragment<FragmentEgoBinding>() {
     }
 
     override fun getLayoutRes() = R.layout.fragment_ego
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Timber.d("onViewCreated")

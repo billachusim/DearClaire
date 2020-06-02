@@ -73,7 +73,11 @@
                             android:id="@+id/edit_user_avartar"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
-                            android:layout_gravity="center_vertical"
+                            android:layout_gravity="top"
+                            android:paddingStart="2dp"
+                            android:paddingEnd="0dp"
+                            android:paddingTop="2dp"
+                            android:paddingBottom="0dp"
                             app:srcCompat="@drawable/round_edit_black_18" />
 
                         <ImageView
@@ -124,7 +128,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="2dp"
-                            android:layout_weight="1.7"
+                            android:layout_weight="1.9"
                             app:layout_constraintStart_toEndOf="@id/user_avartar">
 
                             <TextView
@@ -211,6 +215,10 @@
                                 android:id="@+id/edit_user_nickname"
                                 android:layout_width="15dp"
                                 android:layout_height="15dp"
+                                android:paddingStart="2dp"
+                                android:paddingEnd="0dp"
+                                android:paddingTop="2dp"
+                                android:paddingBottom="0dp"
                                 android:layout_gravity="center_vertical"
                                 app:srcCompat="@drawable/round_edit_black_18" />
 

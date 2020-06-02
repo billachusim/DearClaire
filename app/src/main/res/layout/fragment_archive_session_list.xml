@@ -33,9 +33,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
+        <include
+            android:id="@+id/appBar"
+            layout="@layout/layout_app_bar" />
+
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="66dp"
             android:scrollbars="vertical">
 
             <LinearLayout
@@ -44,9 +49,6 @@
                 android:animateLayoutChanges="true"
                 android:orientation="vertical">
 
-                <include
-                    android:id="@+id/appBar"
-                    layout="@layout/layout_app_bar" />
 
 
                 <androidx.recyclerview.widget.RecyclerView

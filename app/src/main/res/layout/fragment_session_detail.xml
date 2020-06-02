@@ -38,6 +38,17 @@
         <variable
             name="followText"
             type="String" />
+
+        <variable
+            name="followCount"
+            type="int" />
+
+        <variable
+            name="isFromAlterEgo"
+            type="Boolean" />
+
+        <import type="android.text.TextUtils" />
+
     </data>
 
     <LinearLayout
@@ -79,26 +90,18 @@
                         <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:layout_marginRight="5dp"
-                            app:cardBackgroundColorHex="@{session.colorHex}"
-                            app:cardUseCompatPadding="true">
+                            android:layout_marginBottom="4dp"
+                            app:cardBackgroundColorHex="@{session.colorHex}">
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:paddingTop="16dp"
-                                android:paddingBottom="16dp">
+                                android:layout_height="wrap_content" >
 
                                 <ImageView
                                     android:id="@+id/session_detail_user_image"
-                                    android:layout_width="40dp"
-                                    android:layout_height="40dp"
-                                    android:layout_marginStart="16dp"
-                                    android:layout_marginLeft="16dp"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_margin="8dp"
                                     android:contentDescription="@null"
                                     app:avatarUrl="@{session.userAvatarUrl}"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -110,16 +113,13 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:layout_margin="8dp"
                                     android:ellipsize="end"
                                     android:fontFamily="@string/font_family_regular"
                                     android:maxLines="1"
-                                    android:paddingStart="16dp"
-                                    android:paddingLeft="4dp"
-                                    android:paddingEnd="16dp"
-                                    android:paddingRight="16dp"
                                     android:text="@{session.userNickname}"
                                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                                    android:textColor="@color/primary_text_light"
+                                    android:textColor="@color/white"
                                     android:textIsSelectable="true"
                                     app:layout_constraintStart_toEndOf="@id/session_detail_user_image"
                                     app:layout_constraintTop_toTopOf="parent"
@@ -129,21 +129,15 @@
                                     android:id="@+id/session_detail_mood"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
-                                    android:layout_gravity="center_vertical"
-                                    android:layout_marginStart="4dp"
-                                    android:layout_marginLeft="4dp"
-                                    android:layout_weight="1"
+                                    android:layout_gravity="end"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginHorizontal="16dp"
                                     android:ellipsize="end"
                                     android:fontFamily="@string/font_family_regular"
                                     android:maxLines="1"
-                                    android:paddingStart="2dp"
-                                    android:paddingLeft="2dp"
-                                    android:paddingEnd="16dp"
-                                    android:paddingRight="16dp"
                                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                                     android:textColor="@color/primary_text_light"
-                                    android:textIsSelectable="true"
-                                    app:layout_constraintStart_toEndOf="@id/session_detail_nickname_text"
+                                    app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintTop_toTopOf="parent"
                                     app:mood1="@{session}"
                                     tools:text="feeling surprised 😲" />
@@ -155,10 +149,8 @@
                                     android:ellipsize="end"
                                     android:fontFamily="@string/font_family_regular"
                                     android:maxLines="1"
-                                    android:paddingStart="16dp"
-                                    android:paddingLeft="16dp"
-                                    android:paddingEnd="16dp"
-                                    android:paddingRight="16dp"
+                                    android:layout_marginHorizontal="8dp"
+                                    android:layout_marginTop="2dp"
                                     android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                                     android:textColor="@color/secondary_text_light"
                                     app:layout_constraintStart_toEndOf="@id/session_detail_user_image"
@@ -170,11 +162,8 @@
                                     android:id="@+id/session_detail_featured_notice_text"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:paddingStart="16dp"
-                                    android:paddingLeft="16dp"
-                                    android:paddingTop="16dp"
-                                    android:paddingEnd="16dp"
-                                    android:paddingRight="16dp"
+                                    android:padding="6dp"
+                                    android:gravity="start"
                                     android:text="@string/session_detail_featured_notice"
                                     android:textColor="@color/secondary_text_light"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -186,10 +175,10 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@string/font_family_regular"
-                                    android:padding="16dp"
+                                    android:padding="12dp"
                                     android:text="@{session.message}"
                                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                                    android:textColor="@color/primary_text_light"
+                                    android:textColor="@color/white"
                                     android:textIsSelectable="true"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toBottomOf="@id/session_detail_featured_notice_text"
@@ -223,13 +212,23 @@
 
                                 <LinearLayout
                                     android:id="@+id/me_too_container"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:gravity="end"
+                                    android:gravity="center_vertical"
                                     android:orientation="horizontal"
-                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toBottomOf="@id/session_detail_audio_container"
                                     app:visibleGone="@{userAvailable}">
+
+                                    <TextView
+                                        android:id="@+id/session_detail_me_too_count_text"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="16dp"
+                                        android:text="@{String.valueOf(session.meToos.size())}"
+                                        android:textColor="@color/secondary_text_light"
+                                        app:visibleGone="@{session.meToos.size() != 0}"
+                                        tools:text="132" />
 
                                     <Button
                                         android:id="@+id/session_detail_me_too_button"
@@ -240,49 +239,10 @@
                                         android:textAllCaps="false"
                                         android:textColor="@color/primary_text_light" />
 
-                                    <TextView
-                                        android:id="@+id/session_detail_me_too_count_text"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:paddingStart="8dp"
-                                        android:paddingLeft="8dp"
-                                        android:paddingEnd="8dp"
-                                        android:paddingRight="8dp"
-                                        android:text="@{String.valueOf(session.meToos.size())}"
-                                        android:textColor="@color/secondary_text_light"
-                                        app:visibleGone="@{session.meToos.size() != 0}"
-                                        tools:text="132" />
-
                                 </LinearLayout>
 
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
-                                    app:layout_constraintRight_toLeftOf="@id/session_detail_follow"
-                                    app:layout_constraintTop_toBottomOf="@id/me_too_container"
-                                    app:srcCompat="@drawable/ic_outline_add"
-                                    app:visibleGone="@{userAvailable &amp; !isAdmin}" />
 
-                                <TextView
-                                    android:id="@+id/session_detail_follow"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
-                                    android:paddingStart="8dp"
-                                    android:paddingLeft="8dp"
-                                    android:paddingEnd="8dp"
-                                    android:paddingRight="8dp"
-                                    android:text="@{followText}"
-                                    android:textColor="@color/secondary_text_light"
-                                    android:textSize="16sp"
-                                    app:layout_constraintLeft_toRightOf="parent"
-                                    app:layout_constraintRight_toLeftOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@id/me_too_container"
-                                    app:visibleGone="@{userAvailable &amp; !isAdmin}"
-                                    tools:text="@string/follow" />
                             </androidx.constraintlayout.widget.ConstraintLayout>
-
 
                         </androidx.cardview.widget.CardView>
 
@@ -312,7 +272,6 @@
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:paddingStart="4dp"
-                        android:paddingLeft="4dp"
                         tools:ignore="RtlSymmetry">
 
                         <include
@@ -327,7 +286,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
-                            android:layout_marginLeft="8dp"
                             android:background="?android:attr/selectableItemBackground"
                             android:contentDescription="@string/session_detail_content_desc_comment_remove_audio"
                             android:padding="4dp"
@@ -403,10 +361,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="8dp"
-                        android:layout_marginLeft="8dp"
                         android:layout_marginTop="4dp"
                         android:layout_marginEnd="2dp"
-                        android:layout_marginRight="2dp"
                         android:layout_marginBottom="4dp"
                         android:contentDescription="@string/session_detail_content_desc_record_audio"
                         app:fabSize="mini"
@@ -417,7 +373,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/session_dtail_loading_container"
+                android:id="@+id/session_detail_loading_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#99FFFFFF"

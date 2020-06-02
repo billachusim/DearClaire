@@ -48,7 +48,7 @@ class ArchiveSessionListFragment : DataBoundNavFragment<FragmentArchiveSessionLi
     private lateinit var date: Date
 
     override fun getPageTitle(): String {
-        return "Your Session"
+        return "All Sessions since Selected Date"
 
     }
 
