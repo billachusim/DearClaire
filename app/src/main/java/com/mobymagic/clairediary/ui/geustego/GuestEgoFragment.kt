@@ -3,7 +3,6 @@ package com.mobymagic.clairediary.ui.geustego
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.crashlytics.android.answers.Answers
@@ -296,10 +295,6 @@ class GuestEgoFragment : DataBoundNavFragment<FragmentGuestEgoBinding>() {
             if (fm != null) {
                 claireVartarFragment.show(fm, "claireVartarFragment")
             }
-        }
-
-        binding.addFriendImage.setOnClickListener {
-            Toast.makeText(context, R.string.coming_soon, Toast.LENGTH_SHORT).show()
         }
 
     }

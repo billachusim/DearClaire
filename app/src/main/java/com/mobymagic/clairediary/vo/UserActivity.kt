@@ -60,14 +60,14 @@ data class UserActivity(
         fun getUserActivityString(userActivity: UserActivity, userId: String?): String {
             if (userActivity.clientId.equals(userId)) {
                 return "You " + UserActivityType
-                        .getActivityRepresentation(userActivity.activityType) + " a post"
+                        .getActivityRepresentation(userActivity.activityType) + " a session"
             } else if (userActivity.userId.equals(userId) && !userActivity.clientId.equals(userId)) {
-                if (TextUtils.isEmpty(userActivity.clientNickname)) {
-                    return "Someone " + UserActivityType
-                            .getActivityRepresentation(userActivity.activityType) + " your post"
+                return if (TextUtils.isEmpty(userActivity.clientNickname)) {
+                    "Someone " + UserActivityType
+                            .getActivityRepresentation(userActivity.activityType) + "  your session"
                 } else {
-                    return userActivity.clientNickname + " " + UserActivityType
-                            .getActivityRepresentation(userActivity.activityType) + " your post"
+                    userActivity.clientNickname + " " + UserActivityType
+                            .getActivityRepresentation(userActivity.activityType) + " your session"
                 }
 
             }

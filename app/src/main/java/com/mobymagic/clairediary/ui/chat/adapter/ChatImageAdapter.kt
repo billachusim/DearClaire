@@ -41,7 +41,7 @@ class ChatImageAdapter(private val mCtx: Context, private val mImageList: Mutabl
 
     inner class ChatImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var mImage: ImageView = itemView.findViewById(R.id.chatRoomImage)
-        var mClear: ImageView = itemView.findViewById(R.id.chatRoomImageClear)
+        var mClear: ImageView = itemView.findViewById(R.id.ImageClear)
 
     }
 }

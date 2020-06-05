@@ -3,7 +3,7 @@ package com.mobymagic.clairediary.ui.chat.pojo
 import android.os.Parcel
 import android.os.Parcelable
 
-class ChatRoomPojo : Parcelable {
+open class ChatRoomPojo : Parcelable {
 
     var title: String? = null
         private set

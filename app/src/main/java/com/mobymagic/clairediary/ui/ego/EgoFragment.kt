@@ -154,7 +154,7 @@ class EgoFragment : DataBoundNavFragment<FragmentEgoBinding>() {
                 binding.bestSessionTextView.setOnClickListener {
                     egoViewModel.retryLoadingBestSession()
                 }
-            } else if (it.status.equals(Status.SUCCESS)) {
+            } else if (it.status == Status.SUCCESS) {
                 if (it.data == null || it.data.isEmpty()) {
                     bestSession.message = "Unavailable"
                 } else if (it.data.isNotEmpty()) {
@@ -239,12 +239,12 @@ class EgoFragment : DataBoundNavFragment<FragmentEgoBinding>() {
                     userRepository.updateUser(user!!).observe(viewLifecycleOwner, Observer {
                         if (it?.status?.equals(Status.SUCCESS)!!) {
                             Toast.makeText(activity,
-                                    "Nick name saved successfully",
+                                    "Hmm, nice nickname. Saved!",
                                     Toast.LENGTH_SHORT).show()
                             refreshUser()
                         } else if (it.status == Status.ERROR) {
                             Toast.makeText(activity,
-                                    "An error Occurred while saving your nickname",
+                                    "Oops, an error occurred while saving your nickname",
                                     Toast.LENGTH_SHORT).show()
                         }
                         binding.nicknameViewSwitcher.showPrevious()
@@ -273,18 +273,18 @@ class EgoFragment : DataBoundNavFragment<FragmentEgoBinding>() {
         if (requestCode == CLAIRE_VARTAR_REQUEST_CODE) {
             val userAvartar = data?.getStringExtra(USER_AVARTAR_KEY)
             if (!TextUtils.isEmpty(userAvartar)) {
-                // I dont think there is any way the user can be null but just check
+                // I don't think there is any way the user can be null but just check
                 if (user != null) {
                     user?.avatarUrl = userAvartar
                     userRepository.updateUser(user!!).observe(this, Observer {
                         if (it?.status?.equals(Status.SUCCESS)!!) {
                             Toast.makeText(activity,
-                                    "Clairevatar saved successfully",
+                                    "Hmm, nice Clairevatar. Saved!",
                                     Toast.LENGTH_SHORT).show()
                             refreshUser()
                         } else if (it.status == Status.ERROR) {
                             Toast.makeText(activity,
-                                    "An error Occurred while saving your clairevatar",
+                                    "Oopsie, an error occurred while saving your clairevatar",
                                     Toast.LENGTH_SHORT).show()
                         }
                     })
@@ -296,11 +296,11 @@ class EgoFragment : DataBoundNavFragment<FragmentEgoBinding>() {
     private fun validateUsernameInput(): Boolean {
         val username = binding.editNicknameInput.text.toString()
         if (TextUtils.isEmpty(username)) {
-            Toast.makeText(context, "You username cannot be empty", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Erm, your username cannot be empty", Toast.LENGTH_SHORT).show()
             return false
         }
         if (username.contains("claire", false)) {
-            Toast.makeText(context, "You username cannot contain claire", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Sorry, you rusername cannot contain claire", Toast.LENGTH_SHORT).show()
             return false
         }
         return true

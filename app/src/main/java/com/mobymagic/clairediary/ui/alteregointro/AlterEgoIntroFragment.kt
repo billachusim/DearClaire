@@ -32,7 +32,7 @@ class AlterEgoIntroFragment : DataBoundNavFragment<FragmentAlterEgoIntroBinding>
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
         activity?.setTitle(R.string.common_title_alter_ego_mode)
-        userId = arguments!!.getString(ARG_USER_ID, null)
+        userId = requireArguments().getString(ARG_USER_ID, null)
         setupPager()
         setupAccessCodeCheck()
 

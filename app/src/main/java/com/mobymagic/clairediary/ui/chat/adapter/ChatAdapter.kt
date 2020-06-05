@@ -25,14 +25,13 @@ class ChatAdapter(private val context: Context, private val chatRoomList: List<C
     private val firebaseAuth = FirebaseAuth.getInstance()
     private val firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 
-    private val SENT_MESSAGE = 0
-    private val RECEIVED_MESSAGE = 2
+    private val sentMessage = 0
+    private val receivedMessage = 2
 
     override fun getItemViewType(position: Int): Int {
-        val from = chatRoomList[position].message_type
-        return return when (from) {
-            0 -> SENT_MESSAGE
-            else -> RECEIVED_MESSAGE
+        return when (chatRoomList[position].message_type) {
+            0 -> sentMessage
+            else -> receivedMessage
         }
     }
 
@@ -40,31 +39,31 @@ class ChatAdapter(private val context: Context, private val chatRoomList: List<C
         var view: View? = null
         //Based on view type decide which type of view to supply with viewHolder
         when (viewType) {
-            SENT_MESSAGE -> view = LayoutInflater.from(parent.context).inflate(R.layout.text_message_chat, parent, false)
+            sentMessage -> view = LayoutInflater.from(parent.context).inflate(R.layout.text_message_chat, parent, false)
 
-            RECEIVED_MESSAGE -> view = LayoutInflater.from(parent.context).inflate(R.layout.image_message_chat, parent, false)
+            receivedMessage -> view = LayoutInflater.from(parent.context).inflate(R.layout.image_message_chat, parent, false)
         }
         return ChatViewHolder(view!!)
     }
 
     override fun onBindViewHolder(holder: ChatViewHolder, position: Int) {
         val chatRoom = chatRoomList[position]
-        holder.comment_message_text.text = chatRoom.text_message
-        holder.comment_time_text.text = chatRoom.time
-        holder.comment_nickname_text.text = chatRoom.sender_user_nick_name
+        holder.commentMessageText.text = chatRoom.text_message
+        holder.commentTimeText.text = chatRoom.time
+        holder.commentNicknameText.text = chatRoom.sender_user_nick_name
 
 
         if (firebaseAuth.currentUser!!.uid != chatRoom.sender_uid) {
-            holder.comment_edit_button.visibility = View.INVISIBLE
+            holder.commentEditButton.visibility = View.INVISIBLE
         }
 
         getThanks(holder, chatRoom)
 
-        holder.comment_thanks_button.setOnClickListener {
+        holder.commentThanksButton.setOnClickListener {
             checkForThanks(chatRoom)
         }
 
-        holder.comment_edit_button.setOnClickListener {
+        holder.commentEditButton.setOnClickListener {
             updateMessage(chatRoom.text_message!!, chatRoom.image_message!!, chatRoom.key!!)
         }
 
@@ -157,22 +156,21 @@ class ChatAdapter(private val context: Context, private val chatRoomList: List<C
                     }
 
                     override fun onDataChange(p0: DataSnapshot) {
-                        if (p0 != null) {
-                            holder.comment_thanks_count_text.text = "${p0.childrenCount}"
-                        }
+                        holder.commentThanksCountText.text = "${p0.childrenCount}"
                     }
                 })
     }
 
     class ChatViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        var comment_nickname_text: TextView = itemView.findViewById(R.id.comment_nickname_text)
-        var comment_time_text: TextView = itemView.findViewById(R.id.comment_time_text)
-        var comment_thanks_count_text: TextView = itemView.findViewById(R.id.comment_thanks_count_text)
-        var comment_message_text: EmojiTextView = itemView.findViewById(R.id.comment_message_text)
-        var comment_edit_button: ImageButton = itemView.findViewById(R.id.comment_edit_button)
-        var comment_thanks_button: Button = itemView.findViewById(R.id.comment_thanks_button)
+        var commentNicknameText: TextView = itemView.findViewById(R.id.comment_nickname_text)
+        var commentTimeText: TextView = itemView.findViewById(R.id.comment_time_text)
+        var commentThanksCountText: TextView = itemView.findViewById(R.id.comment_thanks_count_text)
+        var commentMessageText: EmojiTextView = itemView.findViewById(R.id.comment_message_text)
+        var commentEditButton: ImageButton = itemView.findViewById(R.id.comment_edit_button)
+        var commentThanksButton: Button = itemView.findViewById(R.id.comment_thanks_button)
         var postImage: ImageView = itemView.findViewById(R.id.postImage)
+        // var chatUserAvatar: ImageView = itemView.chat_user_avatar
 
     }
 }

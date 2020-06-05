@@ -69,7 +69,7 @@ class EgoViewModel(
 
                 Status.SUCCESS -> {
                     // try getting the shard count from the resource and post it to the result live data
-                    if (it.data != null && it.data.size > 0) {
+                    if (it.data != null && it.data.isNotEmpty()) {
                         resultingResource = Resource(Status.SUCCESS, it.data.sumBy { it.count.toInt() }, it.message)
                         userFollowCountLiveData.postValue(resultingResource)
                     }

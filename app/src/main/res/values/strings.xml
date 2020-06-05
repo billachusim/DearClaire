@@ -8,7 +8,7 @@
     <string name="common_error_login_again">Please login again to continue</string>
     <string name="common_chooser_title_share_using">Share using</string>
     <string name="common_message_share_app">Have you heard about this app called Dear Claire?
-It\'s like a secret diary chat 🌸 An app where you can write or record anything anonymously and get advice free 💕 🔐 You can also follow people\'s secrets and earn cash for your advice.
+It\'s like a secret diary chat 🌸 An app where you can write or record anything anonymously and get advise free 💕 🔐 You can also follow people\'s secrets and earn cash for your advise.
 Tap this link to read more about it and install on your Android phone.
 %2$s</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -58,7 +58,6 @@ Tap this link to read more about it and install on your Android phone.
     <string name="session_type_diary">Diary</string>
     <string name="session_type_trending">Trending</string>
     <string name="session_type_archived">Archived</string>
-    <string name="session_type_chat">Chat</string>
     <string name="session_type_following">Followed</string>
     <string name="session_type_advised">Advised</string>
     <string name="session_type_new">New</string>
@@ -67,7 +66,7 @@ Tap this link to read more about it and install on your Android phone.
 
     <!-- Session Home Page Start -->
     <string name="session_home_action_how_to_use">How Claire Works</string>
-    <string name="session_home_action_join_discussion">On Instagram</string>
+    <string name="session_home_action_join_discussion">Check Instagram</string>
     <string name="session_home_action_settings">Settings</string>
     <string name="session_home_action_share_app">Send Claire To Someone</string>
     <string name="sessions_home_action_content_desc_dismiss_alert">Dismiss</string>
@@ -78,15 +77,15 @@ Tap this link to read more about it and install on your Android phone.
     <string name="session_detail_content_desc_record_audio">Record audio</string>
     <string name="session_detail_content_desc_add_photo">Add photo</string>
     <string name="session_detail_hint_enter_reply">Positive vibes only, no ads…</string>
-    <string name="session_detail_hint_enter_advice">Enter advice…</string>
+    <string name="session_detail_hint_enter_advice">Enter advise…</string>
     <string name="session_detail_error_message_or_audio_empty">Please enter a message or record an audio</string>
     <string name="session_detail_content_desc_comment_remove_audio">Remove audio</string>
     <string name="session_detail_content_desc_share_response">Share response</string>
-    <string name="session_detail_comment_share_message">Here is an advice I received from Dear Claire - Secret Diary Chat: %s</string>
+    <string name="session_detail_comment_share_message">Here is an advise I received from Dear Claire - Secret Diary Chat: %s</string>
     <string name="session_detail_unfeature_session">Remove session from trending</string>
     <string name="session_detail_action_edit_session">Edit session</string>
     <string name="session_detail_featured_notice">Trending Notice: Hello Darling, this diary session is currently visible on the Trending Sessions. You are completely anonymous. However, to remove this session from public view, just tap the star icon 🌟 next to the Title.</string>
-    <string name="session_detail_action_edit_comment">Edit advice</string>
+    <string name="session_detail_action_edit_comment">Edit advise</string>
     <string name="session_detail_action_me_too">Me2🌸</string>
     <string name="session_detail_me_too_count">%1$s</string>
     <!-- Session Detail Page End -->
@@ -222,7 +221,7 @@ Tap this link to read more about it and install on your Android phone.
     <string name="session_list_action_start_session">Start Session</string>
     <string name="session_list_alert_trending">Welcome to Trending Sessions Tab 🌸\n\nThis page shows permitted trending diary sessions.\nYour diary session can not appear here without your notice.\nPlease contribute positive vibes only and no ads or you might permanently lose access to Claire.</string>
     <string name="session_list_alert_diary">This is your Diary Sessions Tab 📝\n\nOpen Up 🌸 Write or record anything and if you wish, I can read or listen to it and reply you.\nEvery session is strictly between you and I (Claire), unless you set it public for users; still, you are completely anonymous and will never be not truly loved 💕</string>
-    <string name="session_list_alert_new_alter_ego">Welcome to Alter Ego Mode 🌸\n\nYou are Claire right now. Remember your pledge:\n\n💕Be a true friend. Encourage them in their good plans, sympathise with them in their pains, advice them to stay optimistic and make them feel good about themselves 💕</string>
+    <string name="session_list_alert_new_alter_ego">Welcome to Alter Ego Mode 🌸\n\nYou are Claire right now. Remember your pledge:\n\n💕Be a true friend. Encourage them in their good plans, sympathise with them in their pains, advise them to stay optimistic and make them feel good about themselves 💕</string>
     <string name="session_list_action_archive">Archive session</string>
     <string name="session_list_action_unarchive">Unarchive session</string>
     <string name="session_list_action_feature">Make session trend</string>
@@ -300,7 +299,7 @@ Tap this link to read more about it and install on your Android phone.
     <string name="alter_ego_intro_slide_2_text">Just like the Diary Mode, the Alter-Ego Mode is completely anonymous.
         No one (including the programmers) can know who sent a diary session and no one knows who responds.</string>
     <string name="alter_ego_intro_slide_3_text">Be a true friend, sympathise with them in their pain,
-        encourage them in their good plans, advice them to stay optimistic and make them feel good about themselves.</string>
+        encourage them in their good plans, advise them to stay optimistic and make them feel good about themselves.</string>
     <string name="alter_ego_intro_slide_4_text">Alter-Ego Mode gives you special access to Claire\'s Inbox
         so you too can spread positive vibes by responding to Diary Sessions of your interest.</string>
     <string name="alter_ego_intro_action_donate">Donate</string>
@@ -323,7 +322,7 @@ Tap this link to read more about it and install on your Android phone.
     <string name="alter_ego_orientation_instagram_username">Instagram username</string>
     <string name="alter_ego_orientation_short_bio">Short bio</string>
     <string name="alter_ego_orientation_second_header">Please Answer The Following Questions With Yes Or No</string>
-    <string name="alter_ego_orientation_random_posts">Are you truly interested in becoming an Alter-Ego not just to read random people\'s Diary Sessions but to reply them with happy vibes and good advices?</string>
+    <string name="alter_ego_orientation_random_posts">Are you truly interested in becoming an Alter-Ego not just to read random people\'s Diary Sessions but to reply them with happy vibes and good advises?</string>
     <string name="alter_ego_orientation_world_better_place">Do you believe that the world will be a better place if people treat other people like themselves wish to be treated?</string>
     <string name="alter_ego_orientation_following_on_instagram">Are you following @socialfaculty on Instagram?</string>
     <string name="alter_ego_orientation_learn_on_instagram">Did you first learn about Claire on Instagram?</string>
@@ -337,13 +336,13 @@ Tap this link to read more about it and install on your Android phone.
     <!-- How Claire Works Page Start -->
     <string name="how_claire_works_page_title">How Claire works</string>
     <string name="how_claire_works_read_title">Read How Claire Works</string>
-    <string name="how_claire_works_details">Open Up 🌸 Write or record anything and get advice from Claire secret diary.</string>
+    <string name="how_claire_works_details">Open Up 🌸 Write or record anything and get advise from Claire secret diary.</string>
     <string name="how_claire_works_read_alter_ego_works_title">Read How Alter Ego Works</string>
     <string name="how_claire_works_donate_to_claire">Donate To Support Claire</string>
     <!-- How Claire Works Page End -->
 
     <!-- Alter Ego Login Page Start -->
-    <string name="alter_ego_login_page_title">Alter Ego Login</string>
+    <string name="alter_ego_login_page_title">Unlock Your Alter Ego</string>
     <string name="alter_ego_login_page_subtitle">Switch to the powerful side of you</string>
     <string name="alter_ego_login_hint_claire_id">claireID</string>
     <string name="alter_ego_login_hint_access_code">One time access</string>
@@ -352,7 +351,7 @@ Tap this link to read more about it and install on your Android phone.
     <string name="alter_ego_login_action_donate">Donate</string>
     <string name="alter_ego_input_error_claire_id_invalid">Claire id must be greater than 6 characters</string>
     <string name="alter_ego_input_error_access_code_invalid">Access code must be greater than 4 characters</string>
-    <string name="alter_ego_login_incorrect">Alter ego credentials is incorrect</string>
+    <string name="alter_ego_login_incorrect">Alter Ego credentials are incorrect</string>
     <string name="alter_ego_login_correct">You are in!</string>
     <!-- Alter Ego Login Page End -->
 
@@ -378,19 +377,19 @@ Tap this link to read more about it and install on your Android phone.
     <string name="session">Session</string>
     <string name="me_toos">Me Toos</string>
     <string name="thank_yous">Thank yous</string>
-    <string name="best_advice">Best Advice</string>
+    <string name="best_advice">Best Advise</string>
     <string name="nickname">Nickname</string>
     <!-- Comment List Page End -->
 
-    <string name="claire_vartar">ClaireVartar 💕</string>
-    <string name="new_claire_vartar_saving">Saving claireVartar…</string>
-    <string name="new_claire_vartar_save_error">An error occurred while saving new claireVartar. Please try again.</string>
+    <string name="claire_vartar">Clairevatar 💕</string>
+    <string name="new_claire_vartar_saving">Saving clairevatar…</string>
+    <string name="new_claire_vartar_save_error">An error occurred while saving new clairevatar. Please try again.</string>
     <string name="claire_vartar_updating">Updating claireVartar…</string>
-    <string name="claire_vartar_update_error">An error occurred while updating claireVartar. Please try again.</string>
-    <string name="claire_vartar_deleting">Deleting claireVartar…</string>
-    <string name="claire_vartar_delete_error">An error occurred while deleting claireVartar. Please try again.</string>
-    <string name="select_your_avartar">Select Your Avartar</string>
-    <string name="select_your_clairevartar">Select your Clairevartar</string>
+    <string name="claire_vartar_update_error">An error occurred while updating clairevatar. Please try again.</string>
+    <string name="claire_vartar_deleting">Deleting clairevatar…</string>
+    <string name="claire_vartar_delete_error">An error occurred while deleting clairevatar. Please try again.</string>
+    <string name="select_your_avartar">Choose Your Clairevatar</string>
+    <string name="select_your_clairevartar">Choose your Clairevatar</string>
     <string name="avartar_tribute">Avatars courtesy of freepik.com and emojiisland.com</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
@@ -401,7 +400,7 @@ Tap this link to read more about it and install on your Android phone.
     <string name="prev">Prev</string>
     <string name="next">Next</string>
     <string name="reactions">Reactions</string>
-    <string name="advice">Advice</string>
+    <string name="advise">Advise</string>
     <string name="ego">Ego</string>
     <string name="follows">Follows</string>
     <string name="coming_soon">Coming Soon</string>
@@ -409,5 +408,10 @@ Tap this link to read more about it and install on your Android phone.
     <string name="title_activity_chat">ChatActivity</string>
     <string name="title_activity_example">Example</string>
     <string name="currentDate">currentDate</string>
+    <string name="app_name_as_claire">Claire</string>
+    <string name="enter_chatroom_button">ENTER</string>
+    <string name="Chatroom_owner_name">From Claire</string>
+    <string name="positive_vibes_only">positive vibes only....</string>
+    <string name="session_type_chat">Chat</string>
 
 </resources>

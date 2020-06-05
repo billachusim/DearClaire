@@ -101,13 +101,13 @@ exports.incrementCommentCount = function (snap, context) {
                 else {
                     console.log('User comment count found updating count', doc.data());
                     let numberOfComments = doc.data().numberOfComments;
-                    numberOfComments += 1;
+                    numberOfComments += 1+;
                     db.collection(userCommentCounterCollectionName)
                         .doc(newComment.userId).update({ numberOfComments: numberOfComments });
                 }
             })
                 .catch(err => {
-                console.log('an error occured while incrementing comment count', err);
+                console.log('an error occurred while incrementing comment count', err);
             });
         }
         catch (error) {

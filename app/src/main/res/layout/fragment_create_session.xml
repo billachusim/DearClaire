@@ -120,16 +120,6 @@
                 android:layout_margin="8dp">
 
                 <ImageButton
-                    android:id="@+id/create_session_emoji_toggle_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:contentDescription="@string/common_content_desc_show_emoji"
-                    android:padding="8dp"
-                    app:srcCompat="@drawable/ic_round_insert_emoticon_white_24" />
-
-                <ImageButton
                     android:id="@+id/create_session_add_photo_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -140,14 +130,14 @@
                     app:srcCompat="@drawable/ic_round_photo_camera_white_24" />
 
                 <ImageButton
-                    android:id="@+id/create_session_record_audio_button"
+                    android:id="@+id/create_session_emoji_toggle_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:background="?android:attr/selectableItemBackground"
-                    android:contentDescription="@string/create_session_content_desc_record_audio"
+                    android:contentDescription="@string/common_content_desc_show_emoji"
                     android:padding="8dp"
-                    app:srcCompat="@drawable/ic_round_keyboard_voice_white_24" />
+                    app:srcCompat="@drawable/ic_round_insert_emoticon_white_24" />
 
                 <ImageButton
                     android:id="@+id/create_session_font_button"
@@ -168,6 +158,16 @@
                     android:contentDescription="@string/create_session_content_desc_change_background"
                     android:padding="8dp"
                     app:srcCompat="@drawable/round_palette_white_24" />
+
+                <ImageButton
+                    android:id="@+id/create_session_record_audio_button"
+                    android:layout_width="40dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="bottom"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:contentDescription="@string/create_session_content_desc_record_audio"
+                    android:padding="8dp"
+                    app:srcCompat="@drawable/ic_round_keyboard_voice_white_24" />
 
                 <Space
                     android:layout_width="0dp"

@@ -87,6 +87,7 @@
                             android:background="@drawable/oval_white"
                             android:contentDescription="@string/your_avartar"
                             android:scaleType="fitCenter"
+                            android:layout_marginEnd="12dp"
                             android:src="@drawable/ic_product_logo_128dp"
                             app:avatarUrl="@{imageUrl}"
                             tools:background="@drawable/oval_white" />
@@ -181,7 +182,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/number_of_comments_text_view"
                                 android:layout_margin="0.5dp"
-                                android:text="@string/advice"
+                                android:text="@string/advise"
                                 android:textStyle="bold"
                                 android:fontFamily="sans-serif-medium"/>
 

@@ -178,7 +178,7 @@ class CommentRepository(
 
     fun getNumberOfCommentsForSession(sessionId: String): LiveData<Resource<List<Shard>>> {
         val query = firestore.collection(SESSION_COMMENT_COUNTER)
-                .document(sessionId).collection(COLLECTION_SESSION_COMMENT_SHARDS).limit(100)
+                .document(sessionId).collection(COLLECTION_SESSION_COMMENT_SHARDS).limit(1000)
         return FirestoreListLiveData(androidUtil, query, Shard::class.java, null)
     }
 

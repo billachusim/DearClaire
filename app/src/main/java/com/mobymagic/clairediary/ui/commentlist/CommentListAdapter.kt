@@ -73,7 +73,7 @@ class CommentListAdapter(
                 binding.commentNicknameText.text = item.userNickname
             }
         } else if (item.isUserAdmin) {
-            binding.commentNicknameText.text = binding.root.context.getString(R.string.app_name)
+            binding.commentNicknameText.text = binding.root.context.getString(R.string.app_name_as_claire)
         } else {
             binding.commentNicknameText.text = item.userNickname
         }

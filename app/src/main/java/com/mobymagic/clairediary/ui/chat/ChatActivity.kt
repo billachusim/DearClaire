@@ -60,7 +60,7 @@ class ChatActivity : AppCompatActivity() {
     private lateinit var updateKey: String
     private lateinit var emojiPopup: EmojiPopup
     private val REQUEST_CODE_SELECT_PHOTO = 1
-    private val MAX_PHOTOS = 1
+    private val MAX_PHOTOS = 3
     private var selectedPhotos = ArrayList<String>()
     private var storageRef = FirebaseStorage.getInstance().reference
     private lateinit var downloadUri: Uri
@@ -83,11 +83,9 @@ class ChatActivity : AppCompatActivity() {
 
         emojiPopup = EmojiPopup.Builder.fromRootView(rootView).build(session_detail_chat_input)
 
-        if (mIntent != null) {
-            this.title = mIntent.title
-            toolbar.setBackgroundColorHex(mIntent.hex)
-            window.statusBarColor = Color.parseColor(mIntent.hex)
-        }
+        this.title = mIntent.title
+        toolbar.setBackgroundColorHex(mIntent.hex)
+        window.statusBarColor = Color.parseColor(mIntent.hex)
 
         mDatabase = FirebaseDatabase.getInstance()
 
@@ -222,7 +220,7 @@ class ChatActivity : AppCompatActivity() {
                             e.printStackTrace()
                         }
                     } else {
-                        Timber.e(task.exception!!.message)
+                        Timber.e(task.exception!!)
                         Toast.makeText(this, task.exception!!.message, Toast.LENGTH_LONG).show()
                     }
                     indicator.visibility = View.INVISIBLE
@@ -234,7 +232,7 @@ class ChatActivity : AppCompatActivity() {
         imageFrame.visibility = View.GONE
         indicator.visibility = View.VISIBLE
 
-        var file = Uri.fromFile(File(s))
+        val file = Uri.fromFile(File(s))
         val ref = storageRef.child("images/mountains.jpg")
         val uploadTask = ref.putFile(file)
 
@@ -286,7 +284,7 @@ class ChatActivity : AppCompatActivity() {
                             e.printStackTrace()
                         }
                     } else {
-                        Timber.e(task.exception!!.message)
+                        Timber.e(task.exception!!)
                         Toast.makeText(this, task.exception!!.message, Toast.LENGTH_LONG).show()
                     }
                     indicator.visibility = View.INVISIBLE

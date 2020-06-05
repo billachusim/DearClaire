@@ -100,7 +100,7 @@ export const incrementCommentCount =
                     }
                 })
                 .catch(err => {
-                    console.log('an error occured while incrementing comment count', err);
+                    console.log('an error occurred while incrementing comment count', err);
                 });
         } catch (error) {
             console.log(`An error occurred while incrementing comment count ${error}`);

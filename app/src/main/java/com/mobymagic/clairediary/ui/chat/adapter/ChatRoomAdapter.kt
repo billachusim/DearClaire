@@ -6,11 +6,9 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-
 import com.mobymagic.clairediary.R
 import com.mobymagic.clairediary.ui.chat.ChatActivity
 import com.mobymagic.clairediary.ui.chat.pojo.ChatRoomPojo
@@ -27,8 +25,8 @@ class ChatRoomAdapter(private val context: Context, private val chatRoomPojoList
         val chatRoomPojo = chatRoomPojoList!![position]
         holder.cardBackGround.setBackgroundColor(Color.parseColor(chatRoomPojo.hex))
         holder.title.text = chatRoomPojo.title
-        holder.session_list_content_tv.text = chatRoomPojo.text
-        holder.follow.setOnClickListener {
+        holder.sessionListContentTv.text = chatRoomPojo.text
+        holder.enterChatroomButton.setOnClickListener {
             val intent = Intent(context, ChatActivity::class.java)
             intent.putExtra("chatRoom", chatRoomPojo)
             context.startActivity(intent)
@@ -40,17 +38,10 @@ class ChatRoomAdapter(private val context: Context, private val chatRoomPojoList
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var cardBackGround: CardView
-        var title: TextView
-        var session_list_content_tv: TextView
-        var follow: LinearLayout
-
-        init {
-            cardBackGround = itemView.findViewById(R.id.cardBackGround)
-            title = itemView.findViewById(R.id.group_title)
-            session_list_content_tv = itemView.findViewById(R.id.session_list_content_tv)
-            follow = itemView.findViewById(R.id.follow)
-        }
+        var cardBackGround: CardView = itemView.findViewById(R.id.cardBackGround)
+        var title: TextView = itemView.findViewById(R.id.chatroom_title)
+        var sessionListContentTv: TextView = itemView.findViewById(R.id.chatroom_desc_textview)
+        var enterChatroomButton: TextView = itemView.findViewById(R.id.enter_chatroom_button)
 
     }
 }

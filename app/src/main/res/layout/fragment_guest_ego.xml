@@ -195,7 +195,7 @@
                                 android:layout_below="@id/number_of_comments_text_view"
                                 android:layout_margin="4dp"
                                 android:fontFamily="sans-serif-medium"
-                                android:text="@string/advice"
+                                android:text="@string/advise"
                                 android:textStyle="bold" />
 
                         </RelativeLayout>
@@ -238,19 +238,6 @@
                             app:adminBadge="@{userType}"
                             tools:text="Admin" />
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/add_friend_image"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_toEndOf="@+id/user_type_text_view"
-                            android:gravity="center_horizontal"
-                            android:layout_marginStart="46dp"
-                            android:layout_marginEnd="12dp"
-                            android:text="@string/request_chat"
-                            android:textAppearance="?android:textAppearance"
-                            android:textColor="@color/theme_accent"
-                            android:textStyle="bold" />
                     </RelativeLayout>
 
                 </LinearLayout>

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.mobymagic.clairediary.AppExecutors
 import com.mobymagic.clairediary.R
@@ -25,6 +26,7 @@ import com.mobymagic.clairediary.util.autoCleared
 import com.mobymagic.clairediary.vo.Empty
 import com.mobymagic.clairediary.vo.Session
 import com.mobymagic.clairediary.vo.Status
+import kotlinx.android.synthetic.main.layout_app_bar.*
 import org.koin.android.ext.android.inject
 import timber.log.Timber
 import java.util.*
@@ -49,7 +51,6 @@ class ArchiveSessionListFragment : DataBoundNavFragment<FragmentArchiveSessionLi
 
     override fun getPageTitle(): String {
         return "All Sessions since Selected Date"
-
     }
 
     override fun getLayoutRes() = R.layout.fragment_archive_session_list
@@ -68,6 +69,8 @@ class ArchiveSessionListFragment : DataBoundNavFragment<FragmentArchiveSessionLi
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        (activity as AppCompatActivity).setSupportActionBar(toolbar)
+        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
         sessionListImageAdapter = SessionDetailImageAdapter(appExecutors) {
             // TODO open a gallery
         }
@@ -148,18 +151,6 @@ class ArchiveSessionListFragment : DataBoundNavFragment<FragmentArchiveSessionLi
                 R.string.session_list_action_start_session
         )
     }
-
-//    private fun setupAlertView() {
-//        sessionListViewModel.getAlerts().observe(this, Observer { alertResource ->
-//            if (alertResource?.status == Status.SUCCESS) {
-//                binding.alert = alertResource.data
-//            }
-//        })
-//        binding.sessionListDismissAlertButton.setOnClickListener {
-//            sessionListViewModel.cancelAlert()
-//        }
-//        binding.sessionListDismissAlertButton.setVisibleOrGone(false)
-//    }
 
     private fun onEmptyActionButtonClicked() {
         val createSessionFragment = CreateSessionFragment.newInstance()

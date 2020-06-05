@@ -35,7 +35,7 @@ class ChatRoomsFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        rv.adapter = ChatRoomAdapter(context!!, RoomData.chatRoom)
+        rv.adapter = ChatRoomAdapter(requireContext(), RoomData.chatRoom)
     }
 
 

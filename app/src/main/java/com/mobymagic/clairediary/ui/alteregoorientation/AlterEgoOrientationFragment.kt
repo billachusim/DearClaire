@@ -31,7 +31,7 @@ class AlterEgoOrientationFragment : DataBoundNavFragment<FragmentAlterEgoOrienta
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        formBuilder = form(context!!, binding.orientationRecyclerView) {
+        formBuilder = form(requireContext(), binding.orientationRecyclerView) {
 
             header {
                 title = getString(R.string.alter_ego_orientation_first_header)
@@ -189,11 +189,11 @@ class AlterEgoOrientationFragment : DataBoundNavFragment<FragmentAlterEgoOrienta
         val believeInClaire =
                 formBuilder.getFormElement<BaseFormElement<*>>(FormTag.DO_YOU_BELIEVE_IN_CLAIRE_PROJECT.ordinal)
         val readyToBeClaire = formBuilder.getFormElement<BaseFormElement<*>>(FormTag.ARE_YOU_READY_TO_BE_CLAIRE.ordinal)
-        val userUid = arguments!!.getString(ARG_USER_ID)
+        val userUid = requireArguments().getString(ARG_USER_ID)
         val email = prefUtil.getString(Constants.PREF_KEY_USER_EMAIL, null)
 
         val payload = """
-            I'm ready for final Clairentation. This are my details:
+            I'm ready for final Clairentation. These are my details:
 
             *UserId*: $userUid
 

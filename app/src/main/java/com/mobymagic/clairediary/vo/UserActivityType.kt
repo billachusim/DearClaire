@@ -9,7 +9,7 @@ class UserActivityType {
         val THANKS: String = "Thanks"
         val SESSION: String = "Session"
         val COMMENT: String = "Comment"
-        val ADVICE: String = "Advice"
+        val ADVISE: String = "Advise"
 
 
         fun getActivityRepresentation(activity: String): String {
@@ -23,8 +23,8 @@ class UserActivityType {
                 COMMENT -> {
                     return "commented on"
                 }
-                ADVICE -> {
-                    return "adviced"
+                ADVISE -> {
+                    return "advised"
                 }
                 THANKS -> {
                     return "thanked"
@@ -39,7 +39,7 @@ class UserActivityType {
                     return R.drawable.ic_outline_add_red
                 }
                 MEETOO -> {
-                    return R.drawable.double_hearts
+                    return R.drawable.ic_cherry_blossom
                 }
                 COMMENT -> {
                     return R.drawable.comment_icon_red
@@ -47,7 +47,7 @@ class UserActivityType {
                 THANKS -> {
                     return R.drawable.double_hearts
                 }
-                ADVICE -> {
+                ADVISE -> {
                     return R.drawable.comment_icon_red
                 }
             }

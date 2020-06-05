@@ -7,9 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import androidx.viewpager.widget.ViewPager
-import com.google.android.material.tabs.TabLayout
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.mobymagic.clairediary.R
+import com.mobymagic.clairediary.ui.chat.adapter.ChatRoomAdapter
+import com.mobymagic.clairediary.ui.chat.data.RoomData
 import java.util.*
 
 private const val ARG_PARAM1 = "param1"
@@ -17,6 +20,7 @@ private const val ARG_PARAM2 = "param2"
 
 class ChatFragment : Fragment() {
 
+    private lateinit var rv: RecyclerView
 
     private var param1: String? = null
     private var param2: String? = null
@@ -36,22 +40,18 @@ class ChatFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? =// Inflate the layout for this fragment
-            inflater.inflate(R.layout.fragment_chat, container, false)
+            inflater.inflate(R.layout.fragment_chat_rooms, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val viewPager = view.findViewById<ViewPager>(R.id.viewpager)
-        setupViewPager(viewPager)
-        val tabs = view.findViewById<TabLayout>(R.id.tabs)
-        tabs.setupWithViewPager(viewPager)
+        rv = view.findViewById(R.id.rv)
+        rv.layoutManager = LinearLayoutManager(context)
+        rv.itemAnimator = DefaultItemAnimator()
     }
 
-    private fun setupViewPager(viewPager: ViewPager) {
-        val adapter = ChatAdapter(fragmentManager)
-        adapter.addFragment(ChatRoomsFragment(), "Chat Rooms")
-        adapter.addFragment(PrivateChatFragment(), "Secret Chat")
-        adapter.addFragment(RequestFragment(), "Chat Requests")
-        viewPager.adapter = adapter
+    override fun onStart() {
+        super.onStart()
+        rv.adapter = ChatRoomAdapter(requireContext(), RoomData.chatRoom)
     }
 
     companion object {

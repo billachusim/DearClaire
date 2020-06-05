@@ -14,10 +14,10 @@
         app:srcCompat="@drawable/ic_launcher_background" />
 
     <ImageView
-        android:id="@+id/chatRoomImageClear"
+        android:id="@+id/ImageClear"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_gravity="right"
+        android:layout_gravity="end"
         app:srcCompat="@drawable/ic_clear_white_24dp" />
 
 </FrameLayout>

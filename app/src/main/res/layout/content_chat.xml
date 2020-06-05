@@ -47,7 +47,7 @@
         android:layout_alignParentBottom="true"
         android:baselineAligned="false"
         android:orientation="horizontal"
-        android:padding="4dp">
+        android:padding="6dp">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -57,7 +57,7 @@
             android:background="@drawable/new_comment_bg"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:padding="4dp">
+            android:padding="6dp">
 
             <ImageButton
                 android:id="@+id/session_detail_emoji_toggle_button"
@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:hint="type message...."
+                android:hint="@string/positive_vibes_only"
                 android:imeOptions="actionSend"
                 android:inputType="textCapSentences|textMultiLine"
                 android:maxLength="2500"
@@ -98,12 +98,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginStart="6dp"
             android:layout_marginEnd="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_marginBottom="4dp"
             android:contentDescription="@string/session_detail_content_desc_record_audio"
             app:fabSize="mini"
             app:srcCompat="@drawable/ic_round_keyboard_voice_white_24" />

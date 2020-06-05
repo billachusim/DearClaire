@@ -4,6 +4,11 @@
     tools:showIn="navigation_view">
 
     <item
+        android:id="@+id/nav_settings"
+        android:icon="@drawable/round_settings_white_24"
+        android:title="@string/session_home_action_settings" />
+
+    <item
         android:id="@+id/nav_how_to_use"
         android:icon="@drawable/ic_help_white_24dp"
         android:title="@string/session_home_action_how_to_use" />
@@ -12,11 +17,6 @@
         android:id="@+id/nav_share"
         android:icon="@drawable/ic_share_white_24dp"
         android:title="@string/session_home_action_share_app" />
-
-    <item
-        android:id="@+id/nav_settings"
-        android:icon="@drawable/round_settings_white_24"
-        android:title="@string/session_home_action_settings" />
 
     <item
         android:id="@+id/nav_join_conv_on_instagram"

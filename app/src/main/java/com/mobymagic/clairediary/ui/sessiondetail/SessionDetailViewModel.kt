@@ -177,15 +177,15 @@ class SessionDetailViewModel(
         val uploadLiveData = fileRepository.uploadFiles(fileWrappers)
         addCommentLiveData.addSource(uploadLiveData) { filesResource ->
             Timber.d("File resource: %s", filesResource)
-            when {
-                filesResource?.status == Status.LOADING -> {
+            when (filesResource?.status) {
+                Status.LOADING -> {
                     addCommentLiveData.value = Resource.loading(filesResource.message)
                 }
-                filesResource?.status == Status.ERROR -> {
+                Status.ERROR -> {
                     addCommentLiveData.removeSource(uploadLiveData)
                     addCommentLiveData.value = Resource.error(filesResource.message)
                 }
-                filesResource?.status == Status.SUCCESS -> {
+                Status.SUCCESS -> {
                     addCommentLiveData.removeSource(uploadLiveData)
                     comment.imageUrls.clear()
                     for (fileWrapper in filesResource.data!!) {

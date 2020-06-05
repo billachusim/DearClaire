@@ -37,7 +37,7 @@ const val COLLECTION_USER_MEE_TOO_SHARDS = "user_mee_too_shards"
 const val COLLECTION_USER_FOLLOW_COUNTERS = "user_follow_counters"
 const val COLLECTION_USER_FOLLOW_SHARDS = "user_follow_shards"
 const val COLLECTION_USER_MEE_TOO_SHARDS_NUM = 10
-const val LIMIT_SESSIONS_RESULT = 40L
+const val LIMIT_SESSIONS_RESULT = 50L
 
 class SessionRepository(
         private val appExecutors: AppExecutors,
@@ -80,6 +80,7 @@ class SessionRepository(
         Timber.d("Clearing draft session")
         appExecutors.diskIO().execute {
             prefUtil.setString(PREF_KEY_DRAFT_SESSION, null)
+            Timber.d("Draft session cleared")
         }
     }
 
@@ -542,7 +543,7 @@ class SessionRepository(
 
             if (fromAlterEgo != null && fromAlterEgo
                     && (userActivityType == UserActivityType.COMMENT
-                            || userActivityType == UserActivityType.ADVICE)) {
+                            || userActivityType == UserActivityType.ADVISE)) {
                 userActivity.clientNickname = "Claire"
             }
             addUserActivity(userActivity)
@@ -579,7 +580,7 @@ class SessionRepository(
         val query = firestore.collection(COLLECTION_USER_ACTIVITY)
                 .whereEqualTo("userId", userId)
                 .orderBy("dateCreated", Query.Direction.DESCENDING)
-                .limit(20)
+                .limit(50)
         return FirestoreListLiveData(androidUtil, query, UserActivity::class.java, null)
     }
 
@@ -591,7 +592,7 @@ class SessionRepository(
         val query = firestore.collection(COLLECTION_USER_ACTIVITY)
                 .whereEqualTo("clientId", userId)
                 .orderBy("dateCreated", Query.Direction.DESCENDING)
-                .limit(20)
+                .limit(50)
         return FirestoreListLiveData(androidUtil, query, UserActivity::class.java, null)
     }
 
@@ -665,7 +666,7 @@ class SessionRepository(
 
         shardToUpdatRef.set(shard, SetOptions.merge())
                 .addOnSuccessListener { documentReference ->
-                    Timber.d("Follow Shard Updated successfuly successfully updated: %s", documentReference)
+                    Timber.d("Follow Shard Updated successfully updated: %s", documentReference)
                 }
                 .addOnFailureListener { exception ->
                     Timber.e(exception, "Error updating Follow Shard")
@@ -688,7 +689,7 @@ class SessionRepository(
 
     private fun incrementUserMeeTooCount(userId: String, counter: Counter, shouldIncrementMeeToo: Boolean = true) {
         Thread(Runnable {
-            firestore.runTransaction {
+            firestore.runTransaction { it ->
                 it.apply {
                     val shardId = floor(Math.random() * counter.numberOfShards).toInt()
                     var shard: Shard? = null
@@ -700,10 +701,10 @@ class SessionRepository(
                                     shard = Shard(it.result!!.data!!["count"] as Long)
                                 }
                                 if (shard == null) {
-                                    if (shouldIncrementMeeToo) {
-                                        shard = Shard(1)
+                                    shard = if (shouldIncrementMeeToo) {
+                                        Shard(1)
                                     } else {
-                                        shard = Shard(-1)
+                                        Shard(-1)
                                     }
                                     createMeeTooShard(userId, shard!!, shardId)
                                 } else {

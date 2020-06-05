@@ -57,7 +57,7 @@ class SplashViewModel(
                     } else if (user.nickname.isEmpty()) {
                         Timber.d("User doesn't have a profile yet, open create profile screen")
                         splashLiveData.postValue(getSplashResource(SplashResult.SplashAction.OPEN_CREATE_PROFILE))
-                    } else if (curTimeMinusLastUnlockedTime in 0..(tenMinutes - 1)) {
+                    } else if (curTimeMinusLastUnlockedTime in 0 until tenMinutes) {
                         Timber.d("User has recently unlocked, open sessions home")
                         splashLiveData.postValue(
                                 getSuccessResource(
@@ -76,7 +76,7 @@ class SplashViewModel(
                         )
                     }
                 },
-                1,
+                2,
                 TimeUnit.SECONDS
         )
 

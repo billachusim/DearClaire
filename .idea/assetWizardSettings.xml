@@ -78,9 +78,10 @@
                         </option>
                         <option name="values">
                           <map>
+                            <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="ffffff" />
-                            <entry key="outputName" value="ic_clear_white_24dp" />
-                            <entry key="sourceFile" value="C:\Users\JayWorld" />
+                            <entry key="outputName" value="ic_cherry_blossom" />
+                            <entry key="sourceFile" value="C:\Users\nachu\Desktop\cherry_blossom.svg" />
                           </map>
                         </option>
                       </PersistentState>

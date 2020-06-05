@@ -20,17 +20,17 @@ class AlterEgoLoginViewModel(
     private val resultLiveData: MediatorLiveData<Resource<User>> = MediatorLiveData()
 
     init {
-        resultLiveData.addSource(credentialLiveData, { login ->
+        resultLiveData.addSource(credentialLiveData) { login ->
             resultLiveData.value =
                     Resource.loading(androidUtil.getString(R.string.common_message_loading))
             loginIntoAlterEgo(login!!)
-        })
+        }
     }
 
     private fun loginIntoAlterEgo(credential: Credential) {
         val getAdminLiveData =
                 userRepository.getAdmin(credential.claireId, credential.accessCode)
-        resultLiveData.addSource(getAdminLiveData, { adminResource ->
+        resultLiveData.addSource(getAdminLiveData) { adminResource ->
             Timber.d("Get profile resource changed: %s", adminResource)
             when (adminResource!!.status) {
                 Status.LOADING -> {
@@ -50,7 +50,7 @@ class AlterEgoLoginViewModel(
                     resultLiveData.value = Resource.success(adminResource.data)
                 }
             }
-        })
+        }
     }
 
     fun setAlterEgoCredentials(claireId: String, accessCode: String) {
