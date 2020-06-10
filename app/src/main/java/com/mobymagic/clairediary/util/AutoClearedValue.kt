@@ -1,8 +1,6 @@
 package com.mobymagic.clairediary.util
 
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.OnLifecycleEvent
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
@@ -17,10 +15,6 @@ class AutoClearedValue<T : Any>(val fragment: androidx.fragment.app.Fragment) : 
 
     init {
         fragment.lifecycle.addObserver(object : LifecycleObserver {
-            @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-            fun onDestroy() {
-                _value = null
-            }
         })
     }
 

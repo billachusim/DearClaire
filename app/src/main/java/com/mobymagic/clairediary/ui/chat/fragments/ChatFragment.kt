@@ -5,15 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mobymagic.clairediary.R
 import com.mobymagic.clairediary.ui.chat.adapter.ChatRoomAdapter
 import com.mobymagic.clairediary.ui.chat.data.RoomData
-import java.util.*
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -66,26 +63,4 @@ class ChatFragment : Fragment() {
     }
 
 
-    inner class ChatAdapter(fm: FragmentManager?) : FragmentPagerAdapter(fm!!) {
-
-        private val mFragList = ArrayList<Fragment>()
-        private val mFragTitleList = ArrayList<String>()
-
-        override fun getItem(position: Int): Fragment {
-            return mFragList[position]
-        }
-
-        override fun getCount(): Int {
-            return mFragList.size
-        }
-
-        fun addFragment(fragment: Fragment, title: String) {
-            mFragList.add(fragment)
-            mFragTitleList.add(title)
-        }
-
-        override fun getPageTitle(position: Int): CharSequence? {
-            return mFragTitleList[position]
-        }
-    }
 }

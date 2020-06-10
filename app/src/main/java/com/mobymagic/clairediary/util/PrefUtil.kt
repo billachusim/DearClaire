@@ -2,7 +2,7 @@ package com.mobymagic.clairediary.util
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.preference.PreferenceManager
+import androidx.preference.PreferenceManager
 
 /**
  * A simple SharedPreferences wrapper that allows easy setting and getting of values

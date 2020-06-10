@@ -25,7 +25,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import cafe.adriel.androidaudiorecorder.AndroidAudioRecorder
 import cafe.adriel.androidaudiorecorder.model.AudioSource
@@ -104,7 +104,7 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
 
         Timber.d("Boom: %s", session)
         setHasOptionsMenu(true)
-        sharedViewModel = ViewModelProviders.of(requireActivity()).get(SharedViewModel::class.java)
+        sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
     }
 
     override fun onDestroyView() {

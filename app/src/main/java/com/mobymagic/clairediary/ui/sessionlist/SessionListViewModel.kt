@@ -144,13 +144,15 @@ class SessionListViewModel(
 
             SessionListType.NON_ASSIGNED ->
                 sessionRepository.getNonAssignedSessions(sessionRequest.lastSession)
+
             SessionListType.ASSIGNED ->
                 sessionRepository.getAssignedSessions(
                         sessionRequest.lastSession,
-                        sessionRequest.userId
-                )
+                        sessionRequest.userId)
+
             SessionListType.FLAGGED ->
                 sessionRepository.getFlaggedSessions(sessionRequest.lastSession)
+
             SessionListType.ALL ->
                 sessionRepository.getAllSessions(sessionRequest.lastSession)
 

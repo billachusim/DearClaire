@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.provider.FontRequest
 import androidx.emoji.text.EmojiCompat
 import androidx.emoji.text.FontRequestEmojiCompatConfig
-import com.crashlytics.android.Crashlytics
 import com.crashlytics.android.answers.Answers
 import com.crashlytics.android.answers.CustomEvent
 import com.mobymagic.clairediary.ui.auth.AuthViewModel
@@ -18,7 +17,6 @@ import com.mobymagic.clairediary.ui.createsession.CreateSessionFragment
 import com.mobymagic.clairediary.ui.loadsession.LoadSessionFragment
 import com.mobymagic.clairediary.ui.splash.SplashFragment
 import com.mobymagic.clairediary.util.*
-import io.fabric.sdk.android.Fabric
 import io.multimoon.colorful.CAppCompatActivity
 import io.multimoon.colorful.Colorful
 import org.koin.android.ext.android.inject
@@ -40,7 +38,6 @@ class MainActivity : CAppCompatActivity(), NavController,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Fabric.with(this, Crashlytics())
         setContentView(R.layout.activity_main)
         val fontRequest: FontRequest = FontRequest(
                 "com.google.android.gms.fonts",

@@ -50,7 +50,7 @@ class ArchiveSessionListFragment : DataBoundNavFragment<FragmentArchiveSessionLi
     private lateinit var date: Date
 
     override fun getPageTitle(): String {
-        return "All Sessions since Selected Date"
+        return "Sessions Since Chosen Date"
     }
 
     override fun getLayoutRes() = R.layout.fragment_archive_session_list

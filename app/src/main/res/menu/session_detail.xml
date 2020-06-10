@@ -6,12 +6,12 @@
         android:id="@+id/menu_edit_session"
         android:icon="@drawable/round_edit_white_24"
         android:title="@string/session_detail_action_edit_session"
-        app:showAsAction="always" />
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/menu_unfavorite_session"
         android:icon="@drawable/ic_star_white_24dp"
         android:title="@string/session_detail_unfeature_session"
-        app:showAsAction="always" />
+        app:showAsAction="never" />
 
 </menu>

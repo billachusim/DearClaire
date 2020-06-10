@@ -5,6 +5,7 @@ buildscript {
     ext.kotlin_version = '1.3.72'
 
     repositories {
+        "Google's Maven repository"
         google()
         jcenter()
         maven {
@@ -22,7 +23,9 @@ buildscript {
 
 allprojects {
     repositories {
-        google()
+        "Google's Maven repository"
+        google()  // Google's Maven repository
+        // Add the Bintray repository
         jcenter()
         maven { url "https://jitpack.io" }
     }
@@ -35,7 +38,7 @@ task clean(type: Delete) {
 // Define repeated library versions in a single place
 ext {
 
-    minSdkVersion = 18
+    minSdkVersion = 21
     targetSdkVersion = 28
     compileSdkVersion = 28
 

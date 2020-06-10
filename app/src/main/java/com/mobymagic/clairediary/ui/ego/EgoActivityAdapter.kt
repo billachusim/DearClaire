@@ -9,7 +9,7 @@ import com.mobymagic.clairediary.vo.UserActivityType
 
 
 class EgoActivityAdapter(
-        private val appExecutors: AppExecutors,
+        appExecutors: AppExecutors,
         private val itemClickedCallBack: ((String?) -> Unit),
         private val userId: String?) : DataBoundListAdapter<UserActivity, EgoActivityItemBinding>(appExecutors) {
 

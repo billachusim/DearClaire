@@ -29,7 +29,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:animateLayoutChanges="true"
-                    app:cardBackgroundColor="#36127B"
+                    app:cardBackgroundColor="#8C163E"
                     app:cardUseCompatPadding="true"
                     app:contentPadding="16dp">
 
@@ -88,7 +88,7 @@
                     android:id="@+id/how_alter_ego_works_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardBackgroundColor="#62CA9C"
+                    app:cardBackgroundColor="#260E50"
                     app:cardUseCompatPadding="true"
                     app:contentPadding="16dp">
 
@@ -134,7 +134,7 @@
                     android:id="@+id/donate_support_claire_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardBackgroundColor="#3D3D3D"
+                    app:cardBackgroundColor="#170303"
                     app:cardUseCompatPadding="true"
                     app:contentPadding="16dp">
 

@@ -31,29 +31,6 @@ class EgoViewModel(
 
 
     fun initializeMediatorLiveData() {
-//        userMeeTooCountLiveData.addSource(getNumberOfMeeTooShardToUser()) {
-//            when (it?.status) {
-//                Status.LOADING -> {
-//                    resultingResource = Resource(Status.LOADING, 0, it.message)
-//                    userMeeTooCountLiveData.postValue(resultingResource)
-//                }
-//
-//                Status.ERROR -> {
-//                    resultingResource = Resource(Status.ERROR, 0, it.message)
-//                    userMeeTooCountLiveData.postValue(resultingResource)
-//                }
-//
-//                Status.SUCCESS -> {
-//                    // try getting the shard count from the resource and post it to the result live data
-//                    if (it.data != null && it.data.size > 0) {
-//                        resultingResource = Resource(Status.SUCCESS, it.data.sumBy { it.count.toInt() }, it.message)
-//                        userMeeTooCountLiveData.postValue(resultingResource)
-//                    }
-//
-//                }
-//            }
-//
-//        }
 
         userFollowCountLiveData.addSource(getNumberOfFollowShardToUser()) { it ->
             when (it?.status) {

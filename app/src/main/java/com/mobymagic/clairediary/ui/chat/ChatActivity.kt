@@ -304,39 +304,37 @@ class ChatActivity : AppCompatActivity() {
             }
 
             override fun onDataChange(p0: DataSnapshot) {
-                if (p0 != null) {
-                    Timber.d(p0.value.toString())
+                Timber.d(p0.value.toString())
 
-                    chatRoomList.clear()
+                chatRoomList.clear()
 
-                    for (snap in p0.children) {
+                for (snap in p0.children) {
 
-                        val chat = p0.child(snap.key!!).getValue(ChatRoom::class.java)
+                    val chat = p0.child(snap.key!!).getValue(ChatRoom::class.java)
 
-                        val chatR = ChatRoom(chat!!.text_message!!,
-                                chat.audio_message!!,
-                                chat.image_message!!,
-                                chat.time!!,
-                                chat.sender_uid!!,
-                                chat.sender_user_nick_name!!,
-                                snap.key!!,
-                                mIntent.title!!,
-                                chat.message_type!!)
+                    val chatR = ChatRoom(chat!!.text_message!!,
+                            chat.audio_message!!,
+                            chat.image_message!!,
+                            chat.time!!,
+                            chat.sender_uid!!,
+                            chat.sender_user_nick_name!!,
+                            snap.key!!,
+                            mIntent.title!!,
+                            chat.message_type!!)
 
-                        chatRoomList.add(chatR)
+                    chatRoomList.add(chatR)
 
-                    }
+                }
 
-                    indicator.visibility = View.INVISIBLE
+                indicator.visibility = View.INVISIBLE
 
-                    if (chatRoomList.isNotEmpty()) {
-                        val myAdapter = ChatAdapter(this@ChatActivity, chatRoomList)
-                        myAdapter.notifyDataSetChanged()
+                if (chatRoomList.isNotEmpty()) {
+                    val myAdapter = ChatAdapter(this@ChatActivity, chatRoomList)
+                    myAdapter.notifyDataSetChanged()
 
-                        comment_list.scrollToPosition(chatRoomList.size - 1)
+                    comment_list.scrollToPosition(chatRoomList.size - 1)
 
-                        comment_list.adapter = myAdapter
-                    }
+                    comment_list.adapter = myAdapter
                 }
             }
         })

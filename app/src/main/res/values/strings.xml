@@ -84,7 +84,7 @@ Tap this link to read more about it and install on your Android phone.
     <string name="session_detail_comment_share_message">Here is an advise I received from Dear Claire - Secret Diary Chat: %s</string>
     <string name="session_detail_unfeature_session">Remove session from trending</string>
     <string name="session_detail_action_edit_session">Edit session</string>
-    <string name="session_detail_featured_notice">Trending Notice: Hello Darling, this diary session is currently visible on the Trending Sessions. You are completely anonymous. However, to remove this session from public view, just tap the star icon 🌟 next to the Title.</string>
+    <string name="session_detail_featured_notice">Trending Notice: Hello Darling, this diary session is currently Trending. You are completely anonymous. However, to remove this session from public view, just tap the menu above.</string>
     <string name="session_detail_action_edit_comment">Edit advise</string>
     <string name="session_detail_action_me_too">Me2🌸</string>
     <string name="session_detail_me_too_count">%1$s</string>
@@ -342,10 +342,10 @@ Tap this link to read more about it and install on your Android phone.
     <!-- How Claire Works Page End -->
 
     <!-- Alter Ego Login Page Start -->
-    <string name="alter_ego_login_page_title">Unlock Your Alter Ego</string>
+    <string name="alter_ego_login_page_title">Unlock Alter Ego</string>
     <string name="alter_ego_login_page_subtitle">Switch to the powerful side of you</string>
     <string name="alter_ego_login_hint_claire_id">claireID</string>
-    <string name="alter_ego_login_hint_access_code">One time access</string>
+    <string name="alter_ego_login_hint_access_code">Access Code</string>
     <string name="alter_ego_login_action_login">Switch In</string>
     <string name="alter_ego_login_action_request_access">Request Access</string>
     <string name="alter_ego_login_action_donate">Donate</string>

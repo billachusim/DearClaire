@@ -308,7 +308,7 @@ class SessionRepository(
         val query = firestore.collection(COLLECTION_SESSIONS)
                 .whereEqualTo("userId", userId)
                 .orderBy("meTooFollowCount", Query.Direction.DESCENDING)
-                .limit(1)
+                .limit(3)
         return FirestoreListLiveData(androidUtil, query, Session::class.java, null)
     }
 
@@ -353,8 +353,8 @@ class SessionRepository(
                 .addOnSuccessListener {
                     Timber.d("Session successfully added")
                     addSessionRequestLiveData.value = Resource.success(session)
-//                    incrementUserSessionCount(session.userId)
                 }
+
                 .addOnFailureListener { exception ->
                     Timber.e(exception, "Error saving new session")
                     addSessionRequestLiveData.value = Resource.error(
@@ -443,7 +443,7 @@ class SessionRepository(
         Timber.d("Getting all user session counters for user %s", userId)
         val query = firestore.collection(COLLECTION_USER_SESSION_COUNTERS)
                 .whereEqualTo("userId", userId)
-                .limit(1)
+                .limit(50)
         return FirestoreListLiveData(androidUtil, query, UserSessionCounter::class.java, null)
     }
 
@@ -455,7 +455,7 @@ class SessionRepository(
         Timber.d("Getting all user session counters for user %s", userId)
         val query = firestore.collection(COLLECTION_USER_SESSION_COUNTERS)
                 .whereEqualTo("userId", userId)
-                .limit(1)
+                .limit(50)
         query.addSnapshotListener { querySnapshot, firestoreException ->
             Timber.d("query snapshot %s", firestoreException?.message)
             if (querySnapshot?.documents != null && querySnapshot.documents.size > 0) {
@@ -648,10 +648,10 @@ class SessionRepository(
         // Save userActivity into the Firestore database
         newMeeTooShardRef.set(shard)
                 .addOnSuccessListener {
-                    Timber.d("User Follow Shard  successfully added")
+                    Timber.d("User Follow Shard successfully added")
                 }
                 .addOnFailureListener { exception ->
-                    Timber.e(exception, "Error saving Follow Too Shard")
+                    Timber.e(exception, "Error saving Follow Shard")
                 }
     }
 
@@ -759,10 +759,10 @@ class SessionRepository(
         // Update the session by merging changes
         shardToUpdatRef.set(shard, SetOptions.merge())
                 .addOnSuccessListener { documentReference ->
-                    Timber.d("Mee Too Shard Updated successfuly successfully updated: %s", documentReference)
+                    Timber.d("Mee Too Shard updated successfully : %s", documentReference)
                 }
                 .addOnFailureListener { exception ->
-                    Timber.e(exception, "Error updating Mee To Shard")
+                    Timber.e(exception, "Error updating Mee Too Shard")
                 }
     }
 

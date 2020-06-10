@@ -2,7 +2,7 @@ package com.mobymagic.clairediary.ui.commentlist
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.mobymagic.clairediary.AppExecutors
 import com.mobymagic.clairediary.R
 import com.mobymagic.clairediary.databinding.FragmentCommentListBinding
@@ -52,7 +52,7 @@ class CommentListFragment : DataBoundNavFragment<FragmentCommentListBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedViewModel = ViewModelProviders.of(requireActivity()).get(SharedViewModel::class.java)
+        sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
     }
 
     private fun initRecyclerViewAdapter() {

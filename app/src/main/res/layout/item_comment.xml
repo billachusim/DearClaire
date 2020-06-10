@@ -119,7 +119,7 @@
                 android:background="?android:attr/selectableItemBackground"
                 android:contentDescription="@string/session_detail_content_desc_share_response"
                 android:src="@drawable/ic_share_white_24dp"
-                android:tint="@color/active_icon_dark"
+                android:tint="@color/theme_primary_dark"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/comment_audio_container"
@@ -130,24 +130,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
+                android:layout_marginBottom="4dp"
                 android:background="?android:attr/selectableItemBackground"
                 android:contentDescription="@string/session_detail_action_edit_comment"
                 android:src="@drawable/round_edit_white_24"
-                android:tint="@color/active_icon_dark"
+                android:tint="@color/theme_primary_dark"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/comment_share_button"
-                app:layout_constraintTop_toBottomOf="@+id/comment_audio_container"
+                app:layout_constraintStart_toStartOf="parent"
                 app:visibleGone="@{showEditButton}" />
 
             <TextView
                 android:id="@+id/comment_thanks_count_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="1dp"
-                android:gravity="center_vertical"
+                android:layout_marginBottom="4dp"
                 android:text="@{String.valueOf(comment.thanks.size())}"
-                app:layout_constraintEnd_toStartOf="@+id/comment_edit_button"
-                app:layout_constraintTop_toBottomOf="@+id/comment_audio_container"
+                app:layout_constraintEnd_toStartOf="@id/comment_thanks_button"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:visibleGone="@{comment.thanks.size() != 0 }"
                 tools:text="132" />
 
@@ -155,11 +154,11 @@
                 android:id="@+id/comment_thanks_button"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="38dp"
                 android:text="@string/comment_action_thanks"
                 android:textAllCaps="false"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/comment_thanks_count_text"
+                app:layout_constraintEnd_toStartOf="@+id/comment_share_button"
                 app:layout_constraintTop_toBottomOf="@+id/comment_audio_container"
                 app:visibleGone="@{userAvailable}" />
 

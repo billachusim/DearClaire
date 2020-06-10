@@ -60,7 +60,8 @@ class SessionsHomeFragment : DataBoundNavFragment<FragmentSessionsHomeBinding>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         Timber.d("onViewCreated")
         super.onViewCreated(view, savedInstanceState)
-        (activity as AppCompatActivity).setSupportActionBar(binding.appBar.toolbar)
+        (activity as AppCompatActivity).setSupportActionBar(toolbar)
+        (activity as AppCompatActivity).supportActionBar?.hide()
 
         userId = requireArguments().getString(ARG_USER_ID).toString()
 

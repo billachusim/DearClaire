@@ -5,6 +5,9 @@ import android.view.View
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.mobymagic.clairediary.AppExecutors
 import com.mobymagic.clairediary.R
 import com.mobymagic.clairediary.databinding.FragmentSessionListBinding
@@ -36,7 +39,6 @@ class SessionListFragment : DataBoundNavFragment<FragmentSessionListBinding>() {
     private val audioUtil: AudioUtil by inject()
     private var sessionListImageAdapter by autoCleared<SessionDetailImageAdapter>()
     private val exoPlayerUtil: ExoPlayerUtil by inject()
-
     private var adapter by autoCleared<SessionListAdapter>()
     private lateinit var sessionListType: SessionListType
     private lateinit var userId: String
@@ -50,10 +52,15 @@ class SessionListFragment : DataBoundNavFragment<FragmentSessionListBinding>() {
     }
 
     override fun getLayoutRes() = R.layout.fragment_session_list
+    private lateinit var rv: RecyclerView
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Timber.d("onViewCreated")
+        rv = view.findViewById(R.id.session_list)
+        rv.layoutManager = LinearLayoutManager(context)
+        rv.itemAnimator = DefaultItemAnimator()
         sessionListType = requireArguments().getSerializable(ARG_SESSION_LIST_TYPE) as SessionListType
         userId = requireArguments().getString(ARG_USER_ID).toString()
         sessionListViewModel.userId = userId
@@ -94,15 +101,14 @@ class SessionListFragment : DataBoundNavFragment<FragmentSessionListBinding>() {
             getNavController().navigateTo(sessionDetailFragment)
         },
                 { session ->
-                    @StringRes val dialogMessageRes: Int
-                    if (fromAlterEgo) {
-                        dialogMessageRes = if (session.featured) {
+                    @StringRes val dialogMessageRes: Int = if (fromAlterEgo) {
+                        if (session.featured) {
                             R.string.session_list_confirmation_set_unfeatured
                         } else {
                             R.string.session_list_confirmation_set_featured
                         }
                     } else {
-                        dialogMessageRes = if (session.archived) {
+                        if (session.archived) {
                             R.string.session_list_confirmation_set_unarchived
                         } else {
                             R.string.session_list_confirmation_set_archived
@@ -243,6 +249,11 @@ class SessionListFragment : DataBoundNavFragment<FragmentSessionListBinding>() {
                 // Do nothing
             }
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        audioUtil.stopAudio()
     }
 
     override fun onDestroy() {
