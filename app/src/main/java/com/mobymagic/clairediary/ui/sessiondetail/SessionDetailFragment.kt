@@ -148,7 +148,7 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
     }
 
     private fun openAudioRecordPage() {
-        Dexter.withActivity(requireActivity())
+        Dexter.withContext(requireActivity())
                 .withPermission(Manifest.permission.RECORD_AUDIO)
                 .withListener(object : PermissionListener {
                     override fun onPermissionGranted(response: PermissionGrantedResponse?) {
@@ -196,9 +196,6 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
         Timber.d("Session detail: %s", session)
         updateFollowText()
 
-//        binding.sessionAudioView?.startAudioButton?.setOnClickListener {
-//            session.audioUrl?.let { it1 -> audioUtil.showAudioDialog(it1, this) }
-//        }
         sessionDetailPlayer = exoPlayerUtil.getPlayer()
         binding.sessionAudioView.player.player = sessionDetailPlayer
         binding.sessionAudioView.player.findViewById<ImageView>(R.id.exo_play)?.setOnClickListener {
@@ -241,7 +238,7 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
         binding.sessionDetailUserImage.setOnClickListener {
             getNavController().navigateToWithAuth(GuestEgoFragment.newInstance(binding.session!!.userId.toString(),
                     "", binding.session!!.userNickname.toString(),
-                    binding.session!!.userAvatarUrl.toString(), SessionListType.ARCHIVED))
+                    binding.session!!.userAvatarUrl.toString(), SessionListType.EGO))
         }
 
 
@@ -271,7 +268,7 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
                 val imm: InputMethodManager = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
             } catch (ex: Exception) {
-                Timber.d("Error Opening Kwyboard: %s", ex.message)
+                Timber.d("Error Opening Keyboard: %s", ex.message)
             }
         }
     }
@@ -405,11 +402,11 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             binding.sessionDetailCommentInput.focusable = NOT_FOCUSABLE
         }
-        binding.sessionDetailCommentInput.hint = "Please Sign Up or Sign In to Comment"
+        binding.sessionDetailCommentInput.hint = "Please Sign Up or Sign In to Advise"
         binding.sessionDetailCommentInput.setOnClickListener {
             authViewModel.getAuthRoute(this, activity as MainActivity)
         }
-        binding.sessionDetailCommentInput.setOnFocusChangeListener { view: View, b: Boolean ->
+        binding.sessionDetailCommentInput.setOnFocusChangeListener { _: View, _: Boolean ->
             authViewModel.getAuthRoute(this, activity as MainActivity)
         }
     }
@@ -509,9 +506,9 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
 
     private fun updateFollowText() {
         if (session.followers.contains(userId)) {
-            binding.followText = "unfollow"
+            binding.followText = "Unfollow"
         } else {
-            binding.followText = "follow"
+            binding.followText = "Follow"
         }
     }
 
@@ -519,17 +516,17 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
         val builder = AlertDialog.Builder(binding.root.context)
         builder.setTitle(String.format(binding.root.context
                 .getString(R.string.do_you_want_to_follow_this_session), binding.followText))
-        builder.setPositiveButton("Yes") { dialogInterface: DialogInterface, i: Int ->
+        builder.setPositiveButton("Yes") { dialogInterface: DialogInterface, _: Int ->
             sessionDetailViewModel.toggleFollowers(userId, binding.session!!)
             Toast.makeText(binding.root.context,
-                    if (binding.followText == "unfollow")
+                    if (binding.followText == "Unfollow")
                         "UnFollowed Diary Session" else {
                         "Following Diary Session"
                     }, Toast.LENGTH_LONG).show()
             updateFollowText(binding, binding.session!!)
             dialogInterface.dismiss()
         }
-        builder.setNegativeButton("No") { dialogInterface: DialogInterface, i: Int ->
+        builder.setNegativeButton("No") { dialogInterface: DialogInterface, _: Int ->
             dialogInterface.dismiss()
         }
 
@@ -539,9 +536,9 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
     private fun updateFollowText(binding: FragmentSessionDetailBinding, session: Session) {
 
         if (session.followers.contains(userId)) {
-            binding.followText = "unfollow"
+            binding.followText = "Unfollow"
         } else {
-            binding.followText = "follow"
+            binding.followText = "Follow"
         }
     }
 

@@ -23,7 +23,7 @@ class RemindDailyJob(
         private val notificationUtil: NotificationUtil
 ) : DailyJob() {
 
-    override fun onRunDailyJob(params: Params): DailyJob.DailyJobResult {
+    override fun onRunDailyJob(params: Params): DailyJobResult {
         // Check if daily reminders are enabled
         if (prefUtil.getBool(Constants.PREF_KEY_DAILY_REMINDER_ENABLED, true)) {
             notifyUser()

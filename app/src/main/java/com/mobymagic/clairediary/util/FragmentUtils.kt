@@ -12,8 +12,8 @@ class FragmentUtils {
      * @param containerRes The container to add the fragment to
      * @param fragment The fragment to add
      * @param tag Tag for fragment
-     * @param enterAnim The enter fragment transition
-     * @param exitAnim The exit fragment transition
+     * param enterAnim The enter fragment transition
+     * param exitAnim The exit fragment transition
      */
     fun addIfNotExist(
             fm: androidx.fragment.app.FragmentManager, containerRes: Int, fragment: androidx.fragment.app.Fragment,

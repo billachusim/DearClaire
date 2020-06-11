@@ -77,7 +77,7 @@ Tap this link to read more about it and install on your Android phone.
     <string name="session_detail_content_desc_record_audio">Record audio</string>
     <string name="session_detail_content_desc_add_photo">Add photo</string>
     <string name="session_detail_hint_enter_reply">Positive vibes only, no ads…</string>
-    <string name="session_detail_hint_enter_advice">Enter advise…</string>
+    <string name="session_detail_hint_enter_advice">Enter advise as Claire…</string>
     <string name="session_detail_error_message_or_audio_empty">Please enter a message or record an audio</string>
     <string name="session_detail_content_desc_comment_remove_audio">Remove audio</string>
     <string name="session_detail_content_desc_share_response">Share response</string>
@@ -413,5 +413,6 @@ Tap this link to read more about it and install on your Android phone.
     <string name="Chatroom_owner_name">From Claire</string>
     <string name="positive_vibes_only">positive vibes only....</string>
     <string name="session_type_chat">Chat</string>
+    <string name="warning_ignore_options_if_not_yours">WARNING! Ignore options if not yours</string>
 
 </resources>

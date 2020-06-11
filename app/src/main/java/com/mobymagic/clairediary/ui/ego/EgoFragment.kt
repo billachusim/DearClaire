@@ -165,7 +165,7 @@ class EgoFragment : DataBoundNavFragment<FragmentEgoBinding>() {
 
                         getNavController()
                                 .navigate(SessionDetailFragment.newInstance(bestSession,
-                                        userId, SessionListType.ARCHIVED), true)
+                                        userId, SessionListType.EGO), true)
                     }
                 }
 

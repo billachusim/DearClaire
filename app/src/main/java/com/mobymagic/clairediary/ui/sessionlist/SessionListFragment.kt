@@ -178,7 +178,7 @@ class SessionListFragment : DataBoundNavFragment<FragmentSessionListBinding>() {
     private fun getEmptyState(): Empty? {
         val diaryIconRes = R.drawable.ic_diary_72dp
         return when (sessionListType) {
-            SessionListType.ARCHIVED -> {
+            SessionListType.EGO -> {
                 Empty.create(requireContext(), diaryIconRes, R.string.session_list_empty_archived, 0)
             }
             SessionListType.TRENDING -> {
@@ -230,7 +230,7 @@ class SessionListFragment : DataBoundNavFragment<FragmentSessionListBinding>() {
                 val createSessionFragment = CreateSessionFragment.newInstance()
                 getNavController().navigateTo(createSessionFragment)
             }
-            SessionListType.ARCHIVED -> {
+            SessionListType.EGO -> {
                 // Do nothing
             }
             SessionListType.TRENDING -> {

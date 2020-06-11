@@ -165,12 +165,6 @@ class CreateSessionFragment : DataBoundNavFragment<FragmentCreateSessionBinding>
                 // Show error SnackBar
                 Snackbar.make(binding.root, sessionResource.message!!, Snackbar.LENGTH_LONG).show()
             } else if (sessionResource?.status == Status.SUCCESS) {
-                /*if (createSessionViewModel.isUpdate()) {
-                    getNavController().removeFromBackstack(this)
-                } else {
-                    // When session is successfully submitted, open session detail page
-                    navigateToSessionLoadPage(sessionResource.data!!)
-                }*/
                 // When session is successfully submitted, open session detail page
                 navigateToSessionLoadPage(sessionResource.data!!)
             }

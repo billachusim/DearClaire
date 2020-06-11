@@ -78,9 +78,11 @@ class SessionRepository(
 
     fun clearDraftSession() {
         Timber.d("Clearing draft session")
+        val sessionLiveData: MutableLiveData<Session> = MutableLiveData()
         appExecutors.diskIO().execute {
             prefUtil.setString(PREF_KEY_DRAFT_SESSION, null)
             Timber.d("Draft session cleared")
+            sessionLiveData.postValue(null)
         }
     }
 
@@ -300,7 +302,7 @@ class SessionRepository(
 
     /**
      * Get user sessions that have been created
-     * @param lastSession The last session from previous request. Used for pagination
+     * param lastSession The last session from previous request. Used for pagination
      * @return LiveData
      */
     fun getUserBestSession(userId: String): LiveData<Resource<List<Session>>> {

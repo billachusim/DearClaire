@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.mobymagic.clairediary.R
 import com.mobymagic.clairediary.databinding.FragmentAudioPlayerBinding
@@ -19,8 +18,8 @@ import org.koin.android.ext.android.inject
 private const val AUDIO_URL = "audio_url"
 
 /**
- * A simple [Fragment] subclass.
- * Use the [BlankFragment.newInstance] factory method to
+ * A simple Fragment subclass.
+ * Use the BlankFragment.newInstance factory method to
  * create an instance of this fragment.
  *
  */

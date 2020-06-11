@@ -110,7 +110,7 @@ class SessionListAdapter(
         builder.setPositiveButton("Yes") { dialogInterface: DialogInterface, i: Int ->
             sessionDetailViewModel.toggleFollowers(userId, binding.session!!)
             Toast.makeText(binding.root.context,
-                    if (binding.followText.equals("Unfollow"))
+                    if (binding.followText == "Unfollow")
                         "UnFollowed Diary Session" else {
                         "Following Diary Session"
                     }, Toast.LENGTH_LONG).show()

@@ -16,10 +16,10 @@ class CommentListViewModel(private val commentRepository: CommentRepository) : V
     private val commentListLiveData: LiveData<Resource<List<Comment>>>
 
     init {
-        commentListLiveData = Transformations.switchMap(sessionLiveData, { session ->
+        commentListLiveData = Transformations.switchMap(sessionLiveData) { session ->
             Timber.d("Loading comments for session: %s", session)
             commentRepository.getComments(session, null)
-        })
+        }
     }
 
     fun toggleThanks(userId: String, session: Session, comment: Comment): Comment {

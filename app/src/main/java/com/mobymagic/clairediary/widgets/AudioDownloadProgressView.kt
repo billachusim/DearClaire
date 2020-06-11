@@ -11,9 +11,10 @@ import kotlinx.android.synthetic.main.layout_audio_download_progress.view.*
 
 class AudioDownloadProgressView : RelativeLayout {
 
-    var progressListener: ((downloading: Boolean) -> Unit)? = null
+    private var progressListener: ((downloading: Boolean) -> Unit)? = null
     private var downloading = false
-    var clickListener: View.OnClickListener? = null
+    private var clickListener: OnClickListener? = null
+
     @DrawableRes
     var mainIcon: Int = R.drawable.ic_round_play_arrow_white_24
 

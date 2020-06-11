@@ -246,7 +246,7 @@
                     android:layout_gravity="center_horizontal"
                     android:textColor="@color/white"
                     app:srcCompat="@drawable/ic_outline_add"
-                    app:visibleGone="@{!isFromAlterEgo &amp; userAvailable }"/>
+                    app:visibleGone="@{!isFromAlterEgo &amp; userAvailable }" />
 
                 <TextView
                     android:id="@+id/session_list_follow"

@@ -58,10 +58,10 @@
                     android:id="@+id/session_detail_time_text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_margin="6dp"
                     android:ellipsize="end"
                     android:fontFamily="@string/font_family_regular"
                     android:gravity="start"
-                    android:layout_margin="6dp"
                     android:maxLines="1"
                     android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                     android:textColor="@color/secondary_text_light"
@@ -87,13 +87,13 @@
                     android:id="@+id/session_detail_nickname_text"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="8dp"
                     android:layout_weight="1"
                     android:ellipsize="end"
                     android:fontFamily="@string/font_family_regular"
                     android:maxLines="1"
                     android:text="@{session.userNickname}"
-                    android:layout_gravity="center_vertical"
-                    android:layout_margin="8dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                     android:textColor="@color/white"
                     tools:text="Elvis Chidera " />
@@ -106,8 +106,8 @@
                     android:layout_weight="1"
                     android:ellipsize="end"
                     android:fontFamily="@string/font_family_regular"
-                    android:maxLines="1"
                     android:gravity="end"
+                    android:maxLines="1"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                     android:textColor="@color/primary_text_light"
                     android:textIsSelectable="true"
@@ -129,14 +129,14 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:gravity="center_horizontal"
                         android:layout_marginBottom="8dp"
+                        android:ellipsize="end"
+                        android:fontFamily="@string/font_family_medium"
+                        android:gravity="center_horizontal"
                         android:maxLines="1"
                         android:text="@{session.title}"
                         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                         android:textColor="@color/white"
-                        android:fontFamily="@string/font_family_medium"
                         android:textSize="18sp"
                         tools:ignore="RtlSymmetry"
                         tools:text="Title of my first session" />
@@ -197,40 +197,83 @@
                 android:orientation="horizontal"
                 app:visibleGone="@{userAvailable}">
 
-                <TextView
-                    android:id="@+id/session_list_me_too_count_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_gravity="center_vertical"
-                    android:textColor="@color/secondary_text_light"
-                    tools:text="132" />
-
                 <LinearLayout
+                    android:id="@+id/me_too_container"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="start"
-                    android:layout_marginTop="11dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:visibleGone="@{userAvailable}">
+
+                    <TextView
+                        android:id="@+id/session_list_me_too_count_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{String.valueOf(session.meToos.size())}"
+                        android:textColor="@color/secondary_text_light"
+                        app:visibleGone="@{session.meToos.size() != 0}"
+                        tools:text="132" />
 
                     <Button
                         android:id="@+id/session_list_me_too_button"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:gravity="start"
                         android:text="@string/session_detail_action_me_too"
                         android:textAllCaps="false"
                         android:textColor="@color/primary_text_light" />
-
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="11dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_centerInParent="true"
+                    android:layout_alignBottom="@id/me_too_container"
+                    android:orientation="horizontal"
+                    app:visibleGone="@{!isFromAlterEgo &amp; userAvailable}">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:textColor="@color/white"
+                        app:srcCompat="@drawable/ic_outline_add"
+                        app:visibleGone="@{!isFromAlterEgo &amp; userAvailable }" />
+
+                    <TextView
+                        android:id="@+id/session_list_follow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@{followText}"
+                        android:textColor="@color/white"
+                        android:textSize="17sp"
+                        app:visibleGone="@{!isFromAlterEgo &amp; userAvailable }"
+                        tools:text="@string/follow" />
+
+                    <TextView
+                        android:id="@+id/session_list_follow_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginHorizontal="6dp"
+                        android:text="@{String.valueOf(followCount)}"
+                        android:textColor="@color/secondary_text_light"
+                        android:textSize="16sp"
+                        app:visibleGone="@{followCount > 0 &amp; !isFromAlterEgo &amp; userAvailable }"
+                        tools:text="23" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
+                    android:layout_marginTop="11dp"
                     android:gravity="bottom"
                     android:orientation="horizontal"
                     tools:ignore="RelativeOverlap">
@@ -254,46 +297,6 @@
                         tools:text="132" />
                 </LinearLayout>
             </RelativeLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:orientation="horizontal"
-                app:visibleGone="@{!isFromAlterEgo &amp; userAvailable}">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:textColor="@color/white"
-                    app:srcCompat="@drawable/ic_outline_add"
-                    app:visibleGone="@{!isFromAlterEgo &amp; userAvailable }"/>
-
-                <TextView
-                    android:id="@+id/session_list_follow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_horizontal"
-                    android:text="@{followText}"
-                    android:textColor="@color/white"
-                    android:textSize="17sp"
-                    app:visibleGone="@{!isFromAlterEgo &amp; userAvailable }"
-                    tools:text="@string/follow" />
-
-                <TextView
-                    android:id="@+id/session_list_follow_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginHorizontal="6dp"
-                    android:text="@{String.valueOf(followCount)}"
-                    android:textColor="@color/secondary_text_light"
-                    android:textSize="16sp"
-                    app:visibleGone="@{followCount > 0 &amp; !isFromAlterEgo &amp; userAvailable }"
-                    tools:text="23" />
-
-            </LinearLayout>
 
         </LinearLayout>
 

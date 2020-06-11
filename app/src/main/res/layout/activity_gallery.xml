@@ -9,12 +9,6 @@
         android:orientation="vertical"
         tools:context=".ui.gallery.GalleryActivity">
 
-        <include
-            android:id="@+id/appBar"
-            layout="@layout/layout_app_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
         <com.veinhorn.scrollgalleryview.ScrollGalleryView
             android:id="@+id/scroll_gallery_view"
             android:layout_width="match_parent"

@@ -62,11 +62,11 @@
                     android:id="@+id/activity_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
                     android:gravity="center_horizontal"
                     android:text="@{userActivityText}"
                     android:textAlignment="center"
                     android:textAppearance="?android:textAppearanceSmall"
-                    android:fontFamily="sans-serif-black"
                     android:textStyle="bold"
                     tools:text="gcgkkggoyghghjgjggjbbbbbb" />
             </LinearLayout>

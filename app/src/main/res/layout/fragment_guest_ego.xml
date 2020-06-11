@@ -78,8 +78,7 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -214,16 +213,17 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
-                            android:layout_toStartOf="@+id/user_type_text_view"
                             android:layout_marginStart="12dp"
+                            android:layout_toStartOf="@+id/user_type_text_view"
+                            android:fontFamily="sans-serif-medium"
                             android:hint="@string/nickname"
                             android:text="@{nickName}"
                             android:textAppearance="?android:textAppearanceMedium"
-                            android:fontFamily="sans-serif-medium"
                             android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/user_type_text_view"
+                            backgroundColorHex="#0a00b6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
@@ -233,7 +233,6 @@
                             android:textAlignment="center"
                             android:textAppearance="?android:textAppearanceLarge"
                             android:textColor="@color/white"
-                            backgroundColorHex="#0a00b6"
                             android:textStyle="bold"
                             app:adminBadge="@{userType}"
                             tools:text="Admin" />
@@ -256,12 +255,12 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
                         android:gravity="start"
                         android:paddingHorizontal="2dp"
                         android:text="@string/best_session"
                         android:textAppearance="?android:textAppearanceSmall"
                         android:textColor="@color/white"
-                        android:fontFamily="sans-serif-medium"
                         android:textStyle="italic" />
 
                     <androidx.emoji.widget.EmojiTextView
@@ -284,9 +283,9 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:gravity="start"
-                        android:paddingHorizontal="2dp"
                         android:maxLines="3"
                         android:padding="2dp"
+                        android:paddingHorizontal="2dp"
                         android:text="@{bestSession.message}"
                         android:textAppearance="?android:textAppearanceSmall"
                         android:textColor="@color/white"
@@ -296,7 +295,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="8dp"
-                        android:background="@color/theme_primary_dark"/>
+                        android:background="@color/theme_primary_dark" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

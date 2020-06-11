@@ -39,7 +39,7 @@ class MainActivity : CAppCompatActivity(), NavController,
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val fontRequest: FontRequest = FontRequest(
+        val fontRequest = FontRequest(
                 "com.google.android.gms.fonts",
                 "com.google.android.gms",
                 "Noto Color Emoji Compat",

@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -38,7 +37,7 @@ class ClaireVartarFragment : androidx.fragment.app.DialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setStyle(DialogFragment.STYLE_NORMAL, R.style.DialogFragmentAnimatedTheme)
+        setStyle(STYLE_NORMAL, R.style.DialogFragmentAnimatedTheme)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -98,14 +97,14 @@ class ClaireVartarFragment : androidx.fragment.app.DialogFragment() {
 
     companion object {
 
-        val CLAIRE_VARTAR_RESULT_CODE = 2000
-        val USER_AVARTAR_KEY = "USER_AVARTAR_KEY"
+        const val CLAIRE_VARTAR_RESULT_CODE = 2000
+        const val USER_AVARTAR_KEY = "USER_AVARTAR_KEY"
 
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
          *
-         * @param audioUrl The url of the Audio to be played.
+         * @param "audioUrl" The url of the Audio to be played.
          * @return A new instance of fragment BlankFragment.
          */
         // TODO: Rename and change types and number of parameters

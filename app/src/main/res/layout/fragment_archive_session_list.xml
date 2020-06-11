@@ -31,12 +31,11 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
         <include
             android:id="@+id/appBar"
-            layout="@layout/layout_app_bar"
-            />
+            layout="@layout/layout_app_bar" />
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -49,7 +48,6 @@
                 android:layout_height="wrap_content"
                 android:animateLayoutChanges="true"
                 android:orientation="vertical">
-
 
 
                 <androidx.recyclerview.widget.RecyclerView

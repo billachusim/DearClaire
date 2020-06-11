@@ -77,7 +77,7 @@ class CommentListFragment : DataBoundNavFragment<FragmentCommentListBinding>() {
                 }, this, {
             if (!it.isUserAdmin) {
                 getNavController().navigateToWithAuth(GuestEgoFragment.newInstance(it.userId,
-                        "", it.userNickname, it.userAvatarUrl, SessionListType.ARCHIVED))
+                        "", it.userNickname, it.userAvatarUrl, SessionListType.EGO))
             }
 
         })

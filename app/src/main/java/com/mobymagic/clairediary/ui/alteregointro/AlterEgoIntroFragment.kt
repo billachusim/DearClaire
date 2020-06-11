@@ -10,7 +10,6 @@ import com.mobymagic.clairediary.ui.alteregoorientation.AlterEgoOrientationFragm
 import com.mobymagic.clairediary.ui.common.DataBoundNavFragment
 import com.mobymagic.clairediary.ui.common.PagerAdapter
 import com.mobymagic.clairediary.util.DonateUtil
-import com.mobymagic.clairediary.util.PrefUtil
 import kotlinx.android.synthetic.main.layout_app_bar.*
 import org.koin.android.ext.android.inject
 
@@ -18,7 +17,6 @@ class AlterEgoIntroFragment : DataBoundNavFragment<FragmentAlterEgoIntroBinding>
 
     private val donateUtil: DonateUtil by inject()
     private val userRepository: UserRepository by inject()
-    private val prefUtil: PrefUtil by inject()
     private lateinit var userId: String
 
     override fun getLayoutRes() = R.layout.fragment_alter_ego_intro
@@ -45,7 +43,7 @@ class AlterEgoIntroFragment : DataBoundNavFragment<FragmentAlterEgoIntroBinding>
         val pages = getPages()
         val slideAdapter = PagerAdapter(childFragmentManager, pages)
 
-        val wrapper = TransformationAdapterWrapper.wrap(context!!, slideAdapter).build()
+        val wrapper = TransformationAdapterWrapper.wrap(requireContext(), slideAdapter).build()
         binding.alterEgoIntroPager.adapter = wrapper
         binding.alterEgoIntroPager.setPageTransformer(false, wrapper)
 
@@ -53,7 +51,7 @@ class AlterEgoIntroFragment : DataBoundNavFragment<FragmentAlterEgoIntroBinding>
     }
 
     private fun setupAccessCodeCheck() {
-        val curLoggedInUser = userRepository.getLoggedInUser()
+        userRepository.getLoggedInUser()
         /*if (prefUtil.getBool(Constants.PREF_KEY_COMPLETED_ALTER_EGO_ORIENTATION, false) &&
             User.UserType.isAdmin(curLoggedInUser?.userType)
         ) {
@@ -99,7 +97,7 @@ class AlterEgoIntroFragment : DataBoundNavFragment<FragmentAlterEgoIntroBinding>
 
     private fun onDonateClicked() {
         val curLoggedInUser = userRepository.getLoggedInUser()
-        donateUtil.donate(activity!!, curLoggedInUser!!)
+        donateUtil.donate(requireActivity(), curLoggedInUser!!)
     }
 
     private fun onRequestAccessClicked() {

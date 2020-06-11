@@ -116,8 +116,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="8dp">
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
 
                 <ImageButton
                     android:id="@+id/create_session_add_photo_button"

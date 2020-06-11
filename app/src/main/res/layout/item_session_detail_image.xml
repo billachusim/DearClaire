@@ -15,8 +15,8 @@
         android:id="@+id/session_image"
         android:layout_width="160dp"
         android:layout_height="160dp"
-        android:contentDescription="@null"
         android:layout_margin="2dp"
+        android:contentDescription="@null"
         android:scaleType="centerInside"
         app:imageUrl="@{imageUrl}"
         tools:src="@drawable/default_thumbnail" />

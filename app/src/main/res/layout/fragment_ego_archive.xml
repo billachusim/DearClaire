@@ -10,22 +10,22 @@
             type="String" />
     </data>
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context=".ui.ego.EgoArchiveFragment">
+
+        <com.github.sundeepk.compactcalendarview.CompactCalendarView
+            android:id="@+id/compactcalendar_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            tools:context=".ui.ego.EgoArchiveFragment">
-
-                <com.github.sundeepk.compactcalendarview.CompactCalendarView
-                    android:id="@+id/compactcalendar_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:compactCalendarBackgroundColor="@color/theme_primary"
-                    app:compactCalendarCurrentDayBackgroundColor="@color/tabIndicatorColor"
-                    app:compactCalendarCurrentSelectedDayBackgroundColor="@color/md_yellow_A700"
-                    app:compactCalendarDisplayOtherMonthDays="true"
-                    app:compactCalendarMultiEventIndicatorColor="@color/md_blue_400"
-                    app:compactCalendarTextColor="#fff"
-                    app:compactCalendarTextSize="17sp" />
-            </LinearLayout>
+            app:compactCalendarBackgroundColor="@color/theme_primary"
+            app:compactCalendarCurrentDayBackgroundColor="@color/tabIndicatorColor"
+            app:compactCalendarCurrentSelectedDayBackgroundColor="@color/md_yellow_A700"
+            app:compactCalendarDisplayOtherMonthDays="true"
+            app:compactCalendarMultiEventIndicatorColor="@color/md_blue_400"
+            app:compactCalendarTextColor="#fff"
+            app:compactCalendarTextSize="17sp" />
+    </LinearLayout>
 </layout>

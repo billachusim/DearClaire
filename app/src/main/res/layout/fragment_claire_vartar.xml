@@ -23,8 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            tools:listitem="@layout/clairevartar_item">
-        </androidx.recyclerview.widget.RecyclerView>
+            tools:listitem="@layout/clairevartar_item"></androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
 </layout>

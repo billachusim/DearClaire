@@ -11,7 +11,7 @@ data class Mood(val id: Int, val name: String) {
         const val NO_MODE_ID = -1
 
         val MOODS = listOf(
-                Mood(NO_MODE_ID, "Select mood"),
+                Mood(NO_MODE_ID, "Current Mood"),
                 Mood(1, "Feeling happy \uD83D\uDE0A"),
                 Mood(2, "Feeling sad \uD83D\uDE14"),
                 Mood(3, "Feeling excited \uD83D\uDE01"),

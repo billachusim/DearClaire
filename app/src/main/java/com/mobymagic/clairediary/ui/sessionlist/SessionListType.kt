@@ -1,7 +1,7 @@
 package com.mobymagic.clairediary.ui.sessionlist
 
 enum class SessionListType {
-    ARCHIVED,
+    EGO,
     TRENDING,
     DIARY,
     FOLLOWING,

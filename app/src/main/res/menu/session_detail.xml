@@ -14,4 +14,10 @@
         android:title="@string/session_detail_unfeature_session"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/menu_edit_session_note"
+        android:icon="@drawable/round_edit_white_24"
+        android:title="@string/warning_ignore_options_if_not_yours"
+        app:showAsAction="never" />
+
 </menu>

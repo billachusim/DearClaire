@@ -45,11 +45,6 @@ class SessionListViewModel(
                             Resource.loading(androidUtil.getString(R.string.common_message_loading))
 
                     // Check if we have any alert for the session type
-                    /*if (!prefUtil.getBool(alertKey, true)) {
-                        alertLiveData.value = Resource.success(null)
-                        return@switchMap alertLiveData
-                    }*/
-
                     when (sessionListType) {
                         SessionListType.TRENDING -> {
                             val alert =
@@ -124,7 +119,7 @@ class SessionListViewModel(
      */
     private fun getSessionListLiveData(sessionRequest: SessionRequest): LiveData<Resource<List<Session>>> {
         return when (sessionRequest.sessionListType) {
-            SessionListType.ARCHIVED ->
+            SessionListType.EGO ->
                 sessionRepository.getArchivedSessions(
                         sessionRequest.lastSession,
                         sessionRequest.userId
@@ -176,7 +171,7 @@ class SessionListViewModel(
 
                 Status.SUCCESS -> {
                     // try getting the shard count from the resource and post it to the result live data
-                    if (shardResource.data != null && shardResource.data.size > 0) {
+                    if (shardResource.data != null && shardResource.data.isNotEmpty()) {
                         return@map Resource(Status.SUCCESS, shardResource.data.sumBy { it.count.toInt() }, shardResource.message)
                     } else {
                         return@map Resource(Status.ERROR, 0, shardResource.message)
