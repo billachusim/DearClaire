@@ -40,12 +40,13 @@
         android:layout_marginEnd="5dp"
         app:cardBackgroundColorHex="@{session.colorHex}"
         app:cardUseCompatPadding="true"
-        app:contentPadding="10dp"
+        app:contentPadding="5dp"
         tools:cardBackgroundColor="#9BDAF3">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="2dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -202,6 +203,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="start"
+                    android:layout_marginStart="2dp"
                     android:orientation="horizontal"
                     app:layout_constraintStart_toStartOf="parent"
                     app:visibleGone="@{userAvailable}">
@@ -273,8 +275,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginTop="11dp"
-                    android:gravity="bottom"
+                    android:layout_margin="4dp"
                     android:orientation="horizontal"
                     tools:ignore="RelativeOverlap">
 

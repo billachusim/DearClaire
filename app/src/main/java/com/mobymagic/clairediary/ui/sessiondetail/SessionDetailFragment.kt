@@ -230,7 +230,7 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
         val font = fontFactory.getFontWithName(session.font)
         binding.sessionDetailMessageText.setFont(font.typeface)
         if (font.fontName.contains("roboto", true)) {
-            binding.sessionDetailMessageText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
+            binding.sessionDetailMessageText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
         } else {
             binding.sessionDetailMessageText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20f)
         }
