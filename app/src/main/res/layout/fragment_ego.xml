@@ -87,7 +87,7 @@
                         android:layout_marginEnd="12dp"
                         android:background="@drawable/oval_white"
                         android:contentDescription="@string/your_avartar"
-                        android:scaleType="fitCenter"
+                        android:scaleType="centerInside"
                         android:src="@drawable/ic_product_logo_128dp"
                         app:avatarUrl="@{imageUrl}"
                         tools:background="@drawable/oval_white" />

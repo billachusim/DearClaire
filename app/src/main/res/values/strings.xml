@@ -414,5 +414,6 @@ Tap this link to read more about it and install on your Android phone.
     <string name="positive_vibes_only">positive vibes only....</string>
     <string name="session_type_chat">Chat</string>
     <string name="warning_ignore_options_if_not_yours">WARNING! Ignore options if not yours</string>
+    <string name="clairevatar_express_yourself_text">(Express yourself)</string>
 
 </resources>

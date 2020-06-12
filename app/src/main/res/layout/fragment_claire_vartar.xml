@@ -13,8 +13,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="8dp"
+            android:layout_margin="4dp"
             android:text="@string/select_your_clairevartar"
+            android:textColor="@color/theme_primary_dark"
+            android:textSize="22sp"
+            android:textAppearance="?android:textAppearanceMedium" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/clairevatar_express_yourself_text"
             android:textAppearance="?android:textAppearanceMedium" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -23,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            tools:listitem="@layout/clairevartar_item"></androidx.recyclerview.widget.RecyclerView>
+            tools:listitem="@layout/clairevartar_item" />
 
     </LinearLayout>
 </layout>

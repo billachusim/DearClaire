@@ -239,8 +239,8 @@ class EgoFragment : DataBoundNavFragment<FragmentEgoBinding>() {
                     userRepository.updateUser(user!!).observe(viewLifecycleOwner, Observer {
                         if (it?.status?.equals(Status.SUCCESS)!!) {
                             Toast.makeText(activity,
-                                    "Hmm, nice nickname. Saved!",
-                                    Toast.LENGTH_SHORT).show()
+                                    "Nice one, saved! Feel free to change it anytime",
+                                    Toast.LENGTH_LONG).show()
                             refreshUser()
                         } else if (it.status == Status.ERROR) {
                             Toast.makeText(activity,
@@ -279,8 +279,8 @@ class EgoFragment : DataBoundNavFragment<FragmentEgoBinding>() {
                     userRepository.updateUser(user!!).observe(this, Observer {
                         if (it?.status?.equals(Status.SUCCESS)!!) {
                             Toast.makeText(activity,
-                                    "Hmm, nice Clairevatar. Saved!",
-                                    Toast.LENGTH_SHORT).show()
+                                    "Hmm, nice Clairevatar, saved! Change anytime you like.",
+                                    Toast.LENGTH_LONG).show()
                             refreshUser()
                         } else if (it.status == Status.ERROR) {
                             Toast.makeText(activity,
