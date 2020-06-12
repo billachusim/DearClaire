@@ -11,7 +11,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobymagic.clairediary.AppExecutors
 import com.mobymagic.clairediary.R
-import com.mobymagic.clairediary.databinding.GeustEgoSessionItemBinding
+import com.mobymagic.clairediary.databinding.GuestEgoSessionItemBinding
 import com.mobymagic.clairediary.ui.common.DataBoundListAdapter
 import com.mobymagic.clairediary.ui.gallery.GalleryActivity
 import com.mobymagic.clairediary.ui.sessiondetail.SessionDetailImageAdapter
@@ -34,10 +34,10 @@ class GuestEgoSessionListAdapter(
         private var sessionListImageAdapter: SessionDetailImageAdapter,
         private val parentFragment: androidx.fragment.app.Fragment,
         private val avartarClickCallback: ((Session) -> Unit)
-) : DataBoundListAdapter<Session, GeustEgoSessionItemBinding>(appExecutors) {
+) : DataBoundListAdapter<Session, GuestEgoSessionItemBinding>(appExecutors) {
 
-    override fun getLayoutRes() = R.layout.geust_ego_session_item
-    override fun attachListeners(binding: GeustEgoSessionItemBinding) {
+    override fun getLayoutRes() = R.layout.guest_ego_session_item
+    override fun attachListeners(binding: GuestEgoSessionItemBinding) {
 
 
         binding.root.setOnClickListener {
@@ -79,11 +79,11 @@ class GuestEgoSessionListAdapter(
     }
 
 
-    private fun showFollowingDialog(binding: GeustEgoSessionItemBinding) {
+    private fun showFollowingDialog(binding: GuestEgoSessionItemBinding) {
         val builder = AlertDialog.Builder(binding.root.context)
         builder.setTitle(String.format(binding.root.context
                 .getString(R.string.do_you_want_to_follow_this_session), binding.followText))
-        builder.setPositiveButton("Yes") { dialogInterface: DialogInterface, i: Int ->
+        builder.setPositiveButton("Yes") { dialogInterface: DialogInterface, _: Int ->
             sessionDetailViewModel.toggleFollowers(userId, binding.session!!)
             Toast.makeText(binding.root.context,
                     if (binding.followText == "unfollow")
@@ -93,14 +93,14 @@ class GuestEgoSessionListAdapter(
             updateFollowText(binding, binding.session!!)
             dialogInterface.dismiss()
         }
-        builder.setNegativeButton("No") { dialogInterface: DialogInterface, i: Int ->
+        builder.setNegativeButton("No") { dialogInterface: DialogInterface, _: Int ->
             dialogInterface.dismiss()
         }
 
         builder.show()
     }
 
-    override fun bind(binding: GeustEgoSessionItemBinding, item: Session) {
+    override fun bind(binding: GuestEgoSessionItemBinding, item: Session) {
         val context = binding.root.context
         binding.session = item
         binding.userAvailable = !TextUtils.isEmpty(userId)
@@ -122,7 +122,7 @@ class GuestEgoSessionListAdapter(
 
             override fun onGlobalLayout() {
                 val obs = binding.sessionListContentTv.viewTreeObserver
-                obs.removeGlobalOnLayoutListener(this)
+                obs.removeOnGlobalLayoutListener(this)
                 if (binding.sessionListContentTv.lineCount > 5) {
                     val lineEndIndex = binding.sessionListContentTv.layout.getLineEnd(4)
                     val text = binding.sessionListContentTv.text.subSequence(0, lineEndIndex - 4)
@@ -134,7 +134,7 @@ class GuestEgoSessionListAdapter(
         })
     }
 
-    private fun setupSessionPhotoList(binding: GeustEgoSessionItemBinding, context: Context?, appExecutors: AppExecutors) {
+    private fun setupSessionPhotoList(binding: GuestEgoSessionItemBinding, context: Context?, appExecutors: AppExecutors) {
         val layoutManager = LinearLayoutManager(context!!, LinearLayoutManager.HORIZONTAL, false)
         binding.sessionListPhotoList.isNestedScrollingEnabled = false
         binding.sessionListPhotoList.layoutManager = layoutManager
@@ -153,11 +153,11 @@ class GuestEgoSessionListAdapter(
         sessionListImageAdapter.submitList(binding.session!!.imageUrls)
     }
 
-    private fun updateFollowText(binding: GeustEgoSessionItemBinding, session: Session) {
+    private fun updateFollowText(binding: GuestEgoSessionItemBinding, session: Session) {
         if (session.followers.contains(userId)) {
-            binding.followText = "unfollow"
+            binding.followText = "Unfollow"
         } else {
-            binding.followText = "follow"
+            binding.followText = "Follow"
         }
     }
 
