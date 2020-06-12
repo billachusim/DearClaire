@@ -9,7 +9,7 @@ import com.mobymagic.clairediary.databinding.FragmentCommentListBinding
 import com.mobymagic.clairediary.ui.common.DataBoundNavFragment
 import com.mobymagic.clairediary.ui.common.RetryCallback
 import com.mobymagic.clairediary.ui.common.SharedViewModel
-import com.mobymagic.clairediary.ui.geustego.GuestEgoFragment
+import com.mobymagic.clairediary.ui.guestego.GuestEgoFragment
 import com.mobymagic.clairediary.ui.sessiondetail.SessionDetailFragment
 import com.mobymagic.clairediary.ui.sessionlist.SessionListType
 import com.mobymagic.clairediary.util.AndroidUtil

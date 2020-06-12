@@ -73,7 +73,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            tools:context=".ui.geustego.GuestEgoFragment">
+            tools:context=".ui.guestego.GuestEgoFragment">
 
 
             <androidx.cardview.widget.CardView
@@ -309,7 +309,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layoutManager="LinearLayoutManager"
-                    tools:listitem="@layout/geust_ego_session_item" />
+                    tools:listitem="@layout/guest_ego_session_item" />
 
                 <include
                     layout="@layout/layout_loading_error_state"

@@ -636,7 +636,7 @@ class SessionRepository(
 
     /**
      * Adds new user activity
-     * @param userActivity The activity to be added
+     * param userActivity The activity to be added
      */
     private fun createFollowShard(userId: String, shard: Shard, shardId: Int) {
         Timber.d("Adding new follow Shard: %s", shard)
@@ -727,7 +727,7 @@ class SessionRepository(
 
     /**
      * Adds new user activity
-     * @param userActivity The activity to be added
+     * param userActivity The activity to be added
      */
     private fun createMeeTooShard(userId: String, shard: Shard, shardId: Int) {
         Timber.d("Adding new mee too  Shard: %s", shard)

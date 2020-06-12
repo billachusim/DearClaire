@@ -10,6 +10,7 @@ import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
@@ -21,7 +22,10 @@ import com.mobymagic.clairediary.ui.common.DataBoundListAdapter
 import com.mobymagic.clairediary.ui.gallery.GalleryActivity
 import com.mobymagic.clairediary.ui.sessiondetail.SessionDetailImageAdapter
 import com.mobymagic.clairediary.ui.sessiondetail.SessionDetailViewModel
-import com.mobymagic.clairediary.util.*
+import com.mobymagic.clairediary.util.AudioUtil
+import com.mobymagic.clairediary.util.HtmlUtil
+import com.mobymagic.clairediary.util.ViewUtil
+import com.mobymagic.clairediary.util.setVisibleOrGone
 import com.mobymagic.clairediary.vo.Resource
 import com.mobymagic.clairediary.vo.Session
 import com.mobymagic.clairediary.vo.Status
@@ -34,15 +38,15 @@ class SessionListAdapter(
         private val appExecutors: AppExecutors,
         private val isFromAlterEgo: Boolean,
         private val userId: String,
-        private val sessionClickCallback: ((Session, Boolean) -> Unit),
-        private val actionClickCallback: ((Session) -> Unit),
+        private val sessionClickCallback: (Session, Boolean) -> Unit,
+        private val actionClickCallback: (Session) -> Unit,
         private val sessionDetailViewModel: SessionDetailViewModel,
         private val audioUtil: AudioUtil,
-        private val exoPlayerUtil: ExoPlayerUtil,
         private var sessionListImageAdapter: SessionDetailImageAdapter,
-        private val parentFragment: androidx.fragment.app.Fragment,
-        private val avartarClickCallback: ((Session) -> Unit),
-        private val getCommentCountCallBack: ((String) -> LiveData<Resource<Int>>)
+        private val parentFragment: Fragment,
+        private val avatarClickCallback: (Session) -> Unit,
+        private val getCommentCountCallBack: (String) -> LiveData<Resource<Int>>
+
 ) : DataBoundListAdapter<Session, ItemSessionBinding>(appExecutors) {
 
     init {
@@ -95,9 +99,9 @@ class SessionListAdapter(
             }
         }
 
-        binding.sessionDetailUserImage.setOnClickListener { it ->
+        binding.sessionDetailUserImage.setOnClickListener {
             binding.session.let {
-                avartarClickCallback.invoke(it!!)
+                avatarClickCallback.invoke(it!!)
             }
         }
     }
@@ -107,7 +111,7 @@ class SessionListAdapter(
         val builder = AlertDialog.Builder(binding.root.context)
         builder.setTitle(String.format(binding.root.context
                 .getString(R.string.do_you_want_to_follow_this_session), binding.followText))
-        builder.setPositiveButton("Yes") { dialogInterface: DialogInterface, i: Int ->
+        builder.setPositiveButton("Yes") { dialogInterface: DialogInterface, _: Int ->
             sessionDetailViewModel.toggleFollowers(userId, binding.session!!)
             Toast.makeText(binding.root.context,
                     if (binding.followText == "Unfollow")
@@ -117,7 +121,7 @@ class SessionListAdapter(
             updateFollowText(binding, binding.session!!)
             dialogInterface.dismiss()
         }
-        builder.setNegativeButton("No") { dialogInterface: DialogInterface, i: Int ->
+        builder.setNegativeButton("No") { dialogInterface: DialogInterface, _: Int ->
             dialogInterface.dismiss()
         }
 
@@ -146,7 +150,7 @@ class SessionListAdapter(
 
             override fun onGlobalLayout() {
                 val obs = binding.sessionListContentTv.viewTreeObserver
-                obs.removeGlobalOnLayoutListener(this)
+                obs.removeOnGlobalLayoutListener(this)
                 if (binding.sessionListContentTv.lineCount > 5) {
                     val lineEndIndex = binding.sessionListContentTv.layout.getLineEnd(4)
                     val text = binding.sessionListContentTv.text.subSequence(0, lineEndIndex - 4)
@@ -195,7 +199,7 @@ class SessionListAdapter(
                     Status.SUCCESS -> {
                         if (it.data != null) {
                             binding.sessionListCommentCountText.visibility = View.VISIBLE
-                            binding.sessionListCommentCountText.text = it.data.toString()
+                            binding.sessionListCommentCountText.text = it.data.toString() + "+"
                         }
                     }
                     else -> {
@@ -216,7 +220,7 @@ class SessionListAdapter(
                 ItemOffsetDecoration(context, R.dimen.grid_spacing_regular)
         )
 
-        sessionListImageAdapter = SessionDetailImageAdapter(appExecutors) { imageUrl ->
+        sessionListImageAdapter = SessionDetailImageAdapter(appExecutors) {
             val intent = Intent(context, GalleryActivity::class.java).apply {
                 putStringArrayListExtra(GalleryActivity.ARG_IMAGES, binding.session?.imageUrls as ArrayList<String>)
             }
@@ -232,14 +236,6 @@ class SessionListAdapter(
             binding.followText = "Unfollow"
         } else {
             binding.followText = "Follow"
-        }
-    }
-
-    private fun updateActionButton(binding: ItemSessionBinding, session: Session) {
-        if (session.archived) {
-            binding.sessionActionButton.setImageResource(R.drawable.ic_archive_white_24dp)
-        } else {
-            binding.sessionActionButton.setImageResource(R.drawable.ic_round_unarchive_24)
         }
     }
 

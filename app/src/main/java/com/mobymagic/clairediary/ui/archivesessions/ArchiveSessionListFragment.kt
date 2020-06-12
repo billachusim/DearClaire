@@ -107,10 +107,9 @@ class ArchiveSessionListFragment : DataBoundNavFragment<FragmentArchiveSessionLi
                     }
                     showSessionActionDialog(dialogMessageRes, session)
                 },
-                sessionDetailViewModel, audioUtil, exoPlayerUtil, sessionListImageAdapter, this,
-
-                {
+                sessionDetailViewModel, audioUtil, sessionListImageAdapter, this, {
                 },
+
                 {
                     sessionListViewModel.getNumberOfCommentsForSessions(it)
                 }

@@ -170,6 +170,23 @@
                                     app:layout_constraintTop_toBottomOf="@id/session_detail_user_image"
                                     app:visibleGone="@{showUnFeatureView}" />
 
+                                <TextView
+                                    android:id="@+id/session_title"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="4dp"
+                                    android:ellipsize="end"
+                                    android:fontFamily="@string/font_family_medium"
+                                    android:gravity="center_horizontal"
+                                    android:maxLines="2"
+                                    android:text="@{session.title}"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                                    android:textColor="@color/white"
+                                    android:textSize="18sp"
+                                    app:layout_constraintTop_toBottomOf="@id/session_detail_featured_notice_text"
+                                    tools:ignore="RtlSymmetry"
+                                    tools:text="Title of my first session" />
+
                                 <com.vanniktech.emoji.EmojiTextView
                                     android:id="@+id/session_detail_message_text"
                                     android:layout_width="wrap_content"
@@ -181,7 +198,7 @@
                                     android:textColor="@color/white"
                                     android:textIsSelectable="true"
                                     app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@id/session_detail_featured_notice_text"
+                                    app:layout_constraintTop_toBottomOf="@id/session_title"
                                     tools:text="Lorem ipsum pisum lasum disum gisum pasum tapum gapum vesum" />
 
                                 <androidx.recyclerview.widget.RecyclerView

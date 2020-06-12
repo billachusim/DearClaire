@@ -1,4 +1,4 @@
-package com.mobymagic.clairediary.ui.geustego
+package com.mobymagic.clairediary.ui.guestego
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

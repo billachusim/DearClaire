@@ -51,7 +51,7 @@ import com.mobymagic.clairediary.ui.common.DataBoundNavFragment
 import com.mobymagic.clairediary.ui.common.SharedViewModel
 import com.mobymagic.clairediary.ui.createsession.CreateSessionFragment
 import com.mobymagic.clairediary.ui.gallery.GalleryActivity
-import com.mobymagic.clairediary.ui.geustego.GuestEgoFragment
+import com.mobymagic.clairediary.ui.guestego.GuestEgoFragment
 import com.mobymagic.clairediary.ui.sessionlist.SessionListType
 import com.mobymagic.clairediary.util.*
 import com.mobymagic.clairediary.vo.Comment

@@ -1,4 +1,4 @@
-package com.mobymagic.clairediary.ui.geustego
+package com.mobymagic.clairediary.ui.guestego
 
 
 import android.os.Bundle
@@ -142,9 +142,7 @@ class GuestEgoFragment : DataBoundNavFragment<FragmentGuestEgoBinding>() {
             val sessionDetailFragment =
                     SessionDetailFragment.newInstance(session, user?.userId!!, sessionListType, shouldOpenCommentBox)
             getNavController().navigateTo(sessionDetailFragment)
-        }, sessionDetailViewModel, audioUtil, sessionListImageAdapter, this,
-                {
-                }
+        }, sessionDetailViewModel, audioUtil, sessionListImageAdapter, this
         )
 
         binding.sessionList.adapter = adapter

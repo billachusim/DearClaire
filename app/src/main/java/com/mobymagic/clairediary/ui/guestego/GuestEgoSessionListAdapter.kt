@@ -1,13 +1,15 @@
-package com.mobymagic.clairediary.ui.geustego
+package com.mobymagic.clairediary.ui.guestego
 
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.text.TextUtils
+import android.view.View
 import android.view.ViewTreeObserver
 import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobymagic.clairediary.AppExecutors
 import com.mobymagic.clairediary.R
@@ -28,12 +30,12 @@ class GuestEgoSessionListAdapter(
         private val appExecutors: AppExecutors,
         private val isFromAlterEgo: Boolean,
         private val userId: String,
-        private val sessionClickCallback: ((Session, Boolean) -> Unit),
+        private val sessionClickCallback: (Session, Boolean) -> Unit,
         private val sessionDetailViewModel: SessionDetailViewModel,
         private val audioUtil: AudioUtil,
         private var sessionListImageAdapter: SessionDetailImageAdapter,
-        private val parentFragment: androidx.fragment.app.Fragment,
-        private val avartarClickCallback: ((Session) -> Unit)
+        private val parentFragment: Fragment
+
 ) : DataBoundListAdapter<Session, GuestEgoSessionItemBinding>(appExecutors) {
 
     override fun getLayoutRes() = R.layout.guest_ego_session_item
@@ -57,6 +59,7 @@ class GuestEgoSessionListAdapter(
                 Timber.d("Session clicked: %s", session)
                 sessionClickCallback.invoke(session, true)
             }
+
         }
         binding.sessionListFollow.setOnClickListener {
 
@@ -110,6 +113,8 @@ class GuestEgoSessionListAdapter(
 
 
         binding.sessionListMeTooCountText.text = item.meToos?.size.toString()
+        binding.sessionListCommentCountText.visibility = View.VISIBLE
+        binding.sessionListCommentCountText.text = "1+"
 
         setupSessionPhotoList(binding, context, appExecutors)
 
@@ -142,7 +147,7 @@ class GuestEgoSessionListAdapter(
                 ItemOffsetDecoration(context, R.dimen.grid_spacing_regular)
         )
 
-        sessionListImageAdapter = SessionDetailImageAdapter(appExecutors) { imageUrl ->
+        sessionListImageAdapter = SessionDetailImageAdapter(appExecutors) {
             val intent = Intent(context, GalleryActivity::class.java).apply {
                 putStringArrayListExtra(GalleryActivity.ARG_IMAGES, binding.session?.imageUrls as ArrayList<String>)
             }

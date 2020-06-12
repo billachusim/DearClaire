@@ -9,7 +9,7 @@ import com.mobymagic.clairediary.ui.createsession.ClaireVartarViewModel
 import com.mobymagic.clairediary.ui.createsession.CreateSessionViewModel
 import com.mobymagic.clairediary.ui.ego.EgoViewModel
 import com.mobymagic.clairediary.ui.forgotsecretcode.ForgotSecretCodeViewModel
-import com.mobymagic.clairediary.ui.geustego.GuestEgoViewModel
+import com.mobymagic.clairediary.ui.guestego.GuestEgoViewModel
 import com.mobymagic.clairediary.ui.sessiondetail.SessionDetailViewModel
 import com.mobymagic.clairediary.ui.sessionlist.SessionListViewModel
 import com.mobymagic.clairediary.ui.signin.SignInViewModel

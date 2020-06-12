@@ -16,7 +16,7 @@ import com.mobymagic.clairediary.ui.common.DataBoundNavFragment
 import com.mobymagic.clairediary.ui.common.EmptyCallback
 import com.mobymagic.clairediary.ui.common.RetryCallback
 import com.mobymagic.clairediary.ui.createsession.CreateSessionFragment
-import com.mobymagic.clairediary.ui.geustego.GuestEgoFragment
+import com.mobymagic.clairediary.ui.guestego.GuestEgoFragment
 import com.mobymagic.clairediary.ui.sessiondetail.SessionDetailFragment
 import com.mobymagic.clairediary.ui.sessiondetail.SessionDetailImageAdapter
 import com.mobymagic.clairediary.ui.sessiondetail.SessionDetailViewModel
@@ -71,7 +71,7 @@ class SessionListFragment : DataBoundNavFragment<FragmentSessionListBinding>() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        sessionListImageAdapter = SessionDetailImageAdapter(appExecutors) { imageUrl ->
+        sessionListImageAdapter = SessionDetailImageAdapter(appExecutors) {
             // TODO open a gallery
         }
         initRecyclerViewAdapter()
@@ -117,12 +117,11 @@ class SessionListFragment : DataBoundNavFragment<FragmentSessionListBinding>() {
 
                     showSessionActionDialog(dialogMessageRes, session)
                 },
-                sessionDetailViewModel, audioUtil, exoPlayerUtil, sessionListImageAdapter, this,
+                sessionDetailViewModel, audioUtil, sessionListImageAdapter, this, { session ->
+            getNavController().navigateToWithAuth(GuestEgoFragment.newInstance(session.userId.toString(),
+                    "", session.userNickname.toString(), session.userAvatarUrl.toString(), sessionListType))
+        },
 
-                { session ->
-                    getNavController().navigateToWithAuth(GuestEgoFragment.newInstance(session.userId.toString(),
-                            "", session.userNickname.toString(), session.userAvatarUrl.toString(), sessionListType))
-                },
                 {
                     sessionListViewModel.getNumberOfCommentsForSessions(it)
                 }
@@ -138,7 +137,7 @@ class SessionListFragment : DataBoundNavFragment<FragmentSessionListBinding>() {
                 .setNegativeButton(android.R.string.cancel) { dialogInterface, _ ->
                     dialogInterface.dismiss()
                 }
-                .setPositiveButton(android.R.string.ok) { dialogInterface, i ->
+                .setPositiveButton(android.R.string.ok) { _, _ ->
                     if (SessionListType.isAlterEgo(sessionListType)) {
                         // Toggle featured
                         session.featured = !session.featured
