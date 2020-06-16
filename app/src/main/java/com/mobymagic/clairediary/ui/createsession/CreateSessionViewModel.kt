@@ -59,7 +59,7 @@ class CreateSessionViewModel(
     }
 
     private fun initAddSessionLiveData() {
-        addSessionLiveData = Transformations.switchMap(submitSessionLiveData, {
+        addSessionLiveData = Transformations.switchMap(submitSessionLiveData) {
             val session = sessionLiveData.value!!
             val user = userRepository.getLoggedInUser()
             when {
@@ -80,7 +80,7 @@ class CreateSessionViewModel(
                     errorLiveData
                 }
             }
-        })
+        }
     }
 
     private fun submitSession(session: Session, user: User): LiveData<Resource<Session>> {

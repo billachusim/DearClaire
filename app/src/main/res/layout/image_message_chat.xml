@@ -9,6 +9,15 @@
             name="imageUrl"
             type="String" />
 
+        <variable
+            name="comment"
+            type="com.mobymagic.clairediary.vo.Comment" />
+
+        <variable
+            name="showEditButton"
+            type="Boolean" />
+
+
     </data>
 
     <androidx.cardview.widget.CardView

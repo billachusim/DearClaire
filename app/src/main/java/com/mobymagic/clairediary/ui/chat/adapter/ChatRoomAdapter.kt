@@ -26,6 +26,11 @@ class ChatRoomAdapter(private val context: Context, private val chatRoomPojoList
         holder.cardBackGround.setBackgroundColor(Color.parseColor(chatRoomPojo.hex))
         holder.title.text = chatRoomPojo.title
         holder.sessionListContentTv.text = chatRoomPojo.text
+        holder.sessionListContentTv.setOnClickListener {
+            val intent = Intent(context, ChatActivity::class.java)
+            intent.putExtra("chatRoom", chatRoomPojo)
+            context.startActivity(intent)
+        }
         holder.enterChatroomButton.setOnClickListener {
             val intent = Intent(context, ChatActivity::class.java)
             intent.putExtra("chatRoom", chatRoomPojo)
