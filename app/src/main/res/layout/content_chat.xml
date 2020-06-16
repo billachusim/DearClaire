@@ -102,7 +102,7 @@
             android:layout_marginEnd="2dp"
             android:contentDescription="@string/session_detail_content_desc_record_audio"
             app:fabSize="mini"
-            app:srcCompat="@drawable/ic_round_keyboard_voice_white_24" />
+            app:srcCompat="@drawable/ic_round_send_24" />
 
     </LinearLayout>
 

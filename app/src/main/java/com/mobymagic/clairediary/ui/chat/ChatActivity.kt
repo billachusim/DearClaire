@@ -78,7 +78,7 @@ class ChatActivity : AppCompatActivity() {
         comment_list.layoutManager = LinearLayoutManager(this)
         comment_list.itemAnimator = DefaultItemAnimator()
 
-        image_list.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        image_list.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         image_list.itemAnimator = DefaultItemAnimator()
 
         emojiPopup = EmojiPopup.Builder.fromRootView(rootView).build(session_detail_chat_input)
@@ -114,9 +114,10 @@ class ChatActivity : AppCompatActivity() {
 
                 if (message.isEmpty()) {
                     isMessage = false
-                    session_detail_chat_button.setImageResource(R.drawable.ic_round_keyboard_voice_white_24)
+                    session_detail_chat_button.visibility = View.GONE
                 } else {
                     isMessage = true
+                    session_detail_chat_button.visibility = View.VISIBLE
                     session_detail_chat_button.setImageResource(R.drawable.ic_round_send_24)
                 }
             }
