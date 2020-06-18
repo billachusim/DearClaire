@@ -3,7 +3,9 @@ package com.mobymagic.clairediary.ui.chat.pojo
 import android.os.Parcel
 import android.os.Parcelable
 
-class ChatRoom : Parcelable {
+open class ChatRoom : Parcelable {
+    var userAvatarUrl: Any? = String()
+        private set
     var text_message: String? = null
         private set
     var audio_message: String? = null
@@ -28,7 +30,7 @@ class ChatRoom : Parcelable {
 
     constructor()
 
-    constructor(text_message: String, audio_message: String, image_message: String, time: String, sender_uid: String, sender_user_nick_name: String, key: String, node: String, message_type: Int) {
+    constructor(text_message: String, audio_message: String, image_message: String, time: String, sender_uid: String, sender_user_nick_name: String, key: String, node: String, message_type: Int, userAvatarUrl: String) {
         this.text_message = text_message
         this.audio_message = audio_message
         this.image_message = image_message
@@ -38,6 +40,8 @@ class ChatRoom : Parcelable {
         this.key = key
         this.node = node
         this.message_type = message_type
+        this.userAvatarUrl = userAvatarUrl
+
     }
 
     protected constructor(`in`: Parcel) {

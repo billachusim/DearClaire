@@ -52,7 +52,6 @@ class ChatAdapter(private val context: Context, private val chatRoomList: List<C
         holder.commentTimeText.text = chatRoom.time
         holder.commentNicknameText.text = chatRoom.sender_user_nick_name
 
-
         if (firebaseAuth.currentUser!!.uid != chatRoom.sender_uid) {
             holder.commentEditButton.visibility = View.INVISIBLE
         }
@@ -71,6 +70,11 @@ class ChatAdapter(private val context: Context, private val chatRoomList: List<C
                 .load(chatRoom.image_message)
                 .apply(RequestOptions().placeholder(R.drawable.placeholder_image))
                 .into(holder.postImage)
+
+        Glide.with(context)
+                .load(chatRoom.userAvatarUrl)
+                .apply(RequestOptions().placeholder(R.mipmap.ic_launcher).centerCrop().circleCrop())
+                .into(holder.userAvatarUrl)
 
     }
 
@@ -162,7 +166,7 @@ class ChatAdapter(private val context: Context, private val chatRoomList: List<C
     }
 
     class ChatViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
+        var userAvatarUrl: ImageView = itemView.findViewById(R.id.chat_user_avatar)
         var commentNicknameText: TextView = itemView.findViewById(R.id.comment_nickname_text)
         var commentTimeText: TextView = itemView.findViewById(R.id.comment_time_text)
         var commentThanksCountText: TextView = itemView.findViewById(R.id.comment_thanks_count_text)
@@ -170,7 +174,5 @@ class ChatAdapter(private val context: Context, private val chatRoomList: List<C
         var commentEditButton: ImageButton = itemView.findViewById(R.id.comment_edit_button)
         var commentThanksButton: Button = itemView.findViewById(R.id.comment_thanks_button)
         var postImage: ImageView = itemView.findViewById(R.id.postImage)
-        // var chatUserAvatar: ImageView = itemView.chat_user_avatar
-
     }
 }

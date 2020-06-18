@@ -10,9 +10,11 @@
             type="String" />
 
         <variable
+            name="chatroom"
+            type="com.mobymagic.clairediary.vo.Comment" />
+        <variable
             name="comment"
             type="com.mobymagic.clairediary.vo.Comment" />
-
         <variable
             name="showEditButton"
             type="Boolean" />
@@ -30,7 +32,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/comment_user_image"
+                android:id="@+id/chat_user_avatar"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_margin="2dp"
@@ -50,8 +52,8 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintStart_toEndOf="@id/comment_user_image"
-                app:layout_constraintTop_toTopOf="@id/comment_user_image"
+                app:layout_constraintStart_toEndOf="@id/chat_user_avatar"
+                app:layout_constraintTop_toTopOf="@id/chat_user_avatar"
                 tools:ignore="RtlSymmetry"
                 tools:text="Elvis Chidera" />
 
@@ -62,7 +64,7 @@
                 android:layout_marginHorizontal="2dp"
                 android:fontFamily="@string/font_family_regular"
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                app:layout_constraintStart_toEndOf="@id/comment_user_image"
+                app:layout_constraintStart_toEndOf="@id/chat_user_avatar"
                 app:layout_constraintTop_toBottomOf="@id/comment_nickname_text"
                 tools:text="2d" />
 
@@ -75,7 +77,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textIsSelectable="true"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/comment_user_image"
+                app:layout_constraintTop_toBottomOf="@id/chat_user_avatar"
                 tools:text="Lorem ipsum pisum lasum disum gisum pasum tapum gapum vesum" />
 
             <ImageView

@@ -76,8 +76,8 @@ Tap this link to read more about it and install on your Android phone.
     <string name="session_detail_content_desc_submit_comment">Submit comment</string>
     <string name="session_detail_content_desc_record_audio">Record audio</string>
     <string name="session_detail_content_desc_add_photo">Add photo</string>
-    <string name="session_detail_hint_enter_reply">Positive vibes only, no ads…</string>
-    <string name="session_detail_hint_enter_advice">Enter advise as Claire…</string>
+    <string name="session_detail_hint_enter_reply">Positive advises only, no ads…</string>
+    <string name="session_detail_hint_enter_advice">Advise like Claire or even better…</string>
     <string name="session_detail_error_message_or_audio_empty">Please enter a message or record an audio</string>
     <string name="session_detail_content_desc_comment_remove_audio">Remove audio</string>
     <string name="session_detail_content_desc_share_response">Share response</string>
@@ -161,7 +161,7 @@ Tap this link to read more about it and install on your Android phone.
     <string name="sign_in_page_subtitle">Welcome back, darling.</string>
     <string name="sign_in_hint_email">Email</string>
     <string name="sign_in_action_sign_in">Open Up</string>
-    <string name="sign_in_hint_secret_code">Secret code</string>
+    <string name="sign_in_hint_secret_code">Secret Code</string>
     <string name="sign_in_error_invalid_email">No account with the given email. Please sign up</string>
     <string name="sign_in_error_invalid_secret_code">The secret code is incorrect. Please update and try again.</string>
     <string name="sign_in_error_generic">An error occurred while signing in. Please try again.</string>
@@ -411,7 +411,7 @@ Tap this link to read more about it and install on your Android phone.
     <string name="app_name_as_claire">Claire</string>
     <string name="enter_chatroom_button">ENTER</string>
     <string name="Chatroom_owner_name">From Claire</string>
-    <string name="positive_vibes_only">positive vibes only....</string>
+    <string name="positive_vibes_only">positive vibes only, no ads...</string>
     <string name="session_type_chat">Chat</string>
     <string name="warning_ignore_options_if_not_yours">WARNING! Ignore options if not yours</string>
     <string name="clairevatar_express_yourself_text">(Express yourself)</string>

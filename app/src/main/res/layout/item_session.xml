@@ -77,7 +77,7 @@
 
                 <ImageView
                     android:id="@+id/session_detail_user_image"
-                    android:layout_width="32dp"
+                    android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="start"
                     android:contentDescription="@null"

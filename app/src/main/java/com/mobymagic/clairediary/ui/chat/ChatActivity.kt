@@ -27,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
+import com.mobymagic.clairediary.Constants.PREF_KEY_USER_AVATAR_URL
 import com.mobymagic.clairediary.Constants.PREF_KEY_USER_ID
 import com.mobymagic.clairediary.Constants.PREF_KEY_USER_NICKNAME
 import com.mobymagic.clairediary.R
@@ -205,6 +206,8 @@ class ChatActivity : AppCompatActivity() {
         map["time"] = getDate()
         map["sender_user_nick_name"] = prefUtil.getString(PREF_KEY_USER_NICKNAME, null)
         map["sender_uid"] = prefUtil.getString(PREF_KEY_USER_ID, null)
+        map["userAvatarUrl"] = prefUtil.getString(PREF_KEY_USER_AVATAR_URL, null)
+
 
         val ref = mDatabase
                 .getReference("messages")
@@ -269,6 +272,8 @@ class ChatActivity : AppCompatActivity() {
         map["time"] = getDate()
         map["sender_user_nick_name"] = prefUtil.getString(PREF_KEY_USER_NICKNAME, null)
         map["sender_uid"] = prefUtil.getString(PREF_KEY_USER_ID, null)
+        map["userAvatarUrl"] = prefUtil.getString(PREF_KEY_USER_AVATAR_URL, null)
+
 
         val ref = mDatabase
                 .getReference("messages")
@@ -321,7 +326,8 @@ class ChatActivity : AppCompatActivity() {
                             chat.sender_user_nick_name!!,
                             snap.key!!,
                             mIntent.title!!,
-                            chat.message_type!!)
+                            chat.message_type!!,
+                            chat.userAvatarUrl!! as String)
 
                     chatRoomList.add(chatR)
 

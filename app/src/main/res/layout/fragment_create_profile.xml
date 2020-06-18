@@ -61,7 +61,6 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginStart="16dp"
-                        android:layout_marginLeft="16dp"
                         android:layout_weight="2"
                         android:contentDescription="@null"
                         app:avatarUrl="@{userImageUrl}"
@@ -75,7 +74,6 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:layout_marginLeft="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_weight="10">
 
@@ -86,7 +84,8 @@
                             android:fontFamily="@string/font_family_regular"
                             android:hint="@string/create_profile_hint_nickname"
                             android:inputType="textPersonName"
-                            android:maxLength="20" />
+                            android:maxLength="20"
+                            android:autofillHints="You can change it anytime" />
 
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
