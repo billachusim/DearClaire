@@ -23,6 +23,8 @@ class ChatRoomAdapter(private val context: Context, private val chatRoomPojoList
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val chatRoomPojo = chatRoomPojoList!![position]
+        // holder.chatroomMoodMessage.text = chatRoomPojo.moodMessage
+        holder.chatroomUsersCount.text = itemCount.toString()
         holder.cardBackGround.setBackgroundColor(Color.parseColor(chatRoomPojo.hex))
         holder.title.text = chatRoomPojo.title
         holder.sessionListContentTv.text = chatRoomPojo.text
@@ -43,6 +45,8 @@ class ChatRoomAdapter(private val context: Context, private val chatRoomPojoList
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var chatroomMoodMessage: TextView = itemView.findViewById(R.id.chatroom_mood_message)
+        var chatroomUsersCount: TextView = itemView.findViewById(R.id.chatroom_users_count_text)
         var cardBackGround: CardView = itemView.findViewById(R.id.cardBackGround)
         var title: TextView = itemView.findViewById(R.id.chatroom_title)
         var sessionListContentTv: TextView = itemView.findViewById(R.id.chatroom_desc_textview)

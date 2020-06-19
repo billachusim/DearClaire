@@ -13,6 +13,8 @@ open class ChatRoomPojo : Parcelable {
         private set
     var text: String? = null
         private set
+    var usersCount: String? = null
+        private set
 
     constructor()
 
@@ -21,6 +23,7 @@ open class ChatRoomPojo : Parcelable {
         this.font = font
         this.hex = hex
         this.text = text
+        this.usersCount = text
     }
 
     protected constructor(`in`: Parcel) {
@@ -28,6 +31,7 @@ open class ChatRoomPojo : Parcelable {
         font = `in`.readString()
         hex = `in`.readString()
         text = `in`.readString()
+        usersCount = `in`.readString()
     }
 
     override fun describeContents(): Int {
@@ -39,6 +43,7 @@ open class ChatRoomPojo : Parcelable {
         dest.writeString(font)
         dest.writeString(hex)
         dest.writeString(text)
+        dest.writeString(usersCount)
     }
 
     companion object {
