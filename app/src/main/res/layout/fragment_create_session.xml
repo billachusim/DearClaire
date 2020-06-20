@@ -24,7 +24,7 @@
         android:background="@android:color/white"
         app:backgroundTintColor='@{draftSession != null ? draftSession.colorHex : "#C7E59A"}'
         tools:background="@color/theme_primary"
-        tools:context=".ui.createsession.CreateSEssionFragment">
+        tools:context=".ui.createsession.CreateSessionFragment">
 
         <LinearLayout
             android:layout_width="match_parent"

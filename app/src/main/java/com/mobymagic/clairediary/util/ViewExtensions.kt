@@ -108,7 +108,7 @@ fun ImageView.setImageUrl(imageUrl: String) {
 fun ImageView.setAvatarUrl(imageUrl: String) {
     Timber.d("Avatar url: %s", imageUrl)
     GlideApp.with(this)
-            .applyDefaultRequestOptions(RequestOptions().placeholder(R.mipmap.ic_launcher).centerCrop().circleCrop())
+            .applyDefaultRequestOptions(RequestOptions().placeholder(R.mipmap.ic_launcher).centerCrop().fitCenter())
             .load(imageUrl).into(this)
 }
 
@@ -190,7 +190,7 @@ fun ImageView.setUserAdminAvatarUrl(image: Any) {
     if (image is String) {
         Timber.d("Avatar url: %s", image)
         GlideApp.with(this)
-                .applyDefaultRequestOptions(RequestOptions().placeholder(R.mipmap.ic_launcher).centerCrop().circleCrop())
+                .applyDefaultRequestOptions(RequestOptions().placeholder(R.mipmap.ic_launcher).centerCrop())
                 .load(image).into(this)
     } else if (image is BitmapDrawable) {
         setImageDrawable(image)

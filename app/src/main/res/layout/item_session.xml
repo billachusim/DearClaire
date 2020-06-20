@@ -49,9 +49,7 @@
             android:layout_margin="2dp"
             android:orientation="vertical">
 
-
-
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -61,30 +59,30 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="start"
+                    android:layout_alignParentStart="true"
                     android:contentDescription="@null"
                     app:avatarUrl="@{session.userAvatarUrl}"
                     tools:src="@drawable/default_thumbnail" />
 
-                <TextView
-                    android:id="@+id/session_detail_nickname_text"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginHorizontal="8dp"
-                    android:layout_weight="1"
-                    android:ellipsize="end"
-                    android:fontFamily="@string/font_family_regular"
-                    android:maxLines="1"
-                    android:text="@{session.userNickname}"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textColor="@color/white"
-                    tools:text="Elvis Chidera " />
-
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end"
+                    android:layout_toEndOf="@id/session_detail_user_image"
+                    android:layout_marginHorizontal="6dp"
                     android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/session_detail_nickname_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:ellipsize="end"
+                        android:fontFamily="@string/font_family_regular"
+                        android:maxLines="1"
+                        android:text="@{session.userNickname}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        android:textColor="@color/white"
+                        tools:text="Elvis Chidera " />
 
                     <TextView
                         android:id="@+id/session_detail_time_text"
@@ -99,6 +97,16 @@
                         app:timeAgoWithDate="@{session.timeCreated}"
                         tools:text="2d" />
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginHorizontal="6dp"
+                    android:orientation="vertical"
+                    tools:ignore="RelativeOverlap">
+
                     <TextView
                         android:id="@+id/session_list_mood"
                         android:layout_width="wrap_content"
@@ -112,9 +120,10 @@
                         android:textSize="15sp"
                         app:mood1="@{session}"
                         tools:text="feeling surprised 😲" />
+
                 </LinearLayout>
 
-            </LinearLayout>
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -135,7 +144,7 @@
                         android:ellipsize="end"
                         android:fontFamily="@string/font_family_medium"
                         android:gravity="center_horizontal"
-                        android:maxLines="1"
+                        android:maxLines="2"
                         android:text="@{session.title}"
                         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                         android:textColor="@color/white"
@@ -203,8 +212,9 @@
                     android:id="@+id/me_too_container"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_marginVertical="2dp"
                     android:gravity="start"
-                    android:layout_marginStart="2dp"
                     android:orientation="horizontal"
                     app:layout_constraintStart_toStartOf="parent"
                     app:visibleGone="@{userAvailable}">
@@ -233,9 +243,9 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_centerInParent="true"
                     android:layout_alignBottom="@id/me_too_container"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center_horizontal"
                     android:orientation="horizontal"
                     app:visibleGone="@{!isFromAlterEgo &amp; userAvailable}">
 
@@ -276,7 +286,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_margin="4dp"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_marginVertical="8dp"
                     android:orientation="horizontal"
                     tools:ignore="RelativeOverlap">
 
