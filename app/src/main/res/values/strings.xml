@@ -57,7 +57,7 @@ Tap this link to read more about it and install on your Android phone.
     <!-- Session Types Page Start -->
     <string name="session_type_diary">Diary</string>
     <string name="session_type_trending">Trending</string>
-    <string name="session_type_archived">Archived</string>
+    <string name="session_type_Ego">Ego</string>
     <string name="session_type_following">Followed</string>
     <string name="session_type_advised">Advised</string>
     <string name="session_type_new">New</string>
@@ -86,7 +86,7 @@ Tap this link to read more about it and install on your Android phone.
     <string name="session_detail_action_edit_session">Edit session</string>
     <string name="session_detail_featured_notice">Trending Notice: Hello Darling, this diary session is currently Trending. You are completely anonymous. However, to remove this session from public view, just tap the menu above.</string>
     <string name="session_detail_action_edit_comment">Edit advise</string>
-    <string name="session_detail_action_me_too">Me2🌸</string>
+    <string name="session_detail_action_me_too">Me2🌺</string>
     <string name="session_detail_me_too_count">%1$s</string>
     <!-- Session Detail Page End -->
 
@@ -415,7 +415,7 @@ Tap this link to read more about it and install on your Android phone.
     <string name="enter_chatroom_button">ENTER</string>
     <string name="Chatroom_owner_name">By Claire</string>
     <string name="positive_vibes_only">positive vibes only, no ads</string>
-    <string name="session_type_chat">Chatrooms</string>
+    <string name="session_type_chatrooms">Chatrooms</string>
     <string name="warning_ignore_options_if_not_yours">WARNING! Ignore options if not yours</string>
     <string name="clairevatar_express_yourself_text">(Express yourself)</string>
     <string name="anonymous_text_string">Anonymous Chatroom</string>

@@ -1,4 +1,4 @@
-package com.mobymagic.clairediary.ui.chat
+package com.mobymagic.clairediary.ui.chatrooms
 
 import android.app.Activity
 import android.content.BroadcastReceiver
@@ -31,11 +31,11 @@ import com.mobymagic.clairediary.Constants.PREF_KEY_USER_AVATAR_URL
 import com.mobymagic.clairediary.Constants.PREF_KEY_USER_ID
 import com.mobymagic.clairediary.Constants.PREF_KEY_USER_NICKNAME
 import com.mobymagic.clairediary.R
-import com.mobymagic.clairediary.ui.chat.adapter.ChatAdapter
-import com.mobymagic.clairediary.ui.chat.adapter.ChatImageAdapter
-import com.mobymagic.clairediary.ui.chat.pojo.ChatRoom
-import com.mobymagic.clairediary.ui.chat.pojo.ChatRoomPojo
-import com.mobymagic.clairediary.ui.chat.util.Util.getDate
+import com.mobymagic.clairediary.ui.chatrooms.adapter.ChatAdapter
+import com.mobymagic.clairediary.ui.chatrooms.adapter.ChatImageAdapter
+import com.mobymagic.clairediary.ui.chatrooms.pojo.ChatRoom
+import com.mobymagic.clairediary.ui.chatrooms.pojo.ChatRoomPojo
+import com.mobymagic.clairediary.ui.chatrooms.util.Util.getDate
 import com.mobymagic.clairediary.util.PrefUtil
 import com.mobymagic.clairediary.util.setBackgroundColorHex
 import com.vanniktech.emoji.EmojiManager

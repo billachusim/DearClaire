@@ -1,4 +1,4 @@
-package com.mobymagic.clairediary.ui.chat.adapter
+package com.mobymagic.clairediary.ui.chatrooms.adapter
 
 import android.content.Context
 import android.content.Intent

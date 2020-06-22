@@ -1,4 +1,4 @@
-package com.mobymagic.clairediary.ui.chat.pojo
+package com.mobymagic.clairediary.ui.chatrooms.pojo
 
 import android.os.Parcel
 import android.os.Parcelable

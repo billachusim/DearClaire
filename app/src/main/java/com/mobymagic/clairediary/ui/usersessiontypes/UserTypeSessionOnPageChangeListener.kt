@@ -60,7 +60,7 @@ class UserTypeSessionOnPageChangeListener(val authViewModel: AuthViewModel,
                             "",
                             User.UserType.REGULAR,
                             false,
-                            R.id.nav_session_type_chat
+                            R.id.nav_session_type_chatrooms
                     ), activity as MainActivity)
                 } else {
                     pager.setCurrentItem(3, true)
@@ -74,7 +74,7 @@ class UserTypeSessionOnPageChangeListener(val authViewModel: AuthViewModel,
                             "",
                             User.UserType.REGULAR,
                             false,
-                            R.id.nav_session_type_archived
+                            R.id.nav_session_type_ego
                     ), activity as MainActivity)
                 } else {
                     pager.setCurrentItem(4, true)

@@ -7,7 +7,7 @@
     android:animateLayoutChanges="true"
     android:orientation="vertical"
     app:layout_scrollFlags="noScroll"
-    tools:context=".ui.chat.fragments.ChatFragment">
+    tools:context=".ui.chatrooms.fragments.ChatFragment">
 
 
     <androidx.viewpager.widget.ViewPager

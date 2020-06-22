@@ -1,4 +1,4 @@
-package com.mobymagic.clairediary.ui.chat.fragments
+package com.mobymagic.clairediary.ui.chatrooms.fragments
 
 
 import android.os.Bundle
@@ -17,12 +17,12 @@ private const val ARG_PARAM2 = "param2"
  * A simple [Fragment] subclass.
  *
  */
-class PrivateChatFragment : Fragment() {
+class OneChatRequestFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_private_chat, container, false)
+        return inflater.inflate(R.layout.fragment_one_chat_request, container, false)
     }
 
 

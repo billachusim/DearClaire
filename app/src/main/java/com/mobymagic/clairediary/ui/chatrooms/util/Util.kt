@@ -1,4 +1,4 @@
-package com.mobymagic.clairediary.ui.chat.util
+package com.mobymagic.clairediary.ui.chatrooms.util
 
 import java.text.DateFormatSymbols
 import java.util.*

@@ -1,4 +1,4 @@
-package com.mobymagic.clairediary.ui.chat.adapter
+package com.mobymagic.clairediary.ui.chatrooms.adapter
 
 import android.content.Context
 import android.content.Intent
@@ -10,8 +10,8 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.mobymagic.clairediary.R
-import com.mobymagic.clairediary.ui.chat.ChatActivity
-import com.mobymagic.clairediary.ui.chat.pojo.ChatRoomPojo
+import com.mobymagic.clairediary.ui.chatrooms.ChatActivity
+import com.mobymagic.clairediary.ui.chatrooms.pojo.ChatRoomPojo
 
 class ChatRoomAdapter(private val context: Context, private val chatRoomPojoList: List<ChatRoomPojo>?) : RecyclerView.Adapter<ChatRoomAdapter.ViewHolder>() {
 

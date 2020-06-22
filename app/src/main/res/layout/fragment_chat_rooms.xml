@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/rv"
+    android:id="@+id/chatrooms_recycler_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="vertical"
-    tools:context=".ui.chat.fragments.ChatRoomsFragment">
+    tools:context=".ui.chatrooms.fragments.ChatroomsFragment">
 
 
 </androidx.recyclerview.widget.RecyclerView>

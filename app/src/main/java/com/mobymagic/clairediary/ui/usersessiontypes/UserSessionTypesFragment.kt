@@ -6,7 +6,7 @@ import androidx.viewpager.widget.ViewPager
 import com.mobymagic.clairediary.R
 import com.mobymagic.clairediary.databinding.FragmentUserSessionTypesBinding
 import com.mobymagic.clairediary.ui.auth.AuthViewModel
-import com.mobymagic.clairediary.ui.chat.fragments.ChatFragment
+import com.mobymagic.clairediary.ui.chatrooms.fragments.ChatroomsFragment
 import com.mobymagic.clairediary.ui.common.DataBoundNavFragment
 import com.mobymagic.clairediary.ui.common.PagerAdapter
 import com.mobymagic.clairediary.ui.ego.EgoFragment
@@ -64,11 +64,11 @@ class UserSessionTypesFragment : DataBoundNavFragment<FragmentUserSessionTypesBi
                     binding.sessionTypesPager.setCurrentItem(2, true)
                 }
 
-                R.id.nav_session_type_chat -> {
+                R.id.nav_session_type_chatrooms -> {
                     binding.sessionTypesPager.setCurrentItem(3, true)
                 }
 
-                R.id.nav_session_type_archived -> {
+                R.id.nav_session_type_ego -> {
                     binding.sessionTypesPager.setCurrentItem(4, true)
                 }
 
@@ -95,12 +95,12 @@ class UserSessionTypesFragment : DataBoundNavFragment<FragmentUserSessionTypesBi
                 ),
 
                 PagerAdapter.Item(
-                        getString(R.string.session_type_chat),
-                        ChatFragment.newInstance(userId)
+                        getString(R.string.session_type_chatrooms),
+                        ChatroomsFragment.newInstance(userId)
                 ),
 
                 PagerAdapter.Item(
-                        getString(R.string.session_type_archived),
+                        getString(R.string.session_type_Ego),
                         EgoFragment.newInstance(userId)
                 )
 

@@ -1,4 +1,4 @@
-package com.mobymagic.clairediary.ui.chat.adapter
+package com.mobymagic.clairediary.ui.chatrooms.adapter
 
 import android.content.Context
 import android.content.Intent
@@ -16,7 +16,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.mobymagic.clairediary.R
-import com.mobymagic.clairediary.ui.chat.pojo.ChatRoom
+import com.mobymagic.clairediary.ui.chatrooms.pojo.ChatRoom
 import com.vanniktech.emoji.EmojiTextView
 
 class ChatAdapter(private val context: Context, private val chatRoomList: List<ChatRoom>) : RecyclerView.Adapter<ChatAdapter.ChatViewHolder>() {

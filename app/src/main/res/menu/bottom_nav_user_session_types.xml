@@ -17,12 +17,12 @@
         android:title="@string/session_type_diary" />
 
     <item
-        android:id="@+id/nav_session_type_chat"
+        android:id="@+id/nav_session_type_chatrooms"
         android:icon="@drawable/ic_forum_black_24dp"
-        android:title="@string/session_type_chat" />
+        android:title="@string/session_type_chatrooms" />
 
     <item
-        android:id="@+id/nav_session_type_archived"
+        android:id="@+id/nav_session_type_ego"
         android:icon="@drawable/ego_icon"
         android:title="@string/ego"
 
