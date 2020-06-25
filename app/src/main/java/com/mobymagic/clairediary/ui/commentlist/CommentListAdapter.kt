@@ -44,13 +44,13 @@ class CommentListAdapter(
                 shareClickCallback.invoke(comment)
             }
         }
-        binding.commentEditButton.setOnClickListener { it ->
+        binding.commentEditButton.setOnClickListener {
             binding.comment?.let {
                 Timber.d("Edit click for comment: %s", it)
                 editClickCallback.invoke(it)
             }
         }
-        binding.commentThanksButton.setOnClickListener { it ->
+        binding.commentThanksButton.setOnClickListener {
             binding.comment?.let {
                 Timber.d("Toggle thanks clicked for comment: %s", it)
                 thanksCallback.invoke(it)
@@ -111,6 +111,9 @@ class CommentListAdapter(
             avatarClickedCallBack.invoke(binding.comment!!)
         }
 
+        binding.commentNicknameText.setOnClickListener {
+            avatarClickedCallBack.invoke(binding.comment!!)
+        }
 
     }
 }

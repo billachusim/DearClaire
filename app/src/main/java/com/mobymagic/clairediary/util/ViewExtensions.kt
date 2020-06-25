@@ -108,7 +108,7 @@ fun ImageView.setImageUrl(imageUrl: String) {
 fun ImageView.setAvatarUrl(imageUrl: String) {
     Timber.d("Avatar url: %s", imageUrl)
     GlideApp.with(this)
-            .applyDefaultRequestOptions(RequestOptions().placeholder(R.mipmap.ic_launcher).centerCrop().fitCenter())
+            .applyDefaultRequestOptions(RequestOptions().placeholder(R.drawable.brown_boy_mask).centerCrop().fitCenter())
             .load(imageUrl).into(this)
 }
 

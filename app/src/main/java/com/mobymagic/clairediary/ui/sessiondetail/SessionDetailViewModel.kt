@@ -30,6 +30,7 @@ class SessionDetailViewModel(
     private var submitted = false
     private var fromAlterEgo = false
     private var editingComment = false
+    private var editingSession = false
 
     init {
         // Use a default empty comment
@@ -44,6 +45,11 @@ class SessionDetailViewModel(
     fun editComment(comment: Comment) {
         editingComment = true
         commentLiveData.value = comment
+    }
+
+    fun editSession(session: Session) {
+        editingSession = true
+        sessionLiveData.value = session
     }
 
     fun toggleMeToo(userId: String, session: Session): Session {

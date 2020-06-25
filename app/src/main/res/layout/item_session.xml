@@ -58,8 +58,8 @@
                     android:id="@+id/session_detail_user_image"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_gravity="start"
                     android:layout_alignParentStart="true"
+                    android:layout_gravity="start"
                     android:contentDescription="@null"
                     app:avatarUrl="@{session.userAvatarUrl}"
                     tools:src="@drawable/default_thumbnail" />
@@ -67,8 +67,8 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toEndOf="@id/session_detail_user_image"
                     android:layout_marginHorizontal="6dp"
+                    android:layout_toEndOf="@id/session_detail_user_image"
                     android:orientation="vertical">
 
                     <TextView
@@ -128,6 +128,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:baselineAligned="false"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -233,12 +234,12 @@
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="start"
                         android:layout_gravity="bottom"
-                        android:textSize="18sp"
+                        android:gravity="start"
                         android:text="@string/session_detail_action_me_too"
                         android:textAllCaps="false"
-                        android:textColor="@color/primary_text_light" />
+                        android:textColor="@color/primary_text_light"
+                        android:textSize="18sp" />
 
                 </LinearLayout>
 
@@ -289,8 +290,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_marginHorizontal="2dp"
-                    android:paddingVertical="8dp"
                     android:orientation="horizontal"
+                    android:paddingVertical="8dp"
                     tools:ignore="RelativeOverlap">
 
                     <ImageButton

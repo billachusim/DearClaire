@@ -1,4 +1,4 @@
-package com.mobymagic.clairediary.ui.createsession
+package com.mobymagic.clairediary.ui.clairevartar
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

@@ -16,7 +16,7 @@ import com.mobymagic.clairediary.vo.Resource
 import timber.log.Timber
 
 const val COLLECTION_CLAIRE_VARTAR = "claire_vartar"
-const val LIMIT_CLAIRE_VARTAR_RESULT = 100L
+const val LIMIT_CLAIRE_VARTAR_RESULT = 200L
 
 class ClaireVartarRepository(
         private val appExecutors: AppExecutors,

@@ -73,7 +73,7 @@ class ChatAdapter(private val context: Context, private val chatRoomList: List<C
 
         Glide.with(context)
                 .load(chatRoom.userAvatarUrl)
-                .apply(RequestOptions().placeholder(R.mipmap.ic_launcher).centerCrop().fitCenter())
+                .apply(RequestOptions().placeholder(R.drawable.brown_boy_mask).centerCrop().fitCenter())
                 .into(holder.userAvatarUrl)
 
     }

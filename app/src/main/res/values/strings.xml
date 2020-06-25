@@ -84,7 +84,7 @@ Tap this link to read more about it and install on your Android phone.
     <string name="session_detail_comment_share_message">Here is an advise I received from Dear Claire - Secret Diary Chat: %s</string>
     <string name="session_detail_unfeature_session">Remove session from trending</string>
     <string name="session_detail_action_edit_session">Edit session</string>
-    <string name="session_detail_featured_notice">Trending Notice: Hello Darling, this diary session is currently Trending. You are completely anonymous. However, to remove this session from public view, just tap the menu above.</string>
+    <string name="session_detail_featured_notice">NOTICE: This session is currently trending and you are still anonymous. To remove from public view, tap edit or ask Claire.</string>
     <string name="session_detail_action_edit_comment">Edit advise</string>
     <string name="session_detail_action_me_too">Me2🌺</string>
     <string name="session_detail_me_too_count">%1$s</string>
@@ -125,8 +125,8 @@ Tap this link to read more about it and install on your Android phone.
     <!-- Create Profile Page Start -->
     <string name="create_profile_page_title">Welcome To Claire</string>
     <string name="create_profile_page_subtitle">Quickly create an anonymous account</string>
-    <string name="create_profile_hint_nickname">Nickname</string>
-    <string name="create_profile_input_error_nickname_claire_not_allowed">Using claire in your nickname is not allowed</string>
+    <string name="create_profile_hint_nickname">Nickname (can change later)</string>
+    <string name="create_profile_input_error_nickname_claire_not_allowed">Using claire here is not allowed but you can later</string>
     <string name="create_profile_input_error_nickname_invalid">Please enter a nickname with more than 3 characters</string>
     <string name="create_profile_input_error_gender_invalid">Please select a gender</string>
     <string name="create_profile_action_create_profile">Submit</string>
@@ -369,6 +369,15 @@ Tap this link to read more about it and install on your Android phone.
     <string name="follow">Follow</string>
     <string name="do_you_want_to_follow_this_session">Do you want to %1$s this Diary Session?</string>
     <string name="cannot_follow_your_own_session">You cannot follow your own session</string>
+    <string name="this_session_is_trending">This session is public and trending.</string>
+    <string name="ask_claire_to_trend_this_session">Public but not trending. Ask Claire.</string>
+    <string name="share_this_public_session">You can share your sessions or trending sessions soon.</string>
+    <string name="cannot_share_non_trending_session">You can only share a trending session.</string>
+
+
+
+
+
 
     <string name="hello_blank_fragment">Coming Soon; you can chat privately anonymously with Claire or anyone.</string>
     <string name="your_avartar">Your Avartar</string>
@@ -420,5 +429,6 @@ Tap this link to read more about it and install on your Android phone.
     <string name="clairevatar_express_yourself_text">(Express yourself)</string>
     <string name="anonymous_text_string">Anonymous Chatroom</string>
     <string name="users_count_10_plus">10+</string>
+    <string name="create_account_choose_clairevatar">👇🏾Choose Clairevatar</string>
 
 </resources>

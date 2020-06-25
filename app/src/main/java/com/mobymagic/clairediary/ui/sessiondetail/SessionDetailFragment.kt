@@ -11,12 +11,8 @@ import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
 import android.util.TypedValue
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
-import android.view.View.GONE
-import android.view.View.NOT_FOCUSABLE
+import android.view.View.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -107,46 +103,6 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
         sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        audioUtil.stopAudio()
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.session_detail, menu)
-        val isUserCreatorOfSession = session.userId == userId
-        val showUnFeatureView = session.featured && isUserCreatorOfSession
-        menu.findItem(R.id.menu_unfavorite_session).isVisible = showUnFeatureView
-        menu.findItem(R.id.menu_edit_session).isVisible = isUserCreatorOfSession
-        binding.showUnFeatureView = showUnFeatureView
-        super.onCreateOptionsMenu(menu, inflater)
-        sharedViewModel.getNumberOfComments().observe(this, Observer { numberOfComments ->
-            if (numberOfComments != null && numberOfComments > MAXIMUM_NUMBER_OF_COMMENTS) {
-                binding.sessionDetailCommentLayout.visibility = GONE
-            }
-        })
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.menu_unfavorite_session -> {
-                session.featured = false
-                sessionRepository.updateSession(session)
-                activity?.invalidateOptionsMenu()
-                binding.session = session
-                true
-            }
-            R.id.menu_edit_session -> {
-                val editSessionFragment = CreateSessionFragment.newInstance(session)
-                getNavController().navigateTo(editSessionFragment)
-                true
-            }
-            else -> {
-                super.onOptionsItemSelected(item)
-            }
-        }
-    }
-
     private fun openAudioRecordPage() {
         Dexter.withContext(requireActivity())
                 .withPermission(Manifest.permission.RECORD_AUDIO)
@@ -189,6 +145,8 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
         super.onActivityCreated(savedInstanceState)
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toolbar.setBackgroundColorHex(session.colorHex)
+
         binding.userAvailable = !TextUtils.isEmpty(userId)
         binding.isAdmin = SessionListType.isAlterEgo(tabType)
         binding.session = session
@@ -210,12 +168,12 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
             sessionDetailPlayer.seekTo(sessionDetailPlayer.currentPosition)
             sessionDetailPlayer.playWhenReady = true
             it.visibility = GONE
-            binding.sessionAudioView.player.findViewById<ImageButton>(R.id.exo_pause)!!.visibility = View.VISIBLE
+            binding.sessionAudioView.player.findViewById<ImageButton>(R.id.exo_pause)!!.visibility = VISIBLE
         }
 
         binding.sessionAudioView.player.findViewById<ImageButton>(R.id.exo_pause)?.setOnClickListener {
             sessionDetailPlayer.playWhenReady = false
-            binding.sessionAudioView.player.findViewById<ImageButton>(R.id.exo_play)!!.visibility = View.VISIBLE
+            binding.sessionAudioView.player.findViewById<ImageButton>(R.id.exo_play)!!.visibility = VISIBLE
             it.visibility = GONE
         }
 
@@ -251,6 +209,9 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
         )
 
         setupMeTooControls()
+        setupEditSession()
+        setupTrendingControls()
+        setupShareSession()
         setupSessionPhotoList()
         setupCreateCommentPhotoList()
         setupEmojiPopup()
@@ -281,6 +242,83 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
 
     fun editComment(comment: Comment) {
         sessionDetailViewModel.editComment(comment)
+    }
+
+    private fun setupTrendingControls() {
+        binding.sessionDetailActionContainer.setVisibleOrGone(session.userId == userId)
+
+        binding.sessionDetailTrendingButton.setOnClickListener {
+            binding.session?.let { session ->
+                if (session.featured) {
+                    Toast.makeText(binding.root.context,
+                            binding.root.context.getString(R.string.this_session_is_trending), Toast.LENGTH_LONG).show()
+
+                } else {
+                    Toast.makeText(binding.root.context,
+                            binding.root.context.getString(R.string.ask_claire_to_trend_this_session), Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+
+        if (userId == session.userId) {
+            if (session.private) {
+                binding.sessionDetailTrendingButton.visibility = GONE
+            } else {
+                if (session.featured) {
+                    binding.sessionDetailTrendingButton.setImageResource(R.drawable.round_star_white_24)
+                    binding.sessionDetailTrendingButton.contentDescription =
+                            context?.getString(R.string.session_list_action_unfeature)
+                } else {
+                    val drawable = context?.let { ContextCompat.getDrawable(it, R.drawable.round_star_white_24) }!!
+                    val color = ContextCompat.getColor(requireContext(), R.color.inactive_icon_light)
+                    val tintedDrawable = ViewUtil.tintDrawable(drawable, color)
+                    binding.sessionDetailTrendingButton.setImageDrawable(tintedDrawable)
+                    binding.sessionDetailTrendingButton.contentDescription =
+                            requireContext().getString(R.string.session_list_action_feature)
+                }
+            }
+        } else {
+
+            binding.sessionDetailTrendingButton.setVisibleOrGone(session.userId == userId)
+        }
+
+        val isUserCreatorOfSession = session.userId == userId
+        val showUnFeatureView = session.featured && isUserCreatorOfSession
+        binding.showUnFeatureView = showUnFeatureView
+
+    }
+
+
+    private fun setupEditSession() {
+        binding.session = session
+        binding.sessionDetailEditButton.setVisibleOrGone(session.userId == userId)
+        binding.sessionDetailEditButton.setOnClickListener {
+            sessionDetailViewModel.editSession(session)
+            val editSessionFragment = CreateSessionFragment.newInstance(session)
+            getNavController().navigateTo(editSessionFragment)
+        }
+    }
+
+    private fun setupShareSession() {
+        binding.sessionDetailShareButton.setOnClickListener {
+            binding.session?.let { session ->
+                if (session.userId == userId) {
+                    Toast.makeText(binding.root.context,
+                            binding.root.context.getString(R.string.share_this_public_session), Toast.LENGTH_LONG).show()
+                } else {
+                    if (session.featured) {
+                        Toast.makeText(binding.root.context,
+                                binding.root.context.getString(R.string.share_this_public_session), Toast.LENGTH_LONG).show()
+
+                    } else {
+                        Toast.makeText(binding.root.context,
+                                binding.root.context.getString(R.string.cannot_share_non_trending_session), Toast.LENGTH_LONG).show()
+                    }
+                }
+
+                binding.sessionDetailShareButton.setVisibleOrGone(session.repliesEnabled)
+            }
+        }
     }
 
     private fun observeDraftComment() {
@@ -540,6 +578,11 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
         } else {
             binding.followText = "Follow"
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        audioUtil.stopAudio()
     }
 
     override fun onDestroy() {

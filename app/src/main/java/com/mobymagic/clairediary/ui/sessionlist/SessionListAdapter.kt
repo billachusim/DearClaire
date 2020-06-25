@@ -104,6 +104,12 @@ class SessionListAdapter(
                 avatarClickCallback.invoke(it!!)
             }
         }
+
+        binding.sessionDetailNicknameText.setOnClickListener {
+            binding.session.let {
+                avatarClickCallback.invoke(it!!)
+            }
+        }
     }
 
 

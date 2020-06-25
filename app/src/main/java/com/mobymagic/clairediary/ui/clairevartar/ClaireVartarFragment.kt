@@ -17,7 +17,6 @@ import com.crashlytics.android.answers.CustomEvent
 import com.mobymagic.clairediary.AppExecutors
 import com.mobymagic.clairediary.R
 import com.mobymagic.clairediary.databinding.FragmentClaireVartarBinding
-import com.mobymagic.clairediary.ui.createsession.ClaireVartarViewModel
 import com.mobymagic.clairediary.util.autoCleared
 import org.koin.android.ext.android.inject
 import timber.log.Timber

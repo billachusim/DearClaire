@@ -88,6 +88,7 @@
                         android:orientation="vertical">
 
                         <androidx.cardview.widget.CardView
+                            android:id="@+id/cardBackGround"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
@@ -161,7 +162,7 @@
                                     android:id="@+id/session_detail_featured_notice_text"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:gravity="start"
+                                    android:gravity="center_horizontal"
                                     android:padding="6dp"
                                     android:text="@string/session_detail_featured_notice"
                                     android:textColor="@color/secondary_text_light"
@@ -169,36 +170,47 @@
                                     app:layout_constraintTop_toBottomOf="@id/session_detail_user_image"
                                     app:visibleGone="@{showUnFeatureView}" />
 
-                                <TextView
-                                    android:id="@+id/session_title"
-                                    android:layout_width="match_parent"
+                                <LinearLayout
+                                    android:id="@+id/session_title_text_container"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginBottom="4dp"
-                                    android:ellipsize="end"
-                                    android:fontFamily="@string/font_family_medium"
-                                    android:gravity="center_horizontal"
-                                    android:maxLines="2"
-                                    android:text="@{session.title}"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                                    android:textColor="@color/white"
-                                    android:textSize="18sp"
-                                    app:layout_constraintTop_toBottomOf="@id/session_detail_featured_notice_text"
-                                    tools:ignore="RtlSymmetry"
-                                    tools:text="Title of my first session" />
-
-                                <com.vanniktech.emoji.EmojiTextView
-                                    android:id="@+id/session_detail_message_text"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="@string/font_family_regular"
-                                    android:padding="7dp"
-                                    android:text="@{session.message}"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                                    android:textColor="@color/white"
-                                    android:textIsSelectable="true"
                                     app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@id/session_title"
-                                    tools:text="Lorem ipsum pisum lasum disum gisum pasum tapum gapum vesum" />
+                                    android:layout_weight="1"
+                                    app:layout_constraintTop_toBottomOf="@id/session_detail_featured_notice_text"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/session_title"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="4dp"
+                                        android:ellipsize="end"
+                                        android:fontFamily="@string/font_family_medium"
+                                        android:gravity="center_horizontal"
+                                        android:maxLines="3"
+                                        android:text="@{session.title}"
+                                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                                        android:textColor="@color/white"
+                                        android:textSize="18sp"
+                                        app:layout_constraintTop_toBottomOf="@id/session_detail_featured_notice_text"
+                                        tools:ignore="RtlSymmetry"
+                                        tools:text="Title of my first session" />
+
+                                    <com.vanniktech.emoji.EmojiTextView
+                                        android:id="@+id/session_detail_message_text"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@string/font_family_regular"
+                                        android:padding="7dp"
+                                        android:text="@{session.message}"
+                                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                                        android:textColor="@color/white"
+                                        android:textIsSelectable="true"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/session_title"
+                                        tools:text="Lorem ipsum pisum lasum disum gisum pasum tapum gapum vesum" />
+
+                                </LinearLayout>
 
                                 <androidx.recyclerview.widget.RecyclerView
                                     android:id="@+id/session_detail_photo_list"
@@ -206,7 +218,7 @@
                                     android:layout_height="wrap_content"
                                     android:scrollbars="horizontal"
                                     app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@id/session_detail_message_text" />
+                                    app:layout_constraintTop_toBottomOf="@id/session_title_text_container" />
 
                                 <FrameLayout
                                     android:id="@+id/session_detail_audio_container"
@@ -230,8 +242,8 @@
                                     android:id="@+id/me_too_container"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginHorizontal="10dp"
                                     android:gravity="start"
-                                    android:layout_marginHorizontal="12dp"
                                     android:orientation="horizontal"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toBottomOf="@id/session_detail_audio_container"
@@ -253,9 +265,62 @@
                                         android:layout_height="wrap_content"
                                         android:gravity="start"
                                         android:text="@string/session_detail_action_me_too"
-                                        android:textSize="19sp"
                                         android:textAllCaps="false"
-                                        android:textColor="@color/primary_text_light" />
+                                        android:textColor="@color/primary_text_light"
+                                        android:textSize="19sp" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/session_detail_action_container"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginHorizontal="8dp"
+                                    android:paddingTop="8dp"
+                                    android:orientation="horizontal"
+                                    app:layout_constraintEnd_toStartOf="@id/session_detail_share_container"
+                                    app:layout_constraintTop_toBottomOf="@id/session_detail_audio_container"
+                                    app:visibleGone="@{userAvailable}">
+
+                                    <ImageButton
+                                        android:id="@+id/session_detail_trending_button"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginEnd="8dp"
+                                        android:background="?attr/selectableItemBackground"
+                                        android:contentDescription="@null"
+                                        android:src="@drawable/ic_star_white_24dp" />
+
+                                    <ImageButton
+                                        android:id="@+id/session_detail_edit_button"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="top"
+                                        android:background="?android:attr/selectableItemBackground"
+                                        android:contentDescription="@string/session_detail_action_edit_comment"
+                                        android:src="@drawable/round_edit_white_24" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/session_detail_share_container"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginHorizontal="8dp"
+                                    android:gravity="end"
+                                    android:paddingTop="8dp"
+                                    android:orientation="horizontal"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@id/session_detail_audio_container"
+                                    app:visibleGone="@{userAvailable}">
+
+                                    <ImageButton
+                                        android:id="@+id/session_detail_share_button"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:background="?android:attr/selectableItemBackground"
+                                        android:contentDescription="@string/session_detail_content_desc_share_response"
+                                        android:src="@drawable/ic_share_white_24dp" />
 
                                 </LinearLayout>
 
@@ -345,7 +410,7 @@
                             android:background="?android:attr/selectableItemBackground"
                             android:contentDescription="@string/common_content_desc_show_emoji"
                             android:padding="8dp"
-                            android:tint="@color/active_icon_dark"
+                            android:tint="@color/theme_primary_dark"
                             app:srcCompat="@drawable/ic_round_insert_emoticon_white_24" />
 
                         <com.vanniktech.emoji.EmojiEditText
@@ -368,7 +433,7 @@
                             android:background="?android:attr/selectableItemBackground"
                             android:contentDescription="@string/session_detail_content_desc_add_photo"
                             android:padding="8dp"
-                            android:tint="@color/active_icon_dark"
+                            android:tint="@color/theme_primary_dark"
                             app:srcCompat="@drawable/ic_round_photo_camera_white_24" />
 
                     </LinearLayout>

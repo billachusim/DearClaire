@@ -219,8 +219,8 @@ class GuestEgoFragment : DataBoundNavFragment<FragmentGuestEgoBinding>() {
 
                 }
             } else if (it.status == Status.ERROR) {
-                bestSession.message = "An error ocurred while loading Session," +
-                        " please click to try agian"
+                bestSession.message = "An error occurred while loading Session," +
+                        " please click to try again"
                 binding.bestSession = bestSession
                 binding.bestSessionTextView.setOnClickListener {
                     egoViewModel.retryLoadingBestSession()
@@ -231,8 +231,13 @@ class GuestEgoFragment : DataBoundNavFragment<FragmentGuestEgoBinding>() {
                 } else if (it.data.isNotEmpty()) {
                     val bestSession: Session = it.data[0]
                     binding.bestSession = bestSession
-//                    binding.bestSessionLikeCount.text = it.data.get(0).followers.count()
                     binding.bestSessionTextView.setOnClickListener {
+
+                        getNavController()
+                                .navigate(SessionDetailFragment.newInstance(bestSession,
+                                        user?.userId!!, SessionListType.EGO), true)
+                    }
+                    binding.bestSessionTitleTextView.setOnClickListener {
 
                         getNavController()
                                 .navigate(SessionDetailFragment.newInstance(bestSession,

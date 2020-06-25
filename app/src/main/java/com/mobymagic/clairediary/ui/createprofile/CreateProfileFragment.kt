@@ -15,6 +15,7 @@ import com.mobymagic.clairediary.ui.splash.SplashFragment
 import com.mobymagic.clairediary.vo.Status
 import org.koin.android.ext.android.inject
 import timber.log.Timber
+import java.util.*
 
 /**
  * Page to create a new profile
@@ -40,7 +41,7 @@ class CreateProfileFragment : DataBoundNavFragment<FragmentCreateProfileBinding>
     private fun initForm() {
         binding.userImageUrl = ""
         binding.createProfileButton.setOnClickListener {
-            val nickname = binding.createProfileNicknameInput.text.toString().toLowerCase()
+            val nickname = binding.createProfileNicknameInput.text.toString().toLowerCase(Locale.ROOT)
             val genderPos = binding.createProfileGenderSpinner.selectedItemPosition
             val genders = resources.getStringArray(R.array.create_profile_genders)
             val gender = if (genderPos == 0) null else genders[genderPos]
@@ -55,6 +56,15 @@ class CreateProfileFragment : DataBoundNavFragment<FragmentCreateProfileBinding>
         }
 
         binding.userImage.setOnClickListener {
+            val fm = fragmentManager
+            val claireVartarFragment = ClaireVartarFragment()
+            claireVartarFragment.setTargetFragment(this, CLAIRE_VARTAR_REQUEST_CODE)
+            if (fm != null) {
+                claireVartarFragment.show(fm, "claireVartarFragment")
+            }
+        }
+
+        binding.createAccountClairevatar.setOnClickListener {
             val fm = fragmentManager
             val claireVartarFragment = ClaireVartarFragment()
             claireVartarFragment.setTargetFragment(this, CLAIRE_VARTAR_REQUEST_CODE)
@@ -117,7 +127,7 @@ class CreateProfileFragment : DataBoundNavFragment<FragmentCreateProfileBinding>
     }
 
     companion object {
-        val CLAIRE_VARTAR_REQUEST_CODE = 2000
+        const val CLAIRE_VARTAR_REQUEST_CODE = 2000
         fun newInstance(): CreateProfileFragment {
             return CreateProfileFragment()
         }

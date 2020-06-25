@@ -300,7 +300,7 @@ class EgoFragment : DataBoundNavFragment<FragmentEgoBinding>() {
             return false
         }
         if (username.contains("claire", false)) {
-            Toast.makeText(context, "Sorry, you rusername cannot contain claire", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Sorry, you username cannot contain claire", Toast.LENGTH_SHORT).show()
             return false
         }
         return true
