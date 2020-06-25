@@ -5,7 +5,7 @@ import com.mobymagic.clairediary.ui.archivesessions.ArchiveSessionViewModel
 import com.mobymagic.clairediary.ui.auth.AuthViewModel
 import com.mobymagic.clairediary.ui.commentlist.CommentListViewModel
 import com.mobymagic.clairediary.ui.createprofile.CreateProfileViewModel
-import com.mobymagic.clairediary.ui.createsession.ClaireVartarViewModel
+import com.mobymagic.clairediary.ui.clairevartar.ClaireVartarViewModel
 import com.mobymagic.clairediary.ui.createsession.CreateSessionViewModel
 import com.mobymagic.clairediary.ui.ego.EgoViewModel
 import com.mobymagic.clairediary.ui.forgotsecretcode.ForgotSecretCodeViewModel
