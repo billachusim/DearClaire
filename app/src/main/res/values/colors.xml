@@ -7,8 +7,6 @@
     <color name="colorPrimaryLightPix">#80075e54</color>
 
     <color name="text_error">#F44336</color>
-    <color name="session_detail_background">#FFFFFF</color>
-    <color name="comment_background">#F2F2F2</color>
     <color name="audio_progress_background">#55000000</color>
     <color name="admin_badge_color">#721fb6</color>
     <color name="user_badge_color">#F44336</color>

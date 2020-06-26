@@ -117,31 +117,20 @@
     <!-- Dark text on light backgrounds -->
     <color name="primary_text_dark">#DE000000</color>
     <color name="secondary_text_dark">#8A000000</color>
-    <color name="tertiary_text_dark">#61000000</color>
-    <color name="hint_text_dark">#61000000</color>
-    <color name="disabled_text_dark">#61000000</color>
 
     <!-- White text on dark backgrounds -->
     <color name="primary_text_light">#FFFFFFFF</color>
     <color name="secondary_text_light">#B3FFFFFF</color>
     <color name="tertiary_text_light">#80FFFFFF</color>
-    <color name="hint_text_light">#80FFFFFF</color>
-    <color name="disabled_text_light">#80FFFFFF</color>
-
-    <color name="divider">#1F000000</color>
 
     <!-- Dark icons on light backgrounds -->  <!-- These colors are slighly different than guidelines -->
     <color name="active_icon_dark">#8A000000</color>
-    <color name="inactive_icon_dark">#61000000</color>
 
     <!-- White icons on dark backgrounds -->
     <color name="active_icon_light">#FFFFFFFF</color>
     <color name="inactive_icon_light">#80FFFFFF</color>
 
     <!-- White icons on dark backgrounds -->
-
-    <color name="color_selected">#66000000</color>
-    <color name="color_focused">#42000000</color>
 
     <color name="color_scrim_dark">#66000000</color>
 

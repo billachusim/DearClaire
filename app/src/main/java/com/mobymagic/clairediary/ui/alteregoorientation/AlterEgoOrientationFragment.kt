@@ -13,7 +13,6 @@ import com.thejuki.kformmaster.helper.*
 import com.thejuki.kformmaster.model.BaseFormElement
 import kotlinx.android.synthetic.main.layout_app_bar.*
 import org.koin.android.ext.android.inject
-import java.net.URLEncoder
 
 class AlterEgoOrientationFragment : DataBoundNavFragment<FragmentAlterEgoOrientationBinding>() {
 
@@ -138,7 +137,7 @@ class AlterEgoOrientationFragment : DataBoundNavFragment<FragmentAlterEgoOrienta
             }
             button(FormTag.CONTINUE_TO_WHATSAPP.ordinal) {
                 value = getString(R.string.alter_ego_orientation_action_continue_to_whatsapp)
-                valueObservers.add { newValue, element ->
+                valueObservers.add { _, _ ->
                     onContinueToWhatsAppClicked()
                 }
             }
@@ -157,7 +156,7 @@ class AlterEgoOrientationFragment : DataBoundNavFragment<FragmentAlterEgoOrienta
     }
 
     private fun getWhatsAppUrl(payload: String): String {
-        return Constants.WHATSAPP_URL + URLEncoder.encode(payload)
+        return Constants.WHATSAPP_URL + (payload)
     }
 
     private fun getPayload(): String {
@@ -192,7 +191,7 @@ class AlterEgoOrientationFragment : DataBoundNavFragment<FragmentAlterEgoOrienta
         val userUid = requireArguments().getString(ARG_USER_ID)
         val email = prefUtil.getString(Constants.PREF_KEY_USER_EMAIL, null)
 
-        val payload = """
+        return """
             I'm ready for final Clairentation. These are my details:
 
             *UserId*: $userUid
@@ -237,7 +236,6 @@ class AlterEgoOrientationFragment : DataBoundNavFragment<FragmentAlterEgoOrienta
 
             *${readyToBeClaire.title}*: ${readyToBeClaire.value}
             """.trimIndent()
-        return payload
     }
 
     companion object {
