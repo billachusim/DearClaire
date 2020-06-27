@@ -79,7 +79,7 @@ Tap this link to read more about it and install on your Android phone.
     <string name="session_detail_content_desc_comment_remove_audio">Remove audio</string>
     <string name="session_detail_content_desc_share_response">Share response</string>
     <string name="session_detail_comment_share_message">Here is an advise I received from Dear Claire - Secret Diary Chat: %s</string>
-    <string name="session_detail_featured_notice">NOTICE: This session is currently trending and you are still anonymous. To remove from public view, tap edit or ask Claire.</string>
+    <string name="session_detail_featured_notice">NOTICE: This session is currently trending and you are still anonymous. To remove from public view, tap star or ask Claire.</string>
     <string name="session_detail_action_edit_comment">Edit advise</string>
     <string name="session_detail_action_me_too">Me2🌺</string>
     <!-- Session Detail Page End -->

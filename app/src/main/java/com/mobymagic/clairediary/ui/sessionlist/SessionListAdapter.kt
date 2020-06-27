@@ -1,14 +1,11 @@
 package com.mobymagic.clairediary.ui.sessionlist
 
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.text.TextUtils
 import android.view.View
 import android.view.ViewTreeObserver
 import android.view.ViewTreeObserver.OnGlobalLayoutListener
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
@@ -80,17 +77,6 @@ class SessionListAdapter(
                 sessionClickCallback.invoke(session, true)
             }
         }
-        binding.sessionListFollow.setOnClickListener {
-
-            binding.session?.let { session ->
-                if (userId == session.userId) {
-                    Toast.makeText(binding.root.context,
-                            binding.root.context.getString(R.string.cannot_follow_your_own_session), Toast.LENGTH_LONG).show()
-                } else {
-                    showFollowingDialog(binding)
-                }
-            }
-        }
 
         binding.sessionListAudioView.startAudioButton.setOnClickListener {
 
@@ -110,28 +96,6 @@ class SessionListAdapter(
                 avatarClickCallback.invoke(it!!)
             }
         }
-    }
-
-
-    private fun showFollowingDialog(binding: ItemSessionBinding) {
-        val builder = AlertDialog.Builder(binding.root.context)
-        builder.setTitle(String.format(binding.root.context
-                .getString(R.string.do_you_want_to_follow_this_session), binding.followText))
-        builder.setPositiveButton("Yes") { dialogInterface: DialogInterface, _: Int ->
-            sessionDetailViewModel.toggleFollowers(userId, binding.session!!)
-            Toast.makeText(binding.root.context,
-                    if (binding.followText == "Unfollow")
-                        "UnFollowed Diary Session" else {
-                        "Following Diary Session"
-                    }, Toast.LENGTH_LONG).show()
-            updateFollowText(binding, binding.session!!)
-            dialogInterface.dismiss()
-        }
-        builder.setNegativeButton("No") { dialogInterface: DialogInterface, _: Int ->
-            dialogInterface.dismiss()
-        }
-
-        builder.show()
     }
 
     override fun bind(binding: ItemSessionBinding, item: Session) {
@@ -174,6 +138,7 @@ class SessionListAdapter(
                 binding.sessionActionButton.visibility = View.GONE
             } else {
                 if (item.featured) {
+                    binding.sessionActionButton.visibility = View.VISIBLE
                     binding.sessionActionButton.setImageResource(R.drawable.round_star_border_white_24)
                     binding.sessionActionButton.contentDescription =
                             context.getString(R.string.session_list_action_unfeature)

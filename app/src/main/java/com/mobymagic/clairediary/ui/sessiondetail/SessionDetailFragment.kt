@@ -94,7 +94,7 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         session = requireArguments().getParcelable(ARG_SESSION)!!
-        userId = requireArguments().getString(ARG_USER_ID).toString()
+        userId = requireArguments().getString(ARG_USER_ID)!!
         tabType = requireArguments().getSerializable(ARG_TAB_TYPE) as SessionListType
         shouldOpenCommentBox = requireArguments().getBoolean(SHOULD_OPEN_COMMENT_BOX)
 
@@ -147,6 +147,7 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
         toolbar.setBackgroundColorHex(session.colorHex)
 
+        binding.followCount = session.followers.count()
         binding.userAvailable = !TextUtils.isEmpty(userId)
         binding.isAdmin = SessionListType.isAlterEgo(tabType)
         binding.session = session
@@ -212,6 +213,7 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
         setupEditSession()
         setupTrendingControls()
         setupShareSession()
+        setupFollowControls()
         setupSessionPhotoList()
         setupCreateCommentPhotoList()
         setupEmojiPopup()
@@ -240,6 +242,65 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
         }
     }
 
+    private fun setupFollowControls() {
+        // Trying to stop follow from showing in alter ego mode here but not lucky yet.
+        if (SessionListType.isAlterEgo(tabType)) {
+            binding.sessionDetailFollowContainer.visibility = INVISIBLE
+        } else {
+            binding.sessionDetailFollowContainer.visibility = INVISIBLE
+        }
+        binding.sessionDetailFollow.setOnClickListener {
+
+            binding.session?.let { session ->
+                if (userId == session.userId) {
+                    Toast.makeText(binding.root.context,
+                            binding.root.context.getString(R.string.cannot_follow_your_own_session), Toast.LENGTH_LONG).show()
+                } else {
+                    showFollowingDialog(binding)
+                }
+            }
+        }
+    }
+
+    private fun updateFollowText() {
+        if (session.followers.contains(userId)) {
+            binding.followText = "Unfollow"
+        } else {
+            binding.followText = "Follow"
+        }
+    }
+
+    private fun showFollowingDialog(binding: FragmentSessionDetailBinding) {
+        val builder = AlertDialog.Builder(binding.root.context)
+        builder.setTitle(String.format(binding.root.context
+                .getString(R.string.do_you_want_to_follow_this_session), binding.followText))
+        builder.setPositiveButton("Yes") { dialogInterface: DialogInterface, _: Int ->
+            sessionDetailViewModel.toggleFollowers(userId, binding.session!!)
+            Toast.makeText(binding.root.context,
+                    if (binding.followText == "Unfollow")
+                        "UnFollowed Diary Session" else {
+                        "Following Diary Session"
+                    }, Toast.LENGTH_LONG).show()
+            updateFollowText(binding, binding.session!!)
+            dialogInterface.dismiss()
+        }
+        builder.setNegativeButton("No") { dialogInterface: DialogInterface, _: Int ->
+            dialogInterface.dismiss()
+        }
+
+        builder.show()
+    }
+
+    private fun updateFollowText(binding: FragmentSessionDetailBinding, session: Session) {
+
+        if (session.followers.contains(userId)) {
+            binding.followText = "Unfollow"
+        } else {
+            binding.followText = "Follow"
+        }
+        binding.followCount = session.followers.count()
+    }
+
     fun editComment(comment: Comment) {
         sessionDetailViewModel.editComment(comment)
     }
@@ -265,6 +326,7 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
                 binding.sessionDetailTrendingButton.visibility = GONE
             } else {
                 if (session.featured) {
+                    binding.sessionDetailTrendingButton.visibility = VISIBLE
                     binding.sessionDetailTrendingButton.setImageResource(R.drawable.round_star_white_24)
                     binding.sessionDetailTrendingButton.contentDescription =
                             context?.getString(R.string.session_list_action_unfeature)
@@ -540,44 +602,6 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
             return sessionDetailFragment
         }
 
-    }
-
-    private fun updateFollowText() {
-        if (session.followers.contains(userId)) {
-            binding.followText = "Unfollow"
-        } else {
-            binding.followText = "Follow"
-        }
-    }
-
-    private fun showFollowingDialog(binding: FragmentSessionDetailBinding) {
-        val builder = AlertDialog.Builder(binding.root.context)
-        builder.setTitle(String.format(binding.root.context
-                .getString(R.string.do_you_want_to_follow_this_session), binding.followText))
-        builder.setPositiveButton("Yes") { dialogInterface: DialogInterface, _: Int ->
-            sessionDetailViewModel.toggleFollowers(userId, binding.session!!)
-            Toast.makeText(binding.root.context,
-                    if (binding.followText == "Unfollow")
-                        "UnFollowed Diary Session" else {
-                        "Following Diary Session"
-                    }, Toast.LENGTH_LONG).show()
-            updateFollowText(binding, binding.session!!)
-            dialogInterface.dismiss()
-        }
-        builder.setNegativeButton("No") { dialogInterface: DialogInterface, _: Int ->
-            dialogInterface.dismiss()
-        }
-
-        builder.show()
-    }
-
-    private fun updateFollowText(binding: FragmentSessionDetailBinding, session: Session) {
-
-        if (session.followers.contains(userId)) {
-            binding.followText = "Unfollow"
-        } else {
-            binding.followText = "Follow"
-        }
     }
 
     override fun onDestroyView() {
