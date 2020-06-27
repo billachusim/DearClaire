@@ -191,7 +191,7 @@ class SessionsHomeFragment : DataBoundNavFragment<FragmentSessionsHomeBinding>()
                 val appName = getString(R.string.app_name)
                 androidUtil.shareText(
                         requireContext(), appName,
-                        getString(R.string.common_message_share_app, appName, Constants.STORE_URL)
+                        getString(R.string.common_message_share_app, appName, Constants.APP_DYNAMIC_LINK)
                 )
             }
             R.id.nav_how_to_use -> {

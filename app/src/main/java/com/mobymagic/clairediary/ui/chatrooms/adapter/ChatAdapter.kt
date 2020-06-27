@@ -17,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.mobymagic.clairediary.R
 import com.mobymagic.clairediary.ui.chatrooms.pojo.ChatRoom
+import com.mobymagic.clairediary.vo.User
 import com.vanniktech.emoji.EmojiTextView
 
 class ChatAdapter(private val context: Context, private val chatRoomList: List<ChatRoom>) : RecyclerView.Adapter<ChatAdapter.ChatViewHolder>() {
@@ -54,6 +55,9 @@ class ChatAdapter(private val context: Context, private val chatRoomList: List<C
 
         if (firebaseAuth.currentUser!!.uid != chatRoom.sender_uid) {
             holder.commentEditButton.visibility = View.INVISIBLE
+            // Trying to get edit chat/comment to show for super admins but no luck yet.
+        } else if (User.UserType.isAdmin(User.UserType.SUPER_ADMIN)) {
+            holder.commentEditButton.visibility = View.VISIBLE
         }
 
         getThanks(holder, chatRoom)

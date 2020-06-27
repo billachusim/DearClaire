@@ -53,6 +53,7 @@ import com.mobymagic.clairediary.util.*
 import com.mobymagic.clairediary.vo.Comment
 import com.mobymagic.clairediary.vo.Session
 import com.mobymagic.clairediary.vo.Status
+import com.mobymagic.clairediary.vo.User
 import com.mobymagic.clairediary.widgets.ItemOffsetDecoration
 import com.vanniktech.emoji.EmojiPopup
 import kotlinx.android.synthetic.main.layout_app_bar.*
@@ -244,7 +245,7 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
 
     private fun setupFollowControls() {
         // Trying to stop follow from showing in alter ego mode here but not lucky yet.
-        if (SessionListType.isAlterEgo(tabType)) {
+        if (User.UserType.isAdmin(User.UserType.ADMIN)) {
             binding.sessionDetailFollowContainer.visibility = INVISIBLE
         } else {
             binding.sessionDetailFollowContainer.visibility = INVISIBLE

@@ -7,9 +7,8 @@
     <string name="common_message_loading">Loading…</string>
     <string name="common_error_login_again">Please login again to continue</string>
     <string name="common_chooser_title_share_using">Share using</string>
-    <string name="common_message_share_app">Have you heard about this app called Dear Claire?
-It\'s like a secret diary chat 🌸 An app where you can write or record anything anonymously and get advise free 💕 🔐 You can also follow people\'s secrets and earn cash for your advise.
-Tap this link to read more about it and install on your Android phone.
+    <string name="common_message_share_app">Have you heard about this secret diary app called Dear Claire?
+You can write or record anything anonymously and get advises free. You can also follow people\'s diary sessions and earn gifts for giving them advise.
 %2$s</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
