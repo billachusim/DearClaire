@@ -167,14 +167,32 @@
 
                 </LinearLayout>
 
-                <ImageButton
-                    android:id="@+id/session_action_button"
+                <LinearLayout
+                    android:id="@+id/session_list_trend_and_archive_container"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:background="?attr/selectableItemBackground"
-                    android:contentDescription="@null"
-                    android:src="@drawable/ic_star_white_24dp" />
+                    android:orientation="vertical"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="end" >
+
+                    <ImageButton
+                        android:id="@+id/session_list_trending_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:background="?attr/selectableItemBackground"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_star_white_24dp" />
+
+                    <ImageButton
+                        android:id="@+id/session_action_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_star_white_24dp" />
+
+                </LinearLayout>
 
             </LinearLayout>
 

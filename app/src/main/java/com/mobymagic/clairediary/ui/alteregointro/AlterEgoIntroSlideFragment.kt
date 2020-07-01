@@ -16,8 +16,8 @@ class AlterEgoIntroSlideFragment : DataBoundNavFragment<FragmentAlterEgoIntroSli
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.alterEgoIntroSlideImage.setImageResource(arguments!!.getInt(ARG_DRAWABLE_RES))
-        binding.alterEgoIntroSlideText.text = getString(arguments!!.getInt(ARG_TEXT_RES))
+        binding.alterEgoIntroSlideImage.setImageResource(requireArguments().getInt(ARG_DRAWABLE_RES))
+        binding.alterEgoIntroSlideText.text = getString(requireArguments().getInt(ARG_TEXT_RES))
     }
 
     companion object {

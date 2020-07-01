@@ -9,7 +9,7 @@ import com.mobymagic.clairediary.Constants
 import com.mobymagic.clairediary.R
 import com.mobymagic.clairediary.databinding.FragmentAlterEgoLoginBinding
 import com.mobymagic.clairediary.repository.UserRepository
-import com.mobymagic.clairediary.ui.alteregoorientation.AlterEgoOrientationFragment
+import com.mobymagic.clairediary.ui.alteregointro.AlterEgoIntroFragment
 import com.mobymagic.clairediary.ui.alteregosplash.AlterEgoSplashFragment
 import com.mobymagic.clairediary.ui.common.ClearErrorTextWatcher
 import com.mobymagic.clairediary.ui.common.DataBoundNavFragment
@@ -70,8 +70,8 @@ class AlterEgoLoginFragment : DataBoundNavFragment<FragmentAlterEgoLoginBinding>
         }
 
         binding.alterEgoRequestAccessButton.setOnClickListener {
-            val orientationPage = AlterEgoOrientationFragment.newInstance(userId)
-            getNavController().navigate(orientationPage)
+            val introPage = AlterEgoIntroFragment.newInstance(userId)
+            getNavController().navigate(introPage)
         }
 
         binding.alterEgoDonateButton.setOnClickListener {

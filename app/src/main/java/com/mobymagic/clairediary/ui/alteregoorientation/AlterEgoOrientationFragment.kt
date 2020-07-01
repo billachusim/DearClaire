@@ -112,7 +112,7 @@ class AlterEgoOrientationFragment : DataBoundNavFragment<FragmentAlterEgoOrienta
                 offValue = "No"
             }
             switch<String>(FormTag.HAVE_YOU_RATED_ON_PLAYSTORE.ordinal) {
-                title = getString(R.string.alter_ego_orientation_rated_on_playstore)
+                title = getString(R.string.alter_ego_orientation_rated_on_Playstore)
                 required = true
                 value = "No"
                 onValue = "Yes"

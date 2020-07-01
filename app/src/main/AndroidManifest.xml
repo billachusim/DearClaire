@@ -23,6 +23,18 @@
         android:theme="@style/AppTheme">
 
         <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="user">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+        <activity
             android:name=".ui.chatrooms.ChatActivity"
             android:label="@string/title_activity_chat"
             android:parentActivityName=".MainActivity"
@@ -32,17 +44,7 @@
                 android:value="com.mobymagic.clairediary.MainActivity" />
         </activity>
 
-        <activity
-            android:name=".MainActivity"
-            android:launchMode="singleTop"
-            android:screenOrientation="user">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity> <!-- FCM Start -->
-
+        <!-- FCM Start -->
         <service
             android:name=".fcm.FcmService"
             android:exported="false">

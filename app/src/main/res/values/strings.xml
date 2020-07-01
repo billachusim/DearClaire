@@ -7,14 +7,13 @@
     <string name="common_message_loading">Loading…</string>
     <string name="common_error_login_again">Please login again to continue</string>
     <string name="common_chooser_title_share_using">Share using</string>
-    <string name="common_message_share_app">Have you heard about this secret diary app called Dear Claire?
-You can write or record anything anonymously and get advises free. You can also follow people\'s diary sessions and earn gifts for giving them advise.
+    <string name="common_message_share_app">Have you heard about this secret diary app called Dear Claire?\nYou can write or record anything anonymously and get advises free. You can also follow people\'s diary sessions and earn gifts for giving them advise.
 %2$s</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="common_content_desc_remove_photo">Remove photo</string>
     <string name="common_title_claire">Dear Claire</string>
-    <string name="common_title_alter_ego_mode">Alter-Ego Mode</string>
+    <string name="common_title_alter_ego_mode">About Alter-Ego Mode</string>
     <string name="common_action_play">Play</string>
     <string name="common_audio_permission_needed">Audio permission needed to record audio</string>
     <string name="common_audio_permission_denied">Audio permission denied</string>
@@ -77,7 +76,8 @@ You can write or record anything anonymously and get advises free. You can also 
     <string name="session_detail_error_message_or_audio_empty">Please enter a message or record an audio</string>
     <string name="session_detail_content_desc_comment_remove_audio">Remove audio</string>
     <string name="session_detail_content_desc_share_response">Share response</string>
-    <string name="session_detail_comment_share_message">Here is an advise I received from Dear Claire - Secret Diary Chat: %s</string>
+    <string name="session_detail_comment_share_message">Here is an anonymous advise from Dear Claire - Secret Diary Chat:\n\n %s \nhttps://claire.page.link/trending</string>
+    <string name="session_detail_session_share_message">Check out this anonymous Diary Session with Dear Claire - Secret Diary Chat.\n\n %s \nhttps://claire.page.link/trending</string>
     <string name="session_detail_featured_notice">NOTICE: This session is currently trending and you are still anonymous. To remove from public view, tap star or ask Claire.</string>
     <string name="session_detail_action_edit_comment">Edit advise</string>
     <string name="session_detail_action_me_too">Me2🌺</string>
@@ -200,9 +200,9 @@ You can write or record anything anonymously and get advises free. You can also 
     <string name="session_list_empty_all">No sessions.</string>
     <string name="no_public_sessions">No Public sessions.</string>
     <string name="session_list_action_start_session">Start Session</string>
-    <string name="session_list_alert_trending">Welcome to Trending Sessions Tab 🌸\n\nThis page shows permitted trending diary sessions.\nYour diary session can not appear here without your notice.\nPlease contribute positive vibes only and no ads or you might permanently lose access to Claire.</string>
-    <string name="session_list_alert_diary">This is your Diary Sessions Tab 📝\n\nOpen Up 🌸 Write or record anything and if you wish, I can read or listen to it and reply you.\nEvery session is strictly between you and I (Claire), unless you set it public for users; still, you are completely anonymous and will never be not truly loved 💕</string>
-    <string name="session_list_alert_new_alter_ego">Welcome to Alter Ego Mode 🌸\n\nYou are Claire right now. Remember your pledge:\n\n💕Be a true friend. Encourage them in their good plans, sympathise with them in their pains, advise them to stay optimistic and make them feel good about themselves 💕</string>
+    <string name="session_list_alert_trending">Welcome To Trending Sessions.\n\nThis tab trends permitted diary sessions for public advises.\nYour diary session can not appear here unless you allowed it.\nPlease contribute positive vibes only and no ads or you might permanently lose access to Claire.\n\nSLIDE from left edge to open app menu.</string>
+    <string name="session_list_alert_diary">This is your Diary Sessions Tab.\n\nOpen Up 🌸 Write or record anything and if you wish, I can read or listen to it and reply you.\nEvery session is strictly between you and I (Claire), unless you set it open to public advises; still, you are completely anonymous and will never be not truly loved 💕\n\nSLIDE from left edge to open app menu.</string>
+    <string name="session_list_alert_new_alter_ego">Welcome to Alter Ego Mode.\nYou are Claire right now. Remember your pledge:\n\n💕Be a true friend. Encourage them in their good plans, sympathise with them in their pains, advise them to stay optimistic and make them feel good about themselves 💕\n\nSLIDE from left edge to open app menu.</string>
     <string name="session_list_action_archive">Archive session</string>
     <string name="session_list_action_unarchive">Unarchive session</string>
     <string name="session_list_action_feature">Make session trend</string>
@@ -274,8 +274,8 @@ You can write or record anything anonymously and get advises free. You can also 
     <!-- Settings Page End -->
 
     <!-- Alter Ego Intro Page Start -->
-    <string name="alter_ego_intro_slide_1_text">Become Claire 🌸 for a month or a year and spread positive
-        vibes of true friendship to strangers all over the world.</string>
+    <string name="alter_ego_intro_slide_1_text">Become Claire 🌸 and spread positive
+        vibes of true friendship to strangers all over the world. Oh, and earn gifts while you are it.</string>
     <string name="alter_ego_intro_slide_2_text">Just like the Diary Mode, the Alter-Ego Mode is completely anonymous.
         No one (including the programmers) can know who sent a diary session and no one knows who responds.</string>
     <string name="alter_ego_intro_slide_3_text">Be a true friend, sympathise with them in their pain,
@@ -306,7 +306,7 @@ You can write or record anything anonymously and get advises free. You can also 
     <string name="alter_ego_orientation_world_better_place">Do you believe that the world will be a better place if people treat other people like themselves wish to be treated?</string>
     <string name="alter_ego_orientation_following_on_instagram">Are you following @socialfaculty on Instagram?</string>
     <string name="alter_ego_orientation_learn_on_instagram">Did you first learn about Claire on Instagram?</string>
-    <string name="alter_ego_orientation_rated_on_playstore">Have you rated Claire Diary five stars with a short review on Playstore?</string>
+    <string name="alter_ego_orientation_rated_on_Playstore">Have you rated Claire Diary five stars with a short review on Playstore?</string>
     <string name="alter_ego_orientation_believe_claire_project">Do you truly believe in the Claire Project? That everyone deserves a true friend in need and indeed?</string>
     <string name="alter_ego_orientation_ready_to_be_claire">Are you ready to become Claire now?</string>
     <string name="alter_ego_orientation_third_header">Thank you so much for coming this far ♥ 🌸\n\nPlease tap the button below for final Clairentation and receive your Alter-Ego login details via WhatsApp.</string>
@@ -348,9 +348,9 @@ You can write or record anything anonymously and get advises free. You can also 
     <string name="follow">Follow</string>
     <string name="do_you_want_to_follow_this_session">Do you want to %1$s this Diary Session?</string>
     <string name="cannot_follow_your_own_session">You cannot follow your own session</string>
-    <string name="this_session_is_trending">This session is public and trending.</string>
-    <string name="ask_claire_to_trend_this_session">Public but not trending. Ask Claire.</string>
-    <string name="share_this_public_session">You can share your sessions or trending sessions soon.</string>
+    <string name="your_session_is_trending">Your session is public and trending. Open to remove.</string>
+    <string name="ask_claire_to_trend_this_session">Public but not Trending. Ask Claire.</string>
+    <string name="share_this_public_session">You can share your sessions or trending sessions.</string>
     <string name="cannot_share_non_trending_session">You cannot share a non trending session.</string>
 
 

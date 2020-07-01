@@ -53,7 +53,6 @@ import com.mobymagic.clairediary.util.*
 import com.mobymagic.clairediary.vo.Comment
 import com.mobymagic.clairediary.vo.Session
 import com.mobymagic.clairediary.vo.Status
-import com.mobymagic.clairediary.vo.User
 import com.mobymagic.clairediary.widgets.ItemOffsetDecoration
 import com.vanniktech.emoji.EmojiPopup
 import kotlinx.android.synthetic.main.layout_app_bar.*
@@ -67,6 +66,7 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
     override var requiresAuthentication: Boolean = false
 
     private val inputUtil: InputUtil by inject()
+    private val androidUtil: AndroidUtil by inject()
     private val appExecutors: AppExecutors by inject()
     private val audioUtil: AudioUtil by inject()
     private val exoPlayerUtil: ExoPlayerUtil by inject()
@@ -245,9 +245,7 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
 
     private fun setupFollowControls() {
         // Trying to stop follow from showing in alter ego mode here but not lucky yet.
-        if (User.UserType.isAdmin(User.UserType.ADMIN)) {
-            binding.sessionDetailFollowContainer.visibility = INVISIBLE
-        } else {
+        if (userId == session.respondentUserId) {
             binding.sessionDetailFollowContainer.visibility = INVISIBLE
         }
         binding.sessionDetailFollow.setOnClickListener {
@@ -273,14 +271,16 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
 
     private fun showFollowingDialog(binding: FragmentSessionDetailBinding) {
         val builder = AlertDialog.Builder(binding.root.context)
+        builder.setTitle(R.string.app_name)
+        builder.setIcon(R.drawable.ic_product_logo_144dp)
         builder.setTitle(String.format(binding.root.context
                 .getString(R.string.do_you_want_to_follow_this_session), binding.followText))
         builder.setPositiveButton("Yes") { dialogInterface: DialogInterface, _: Int ->
             sessionDetailViewModel.toggleFollowers(userId, binding.session!!)
             Toast.makeText(binding.root.context,
                     if (binding.followText == "Unfollow")
-                        "UnFollowed Diary Session" else {
-                        "Following Diary Session"
+                        "UnFollowed Diary Session. (Thanks for everything)" else {
+                        "Following Diary Session. (You'll be notified of new comments)"
                     }, Toast.LENGTH_LONG).show()
             updateFollowText(binding, binding.session!!)
             dialogInterface.dismiss()
@@ -309,19 +309,6 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
     private fun setupTrendingControls() {
         binding.sessionDetailActionContainer.setVisibleOrGone(session.userId == userId)
 
-        binding.sessionDetailTrendingButton.setOnClickListener {
-            binding.session?.let { session ->
-                if (session.featured) {
-                    Toast.makeText(binding.root.context,
-                            binding.root.context.getString(R.string.this_session_is_trending), Toast.LENGTH_LONG).show()
-
-                } else {
-                    Toast.makeText(binding.root.context,
-                            binding.root.context.getString(R.string.ask_claire_to_trend_this_session), Toast.LENGTH_LONG).show()
-                }
-            }
-        }
-
         if (userId == session.userId) {
             if (session.private) {
                 binding.sessionDetailTrendingButton.visibility = GONE
@@ -349,6 +336,38 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
         val showUnFeatureView = session.featured && isUserCreatorOfSession
         binding.showUnFeatureView = showUnFeatureView
 
+        binding.sessionDetailTrendingButton.setOnClickListener {
+            binding.session?.let { session ->
+                if (session.featured) {
+                    // Get trending dialog to ask session owner to remove session from trending.
+                    val builder = AlertDialog.Builder(requireContext())
+                    builder.setTitle("Trending Session")
+                    builder.setIcon(R.drawable.ic_product_logo_144dp)
+                    builder.setMessage("Remove your session from Trending?")
+                    builder.setPositiveButton("Yes") { _, _ ->
+                        // Toggle featured
+                        session.featured = !session.featured
+                        Toast.makeText(binding.root.context,
+                                if (binding.showUnFeatureView == showUnFeatureView)
+                                    "Session removed from Trending. (Still Public to only Ego guests)" else {
+                                    "Session is still Trending. (Expect public advises)"
+                                }, Toast.LENGTH_LONG).show()
+                        sessionRepository.updateSession(session, userId)
+                    }
+                    builder.setNegativeButton("No") { dialog, _ -> dialog.dismiss() }
+                    val alert = builder.create()
+                    alert.show()
+                    sessionRepository.updateSession(session, userId)
+
+                } else {
+                    // Show toast telling user to ask Claire to trend the session.
+                    Toast.makeText(binding.root.context,
+                            binding.root.context.getString(R.string.ask_claire_to_trend_this_session), Toast.LENGTH_LONG).show()
+                    sessionRepository.updateSession(session, userId)
+                }
+            }
+            sessionRepository.updateSession(session, userId)
+        }
     }
 
 
@@ -364,6 +383,11 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
 
     private fun setupShareSession() {
         binding.sessionDetailShareButton.setOnClickListener {
+            val subject = session.title
+            val message =
+                    getString(R.string.session_detail_session_share_message, session.message)
+            androidUtil.shareText(requireContext(), subject!!, message)
+
             binding.session?.let { session ->
                 if (session.userId == userId) {
                     Toast.makeText(binding.root.context,

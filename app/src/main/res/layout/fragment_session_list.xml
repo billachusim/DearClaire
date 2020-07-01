@@ -73,6 +73,7 @@
                             android:text='@{alert != null ? alert.message : ""}'
                             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                             android:textColor="@color/primary_text_light"
+                            cardBackgroundColorHex="#880E4F"
                             tools:text="This is a sample alert" />
 
                         <ImageButton

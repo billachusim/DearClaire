@@ -34,7 +34,6 @@ class AlterEgoIntroFragment : DataBoundNavFragment<FragmentAlterEgoIntroBinding>
         setupPager()
         setupAccessCodeCheck()
 
-        //binding.appBar?.appBarLayout?.setBackgroundColor()
         binding.alterEgoIntroDonateButton.setOnClickListener { onDonateClicked() }
         binding.alterEgoIntroRequestAccessButton.setOnClickListener { onRequestAccessClicked() }
     }

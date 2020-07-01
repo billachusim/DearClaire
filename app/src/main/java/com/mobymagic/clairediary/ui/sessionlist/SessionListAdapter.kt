@@ -6,6 +6,7 @@ import android.text.TextUtils
 import android.view.View
 import android.view.ViewTreeObserver
 import android.view.ViewTreeObserver.OnGlobalLayoutListener
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
@@ -131,7 +132,40 @@ class SessionListAdapter(
             }
         })
 
+        // Bind session list action buttons
+        if (userId == item.userId) {
+            if (item.private) {
+                binding.sessionListTrendingButton.visibility = View.GONE
+            } else {
+                if (item.featured) {
+                    binding.sessionListTrendingButton.visibility = View.VISIBLE
+                    binding.sessionListTrendingButton.setImageResource(R.drawable.round_star_white_24)
+                    binding.sessionListTrendingButton.contentDescription =
+                            context.getString(R.string.session_list_action_unfeature)
+                } else {
+                    val drawable = ContextCompat.getDrawable(context, R.drawable.round_star_white_24)!!
+                    val color = ContextCompat.getColor(context, R.color.inactive_icon_light)
+                    val tintedDrawable = ViewUtil.tintDrawable(drawable, color)
+                    binding.sessionListTrendingButton.setImageDrawable(tintedDrawable)
+                    binding.sessionListTrendingButton.contentDescription =
+                            context.getString(R.string.session_list_action_feature)
+                }
+            }
+        } else {
+            if (userId != item.userId) {
+                binding.sessionListTrendingButton.visibility = View.INVISIBLE
+            }
+        }
 
+        binding.sessionListTrendingButton.setOnClickListener {
+            if (item.featured) {
+                Toast.makeText(binding.root.context,
+                        binding.root.context.getString(R.string.your_session_is_trending), Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(binding.root.context,
+                        binding.root.context.getString(R.string.ask_claire_to_trend_this_session), Toast.LENGTH_LONG).show()
+            }
+        }
 
         if (isFromAlterEgo) {
             if (item.private) {
@@ -139,7 +173,7 @@ class SessionListAdapter(
             } else {
                 if (item.featured) {
                     binding.sessionActionButton.visibility = View.VISIBLE
-                    binding.sessionActionButton.setImageResource(R.drawable.round_star_border_white_24)
+                    binding.sessionActionButton.setImageResource(R.drawable.round_star_white_24)
                     binding.sessionActionButton.contentDescription =
                             context.getString(R.string.session_list_action_unfeature)
                 } else {

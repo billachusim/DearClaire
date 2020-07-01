@@ -21,13 +21,14 @@
 #-renamesourcefileattribute SourceFile
 
 # Keep model classes
+-keep class com.mobymagic.clairediary.** { *; }
 -keep class com.mobymagic.clairediary.vo.** { *; }
 -keep class com.mobymagic.clairediary.ui.** { *; }
 -keep class com.mobymagic.clairediary.repository.** { *; }
 -keep class com.mobymagic.clairediary.Constants.** { *; }
 -keep class com.mobymagic.clairediary.MainActivity.** { *; }
 -keep class com.mobymagic.clairediary.util.** { *; }
--keep class com.mobymagic.clairediary.ui.alteregoorientation.** { *; }
+-keep class com.mobymagic.clairediary.databinding.** { *; }
 # Keep FCM classes
 -keep class com.mobymagic.clairediary.fcm.** { *; }
 -keep class com.firebase.** { *; }
