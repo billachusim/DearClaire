@@ -130,7 +130,7 @@ class CreateSessionFragment : DataBoundNavFragment<FragmentCreateSessionBinding>
     private fun resetInactivityTimer() {
         if (!hasShownInactivityMessage) {
             cancelInactivityTimer()
-            handler.postDelayed(inactivityRunnable, 10000)
+            handler.postDelayed(inactivityRunnable, 15000)
         }
     }
 

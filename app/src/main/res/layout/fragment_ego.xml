@@ -364,6 +364,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/alter_ego_session_splash_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
     </LinearLayout>
 
 </layout>

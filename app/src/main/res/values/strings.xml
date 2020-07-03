@@ -327,8 +327,8 @@
     <string name="alter_ego_login_hint_claire_id">claireID</string>
     <string name="alter_ego_login_hint_access_code">Access Code</string>
     <string name="alter_ego_login_action_login">Switch In</string>
-    <string name="alter_ego_login_action_request_access">Request Access</string>
-    <string name="alter_ego_login_action_donate">Donate</string>
+    <string name="alter_ego_login_action_request_access">Read About and Request Access</string>
+    <string name="alter_ego_login_action_donate">Donate to support Claire</string>
     <string name="alter_ego_input_error_claire_id_invalid">Claire id must be greater than 6 characters</string>
     <string name="alter_ego_input_error_access_code_invalid">Access code must be greater than 4 characters</string>
     <string name="alter_ego_login_incorrect">Alter Ego credentials are incorrect</string>

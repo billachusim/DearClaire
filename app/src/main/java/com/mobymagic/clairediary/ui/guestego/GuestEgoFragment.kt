@@ -231,12 +231,14 @@ class GuestEgoFragment : DataBoundNavFragment<FragmentGuestEgoBinding>() {
                 } else if (it.data.isNotEmpty()) {
                     val bestSession: Session = it.data[0]
                     binding.bestSession = bestSession
+
                     binding.bestSessionTextView.setOnClickListener {
 
                         getNavController()
                                 .navigate(SessionDetailFragment.newInstance(bestSession,
                                         user?.userId!!, SessionListType.EGO), true)
                     }
+
                     binding.bestSessionTitleTextView.setOnClickListener {
 
                         getNavController()

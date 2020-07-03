@@ -26,7 +26,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:itemIconTint="@color/tab_icon_text_colors"
-                app:itemTextColor="@color/active_icon_light"
                 app:menu="@menu/bottom_nav_admin_session_types" />
 
         </LinearLayout>

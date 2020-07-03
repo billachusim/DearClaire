@@ -12,16 +12,14 @@ import com.mobymagic.clairediary.MainActivity
 import com.mobymagic.clairediary.R
 import com.mobymagic.clairediary.databinding.FragmentEgoBinding
 import com.mobymagic.clairediary.repository.UserRepository
-import com.mobymagic.clairediary.ui.adminsessiontypes.AdminSessionTypesFragment
-import com.mobymagic.clairediary.ui.alteregologin.AlterEgoLoginFragment
+import com.mobymagic.clairediary.ui.alteregointro.AlterEgoIntroFragment
+import com.mobymagic.clairediary.ui.alteregosplash.AlterEgoSplashFragment
 import com.mobymagic.clairediary.ui.auth.AuthViewModel
 import com.mobymagic.clairediary.ui.clairevartar.ClaireVartarFragment
 import com.mobymagic.clairediary.ui.clairevartar.ClaireVartarFragment.Companion.USER_AVARTAR_KEY
 import com.mobymagic.clairediary.ui.common.DataBoundNavFragment
 import com.mobymagic.clairediary.ui.sessiondetail.SessionDetailFragment
 import com.mobymagic.clairediary.ui.sessionlist.SessionListType
-import com.mobymagic.clairediary.ui.sessionshome.SessionsHomeFragment
-import com.mobymagic.clairediary.ui.usersessiontypes.UserSessionTypesFragment
 import com.mobymagic.clairediary.util.FragmentUtils
 import com.mobymagic.clairediary.vo.Session
 import com.mobymagic.clairediary.vo.Status
@@ -169,11 +167,19 @@ class EgoFragment : DataBoundNavFragment<FragmentEgoBinding>() {
                 } else if (it.data.isNotEmpty()) {
                     val bestSession: Session = it.data[0]
                     binding.bestSession = bestSession
+
                     binding.bestSessionTextView.setOnClickListener {
 
                         getNavController()
                                 .navigate(SessionDetailFragment.newInstance(bestSession,
                                         userId, SessionListType.EGO), true)
+                    }
+
+                    binding.bestSessionTitleTextView.setOnClickListener {
+
+                        getNavController()
+                                .navigate(SessionDetailFragment.newInstance(bestSession,
+                                        user?.userId!!, SessionListType.EGO), true)
                     }
                 }
 
@@ -240,7 +246,7 @@ class EgoFragment : DataBoundNavFragment<FragmentEgoBinding>() {
         binding.editUserNickname.setOnClickListener {
             binding.nicknameViewSwitcher.showNext()
         }
-        binding.saveNicknameButton.setOnClickListener { it ->
+        binding.saveNicknameButton.setOnClickListener {
             if (validateUsernameInput()) {
                 if (user != null) {
                     user?.nickname = binding.editNicknameInput.text.toString()
@@ -271,65 +277,17 @@ class EgoFragment : DataBoundNavFragment<FragmentEgoBinding>() {
 
         binding.userTypeTextView.setOnClickListener {
             if (User.UserType.isAdmin(userType)) {
-                toggleSessionTypesFragment(true)
+                Timber.d("Showing alter ego splash")
+                fragmentUtil.addIfNotExist(
+                        childFragmentManager,
+                        R.id.alter_ego_session_splash_container,
+                        AlterEgoSplashFragment.newInstance()
+                )
             } else {
-                val frag = AlterEgoLoginFragment.newInstance(userId)
+                val frag = AlterEgoIntroFragment.newInstance(userId)
                 getNavController().navigate(frag, true)
             }
         }
-    }
-
-    /**
-     * This functions toggles between UserSessionTypesFragment and AdminSessionTypesFragment based
-     * on the current state.
-     * If no fragment is being shown when this function is called, the UserSessionTypesFragment is
-     * displayed to the user.
-     * If this function is called and the current fragment is UserSessionTypesFragment and the user
-     * is an admin, show AdminSessionTypesFragment.
-     * Else show UserSessionTypesFragment
-     */
-    private fun toggleSessionTypesFragment(clickedOnButton: Boolean) {
-        Timber.d("Toggle session types")
-        val curFragment =
-                childFragmentManager.findFragmentById(R.id.nav_session_type_ego)
-
-        if (curFragment != null && !clickedOnButton) {
-            return
-        }
-
-        Timber.d("Actually toggling session types")
-
-        var sessionTypesFragment: Fragment = UserSessionTypesFragment.newInstance(userId, selectedPage!!)
-
-        // Check the user type and current fragment
-        if (curFragment is UserSessionTypesFragment && User.UserType.isAdmin(userType)) {
-            sessionTypesFragment = AdminSessionTypesFragment.newInstance(userId)
-
-            if (!AuthViewModel.userLoggedIn) {
-                authViewModel.getAuthRoute(SessionsHomeFragment.newInstance(
-                        "",
-                        User.UserType.ADMIN,
-                        false,
-                        R.id.nav_session_type_assigned
-                ), activity as MainActivity)
-            } else {
-                fragmentUtil.replace(
-                        childFragmentManager,
-                        R.id.sessions_home_fragment_container,
-                        sessionTypesFragment,
-                        true
-                )
-            }
-        } else {
-            fragmentUtil.replace(
-                    childFragmentManager,
-                    R.id.sessions_home_fragment_container,
-                    sessionTypesFragment,
-                    true
-            )
-        }
-
-
     }
 
     private fun refreshUser() {

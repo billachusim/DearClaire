@@ -90,9 +90,9 @@ class GuestEgoSessionListAdapter(
             override fun onGlobalLayout() {
                 val obs = binding.sessionListContentTv.viewTreeObserver
                 obs.removeOnGlobalLayoutListener(this)
-                if (binding.sessionListContentTv.lineCount > 5) {
-                    val lineEndIndex = binding.sessionListContentTv.layout.getLineEnd(4)
-                    val text = binding.sessionListContentTv.text.subSequence(0, lineEndIndex - 4)
+                if (binding.sessionListContentTv.lineCount > 6) {
+                    val lineEndIndex = binding.sessionListContentTv.layout.getLineEnd(5)
+                    val text = binding.sessionListContentTv.text.subSequence(0, lineEndIndex - 5)
                     var finalText = text.toString()
                     finalText += "<b>... more</b> "
                     binding.sessionListContentTv.text = HtmlUtil.fromHtml(finalText)
