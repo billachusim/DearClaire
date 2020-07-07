@@ -187,9 +187,9 @@ class CreateSessionFragment : DataBoundNavFragment<FragmentCreateSessionBinding>
 
         photoListAdapter = CreateSessionPhotoListAdapter(
                 appExecutors,
-                {
+                { imageUrl ->
                     // When image is clicked, open gallery
-                    openImageGallery()
+                    openImageGallery(imageUrl)
                 },
                 { imageUrl ->
                     // When image remove button is clicked, remove it from list
@@ -200,7 +200,7 @@ class CreateSessionFragment : DataBoundNavFragment<FragmentCreateSessionBinding>
         binding.createSessionPhotoList.adapter = photoListAdapter
     }
 
-    private fun openImageGallery() {
+    private fun openImageGallery(imageUrl: String) {
         /*val photoList = binding.draftSession!!.imageUrls
         val position = photoList.indexOf(imageUrl)
         ZGallery.with(context, photoList).setSelectedImgPosition(position).show()*/

@@ -146,20 +146,20 @@ class CreateSessionViewModel(
         val uploadLiveData = fileRepository.uploadFiles(fileWrappers)
         addSessionLiveData.addSource(uploadLiveData) { filesResource ->
             Timber.d("File resource: %s", filesResource)
-            when {
-                filesResource?.status == Status.LOADING -> {
+            when (filesResource?.status) {
+                Status.LOADING -> {
                     addSessionLiveData.value = Resource.loading(filesResource.message)
                 }
-                filesResource?.status == Status.ERROR -> {
+                Status.ERROR -> {
                     addSessionLiveData.removeSource(uploadLiveData)
                     addSessionLiveData.value = Resource.error(filesResource.message)
                 }
-                filesResource?.status == Status.SUCCESS -> {
+                Status.SUCCESS -> {
                     addSessionLiveData.removeSource(uploadLiveData)
-                    session.imageUrls?.clear()
+                    session.imageUrls!!.clear()
                     for (fileWrapper in filesResource.data!!) {
                         if (fileWrapper.fileType == FileRepository.FileType.PHOTO) {
-                            session.imageUrls?.add(fileWrapper.uploadUrl.toString())
+                            session.imageUrls!!.add(fileWrapper.uploadUrl.toString())
                         } else if (fileWrapper.fileType == FileRepository.FileType.AUDIO) {
                             session.audioUrl = fileWrapper.uploadUrl.toString()
                         }

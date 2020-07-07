@@ -372,10 +372,8 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
 
 
     private fun setupEditSession() {
-        binding.session = session
         binding.sessionDetailEditButton.setVisibleOrGone(session.userId == userId)
         binding.sessionDetailEditButton.setOnClickListener {
-            sessionDetailViewModel.editSession(session)
             val editSessionFragment = CreateSessionFragment.newInstance(session)
             getNavController().navigateTo(editSessionFragment)
         }

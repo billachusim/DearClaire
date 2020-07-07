@@ -84,7 +84,7 @@ class FileRepository(
         val uploadTask = storageFileRef.putFile(Uri.fromFile(fileWrapper.file))
 
         // Listen for progress
-        uploadTask.addOnProgressListener({ taskSnapshot ->
+        uploadTask.addOnProgressListener { taskSnapshot ->
             Timber.d(
                     "Upload progress, transferred: %d, total: %d", taskSnapshot.bytesTransferred,
                     taskSnapshot.totalByteCount
@@ -98,19 +98,19 @@ class FileRepository(
                     androidUtil
                             .getString(R.string.file_uploading_with_percent, percentUploaded.roundToInt())
             )
-        })
+        }
 
         // Listen for error
-        uploadTask.addOnFailureListener({ e ->
+        uploadTask.addOnFailureListener { e ->
             Timber.e(e, "Error uploading file")
             fileUploadLiveData.value = Resource.error(
                     androidUtil.getString(R.string.file_upload_error),
                     fileWrappers
             )
-        })
+        }
 
         // Listen for success
-        uploadTask.addOnSuccessListener({ taskSnapshot ->
+        uploadTask.addOnSuccessListener { taskSnapshot ->
             Timber.d("File upload success: %s", taskSnapshot)
             Timber.d("Getting file url")
 
@@ -132,7 +132,7 @@ class FileRepository(
                                 fileWrappers
                         )
                     }
-        })
+        }
 
     }
 
