@@ -18,7 +18,7 @@ const userSessionCountCollectionName = 'user_session_counters';
 const userCommentCounterCollectionName = 'user_comment_counters';
 const sessionCommentCounterName = 'session_comment_counter';
 const COLLECTION_SESSION_COMMENT_SHARDS = "session_comment_shards";
-const defaultNumberOfShards = 10;
+const defaultNumberOfShards = 100;
 admin.initializeApp(functions.config().firebase);
 const db = admin.firestore();
 // Send a notification when new comment documents are added
@@ -71,7 +71,7 @@ exports.incrementSessionCount = function (snap, context) {
                 }
             })
                 .catch(err => {
-                console.log('an error occured while incrementing session count', err);
+                console.log('an error occurred while incrementing session count', err);
             });
         }
         catch (error) {
@@ -79,15 +79,15 @@ exports.incrementSessionCount = function (snap, context) {
         }
     });
 };
-// Increase the number of session count for the user
+// Increase the number of advise count for the user
 exports.incrementCommentCount = function (snap, context) {
     return __awaiter(this, void 0, void 0, function* () {
         const newComment = snap.data();
         console.log(`New comment added: ${newComment}`);
         try {
             console.log(`Incrementing count for the new comment added: ${newComment}`);
-            const userCommentCounttRef = db.collection(userCommentCounterCollectionName).doc(newComment.userId);
-            userCommentCounttRef.get()
+            const userCommentCountRef = db.collection(userCommentCounterCollectionName).doc(newComment.userId);
+            userCommentCountRef.get()
                 .then(doc => {
                 if (!doc.exists) {
                     console.log('User comment count not found, creating new one');

@@ -8,7 +8,7 @@ export async function sendNotificationToSessionCreator(messaging: admin.messagin
         console.log(`User responded to their own session, no need to send notification to him/her`);
     } else {
         console.log(`Sending notification to session creator`);
-        const title = newComment.isUserAdmin ? "New Advice" : "New comment";
+        const title = newComment.isUserAdmin ? "New Advise" : "New comment";
         const shortMessage = newComment.isUserAdmin ? "Claire just responded" : `${newComment.userNickname} just responded`;
         const longMessage = truncateWithEllipsis(newComment.message, 100);
         const notificationData = getNotificationData(sessionCreator.userId, title, shortMessage, longMessage,

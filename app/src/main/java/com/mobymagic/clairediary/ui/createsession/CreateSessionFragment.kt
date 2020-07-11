@@ -376,7 +376,7 @@ class CreateSessionFragment : DataBoundNavFragment<FragmentCreateSessionBinding>
     }
 
     private fun openAudioRecordPage() {
-        Dexter.withActivity(requireActivity())
+        Dexter.withContext(requireActivity())
                 .withPermission(Manifest.permission.RECORD_AUDIO)
                 .withListener(object : PermissionListener {
                     override fun onPermissionGranted(response: PermissionGrantedResponse?) {

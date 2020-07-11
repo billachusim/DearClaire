@@ -43,7 +43,7 @@ function getCommentUsers(db, sessionComments, session) {
         for (const follower of session.followers) {
             console.log(`Getting the follower with id: ${follower}`);
             if (uniqueUserIds.indexOf(follower) !== -1) {
-                console.log(`We already have this user in the lis of followes, skipping another occurrence`);
+                console.log(`We already have this user in the lis of followers, skipping another occurrence`);
                 continue;
             }
             uniqueUserIds.push(follower);

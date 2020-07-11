@@ -4,7 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AlertDialog
-import com.flutterwave.raveandroid.RavePayManager
+import com.flutterwave.raveandroid.RaveUiManager
 import com.mobymagic.clairediary.R
 import com.mobymagic.clairediary.vo.PaymentPlan
 import com.mobymagic.clairediary.vo.User
@@ -19,7 +19,7 @@ class DonateUtil(context: Context) {
             PaymentPlan(context.getString(R.string.donate_amount_2000_naira), 2000.0)
     )
 
-    fun donate(activity: Activity, user: User, currency: String = "NGN", country: String = "NG") {
+    fun donate(activity: Activity, user: User, currency: String = "NGN") {
         val builderSingle = AlertDialog.Builder(activity)
         builderSingle.setTitle(R.string.donate_amount_page_title)
 
@@ -35,7 +35,7 @@ class DonateUtil(context: Context) {
             dialog.dismiss()
             val amount = arrayAdapter.getItem(which)?.amount
             if (amount != null) {
-                makePayment(activity, user, amount, currency, country)
+                makePayment(activity, user, amount, currency)
             }
         }
         builderSingle.show()
@@ -45,16 +45,21 @@ class DonateUtil(context: Context) {
             activity: Activity,
             user: User,
             amount: Double,
-            currency: String = "NG",
-            country: String = "NGN"
+            currency: String = "NG"
     ) {
         val transactionRef = user.nickname + UUID.randomUUID().toString()
-        RavePayManager(activity)
+        RaveUiManager(activity)
                 .setAmount(amount)
                 .setCurrency(currency)
-                .setCountry(country)
                 .acceptAccountPayments(true)
                 .acceptCardPayments(true)
+                .acceptMpesaPayments(true)
+                .acceptGHMobileMoneyPayments(true)
+                .acceptUssdPayments(true)
+                .acceptBankTransferPayments(true)
+                .acceptSaBankPayments(true)
+                .acceptUkPayments(true)
+                .allowSaveCardFeature(true)
                 .onStagingEnv(false)
                 .withTheme(R.style.RaveTheme)
                 .setNarration(activity.getString(R.string.app_name))

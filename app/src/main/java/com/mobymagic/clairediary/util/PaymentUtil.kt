@@ -1,7 +1,7 @@
 package com.mobymagic.clairediary.util
 
 import android.app.Activity
-import com.flutterwave.raveandroid.RavePayManager
+import com.flutterwave.raveandroid.RaveUiManager
 import com.mobymagic.clairediary.R
 import timber.log.Timber
 import java.util.*
@@ -32,7 +32,7 @@ class PaymentUtil {
         val txRef = email + UUID.randomUUID().toString()
         Timber.d("Unique transaction reference: %s", txRef)
 
-        RavePayManager(activity)
+        RaveUiManager(activity)
                 .setAmount(amount)
                 .setCurrency(currency)
                 .setCountry(country)

@@ -255,7 +255,7 @@
     <!-- Settings Page Start -->
     <string name="settings_page_title">Settings</string>
     <string name="settings_title_session_update_notification_enabled">Session update notification</string>
-    <string name="settings_summary_session_update_notification_enabled">Notifies you of new replies to your session</string>
+    <string name="settings_summary_session_update_notification_enabled">Notifies you of new advises to your session</string>
     <string name="settings_title_daily_reminder_enabled">Claireminder</string>
     <string name="settings_summary_daily_reminder_enabled">Reminds you daily to write on Claire</string>
     <string name="settings_title_daily_reminder_time">Claireminder time</string>
