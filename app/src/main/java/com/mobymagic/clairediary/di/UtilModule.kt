@@ -59,7 +59,7 @@ val utilModule = applicationContext {
     }
 
     bean {
-        PaymentUtil()
+        PaymentUtil(androidApplication())
     }
 
     bean {

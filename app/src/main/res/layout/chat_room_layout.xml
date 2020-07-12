@@ -18,7 +18,7 @@
             type="Boolean" />
 
         <variable
-            name="followText"
+            name="enterText"
             type="String" />
 
         <variable

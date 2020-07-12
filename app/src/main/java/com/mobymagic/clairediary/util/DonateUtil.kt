@@ -33,10 +33,8 @@ class DonateUtil(context: Context) {
 
         builderSingle.setAdapter(arrayAdapter) { dialog, which ->
             dialog.dismiss()
-            val amount = arrayAdapter.getItem(which)?.amount
-            if (amount != null) {
-                makePayment(activity, user, amount, currency)
-            }
+            val amount = arrayAdapter.getItem(which).amount
+            makePayment(activity, user, amount = amount, currency = currency)
         }
         builderSingle.show()
     }

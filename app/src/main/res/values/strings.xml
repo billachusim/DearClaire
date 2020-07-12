@@ -172,7 +172,7 @@
     <string name="forgot_secret_code_subtitle">Use your email to reset your secret code</string>
     <string name="forgot_secret_code_hint_enter_email">Enter your email</string>
     <string name="forgot_secret_code_action_reset_code">Reset code</string>
-    <string name="forgot_secret_code_action_open_inbox">Open inbox</string>
+    <string name="forgot_secret_code_action_open_inbox">Check Email</string>
     <string name="forgot_secret_code_error_no_email_client">No email app found</string>
     <string name="forgot_secret_code_error_email_empty">Please enter your email</string>
     <string name="forgot_secret_code_error_email_invalid">Please enter a valid email</string>
@@ -287,29 +287,29 @@
     <!-- Alter Ego Intro Page End -->
 
     <!-- Alter Ego Orientation Page Start -->
-    <string name="alter_ego_orientation_page_title">Alter-Ego Orientation</string>
-    <string name="alter_ego_orientation_first_header">Hello Darling🌸\n\nWelcome to your Clairentation.\n\nNone of the details discussed here will be made public. The personal details you are about to provide are needed to confirm your gender and qualification for access to Alter-Ego Mode.\n\nAlso as an Alter-Ego, you automatically become an elite member of our little secret group of Claires Of The World 🌸 therefore, for the many benefits that will come to you in the future for being a Claire, we hope to reach you via the details you will provide.</string>
-    <string name="alter_ego_orientation_full_name">Full name</string>
-    <string name="alter_ego_orientation_full_address">Full address</string>
-    <string name="alter_ego_orientation_phone_number">Phone number</string>
+    <string name="alter_ego_orientation_page_title">Alter-Ego Registration</string>
+    <string name="alter_ego_orientation_first_header">Hello Darling🌸\n\nWelcome to the first stage of your Clairentation.\n\nNone of the details discussed here will be made public. The personal details you are about to provide are needed to confirm your gender and qualification for access to Alter-Ego or Super-Ego Mode.\n\nAlso as an Alter-Ego, you automatically become an elite member of our little secret group of Claires Of The World 🌸 therefore, for the many benefits that will come to you in the future for being a Claire, we hope to reach you via the details you will provide.</string>
+    <string name="alter_ego_orientation_full_name">Full Name</string>
+    <string name="alter_ego_orientation_full_address">Full Address</string>
+    <string name="alter_ego_orientation_phone_number">Phone Number</string>
     <string name="alter_ego_orientation_age">Age</string>
     <string name="alter_ego_orientation_name_of_school_or_occupation">Name Of School Or Occupation</string>
-    <string name="alter_ego_orientation_best_friend_or_relative_name">Name of best friend or relative</string>
-    <string name="alter_ego_orientation_phone_of_best_friend_or_relative">Phone number of best friend or relative</string>
-    <string name="alter_ego_orientation_amount_donated">Amount donated</string>
-    <string name="alter_ego_orientation_email_address">Email address</string>
-    <string name="alter_ego_orientation_facebook_name">Facebook name</string>
-    <string name="alter_ego_orientation_instagram_username">Instagram username</string>
-    <string name="alter_ego_orientation_short_bio">Short bio</string>
-    <string name="alter_ego_orientation_second_header">Please Answer The Following Questions With Yes Or No</string>
+    <string name="alter_ego_orientation_best_friend_or_relative_name">Name of Best Friend or Relative</string>
+    <string name="alter_ego_orientation_phone_of_best_friend_or_relative">Phone number of Best Friend or Relative</string>
+    <string name="alter_ego_orientation_amount_donated">Amount Donated</string>
+    <string name="alter_ego_orientation_email_address">Email Address</string>
+    <string name="alter_ego_orientation_facebook_name">Facebook Name</string>
+    <string name="alter_ego_orientation_instagram_username">Instagram Username</string>
+    <string name="alter_ego_orientation_short_bio">Write A Short Bio About Inner Self</string>
+    <string name="alter_ego_orientation_second_header">Please Answer The Following Questions By Switching Yes Or No</string>
     <string name="alter_ego_orientation_random_posts">Are you truly interested in becoming an Alter-Ego not just to read random people\'s Diary Sessions but to reply them with happy vibes and good advises?</string>
     <string name="alter_ego_orientation_world_better_place">Do you believe that the world will be a better place if people treat other people like themselves wish to be treated?</string>
     <string name="alter_ego_orientation_following_on_instagram">Are you following @socialfaculty on Instagram?</string>
     <string name="alter_ego_orientation_learn_on_instagram">Did you first learn about Claire on Instagram?</string>
-    <string name="alter_ego_orientation_rated_on_Playstore">Have you rated Claire Diary five stars with a short review on Playstore?</string>
+    <string name="alter_ego_orientation_rated_on_Playstore">Have you rated Claire Diary five stars with a short sweet review on Playstore?</string>
     <string name="alter_ego_orientation_believe_claire_project">Do you truly believe in the Claire Project? That everyone deserves a true friend in need and indeed?</string>
     <string name="alter_ego_orientation_ready_to_be_claire">Are you ready to become Claire now?</string>
-    <string name="alter_ego_orientation_third_header">Thank you so much for coming this far ♥ 🌸\n\nPlease tap the button below for final Clairentation and receive your Alter-Ego login details via WhatsApp.</string>
+    <string name="alter_ego_orientation_third_header">Thank you so much for coming this far ♥ 🌸\n\nPlease tap the Whatsapp button below to send this form to Claire and cue in for your final Verification and Clairentation on Whatsapp where you will receive your Alter-Ego login details.</string>
     <string name="alter_ego_orientation_action_continue_to_whatsapp">Continue to WhatsApp</string>
     <!-- Alter Ego Orientation Page End -->
 
@@ -318,7 +318,7 @@
     <string name="how_claire_works_read_title">Read How Claire Works</string>
     <string name="how_claire_works_details">Open Up 🌸 Write or record anything and get advise from Claire secret diary.</string>
     <string name="how_claire_works_read_alter_ego_works_title">Read How Alter Ego Works</string>
-    <string name="how_claire_works_donate_to_claire">Donate To Support Claire</string>
+    <string name="how_claire_works_donate_to_claire">Send Juice To Appreciate Claire</string>
     <!-- How Claire Works Page End -->
 
     <!-- Alter Ego Login Page Start -->
@@ -385,6 +385,7 @@
     <!-- Chatroom -->
     <string name="app_name_as_claire">Claire</string>
     <string name="enter_chatroom_button">ENTER</string>
+    <string name="leave_chatroom_button">LEAVE</string>
     <string name="Chatroom_owner_name">By Claire</string>
     <string name="positive_vibes_only">positive vibes only, no ads</string>
     <string name="session_type_chatrooms">Chatrooms</string>

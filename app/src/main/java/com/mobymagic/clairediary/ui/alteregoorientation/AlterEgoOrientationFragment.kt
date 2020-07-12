@@ -9,6 +9,7 @@ import com.mobymagic.clairediary.R
 import com.mobymagic.clairediary.databinding.FragmentAlterEgoOrientationBinding
 import com.mobymagic.clairediary.ui.common.DataBoundNavFragment
 import com.mobymagic.clairediary.util.PrefUtil
+import com.mobymagic.clairediary.util.ThemeUtil
 import com.thejuki.kformmaster.helper.*
 import com.thejuki.kformmaster.model.BaseFormElement
 import kotlinx.android.synthetic.main.layout_app_bar.*
@@ -17,6 +18,7 @@ import org.koin.android.ext.android.inject
 class AlterEgoOrientationFragment : DataBoundNavFragment<FragmentAlterEgoOrientationBinding>() {
 
     private val prefUtil: PrefUtil by inject()
+    private val themeUtil: ThemeUtil by inject()
     private lateinit var formBuilder: FormBuildHelper
 
     override fun getLayoutRes() = R.layout.fragment_alter_ego_orientation
@@ -29,6 +31,10 @@ class AlterEgoOrientationFragment : DataBoundNavFragment<FragmentAlterEgoOrienta
         super.onActivityCreated(savedInstanceState)
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        val themes = resources.getStringArray(R.array.settings_theme_names)
+        val curTheme = prefUtil.getString(Constants.PREF_THEME, null) ?: themes[0]
+        val alterEgoTheme = themeUtil.getAlterEgoTheme(curTheme)
+        binding.appBar.toolbar.setBackgroundColor(alterEgoTheme.primaryColor)
 
         formBuilder = form(requireContext(), binding.orientationRecyclerView) {
 
@@ -77,7 +83,7 @@ class AlterEgoOrientationFragment : DataBoundNavFragment<FragmentAlterEgoOrienta
             text(FormTag.INSTAGRAM_USERNAME.ordinal) {
                 title = getString(R.string.alter_ego_orientation_instagram_username)
             }
-            textArea(FormTag.NAME_OF_BEST_FRIEND_OR_RELATIVE.ordinal) {
+            textArea(FormTag.SHORT_BIO.ordinal) {
                 title = getString(R.string.alter_ego_orientation_short_bio)
             }
             header {

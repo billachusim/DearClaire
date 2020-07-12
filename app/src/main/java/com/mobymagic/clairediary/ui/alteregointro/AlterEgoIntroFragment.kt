@@ -30,7 +30,7 @@ class AlterEgoIntroFragment : DataBoundNavFragment<FragmentAlterEgoIntroBinding>
 
     override fun getPageTitle() = getString(R.string.common_title_alter_ego_mode)
 
-    override fun isAlterEgoPage() = false
+    override fun isAlterEgoPage() = true
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
