@@ -99,8 +99,6 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
         tabType = requireArguments().getSerializable(ARG_TAB_TYPE) as SessionListType
         shouldOpenCommentBox = requireArguments().getBoolean(SHOULD_OPEN_COMMENT_BOX)
 
-        Timber.d("Boom: %s", session)
-        setHasOptionsMenu(true)
         sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
     }
 

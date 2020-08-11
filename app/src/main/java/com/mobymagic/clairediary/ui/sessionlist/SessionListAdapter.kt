@@ -191,7 +191,10 @@ class SessionListAdapter(
                 binding.sessionActionButton.contentDescription =
                         context.getString(R.string.session_list_action_unarchive)
             } else {
-                binding.sessionActionButton.setImageResource(R.drawable.ic_round_archive_24)
+                val drawable = ContextCompat.getDrawable(context, R.drawable.ic_round_archive_24)!!
+                val color = ContextCompat.getColor(context, R.color.inactive_icon_light)
+                val tintedDrawable = ViewUtil.tintDrawable(drawable, color)
+                binding.sessionActionButton.setImageDrawable(tintedDrawable)
                 binding.sessionActionButton.contentDescription =
                         context.getString(R.string.session_list_action_archive)
             }

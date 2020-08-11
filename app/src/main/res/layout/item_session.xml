@@ -103,7 +103,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginHorizontal="6dp"
+                    android:gravity="end"
                     android:orientation="vertical"
                     tools:ignore="RelativeOverlap">
 
@@ -121,6 +121,34 @@
                         app:mood1="@{session}"
                         tools:text="feeling surprised 😲" />
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="end"
+                    tools:ignore="RelativeOverlap">
+
+                    <ImageButton
+                        android:id="@+id/session_action_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginEnd="8dp"
+                        android:background="?attr/selectableItemBackground"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_round_archive_24" />
+
+                    <ImageButton
+                        android:id="@+id/session_list_trending_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:background="?attr/selectableItemBackground"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_star_white_24dp" />
+
+                </LinearLayout>
+
                 </LinearLayout>
 
             </RelativeLayout>
@@ -128,71 +156,38 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:baselineAligned="false"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/session_title"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:layout_marginBottom="8dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@string/font_family_medium"
+                    android:gravity="center_horizontal"
+                    android:maxLines="2"
+                    android:text="@{session.title}"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    tools:ignore="RtlSymmetry"
+                    tools:text="Title of my first session" />
 
-                    <TextView
-                        android:id="@+id/session_title"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:ellipsize="end"
-                        android:fontFamily="@string/font_family_medium"
-                        android:gravity="center_horizontal"
-                        android:maxLines="2"
-                        android:text="@{session.title}"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        android:textAlignment="center"
-                        tools:ignore="RtlSymmetry"
-                        tools:text="Title of my first session" />
-
-                    <TextView
-                        android:id="@+id/session_list_content_tv"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@string/font_family_regular"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                        android:textColor="@color/white"
-                        android:textSize="15sp"
-                        tools:ignore="RtlSymmetry"
-                        tools:text="The content of my first diary session created on Claire" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/session_list_trend_and_archive_container"
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/session_list_content_tv"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center_vertical"
-                    android:layout_gravity="end" >
-
-                    <ImageButton
-                        android:id="@+id/session_list_trending_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
-                        android:background="?attr/selectableItemBackground"
-                        android:contentDescription="@null"
-                        android:src="@drawable/ic_star_white_24dp" />
-
-                    <ImageButton
-                        android:id="@+id/session_action_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="?attr/selectableItemBackground"
-                        android:contentDescription="@null"
-                        android:src="@drawable/ic_star_white_24dp" />
-
-                </LinearLayout>
+                    android:text="@{session.message}"
+                    android:ellipsize="end"
+                    android:fontFamily="@string/font_family_regular"
+                    android:maxLines="6"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    tools:ignore="RtlSymmetry"
+                    tools:text="The content of my first diary session created on Claire" />
 
             </LinearLayout>
 
@@ -291,6 +286,33 @@
                 </LinearLayout>
 
             </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@color/secondary_text_light" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/session_list_advise_hint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:text="@{session.message}"
+                    android:fontFamily="@string/font_family_regular"
+                    android:maxLines="2"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                    android:textColor="@color/secondary_text_light"
+                    android:textSize="12sp"
+                    tools:ignore="RtlSymmetry"
+                    tools:text="The content of my first diary session created on Claire" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

@@ -66,8 +66,8 @@
                     android:id="@+id/session_detail_user_image"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_gravity="start"
                     android:layout_alignParentStart="true"
+                    android:layout_gravity="start"
                     android:contentDescription="@null"
                     app:avatarUrl="@{session.userAvatarUrl}"
                     tools:src="@drawable/default_thumbnail" />
@@ -75,8 +75,8 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toEndOf="@id/session_detail_user_image"
                     android:layout_marginHorizontal="6dp"
+                    android:layout_toEndOf="@id/session_detail_user_image"
                     android:orientation="vertical">
 
                     <TextView
@@ -111,7 +111,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginHorizontal="6dp"
+                    android:gravity="end"
                     android:orientation="vertical"
                     tools:ignore="RelativeOverlap">
 
@@ -136,53 +136,38 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/session_title"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:layout_marginBottom="8dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@string/font_family_medium"
+                    android:gravity="center_horizontal"
+                    android:maxLines="2"
+                    android:text="@{session.title}"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    tools:ignore="RtlSymmetry"
+                    tools:text="Title of my first session" />
 
-                    <TextView
-                        android:id="@+id/session_title"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:ellipsize="end"
-                        android:fontFamily="@string/font_family_medium"
-                        android:gravity="center_horizontal"
-                        android:maxLines="1"
-                        android:text="@{session.title}"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        android:textAlignment="center"
-                        tools:ignore="RtlSymmetry"
-                        tools:text="Title of my first session" />
-
-                    <TextView
-                        android:id="@+id/session_list_content_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@string/font_family_regular"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                        android:textColor="@color/white"
-                        android:textSize="15sp"
-                        tools:ignore="RtlSymmetry"
-                        tools:text="The content of my first diary session created on Claire" />
-
-                </LinearLayout>
-
-                <ImageButton
-                    android:id="@+id/session_action_button"
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/session_list_content_tv"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:background="?attr/selectableItemBackground"
-                    android:contentDescription="@null"
-                    android:src="@drawable/ic_star_white_24dp"
-                    app:visibleGone="@{isUserCreatorOfSession}" />
+                    android:text="@{session.message}"
+                    android:ellipsize="end"
+                    android:fontFamily="@string/font_family_regular"
+                    android:maxLines="6"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    tools:ignore="RtlSymmetry"
+                    tools:text="The content of my first diary session created on Claire" />
 
             </LinearLayout>
 
@@ -243,12 +228,12 @@
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="start"
                         android:layout_gravity="bottom"
-                        android:textSize="18sp"
+                        android:gravity="start"
                         android:text="@string/session_detail_action_me_too"
                         android:textAllCaps="false"
-                        android:textColor="@color/primary_text_light" />
+                        android:textColor="@color/primary_text_light"
+                        android:textSize="18sp" />
 
                 </LinearLayout>
 
@@ -257,8 +242,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_marginHorizontal="2dp"
-                    android:paddingVertical="8dp"
                     android:orientation="horizontal"
+                    android:paddingVertical="8dp"
                     tools:ignore="RelativeOverlap">
 
                     <ImageButton
@@ -279,7 +264,35 @@
                         android:textColor="@color/secondary_text_light"
                         tools:text="132" />
                 </LinearLayout>
+
             </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@color/secondary_text_light" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/session_list_advise_hint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:text="@{session.message}"
+                    android:fontFamily="@string/font_family_regular"
+                    android:maxLines="2"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                    android:textColor="@color/secondary_text_light"
+                    android:textSize="12sp"
+                    tools:ignore="RtlSymmetry"
+                    tools:text="The content of my first diary session created on Claire" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
