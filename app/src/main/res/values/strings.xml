@@ -360,7 +360,7 @@
 
     <string name="hello_blank_fragment">Coming Soon; you can chat privately anonymously with Claire or anyone.</string>
     <string name="your_avartar">Your Avartar</string>
-    <string name="session">Session</string>
+    <string name="session">Sessions</string>
     <string name="nickname">Nickname</string>
     <!-- Comment List Page End -->
 
@@ -377,7 +377,7 @@
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
     <string name="best_session">Popular Session</string>
-    <string name="advise">Advise</string>
+    <string name="advise">Advises</string>
     <string name="ego">Ego</string>
     <string name="follows">Follows</string>
     <string name="title_activity_chat">ChatActivity</string>

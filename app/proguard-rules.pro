@@ -32,6 +32,10 @@
 # Keep FCM classes
 -keep class com.mobymagic.clairediary.fcm.** { *; }
 -keep class com.firebase.** { *; }
+-keep class com.mobymagic.clairediary.ClaireApplication.** { *; }
+-keepclasseswithmembers public class com.flutterwave.raveandroid.** { *; }
+-keep class com.flutterwave.raveandroid.** { *; }
+-keepclasseswithmembers public class com.facebook.** { *; }
 
 -dontwarn com.bumptech.glide.**
 -keep public class * implements com.bumptech.glide.module.GlideModule
@@ -53,6 +57,9 @@
 }
 
 # Do not strip any method/class that is annotated with @DoNotOptimize
+-keep class com.facebook.soloader.** { *; }
+-keep class com.facebook.** { *; }
+
 -keep @com.facebook.soloader.DoNotOptimize class *
 -keepclassmembers class * {
     @com.facebook.soloader.DoNotOptimize *;

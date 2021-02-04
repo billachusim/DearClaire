@@ -7,6 +7,7 @@
     <!-- Font Family End -->
 
     <!-- Service IDs & Keys Start -->
+    <string name="facebook_app_id" translatable="false" hidden="true">796241627228249</string>
     <string name="rave_public_key" hidden="true" translatable="false">FLWPUBK-5fa3a7ddf156ce6fbeb2ccb8d4320aec-X</string>
     <string name="rave_secret_key" hidden="true" translatable="false">FLWSECK-0c846bf9a69d9caab9ee147623229a6b-X</string>
     <!-- Service IDs & Keys End -->

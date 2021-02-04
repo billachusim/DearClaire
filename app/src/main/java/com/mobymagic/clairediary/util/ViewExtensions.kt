@@ -163,7 +163,7 @@ fun TextView.setMood1(session: Session) {
 @BindingAdapter("timeAgoWithDate")
 fun TextView.setTimeAgoWithDate(date: Date?) {
     if (date != null) {
-        val sessionDate = DateFormat.format("EEE. MMM d. h:mm a", date)
+        val sessionDate = DateFormat.format("EEE. MMM d, yyyy. h:mm a", date)
         text = sessionDate
     }
 }

@@ -103,8 +103,7 @@
                             android:id="@+id/number_of_sessions_TextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignStart="@id/sessions_TextView"
-                            android:layout_alignEnd="@id/sessions_TextView"
+                           android:layout_centerHorizontal="true"
                             android:fontFamily="sans-serif-black"
                             android:text="@{numberOfSessions}"
                             android:textAlignment="center"
@@ -115,6 +114,7 @@
                             android:id="@+id/sessions_TextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
                             android:layout_below="@id/number_of_sessions_TextView"
                             android:layout_margin="0.5dp"
                             android:fontFamily="sans-serif-medium"
@@ -129,15 +129,13 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="2dp"
-                        android:layout_weight="1.9"
-                        app:layout_constraintStart_toEndOf="@id/user_avartar">
+                        android:layout_weight="1.9" >
 
                         <TextView
                             android:id="@+id/follow_count_textView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignStart="@id/follows_TextView"
-                            android:layout_alignEnd="@id/follows_TextView"
+                            android:layout_centerHorizontal="true"
                             android:fontFamily="sans-serif-black"
                             android:text="@{numberOfMeeToos}"
                             android:textAlignment="center"
@@ -148,6 +146,7 @@
                             android:id="@+id/follows_TextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
                             android:layout_below="@id/follow_count_textView"
                             android:layout_margin="0.5dp"
                             android:fontFamily="sans-serif-medium"
@@ -161,27 +160,27 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="2dp"
-                        android:layout_weight="1.5"
-                        app:layout_constraintStart_toEndOf="@id/user_avartar">
+                        android:layout_weight="1.5" >
 
                         <TextView
                             android:id="@+id/number_of_comments_text_view"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignStart="@id/adviceTextView"
-                            android:layout_alignEnd="@id/adviceTextView"
+                            android:layout_centerHorizontal="true"
                             android:fontFamily="sans-serif-black"
                             android:text="@{numberOfComments}"
                             android:textAlignment="center"
                             android:textAppearance="?android:textAppearanceLarge"
-                            tools:text="386" />
+                            tools:text="12345" />
 
                         <TextView
                             android:id="@+id/adviceTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
                             android:layout_below="@id/number_of_comments_text_view"
-                            android:layout_margin="0.5dp"
+                            android:layout_marginStart="8dp"
+                            android:textAlignment="center"
                             android:fontFamily="sans-serif-medium"
                             android:text="@string/advise"
                             android:textStyle="bold" />
@@ -227,12 +226,13 @@
                             android:id="@+id/user_type_text_view"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:gravity="center"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginEnd="16dp"
                             android:text="@{userType}"
-                            android:textAlignment="center"
                             android:textAppearance="?android:textAppearanceLarge"
                             android:textColor="@color/white"
+                            android:textSize="15sp"
                             android:textStyle="bold"
                             app:adminBadge="@{userType}"
                             tools:text="Admin" />

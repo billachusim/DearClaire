@@ -47,8 +47,7 @@ class MainActivity : CAppCompatActivity(), NavController,
         EmojiCompat.init(FontRequestEmojiCompatConfig(applicationContext, fontRequest)
                 .setReplaceAll(true)
                 .registerInitCallback(EmojiInitCallBack()))
-//        val config = BundledEmojiCompatConfig(this)
-//        EmojiCompat.init(config)
+
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
         Answers.getInstance().logCustom(CustomEvent("App Opened"))
         openStartDestination()

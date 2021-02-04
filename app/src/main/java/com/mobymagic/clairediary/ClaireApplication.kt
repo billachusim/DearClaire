@@ -2,6 +2,10 @@ package com.mobymagic.clairediary
 
 import android.app.Application
 import com.evernote.android.job.JobManager
+import com.facebook.drawee.backends.pipeline.Fresco
+import com.facebook.imagepipeline.core.ImagePipelineConfig
+import com.facebook.imagepipeline.core.ImageTranscoderType
+import com.facebook.imagepipeline.core.MemoryChunkType
 import com.mobymagic.clairediary.Constants.PREF_KEY_DAILY_REMINDER_HOUR
 import com.mobymagic.clairediary.di.*
 import com.mobymagic.clairediary.jobs.AppJobCreator
@@ -24,7 +28,12 @@ class ClaireApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
+        Fresco.initialize(
+                applicationContext,
+                ImagePipelineConfig.newBuilder(applicationContext)
+                        .setMemoryChunkType(MemoryChunkType.BUFFER_MEMORY)
+                        .setImageTranscoderType(ImageTranscoderType.JAVA_TRANSCODER)
+                        .experiment().setNativeCodeDisabled(true).build())
         startKoin(
                 this, listOf(
                 apiModule, appModule, repositoryModule, utilModule, taskModule,

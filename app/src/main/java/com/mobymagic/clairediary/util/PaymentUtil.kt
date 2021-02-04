@@ -3,7 +3,6 @@ package com.mobymagic.clairediary.util
 import android.app.Activity
 import android.content.Context
 import android.widget.ArrayAdapter
-import androidx.appcompat.app.AlertDialog
 import com.flutterwave.raveandroid.RaveUiManager
 import com.mobymagic.clairediary.R
 import com.mobymagic.clairediary.vo.PaymentPlan
@@ -20,7 +19,7 @@ class PaymentUtil(context: Context) {
     )
 
     fun donate(activity: Activity, user: User, currency: String = "NGN") {
-        val builderSingle = AlertDialog.Builder(activity)
+        val builderSingle = android.app.AlertDialog.Builder(activity)
         builderSingle.setTitle(R.string.donate_amount_page_title)
 
         val arrayAdapter = ArrayAdapter(
@@ -47,7 +46,7 @@ class PaymentUtil(context: Context) {
             amount: Double,
             currency: String = "NG"
     ) {
-        val transactionRef = user.nickname + UUID.randomUUID().toString()
+        val transactionRef = user.nickname + amount + UUID.randomUUID().toString()
         RaveUiManager(activity)
                 .setAmount(amount)
                 .setCurrency(currency)

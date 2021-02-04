@@ -33,8 +33,8 @@ class DonateUtil(context: Context) {
 
         builderSingle.setAdapter(arrayAdapter) { dialog, which ->
             dialog.dismiss()
-            val amount = arrayAdapter.getItem(which).amount
-            makePayment(activity, user, amount = amount, currency = currency)
+            val amount = arrayAdapter.getItem(which)?.amount
+            makePayment(activity, user, amount!!, currency)
         }
         builderSingle.show()
     }
@@ -45,7 +45,7 @@ class DonateUtil(context: Context) {
             amount: Double,
             currency: String = "NG"
     ) {
-        val transactionRef = user.nickname + UUID.randomUUID().toString()
+        val transactionRef = user.nickname + amount + UUID.randomUUID().toString()
         RaveUiManager(activity)
                 .setAmount(amount)
                 .setCurrency(currency)
