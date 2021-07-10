@@ -20,8 +20,10 @@ class SettingsHomeFragment : NavFragment() {
 
     private val fragmentUtil: FragmentUtils by inject()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_settings_home, container, false)
     }
 
@@ -32,9 +34,9 @@ class SettingsHomeFragment : NavFragment() {
 
         val settingsFragment = SettingsFragment.newInstance()
         fragmentUtil.addIfNotExist(
-                childFragmentManager,
-                R.id.settings_fragment_container,
-                settingsFragment
+            childFragmentManager,
+            R.id.settings_fragment_container,
+            settingsFragment
         )
     }
 

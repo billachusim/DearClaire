@@ -5,10 +5,10 @@ package com.mobymagic.clairediary.vo
  * Also used by other other components to determine where to go
  */
 data class SplashResult(
-        val userId: String? = null,
-        val userType: User.UserType = User.UserType.REGULAR,
-        val secretCode: String? = null,
-        val action: SplashAction
+    val userId: String? = null,
+    val userType: User.UserType = User.UserType.REGULAR,
+    val secretCode: String? = null,
+    val action: SplashAction
 ) {
 
     enum class SplashAction {

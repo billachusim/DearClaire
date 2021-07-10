@@ -35,12 +35,12 @@ class ForgotSecretCodeFragment : DataBoundNavFragment<FragmentForgotSecretCodeBi
     }
 
     private fun initForm() {
-        binding.forgotCodeResetButton.setOnClickListener({
+        binding.forgotCodeResetButton.setOnClickListener {
             val email = binding.forgotCodeEmailInput.text.toString()
             if (isFormValid(email)) {
                 forgotCodeViewModel.setEmail(email)
             }
-        })
+        }
 
         binding.forgotCodeOpenInboxButton.setOnClickListener {
             openEmailClient()
@@ -53,11 +53,11 @@ class ForgotSecretCodeFragment : DataBoundNavFragment<FragmentForgotSecretCodeBi
     private fun isFormValid(email: String): Boolean {
         return if (email.isEmpty()) {
             binding.forgotCodeEmailInputLayout.error =
-                    getString(R.string.forgot_secret_code_error_email_empty)
+                getString(R.string.forgot_secret_code_error_email_empty)
             false
         } else if (!inputUtil.isValidEmail(email)) {
             binding.forgotCodeEmailInputLayout.error =
-                    getString(R.string.forgot_secret_code_error_email_invalid)
+                getString(R.string.forgot_secret_code_error_email_invalid)
             false
         } else {
             true
@@ -78,7 +78,11 @@ class ForgotSecretCodeFragment : DataBoundNavFragment<FragmentForgotSecretCodeBi
             startActivity(intent)
         } catch (e: Exception) {
             Timber.e(e)
-            Toast.makeText(activity, R.string.forgot_secret_code_error_no_email_client, Toast.LENGTH_LONG).show()
+            Toast.makeText(
+                activity,
+                R.string.forgot_secret_code_error_no_email_client,
+                Toast.LENGTH_LONG
+            ).show()
         }
     }
 

@@ -13,7 +13,7 @@ import io.multimoon.colorful.ThemeColor
 
 
 class SettingsFragment : PreferenceFragmentCompat(),
-        SharedPreferences.OnSharedPreferenceChangeListener {
+    SharedPreferences.OnSharedPreferenceChangeListener {
 
     var requiresAuthentication: Boolean = false
     var openToNewUsers: Boolean = true
@@ -26,7 +26,8 @@ class SettingsFragment : PreferenceFragmentCompat(),
         when (key) {
             Constants.PREF_KEY_DAILY_REMINDER_ENABLED -> {
                 val reminderEnabled = sp.getBoolean(key, true)
-                findPreference<Preference>(Constants.PREF_KEY_DAILY_REMINDER_HOUR)!!.isEnabled = reminderEnabled
+                findPreference<Preference>(Constants.PREF_KEY_DAILY_REMINDER_HOUR)!!.isEnabled =
+                    reminderEnabled
             }
             Constants.PREF_KEY_DAILY_REMINDER_HOUR -> {
                 val reminderHour = sp.getInt(key, RemindDailyJob.DEFAULT_HOUR).toLong()
@@ -72,13 +73,13 @@ class SettingsFragment : PreferenceFragmentCompat(),
                 }
 
                 Colorful().edit()
-                        .setPrimaryColor(primaryColor)
-                        .setAccentColor(accentColor)
-                        .setDarkTheme(darkTheme)
-                        .setTranslucent(false)
-                        .apply(requireContext()) {
-                            activity?.recreate()
-                        }
+                    .setPrimaryColor(primaryColor)
+                    .setAccentColor(accentColor)
+                    .setDarkTheme(darkTheme)
+                    .setTranslucent(false)
+                    .apply(requireContext()) {
+                        activity?.recreate()
+                    }
             }
         }
     }
@@ -96,12 +97,12 @@ class SettingsFragment : PreferenceFragmentCompat(),
     override fun onDisplayPreferenceDialog(preference: Preference) {
         if (preference is NumberPickerPreference) {
             val fragment = NumberPickerPreference.NumberPickerPreferenceDialogFragmentCompat
-                    .newInstance(preference.getKey())
+                .newInstance(preference.getKey())
             fragment.setTargetFragment(this, 0)
             fragmentManager?.let {
                 fragment.show(
-                        it,
-                        "android.support.v7.preference.PreferenceFragment.DIALOG"
+                    it,
+                    "android.support.v7.preference.PreferenceFragment.DIALOG"
                 )
             }
         } else {

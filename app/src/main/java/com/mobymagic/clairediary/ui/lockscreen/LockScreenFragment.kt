@@ -45,15 +45,15 @@ class LockScreenFragment : DataBoundNavFragment<FragmentLockScreenBinding>() {
         when {
             inputSecretCode.isEmpty() -> {
                 binding.lockScreenSecretCodeInputLayout.error =
-                        getString(R.string.lock_screen_error_secret_code_empty)
+                    getString(R.string.lock_screen_error_secret_code_empty)
             }
             inputSecretCode != userSecretCode -> {
                 binding.lockScreenSecretCodeInputLayout.error =
-                        getString(R.string.lock_screen_error_secret_code_incorrect)
+                    getString(R.string.lock_screen_error_secret_code_incorrect)
             }
             else -> {
                 Toast.makeText(context, R.string.lock_screen_welcome_message, Toast.LENGTH_LONG)
-                        .show()
+                    .show()
                 AuthViewModel.userLoggedIn = true
                 authViewModel.updateLastLogin()
                 if (destination != null) {
@@ -68,9 +68,9 @@ class LockScreenFragment : DataBoundNavFragment<FragmentLockScreenBinding>() {
     private fun navigateToForgotSecretCode() {
         val forgotSecretCodeFragment = ForgotSecretCodeFragment.newInstance()
         getNavController().navigate(
-                forgotSecretCodeFragment,
-                addToBackStack = true,
-                onlyAddIfNotExist = false
+            forgotSecretCodeFragment,
+            addToBackStack = true,
+            onlyAddIfNotExist = false
         )
     }
 
@@ -80,7 +80,11 @@ class LockScreenFragment : DataBoundNavFragment<FragmentLockScreenBinding>() {
         private const val ARG_USER_ID = "ARG_USER_ID"
         private const val ARG_SECRET_CODE = "ARG_SECRET_CODE"
 
-        fun newInstance(userId: String, secretCode: String, destination: NavFragment): LockScreenFragment {
+        fun newInstance(
+            userId: String,
+            secretCode: String,
+            destination: NavFragment
+        ): LockScreenFragment {
             val lockScreenFragment = LockScreenFragment()
             val args = Bundle()
             args.putString(ARG_USER_ID, userId)

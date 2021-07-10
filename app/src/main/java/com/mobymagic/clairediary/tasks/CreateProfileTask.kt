@@ -11,8 +11,8 @@ import com.mobymagic.clairediary.vo.User
 import timber.log.Timber
 
 class CreateProfileTask(
-        private val androidUtil: AndroidUtil,
-        private val userRepository: UserRepository
+    private val androidUtil: AndroidUtil,
+    private val userRepository: UserRepository
 ) {
 
     fun run(user: User): LiveData<Resource<User>> {
@@ -22,8 +22,8 @@ class CreateProfileTask(
     }
 
     private fun checkNicknameAvailability(
-            user: User,
-            createProfileLiveData: MediatorLiveData<Resource<User>>
+        user: User,
+        createProfileLiveData: MediatorLiveData<Resource<User>>
     ) {
         val userWithNicknameLiveData = userRepository.getUserWithNickname(user.nickname)
         createProfileLiveData.addSource(userWithNicknameLiveData) {
@@ -44,7 +44,7 @@ class CreateProfileTask(
                     } else {
                         Timber.w("Nickname already exists")
                         createProfileLiveData.value = Resource.error(
-                                androidUtil.getString(R.string.sign_up_error_nickname_exists)
+                            androidUtil.getString(R.string.sign_up_error_nickname_exists)
                         )
                     }
                 }
@@ -53,8 +53,8 @@ class CreateProfileTask(
     }
 
     private fun saveUserProfile(
-            user: User,
-            createProfileLiveData: MediatorLiveData<Resource<User>>
+        user: User,
+        createProfileLiveData: MediatorLiveData<Resource<User>>
     ) {
         val saveUserLiveData = userRepository.addUser(user)
         createProfileLiveData.addSource(saveUserLiveData) {

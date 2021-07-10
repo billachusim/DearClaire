@@ -7,9 +7,9 @@ import com.mobymagic.clairediary.ui.common.DataBoundListAdapter
 import timber.log.Timber
 
 class CreateSessionPhotoListAdapter(
-        appExecutors: AppExecutors,
-        private val imageClickCallback: ((String) -> Unit),
-        private val removeClickCallback: ((String) -> Unit)
+    appExecutors: AppExecutors,
+    private val imageClickCallback: ((String) -> Unit),
+    private val removeClickCallback: ((String) -> Unit)
 ) : DataBoundListAdapter<String, ItemCreateSessionImageBinding>(appExecutors) {
 
     override fun attachListeners(binding: ItemCreateSessionImageBinding) {

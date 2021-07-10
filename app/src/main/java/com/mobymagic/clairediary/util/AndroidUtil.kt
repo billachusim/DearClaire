@@ -27,9 +27,9 @@ class AndroidUtil(private val context: Context) {
      * @param message The text to share
      */
     fun shareText(
-            context: Context,
-            subject: String,
-            message: String
+        context: Context,
+        subject: String,
+        message: String
     ) {
         val intent = Intent(Intent.ACTION_SEND)
         intent.type = "text/plain"
@@ -37,10 +37,10 @@ class AndroidUtil(private val context: Context) {
         intent.putExtra(Intent.EXTRA_SUBJECT, subject)
 
         context.startActivity(
-                Intent.createChooser(
-                        intent,
-                        context.getString(R.string.common_chooser_title_share_using)
-                )
+            Intent.createChooser(
+                intent,
+                context.getString(R.string.common_chooser_title_share_using)
+            )
         )
     }
 
@@ -57,9 +57,9 @@ class AndroidUtil(private val context: Context) {
      * @param subject The title of the mail
      */
     fun sendMail(
-            context: Context,
-            recipient: String,
-            subject: String
+        context: Context,
+        recipient: String,
+        subject: String
     ) {
         val intent = Intent(Intent.ACTION_SENDTO)
         // only email apps should handle this

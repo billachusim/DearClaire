@@ -18,11 +18,11 @@ import java.util.concurrent.TimeUnit
 var SPLASH_LAST_UNLOCKED_TIME: Long = 0
 
 class SplashViewModel(
-        private val androidUtil: AndroidUtil,
-        private val appExecutors: AppExecutors,
-        private val prefUtil: PrefUtil,
-        private val firebaseAuth: FirebaseAuth,
-        private val userRepository: UserRepository
+    private val androidUtil: AndroidUtil,
+    private val appExecutors: AppExecutors,
+    private val prefUtil: PrefUtil,
+    private val firebaseAuth: FirebaseAuth,
+    private val userRepository: UserRepository
 ) : ViewModel() {
 
     fun getSplashResult(justUnlocked: Boolean): LiveData<Resource<SplashResult>> {
@@ -30,54 +30,54 @@ class SplashViewModel(
 
         // Set resource into loading state
         splashLiveData.value =
-                Resource.loading(androidUtil.getString(R.string.splash_loading_message))
+            Resource.loading(androidUtil.getString(R.string.splash_loading_message))
 
         // Use the scheduled thread to create an artificial delay for the splash screen
         appExecutors.scheduledThread().schedule(
-                {
-                    Timber.d("Artificial splash screen delay is up")
-                    val curTime = System.currentTimeMillis()
+            {
+                Timber.d("Artificial splash screen delay is up")
+                val curTime = System.currentTimeMillis()
 
-                    if (justUnlocked) {
-                        Timber.d("Just unlocked app, saving current time: %d", curTime)
-                        SPLASH_LAST_UNLOCKED_TIME = curTime
-                    }
+                if (justUnlocked) {
+                    Timber.d("Just unlocked app, saving current time: %d", curTime)
+                    SPLASH_LAST_UNLOCKED_TIME = curTime
+                }
 
-                    val user = userRepository.getLoggedInUser()
-                    val tenMinutes = TimeUnit.MINUTES.toMillis(10)
-                    val curTimeMinusLastUnlockedTime = curTime - SPLASH_LAST_UNLOCKED_TIME
-                    val firebaseUser = firebaseAuth.currentUser
+                val user = userRepository.getLoggedInUser()
+                val tenMinutes = TimeUnit.MINUTES.toMillis(10)
+                val curTimeMinusLastUnlockedTime = curTime - SPLASH_LAST_UNLOCKED_TIME
+                val firebaseUser = firebaseAuth.currentUser
 
-                    Timber.d("User: %s, FirebaseUser: %s", user, firebaseUser)
-                    Timber.d("Time diff: %s, ten minutes: %s", curTimeMinusLastUnlockedTime, tenMinutes)
-                    // Check if the user is logged in
-                    if (user == null || firebaseUser == null) {
-                        Timber.d("User is not logged in, open onboarding screen")
-                        splashLiveData.postValue(getSplashResource(SplashResult.SplashAction.OPEN_ONBOARDING))
-                    } else if (user.nickname.isEmpty()) {
-                        Timber.d("User doesn't have a profile yet, open create profile screen")
-                        splashLiveData.postValue(getSplashResource(SplashResult.SplashAction.OPEN_CREATE_PROFILE))
-                    } else if (curTimeMinusLastUnlockedTime in 0 until tenMinutes) {
-                        Timber.d("User has recently unlocked, open sessions home")
-                        splashLiveData.postValue(
-                                getSuccessResource(
-                                        user,
-                                        SplashResult.SplashAction.OPEN_SESSIONS_HOME
-                                )
+                Timber.d("User: %s, FirebaseUser: %s", user, firebaseUser)
+                Timber.d("Time diff: %s, ten minutes: %s", curTimeMinusLastUnlockedTime, tenMinutes)
+                // Check if the user is logged in
+                if (user == null || firebaseUser == null) {
+                    Timber.d("User is not logged in, open onboarding screen")
+                    splashLiveData.postValue(getSplashResource(SplashResult.SplashAction.OPEN_ONBOARDING))
+                } else if (user.nickname.isEmpty()) {
+                    Timber.d("User doesn't have a profile yet, open create profile screen")
+                    splashLiveData.postValue(getSplashResource(SplashResult.SplashAction.OPEN_CREATE_PROFILE))
+                } else if (curTimeMinusLastUnlockedTime in 0 until tenMinutes) {
+                    Timber.d("User has recently unlocked, open sessions home")
+                    splashLiveData.postValue(
+                        getSuccessResource(
+                            user,
+                            SplashResult.SplashAction.OPEN_SESSIONS_HOME
                         )
-                    } else {
-                        // when the user is already logged in just open the Session home
-                        Timber.d("User is logged in, open lock screen")
-                        splashLiveData.postValue(
-                                getSuccessResource(
-                                        user,
-                                        SplashResult.SplashAction.OPEN_SESSIONS_HOME
-                                )
+                    )
+                } else {
+                    // when the user is already logged in just open the Session home
+                    Timber.d("User is logged in, open lock screen")
+                    splashLiveData.postValue(
+                        getSuccessResource(
+                            user,
+                            SplashResult.SplashAction.OPEN_SESSIONS_HOME
                         )
-                    }
-                },
-                2,
-                TimeUnit.SECONDS
+                    )
+                }
+            },
+            2,
+            TimeUnit.SECONDS
         )
 
         return splashLiveData
@@ -88,16 +88,16 @@ class SplashViewModel(
     }
 
     private fun getSuccessResource(
-            user: User,
-            splashAction: SplashResult.SplashAction
+        user: User,
+        splashAction: SplashResult.SplashAction
     ): Resource<SplashResult> {
         return Resource.success(
-                SplashResult(
-                        user.userId,
-                        user.userType,
-                        user.secretCode,
-                        splashAction
-                )
+            SplashResult(
+                user.userId,
+                user.userType,
+                user.secretCode,
+                splashAction
+            )
         )
     }
 
@@ -106,15 +106,15 @@ class SplashViewModel(
 
         // Set resource into loading state
         splashLiveData.value =
-                Resource.loading(androidUtil.getString(R.string.splash_loading_message))
+            Resource.loading(androidUtil.getString(R.string.splash_loading_message))
 
         // Use the scheduled thread to create an artificial delay for the splash screen
         appExecutors.scheduledThread().schedule(
-                {
-                    splashLiveData.postValue(getSplashResource(SplashResult.SplashAction.OPEN_SESSIONS_HOME))
-                },
-                1,
-                TimeUnit.SECONDS
+            {
+                splashLiveData.postValue(getSplashResource(SplashResult.SplashAction.OPEN_SESSIONS_HOME))
+            },
+            1,
+            TimeUnit.SECONDS
         )
 
         return splashLiveData

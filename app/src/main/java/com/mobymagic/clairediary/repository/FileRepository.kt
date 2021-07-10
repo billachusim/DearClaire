@@ -15,10 +15,10 @@ import java.util.*
 import kotlin.math.roundToInt
 
 class FileRepository(
-        private val appExecutors: AppExecutors,
-        private val androidUtil: AndroidUtil,
-        private val storageRef: StorageReference,
-        private val compressor: Compressor
+    private val appExecutors: AppExecutors,
+    private val androidUtil: AndroidUtil,
+    private val storageRef: StorageReference,
+    private val compressor: Compressor
 ) {
 
     private lateinit var fileWrappers: List<FileWrapper>
@@ -76,27 +76,27 @@ class FileRepository(
         Timber.d("Uploading file: %s", fileWrapper)
         // Generate a random name for the new file
         val randomFileStorageName =
-                UUID.randomUUID().toString() + getFileExtension(fileWrapper.file)
+            UUID.randomUUID().toString() + getFileExtension(fileWrapper.file)
         Timber.d("Random file storage name: %s", randomFileStorageName)
 
         val storageFileRef =
-                storageRef.child(fileWrapper.fileType.type).child(randomFileStorageName)
+            storageRef.child(fileWrapper.fileType.type).child(randomFileStorageName)
         val uploadTask = storageFileRef.putFile(Uri.fromFile(fileWrapper.file))
 
         // Listen for progress
         uploadTask.addOnProgressListener { taskSnapshot ->
             Timber.d(
-                    "Upload progress, transferred: %d, total: %d", taskSnapshot.bytesTransferred,
-                    taskSnapshot.totalByteCount
+                "Upload progress, transferred: %d, total: %d", taskSnapshot.bytesTransferred,
+                taskSnapshot.totalByteCount
             )
 
             var percentUploaded =
-                    taskSnapshot.bytesTransferred.toFloat() / taskSnapshot.totalByteCount.toFloat()
+                taskSnapshot.bytesTransferred.toFloat() / taskSnapshot.totalByteCount.toFloat()
             percentUploaded *= 100F
 
             fileUploadLiveData.value = Resource.loading(
-                    androidUtil
-                            .getString(R.string.file_uploading_with_percent, percentUploaded.roundToInt())
+                androidUtil
+                    .getString(R.string.file_uploading_with_percent, percentUploaded.roundToInt())
             )
         }
 
@@ -104,8 +104,8 @@ class FileRepository(
         uploadTask.addOnFailureListener { e ->
             Timber.e(e, "Error uploading file")
             fileUploadLiveData.value = Resource.error(
-                    androidUtil.getString(R.string.file_upload_error),
-                    fileWrappers
+                androidUtil.getString(R.string.file_upload_error),
+                fileWrappers
             )
         }
 
@@ -115,23 +115,23 @@ class FileRepository(
             Timber.d("Getting file url")
 
             storageFileRef.downloadUrl
-                    .addOnSuccessListener { uri ->
-                        Timber.d("Uploaded file uri: %s", uri)
-                        fileWrapper.uploaded = true
-                        fileWrapper.uploadUrl = uri
+                .addOnSuccessListener { uri ->
+                    Timber.d("Uploaded file uri: %s", uri)
+                    fileWrapper.uploaded = true
+                    fileWrapper.uploadUrl = uri
 
-                        // Increase file upload pointer
-                        fileUploadPointer++
-                        // Then try to upload the next file
-                        uploadNextFile()
-                    }
-                    .addOnFailureListener { e ->
-                        Timber.e(e, "Error getting file url")
-                        fileUploadLiveData.value = Resource.error(
-                                androidUtil.getString(R.string.file_upload_error),
-                                fileWrappers
-                        )
-                    }
+                    // Increase file upload pointer
+                    fileUploadPointer++
+                    // Then try to upload the next file
+                    uploadNextFile()
+                }
+                .addOnFailureListener { e ->
+                    Timber.e(e, "Error getting file url")
+                    fileUploadLiveData.value = Resource.error(
+                        androidUtil.getString(R.string.file_upload_error),
+                        fileWrappers
+                    )
+                }
         }
 
     }
@@ -146,11 +146,11 @@ class FileRepository(
     }
 
     data class FileWrapper(
-            var file: File,
-            var fileType: FileType,
-            var compressed: Boolean = false,
-            var uploaded: Boolean = false,
-            var uploadUrl: Uri? = null
+        var file: File,
+        var fileType: FileType,
+        var compressed: Boolean = false,
+        var uploaded: Boolean = false,
+        var uploadUrl: Uri? = null
     )
 
     enum class FileType(val type: String) {

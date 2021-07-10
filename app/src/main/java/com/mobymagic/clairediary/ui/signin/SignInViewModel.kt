@@ -16,9 +16,9 @@ import timber.log.Timber
 
 
 class SignInViewModel(
-        private val androidUtil: AndroidUtil,
-        private val authRepository: AuthRepository,
-        private val userRepository: UserRepository
+    private val androidUtil: AndroidUtil,
+    private val authRepository: AuthRepository,
+    private val userRepository: UserRepository
 ) : ViewModel() {
 
     private val loginLiveData: MutableLiveData<Login> = MutableLiveData()
@@ -28,7 +28,7 @@ class SignInViewModel(
     init {
         resultLiveData.addSource(loginLiveData) { login ->
             resultLiveData.value =
-                    Resource.loading(androidUtil.getString(R.string.common_message_loading))
+                Resource.loading(androidUtil.getString(R.string.common_message_loading))
             if (firebaseUser == null) {
                 Timber.d("User not logged in. Signing into Firebase auth")
                 signIn(login!!)

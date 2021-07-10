@@ -39,11 +39,15 @@ class ClaireVartarFragment : androidx.fragment.app.DialogFragment() {
         setStyle(STYLE_NORMAL, R.style.DialogFragmentAnimatedTheme)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(LayoutInflater.from(context),
-                R.layout.fragment_claire_vartar, null, false)
+        binding = DataBindingUtil.inflate(
+            LayoutInflater.from(context),
+            R.layout.fragment_claire_vartar, null, false
+        )
         return binding.root
     }
 
@@ -57,7 +61,8 @@ class ClaireVartarFragment : androidx.fragment.app.DialogFragment() {
 
     private fun initRecyclerViewAdapter() {
 
-        val rvAdapter = ClaireVartarAdapter(appExecutors
+        val rvAdapter = ClaireVartarAdapter(
+            appExecutors
         ) { clairevartar ->
             selectedAvartar = clairevartar.imageUrl
             dismiss()
@@ -68,8 +73,10 @@ class ClaireVartarFragment : androidx.fragment.app.DialogFragment() {
         binding.claireVartarList.layoutManager = GridLayoutManager(context, 5)
         binding.claireVartarList.adapter = rvAdapter
         binding.claireVartarList.addItemDecoration(
-                DividerItemDecoration(activity, DividerItemDecoration.HORIZONTAL))
-        binding.claireVartarList.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL)
+            DividerItemDecoration(activity, DividerItemDecoration.HORIZONTAL)
+        )
+        binding.claireVartarList.addItemDecoration(
+            DividerItemDecoration(activity, DividerItemDecoration.VERTICAL)
         )
         adapter = rvAdapter
     }
@@ -85,8 +92,10 @@ class ClaireVartarFragment : androidx.fragment.app.DialogFragment() {
     override fun onDismiss(dialog: DialogInterface) {
         val intent = Intent()
         intent.putExtra(USER_AVARTAR_KEY, selectedAvartar)
-        targetFragment?.onActivityResult(targetRequestCode,
-                CLAIRE_VARTAR_RESULT_CODE, intent)
+        targetFragment?.onActivityResult(
+            targetRequestCode,
+            CLAIRE_VARTAR_RESULT_CODE, intent
+        )
         super.onDismiss(dialog)
     }
 
@@ -109,9 +118,9 @@ class ClaireVartarFragment : androidx.fragment.app.DialogFragment() {
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance() =
-                ClaireVartarFragment().apply {
+            ClaireVartarFragment().apply {
 
-                }
+            }
     }
 
 }

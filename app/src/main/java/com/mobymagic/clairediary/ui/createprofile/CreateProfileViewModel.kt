@@ -13,8 +13,8 @@ import timber.log.Timber
 private const val RESTRICTED_NICKNAME_CONTENT = "claire"
 
 class CreateProfileViewModel(
-        private val userRepository: UserRepository,
-        private val createProfileTask: CreateProfileTask
+    private val userRepository: UserRepository,
+    private val createProfileTask: CreateProfileTask
 ) : ViewModel() {
 
     private val userLiveData: MutableLiveData<User> = MutableLiveData()

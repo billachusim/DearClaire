@@ -22,7 +22,8 @@ class ExoPlayerUtil(private val context: Context) : Player.DefaultEventListener(
 
     var mainHandler = Handler()
     var bandwidthMeter: BandwidthMeter = DefaultBandwidthMeter()
-    var videoTrackSelectionFactory: TrackSelection.Factory = AdaptiveTrackSelection.Factory(bandwidthMeter)
+    var videoTrackSelectionFactory: TrackSelection.Factory =
+        AdaptiveTrackSelection.Factory(bandwidthMeter)
     var trackSelector = DefaultTrackSelector(videoTrackSelectionFactory)
 
 
@@ -48,11 +49,13 @@ class ExoPlayerUtil(private val context: Context) : Player.DefaultEventListener(
         // Measures bandwidth during playback. Can be null if not required.
         val bandwidthMeter = DefaultBandwidthMeter()
 // Produces DataSource instances through which media data is loaded.
-        val dataSourceFactory = DefaultDataSourceFactory(context,
-                Util.getUserAgent(context, "Claire"), bandwidthMeter)
+        val dataSourceFactory = DefaultDataSourceFactory(
+            context,
+            Util.getUserAgent(context, "Claire"), bandwidthMeter
+        )
 // This is the MediaSource representing the media to be played.
         return ExtractorMediaSource.Factory(dataSourceFactory)
-                .createMediaSource(Uri.parse(audioUrl))
+            .createMediaSource(Uri.parse(audioUrl))
     }
 
 

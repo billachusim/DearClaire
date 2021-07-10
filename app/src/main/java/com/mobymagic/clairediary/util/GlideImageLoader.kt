@@ -16,43 +16,59 @@ class GlideImageLoader(val imageUrl: String) : MediaLoader {
         return true
     }
 
-    override fun loadMedia(context: Context?, imageView: ImageView?, callback: MediaLoader.SuccessCallback?) {
+    override fun loadMedia(
+        context: Context?,
+        imageView: ImageView?,
+        callback: MediaLoader.SuccessCallback?
+    ) {
         GlideApp.with(context!!)
-                .applyDefaultRequestOptions(RequestOptions().placeholder(R.mipmap.ic_launcher))
-                .load(imageUrl).listener(object : RequestListener<Drawable> {
-                    override fun onLoadFailed(e: GlideException?, model: Any?, target:
-                    com.bumptech.glide.request.target.Target<Drawable>?, isFirstResource: Boolean): Boolean {
-                        return false
-                    }
+            .applyDefaultRequestOptions(RequestOptions().placeholder(R.mipmap.ic_launcher))
+            .load(imageUrl).listener(object : RequestListener<Drawable> {
+                override fun onLoadFailed(
+                    e: GlideException?, model: Any?, target:
+                    com.bumptech.glide.request.target.Target<Drawable>?, isFirstResource: Boolean
+                ): Boolean {
+                    return false
+                }
 
-                    override fun onResourceReady(resource: Drawable?, model: Any?,
-                                                 target: com.bumptech.glide.request.target.Target<Drawable>?,
-                                                 dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-                        //do something when picture already loaded
-                        callback?.onSuccess()
-                        return false
-                    }
-                })
-                .into(imageView!!)
+                override fun onResourceReady(
+                    resource: Drawable?, model: Any?,
+                    target: com.bumptech.glide.request.target.Target<Drawable>?,
+                    dataSource: DataSource?, isFirstResource: Boolean
+                ): Boolean {
+                    //do something when picture already loaded
+                    callback?.onSuccess()
+                    return false
+                }
+            })
+            .into(imageView!!)
     }
 
-    override fun loadThumbnail(context: Context?, thumbnailView: ImageView?, callback: MediaLoader.SuccessCallback?) {
+    override fun loadThumbnail(
+        context: Context?,
+        thumbnailView: ImageView?,
+        callback: MediaLoader.SuccessCallback?
+    ) {
         GlideApp.with(context!!)
-                .applyDefaultRequestOptions(RequestOptions().placeholder(R.mipmap.ic_launcher))
-                .load(imageUrl).listener(object : RequestListener<Drawable> {
-                    override fun onLoadFailed(e: GlideException?, model: Any?, target:
-                    com.bumptech.glide.request.target.Target<Drawable>?, isFirstResource: Boolean): Boolean {
-                        return false
-                    }
+            .applyDefaultRequestOptions(RequestOptions().placeholder(R.mipmap.ic_launcher))
+            .load(imageUrl).listener(object : RequestListener<Drawable> {
+                override fun onLoadFailed(
+                    e: GlideException?, model: Any?, target:
+                    com.bumptech.glide.request.target.Target<Drawable>?, isFirstResource: Boolean
+                ): Boolean {
+                    return false
+                }
 
-                    override fun onResourceReady(resource: Drawable?, model: Any?,
-                                                 target: com.bumptech.glide.request.target.Target<Drawable>?,
-                                                 dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-                        //do something when picture already loaded
-                        callback?.onSuccess()
-                        return false
-                    }
-                })
-                .into(thumbnailView!!)
+                override fun onResourceReady(
+                    resource: Drawable?, model: Any?,
+                    target: com.bumptech.glide.request.target.Target<Drawable>?,
+                    dataSource: DataSource?, isFirstResource: Boolean
+                ): Boolean {
+                    //do something when picture already loaded
+                    callback?.onSuccess()
+                    return false
+                }
+            })
+            .into(thumbnailView!!)
     }
 }

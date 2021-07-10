@@ -7,8 +7,8 @@ import com.mobymagic.clairediary.ui.common.DataBoundListAdapter
 import timber.log.Timber
 
 class SessionDetailImageAdapter(
-        appExecutors: AppExecutors,
-        private val imageClickCallback: ((String) -> Unit)
+    appExecutors: AppExecutors,
+    private val imageClickCallback: ((String) -> Unit)
 ) : DataBoundListAdapter<String, ItemSessionDetailImageBinding>(appExecutors) {
 
     override fun attachListeners(binding: ItemSessionDetailImageBinding) {

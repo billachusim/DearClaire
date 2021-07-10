@@ -38,7 +38,7 @@ class OnboardingFragment : DataBoundNavFragment<FragmentOnboardingBinding>() {
     private fun animateSignUpButtonHint() {
         val flashAnimation = AlphaAnimation(0f, 0.2f)
         flashAnimation.duration =
-                resources.getInteger(android.R.integer.config_longAnimTime).toLong()
+            resources.getInteger(android.R.integer.config_longAnimTime).toLong()
         flashAnimation.interpolator = AccelerateDecelerateInterpolator()
         flashAnimation.repeatCount = Animation.INFINITE
         flashAnimation.repeatMode = Animation.REVERSE
@@ -47,9 +47,9 @@ class OnboardingFragment : DataBoundNavFragment<FragmentOnboardingBinding>() {
 
     private fun navigateToDestination(destination: NavFragment) {
         getNavController().navigate(
-                destination,
-                true,
-                false
+            destination,
+            true,
+            false
         )
     }
 

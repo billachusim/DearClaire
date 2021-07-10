@@ -8,8 +8,8 @@ import com.mobymagic.clairediary.vo.Font
 import timber.log.Timber
 
 class CreateSessionFontListAdapter(
-        appExecutors: AppExecutors,
-        private val fontClickCallback: ((Font) -> Unit)
+    appExecutors: AppExecutors,
+    private val fontClickCallback: ((Font) -> Unit)
 ) : DataBoundListAdapter<Font, ItemSessionFontBinding>(appExecutors) {
 
     override fun attachListeners(binding: ItemSessionFontBinding) {

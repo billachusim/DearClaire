@@ -18,8 +18,10 @@ class GalleryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(LayoutInflater.from(this),
-                R.layout.activity_gallery, null, false)
+        binding = DataBindingUtil.inflate(
+            LayoutInflater.from(this),
+            R.layout.activity_gallery, null, false
+        )
         setContentView(binding.root)
 
         imageUrls = intent.getStringArrayListExtra(ARG_IMAGES)
@@ -30,9 +32,9 @@ class GalleryActivity : AppCompatActivity() {
 
     private fun setupGallery() {
         binding.scrollGalleryView
-                .setThumbnailSize(100)
-                .setZoom(true)
-                .setFragmentManager(supportFragmentManager)
+            .setThumbnailSize(100)
+            .setZoom(true)
+            .setFragmentManager(supportFragmentManager)
         for (url in imageUrls) {
             binding.scrollGalleryView.addMedia(MediaInfo.mediaLoader(GlideImageLoader(url)))
         }

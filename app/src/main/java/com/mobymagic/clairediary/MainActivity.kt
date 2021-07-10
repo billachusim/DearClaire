@@ -27,7 +27,7 @@ import timber.log.Timber
  * Single Activity in app
  */
 class MainActivity : CAppCompatActivity(), NavController,
-        androidx.fragment.app.FragmentManager.OnBackStackChangedListener {
+    androidx.fragment.app.FragmentManager.OnBackStackChangedListener {
 
 
     private val fragmentUtil: FragmentUtils by inject()
@@ -40,13 +40,16 @@ class MainActivity : CAppCompatActivity(), NavController,
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val fontRequest = FontRequest(
-                "com.google.android.gms.fonts",
-                "com.google.android.gms",
-                "Noto Color Emoji Compat",
-                R.array.com_google_android_gms_fonts_certs_prod)
-        EmojiCompat.init(FontRequestEmojiCompatConfig(applicationContext, fontRequest)
+            "com.google.android.gms.fonts",
+            "com.google.android.gms",
+            "Noto Color Emoji Compat",
+            R.array.com_google_android_gms_fonts_certs_prod
+        )
+        EmojiCompat.init(
+            FontRequestEmojiCompatConfig(applicationContext, fontRequest)
                 .setReplaceAll(true)
-                .registerInitCallback(EmojiInitCallBack()))
+                .registerInitCallback(EmojiInitCallBack())
+        )
 
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
         Answers.getInstance().logCustom(CustomEvent("App Opened"))
@@ -76,14 +79,17 @@ class MainActivity : CAppCompatActivity(), NavController,
     }
 
     override fun clearBackStack() {
-        supportFragmentManager.popBackStack(null, androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        supportFragmentManager.popBackStack(
+            null,
+            androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE
+        )
     }
 
     override fun navigate(
-            destination: NavFragment,
-            addToBackStack: Boolean,
-            onlyAddIfNotExist: Boolean,
-            fragmentAnimation: FragmentUtils.FragmentAnimation
+        destination: NavFragment,
+        addToBackStack: Boolean,
+        onlyAddIfNotExist: Boolean,
+        fragmentAnimation: FragmentUtils.FragmentAnimation
     ) {
         if (!destination.requiresAuthentication || AuthViewModel.userLoggedIn) {
 
@@ -92,12 +98,12 @@ class MainActivity : CAppCompatActivity(), NavController,
             } else {
                 Timber.d("Navigating to: %s", destination)
                 fragmentUtil.replace(
-                        supportFragmentManager,
-                        R.id.main_fragment_container,
-                        destination,
-                        addToBackStack,
-                        onlyAddIfNotExist,
-                        fragmentAnimation
+                    supportFragmentManager,
+                    R.id.main_fragment_container,
+                    destination,
+                    addToBackStack,
+                    onlyAddIfNotExist,
+                    fragmentAnimation
                 )
             }
         } else {
@@ -108,10 +114,10 @@ class MainActivity : CAppCompatActivity(), NavController,
     override fun navigateTo(destination: NavFragment) {
         Timber.d("Navigating to: %s", destination)
         fragmentUtil.add(
-                supportFragmentManager,
-                R.id.main_fragment_container,
-                destination,
-                true
+            supportFragmentManager,
+            R.id.main_fragment_container,
+            destination,
+            true
         )
     }
 
@@ -123,10 +129,10 @@ class MainActivity : CAppCompatActivity(), NavController,
             } else {
                 Timber.d("Navigating to: %s", destination)
                 fragmentUtil.add(
-                        supportFragmentManager,
-                        R.id.main_fragment_container,
-                        destination,
-                        true
+                    supportFragmentManager,
+                    R.id.main_fragment_container,
+                    destination,
+                    true
                 )
             }
         } else {
@@ -209,7 +215,8 @@ class MainActivity : CAppCompatActivity(), NavController,
                 val sessionId = intent.getStringExtra(EXTRA_SESSION_ID)
                 val userId = intent.getStringExtra(EXTRA_USER_ID)
                 val isAlterEgo = intent.getStringExtra(IS_ALTER_EGO)
-                val loadSessionFragment = LoadSessionFragment.newInstance(userId, sessionId, isAlterEgo)
+                val loadSessionFragment =
+                    LoadSessionFragment.newInstance(userId, sessionId, isAlterEgo)
                 navigate(loadSessionFragment, true)
             }
             intent.hasExtra(EXTRA_NAVIGATE_TO_CREATE_SESSION) -> {

@@ -18,16 +18,16 @@ class AppAppGlideModule : AppGlideModule() {
     override fun registerComponents(context: Context, glide: Glide, registry: Registry) {
         // Register FirebaseImageLoader to handle StorageReference
         registry.append(
-                StorageReference::class.java, InputStream::class.java,
-                FirebaseImageLoader.Factory()
+            StorageReference::class.java, InputStream::class.java,
+            FirebaseImageLoader.Factory()
         )
     }
 
     override fun applyOptions(context: Context, builder: GlideBuilder) {
         builder.setDefaultRequestOptions(
-                RequestOptions().placeholder(R.drawable.default_thumbnail)
-                        .format(DecodeFormat.PREFER_ARGB_8888)
-                        .centerCrop()
+            RequestOptions().placeholder(R.drawable.default_thumbnail)
+                .format(DecodeFormat.PREFER_ARGB_8888)
+                .centerCrop()
         )
     }
 
