@@ -63,4 +63,9 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="RoundedCornersDialog" parent="@android:style/Theme.Dialog">
+        <item name="dialogCornerRadius">30dp</item>
+    </style>
+
+
 </resources>

@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -257,7 +258,6 @@ class CreateSessionFragment : DataBoundNavFragment<FragmentCreateSessionBinding>
         val dialogList = view.findViewById<RecyclerView>(R.id.dialog_list)
         builder.setView(view)
         val dialog = builder.show()
-
         val sessionFontListAdapter = CreateSessionFontListAdapter(appExecutors) { font ->
             createSessionViewModel.setFont(font)
             dialog.dismiss()
@@ -281,8 +281,6 @@ class CreateSessionFragment : DataBoundNavFragment<FragmentCreateSessionBinding>
 
     private fun showTitleInputDialog(title: String) {
         val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle(R.string.create_session_title_enter_title)
-
         val binding = DataBindingUtil.inflate<LayoutDialogCreateSessionBinding>(
             requireActivity().layoutInflater,
             R.layout.layout_dialog_create_session, null, false
@@ -299,31 +297,41 @@ class CreateSessionFragment : DataBoundNavFragment<FragmentCreateSessionBinding>
         }
         binding.createSessionMoodSpinner.adapter = arrayAdapter
 
-        builder.setPositiveButton(
-            getDialogText(
-                binding.createSessionPrivacySwitch,
-                binding.createSessionRepliesSwitch
-            )
-        ) { dialog, _ ->
-            // When submit is clicked save the input values and call submit
-            // If user checked privacy, then session is not private, else session is private
-            val isPrivate = !binding.createSessionPrivacySwitch.isChecked
-            createSessionViewModel.setTitle(binding.createSessionTitleInput.text.toString())
-            createSessionViewModel.setPrivacyMode(isPrivate)
-            createSessionViewModel.setMode(Mood.MOODS[binding.createSessionMoodSpinner.selectedItemPosition])
-            createSessionViewModel.setRepliesEnabled(binding.createSessionRepliesSwitch.isChecked)
-            createSessionViewModel.submitSession()
+        val dialog = builder.show()
+        binding.btnSave.setOnClickListener {
+            when {
+                binding.createSessionTitleInput.text.isNullOrEmpty()
+                    .or(binding.createSessionTitleInput.text.length < 5) -> {
+                    Toast.makeText(
+                        requireContext(),
+                        R.string.empty_title,
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+                else -> {
+                    getDialogText(
+                        binding.createSessionPrivacySwitch,
+                        binding.createSessionRepliesSwitch
+                    )
+                    val isPrivate = !binding.createSessionPrivacySwitch.isChecked
+                    createSessionViewModel.setTitle(binding.createSessionTitleInput.text.toString())
+                    createSessionViewModel.setPrivacyMode(isPrivate)
+                    createSessionViewModel.setMode(Mood.MOODS[binding.createSessionMoodSpinner.selectedItemPosition])
+                    createSessionViewModel.setRepliesEnabled(binding.createSessionRepliesSwitch.isChecked)
+                    createSessionViewModel.submitSession()
+                    dialog.dismiss()
+                }
+            }
+        }
+        binding.btnCancel.setOnClickListener {
             dialog.dismiss()
         }
-        builder.setNegativeButton(android.R.string.cancel) { dialog, _ -> dialog.dismiss() }
-
-        val dialog = builder.show()
         dialog.setCanceledOnTouchOutside(false)
         dialog.setOnShowListener {
-            dialog.getButton(Dialog.BUTTON_POSITIVE).isEnabled =
+            binding.btnSave.isEnabled =
                 binding.createSessionTitleInput.text.length >= 5
         }
-
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         binding.createSessionTitleInput.addTextChangedListener(object : TextWatcher {
 
             override fun afterTextChanged(s: Editable?) {}
@@ -331,7 +339,7 @@ class CreateSessionFragment : DataBoundNavFragment<FragmentCreateSessionBinding>
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                dialog.getButton(Dialog.BUTTON_POSITIVE).isEnabled = s.length >= 5
+                binding.btnSave.isEnabled = s.length >= 5
             }
 
         })
@@ -342,9 +350,14 @@ class CreateSessionFragment : DataBoundNavFragment<FragmentCreateSessionBinding>
                     binding.createSessionPrivacySwitch,
                     binding.createSessionRepliesSwitch
                 )
+                binding.btnSave.text = getDialogText(
+                    binding.createSessionPrivacySwitch,
+                    binding.createSessionRepliesSwitch
+                )
             }
         binding.createSessionPrivacySwitch.setOnCheckedChangeListener(createSessionToggleChanged)
         binding.createSessionRepliesSwitch.setOnCheckedChangeListener(createSessionToggleChanged)
+
     }
 
     private fun getDialogText(
