@@ -35,9 +35,11 @@ class ChatroomsFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? =// Inflate the layout for this fragment
-            inflater.inflate(R.layout.fragment_chat_rooms, container, false)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? =// Inflate the layout for this fragment
+        inflater.inflate(R.layout.fragment_chat_rooms, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -54,12 +56,12 @@ class ChatroomsFragment : Fragment() {
     companion object {
         @JvmStatic
         fun newInstance(userId: String) =
-                ChatroomsFragment().apply {
-                    arguments = Bundle().apply {
-                        putString(ARG_PARAM1, userId)
-                        putString(ARG_PARAM2, "")
-                    }
+            ChatroomsFragment().apply {
+                arguments = Bundle().apply {
+                    putString(ARG_PARAM1, userId)
+                    putString(ARG_PARAM2, "")
                 }
+            }
     }
 
 

@@ -18,10 +18,11 @@ import timber.log.Timber
 
 
 class SessionListViewModel(
-        private val androidUtil: AndroidUtil,
-        private val sessionRepository: SessionRepository,
-        private val commentRepository: CommentRepository,
-        private val prefUtil: PrefUtil) : ViewModel() {
+    private val androidUtil: AndroidUtil,
+    private val sessionRepository: SessionRepository,
+    private val commentRepository: CommentRepository,
+    private val prefUtil: PrefUtil
+) : ViewModel() {
 
     private val sessionRequestLiveData: MutableLiveData<SessionRequest> = MutableLiveData()
     private val sessionListLiveData: LiveData<Resource<List<Session>>>
@@ -36,44 +37,44 @@ class SessionListViewModel(
         }
 
         sessionAlertLiveData =
-                Transformations.switchMap(alertSessionTypeLiveData) { sessionListType ->
-                    val alertKey = getAlertKey(sessionListType)
-                    val alertLiveData: MutableLiveData<Resource<Alert>> = MutableLiveData()
+            Transformations.switchMap(alertSessionTypeLiveData) { sessionListType ->
+                val alertKey = getAlertKey(sessionListType)
+                val alertLiveData: MutableLiveData<Resource<Alert>> = MutableLiveData()
 
-                    // Set resource into loading state
-                    alertLiveData.value =
-                            Resource.loading(androidUtil.getString(R.string.common_message_loading))
+                // Set resource into loading state
+                alertLiveData.value =
+                    Resource.loading(androidUtil.getString(R.string.common_message_loading))
 
-                    // Check if we have any alert for the session type
-                    when (sessionListType) {
-                        SessionListType.TRENDING -> {
-                            val alert =
-                                    Alert(androidUtil.getString(R.string.session_list_alert_trending))
-                            alertLiveData.value = Resource.success(alert)
-                        }
-                        SessionListType.DIARY -> {
-                            val alert =
-                                    Alert(androidUtil.getString(R.string.session_list_alert_diary))
-                            alertLiveData.value = Resource.success(alert)
-                        }
-                        SessionListType.NON_ASSIGNED -> {
-                            val alert =
-                                    Alert(androidUtil.getString(R.string.session_list_alert_new_alter_ego))
-                            alertLiveData.value = Resource.success(alert)
-                        }
-                        else -> {
-                            alertLiveData.value = Resource.success(null)
-                        }
+                // Check if we have any alert for the session type
+                when (sessionListType) {
+                    SessionListType.TRENDING -> {
+                        val alert =
+                            Alert(androidUtil.getString(R.string.session_list_alert_trending))
+                        alertLiveData.value = Resource.success(alert)
                     }
-
-                    alertLiveData
+                    SessionListType.DIARY -> {
+                        val alert =
+                            Alert(androidUtil.getString(R.string.session_list_alert_diary))
+                        alertLiveData.value = Resource.success(alert)
+                    }
+                    SessionListType.NON_ASSIGNED -> {
+                        val alert =
+                            Alert(androidUtil.getString(R.string.session_list_alert_new_alter_ego))
+                        alertLiveData.value = Resource.success(alert)
+                    }
+                    else -> {
+                        alertLiveData.value = Resource.success(null)
+                    }
                 }
+
+                alertLiveData
+            }
     }
 
     fun setSessionRequest(sessionListType: SessionListType, userId: String, lastSession: Session?) {
         Timber.d(
-                "Loading sessions. UserId: %s, SessionListType: %s, LastSession: %s",
-                userId, sessionListType, lastSession
+            "Loading sessions. UserId: %s, SessionListType: %s, LastSession: %s",
+            userId, sessionListType, lastSession
         )
         val newSessionRequest = SessionRequest(userId, sessionListType, lastSession)
 
@@ -121,16 +122,16 @@ class SessionListViewModel(
         return when (sessionRequest.sessionListType) {
             SessionListType.EGO ->
                 sessionRepository.getArchivedSessions(
-                        sessionRequest.lastSession,
-                        sessionRequest.userId
+                    sessionRequest.lastSession,
+                    sessionRequest.userId
                 )
             SessionListType.TRENDING -> {
                 sessionRepository.getFeaturedSessions(sessionRequest.lastSession, userId)
             }
             SessionListType.DIARY ->
                 sessionRepository.getDiarySessions(
-                        sessionRequest.lastSession,
-                        sessionRequest.userId
+                    sessionRequest.lastSession,
+                    sessionRequest.userId
                 )
 
             SessionListType.FOLLOWING -> {
@@ -142,8 +143,9 @@ class SessionListViewModel(
 
             SessionListType.ASSIGNED ->
                 sessionRepository.getAssignedSessions(
-                        sessionRequest.lastSession,
-                        sessionRequest.userId)
+                    sessionRequest.lastSession,
+                    sessionRequest.userId
+                )
 
             SessionListType.FLAGGED ->
                 sessionRepository.getFlaggedSessions(sessionRequest.lastSession)
@@ -172,7 +174,11 @@ class SessionListViewModel(
                 Status.SUCCESS -> {
                     // try getting the shard count from the resource and post it to the result live data
                     if (shardResource.data != null && shardResource.data.isNotEmpty()) {
-                        return@map Resource(Status.SUCCESS, shardResource.data.sumBy { it.count.toInt() }, shardResource.message)
+                        return@map Resource(
+                            Status.SUCCESS,
+                            shardResource.data.sumBy { it.count.toInt() },
+                            shardResource.message
+                        )
                     } else {
                         return@map Resource(Status.ERROR, 0, shardResource.message)
                     }
@@ -186,9 +192,9 @@ class SessionListViewModel(
     }
 
     data class SessionRequest(
-            val userId: String,
-            val sessionListType: SessionListType,
-            val lastSession: Session?
+        val userId: String,
+        val sessionListType: SessionListType,
+        val lastSession: Session?
     )
 
 }

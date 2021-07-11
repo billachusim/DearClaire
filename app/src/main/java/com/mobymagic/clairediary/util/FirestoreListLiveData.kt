@@ -10,10 +10,10 @@ import timber.log.Timber
 import java.util.*
 
 class FirestoreListLiveData<T>(
-        private val androidUtil: AndroidUtil,
-        private val query: Query,
-        private val type: Class<T>,
-        private val filter: ResultFilter<T>?
+    private val androidUtil: AndroidUtil,
+    private val query: Query,
+    private val type: Class<T>,
+    private val filter: ResultFilter<T>?
 ) : LiveData<Resource<List<T>>>(), EventListener<QuerySnapshot> {
 
     private var registration: ListenerRegistration? = null

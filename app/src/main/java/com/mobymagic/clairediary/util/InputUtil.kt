@@ -21,10 +21,15 @@ class InputUtil(private val context: Context) {
      * @return true if the email is valid, false otherwise
      */
     fun isValidEmail(inputEmail: String): Boolean {
-        return !TextUtils.isEmpty(inputEmail) && Patterns.EMAIL_ADDRESS.matcher(inputEmail).matches()
+        return !TextUtils.isEmpty(inputEmail) && Patterns.EMAIL_ADDRESS.matcher(inputEmail)
+            .matches()
     }
 
-    fun setupAutoResizeInput(invisibleTextView: TextView, resizableEditText: EditText, hint: String) {
+    fun setupAutoResizeInput(
+        invisibleTextView: TextView,
+        resizableEditText: EditText,
+        hint: String
+    ) {
         resizableEditText.textSize = autoSizeText(invisibleTextView.textSize)
 
         resizableEditText.addTextChangedListener(object : TextWatcher {
@@ -45,20 +50,24 @@ class InputUtil(private val context: Context) {
         return size / (context.resources.displayMetrics.density + 0.2f)
     }
 
-    fun setupEmojiPopup(rootView: View, toggleButton: ImageButton, inputView: EmojiEditText): EmojiPopup {
+    fun setupEmojiPopup(
+        rootView: View,
+        toggleButton: ImageButton,
+        inputView: EmojiEditText
+    ): EmojiPopup {
         // Build EmojiPopup
         return EmojiPopup.Builder.fromRootView(rootView)
-                .setOnEmojiPopupShownListener {
-                    toggleButton.setImageResource(R.drawable.ic_round_keyboard_24)
-                    toggleButton.contentDescription =
-                            rootView.context.getString(R.string.common_content_desc_show_keyboard)
-                }
-                .setOnEmojiPopupDismissListener {
-                    toggleButton.setImageResource(R.drawable.ic_round_insert_emoticon_white_24)
-                    toggleButton.contentDescription =
-                            rootView.context.getString(R.string.common_content_desc_show_emoji)
-                }
-                .build(inputView)
+            .setOnEmojiPopupShownListener {
+                toggleButton.setImageResource(R.drawable.ic_round_keyboard_24)
+                toggleButton.contentDescription =
+                    rootView.context.getString(R.string.common_content_desc_show_keyboard)
+            }
+            .setOnEmojiPopupDismissListener {
+                toggleButton.setImageResource(R.drawable.ic_round_insert_emoticon_white_24)
+                toggleButton.contentDescription =
+                    rootView.context.getString(R.string.common_content_desc_show_emoji)
+            }
+            .build(inputView)
     }
 
 }

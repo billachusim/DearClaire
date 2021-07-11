@@ -17,9 +17,9 @@ abstract class DataBoundNavFragment<T : ViewDataBinding> : NavFragment() {
     abstract fun getLayoutRes(): Int
 
     final override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, getLayoutRes(), container, false)
         return binding.root

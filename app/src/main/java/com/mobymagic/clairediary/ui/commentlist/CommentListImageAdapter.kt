@@ -7,8 +7,8 @@ import com.mobymagic.clairediary.ui.common.DataBoundListAdapter
 import timber.log.Timber
 
 class CommentListImageAdapter(
-        appExecutors: AppExecutors,
-        private val imageClickCallback: ((String) -> Unit)
+    appExecutors: AppExecutors,
+    private val imageClickCallback: ((String) -> Unit)
 ) : DataBoundListAdapter<String, ItemCommentImageBinding>(appExecutors) {
 
     override fun attachListeners(binding: ItemCommentImageBinding) {

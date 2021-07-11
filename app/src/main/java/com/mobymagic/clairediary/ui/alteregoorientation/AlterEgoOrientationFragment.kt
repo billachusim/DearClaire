@@ -167,33 +167,40 @@ class AlterEgoOrientationFragment : DataBoundNavFragment<FragmentAlterEgoOrienta
 
     private fun getPayload(): String {
         val fullName = formBuilder.getFormElement<BaseFormElement<*>>(FormTag.FULL_NAME.ordinal)
-        val fullAddress = formBuilder.getFormElement<BaseFormElement<*>>(FormTag.FULL_ADDRESS.ordinal)
-        val phoneNumber = formBuilder.getFormElement<BaseFormElement<*>>(FormTag.PHONE_NUMBER.ordinal)
+        val fullAddress =
+            formBuilder.getFormElement<BaseFormElement<*>>(FormTag.FULL_ADDRESS.ordinal)
+        val phoneNumber =
+            formBuilder.getFormElement<BaseFormElement<*>>(FormTag.PHONE_NUMBER.ordinal)
         val age = formBuilder.getFormElement<BaseFormElement<*>>(FormTag.AGE.ordinal)
         val nameOfSchoolOrOccupation =
-                formBuilder.getFormElement<BaseFormElement<*>>(FormTag.NAME_OF_SCHOOL_OR_OCCUPATION.ordinal)
+            formBuilder.getFormElement<BaseFormElement<*>>(FormTag.NAME_OF_SCHOOL_OR_OCCUPATION.ordinal)
         val nameOfFriendOrRelative =
-                formBuilder.getFormElement<BaseFormElement<*>>(FormTag.NAME_OF_BEST_FRIEND_OR_RELATIVE.ordinal)
+            formBuilder.getFormElement<BaseFormElement<*>>(FormTag.NAME_OF_BEST_FRIEND_OR_RELATIVE.ordinal)
         val phoneNumberFriendOrRelative =
-                formBuilder.getFormElement<BaseFormElement<*>>(FormTag.PHONE_NUMBER_OF_BEST_FRIEND_OR_RELATIVE.ordinal)
-        val amountDonated = formBuilder.getFormElement<BaseFormElement<*>>(FormTag.AMOUNT_DONATED.ordinal)
-        val emailAddress = formBuilder.getFormElement<BaseFormElement<*>>(FormTag.EMAIL_ADDRESS.ordinal)
-        val facebookName = formBuilder.getFormElement<BaseFormElement<*>>(FormTag.FACEBOOK_NAME.ordinal)
-        val instagramUsername = formBuilder.getFormElement<BaseFormElement<*>>(FormTag.INSTAGRAM_USERNAME.ordinal)
+            formBuilder.getFormElement<BaseFormElement<*>>(FormTag.PHONE_NUMBER_OF_BEST_FRIEND_OR_RELATIVE.ordinal)
+        val amountDonated =
+            formBuilder.getFormElement<BaseFormElement<*>>(FormTag.AMOUNT_DONATED.ordinal)
+        val emailAddress =
+            formBuilder.getFormElement<BaseFormElement<*>>(FormTag.EMAIL_ADDRESS.ordinal)
+        val facebookName =
+            formBuilder.getFormElement<BaseFormElement<*>>(FormTag.FACEBOOK_NAME.ordinal)
+        val instagramUsername =
+            formBuilder.getFormElement<BaseFormElement<*>>(FormTag.INSTAGRAM_USERNAME.ordinal)
         val shortBio = formBuilder.getFormElement<BaseFormElement<*>>(FormTag.SHORT_BIO.ordinal)
         val interestedRandomPosts =
-                formBuilder.getFormElement<BaseFormElement<*>>(FormTag.INTERESTED_IN_RANDOM_POSTS.ordinal)
+            formBuilder.getFormElement<BaseFormElement<*>>(FormTag.INTERESTED_IN_RANDOM_POSTS.ordinal)
         val makeWorldBetter =
-                formBuilder.getFormElement<BaseFormElement<*>>(FormTag.MAKE_THE_WORLD_A_BETTER_PLACE.ordinal)
+            formBuilder.getFormElement<BaseFormElement<*>>(FormTag.MAKE_THE_WORLD_A_BETTER_PLACE.ordinal)
         val followingOnInstagram =
-                formBuilder.getFormElement<BaseFormElement<*>>(FormTag.ARE_YOU_FOLLOWING_ON_INSTAGRAM.ordinal)
+            formBuilder.getFormElement<BaseFormElement<*>>(FormTag.ARE_YOU_FOLLOWING_ON_INSTAGRAM.ordinal)
         val learnedOnInstagram =
-                formBuilder.getFormElement<BaseFormElement<*>>(FormTag.LEARNED_ABOUT_CLAIRE_ON_INSTAGRAM.ordinal)
+            formBuilder.getFormElement<BaseFormElement<*>>(FormTag.LEARNED_ABOUT_CLAIRE_ON_INSTAGRAM.ordinal)
         val ratedOnPlaystore =
-                formBuilder.getFormElement<BaseFormElement<*>>(FormTag.HAVE_YOU_RATED_ON_PLAYSTORE.ordinal)
+            formBuilder.getFormElement<BaseFormElement<*>>(FormTag.HAVE_YOU_RATED_ON_PLAYSTORE.ordinal)
         val believeInClaire =
-                formBuilder.getFormElement<BaseFormElement<*>>(FormTag.DO_YOU_BELIEVE_IN_CLAIRE_PROJECT.ordinal)
-        val readyToBeClaire = formBuilder.getFormElement<BaseFormElement<*>>(FormTag.ARE_YOU_READY_TO_BE_CLAIRE.ordinal)
+            formBuilder.getFormElement<BaseFormElement<*>>(FormTag.DO_YOU_BELIEVE_IN_CLAIRE_PROJECT.ordinal)
+        val readyToBeClaire =
+            formBuilder.getFormElement<BaseFormElement<*>>(FormTag.ARE_YOU_READY_TO_BE_CLAIRE.ordinal)
         val userUid = requireArguments().getString(ARG_USER_ID)
         val email = prefUtil.getString(Constants.PREF_KEY_USER_EMAIL, null)
 

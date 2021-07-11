@@ -15,11 +15,11 @@ import timber.log.Timber
 import java.io.File
 
 class SessionDetailViewModel(
-        private val androidUtil: AndroidUtil,
-        private val userRepository: UserRepository,
-        private val fileRepository: FileRepository,
-        private val commentRepository: CommentRepository,
-        private val sessionRepository: SessionRepository
+    private val androidUtil: AndroidUtil,
+    private val userRepository: UserRepository,
+    private val fileRepository: FileRepository,
+    private val commentRepository: CommentRepository,
+    private val sessionRepository: SessionRepository
 ) : ViewModel() {
 
     private val commentLiveData: MutableLiveData<Comment> = MutableLiveData()
@@ -55,8 +55,10 @@ class SessionDetailViewModel(
             session.meToos!!.add(userId)
         }
 
-        sessionRepository.updateSession(session, userId, UserActivityType.MEETOO,
-                shouldIncrementMeeToo = shouldIncreaseMeTooCount, fromAlterEgo = fromAlterEgo)
+        sessionRepository.updateSession(
+            session, userId, UserActivityType.MEETOO,
+            shouldIncrementMeeToo = shouldIncreaseMeTooCount, fromAlterEgo = fromAlterEgo
+        )
         return session
     }
 
@@ -72,8 +74,10 @@ class SessionDetailViewModel(
             Answers.getInstance().logCustom(CustomEvent("Session Followed"))
         }
 
-        sessionRepository.updateSession(session, userId, UserActivityType.FOLLOW,
-                shouldIncrementFollow = shouldIncrementFollow, fromAlterEgo = fromAlterEgo)
+        sessionRepository.updateSession(
+            session, userId, UserActivityType.FOLLOW,
+            shouldIncrementFollow = shouldIncrementFollow, fromAlterEgo = fromAlterEgo
+        )
         return session
     }
 
@@ -86,7 +90,7 @@ class SessionDetailViewModel(
                     // This shouldn't happen, but if for some reason logged in user is null, handle it
                     val errorLiveData = MutableLiveData<Resource<Comment>>()
                     errorLiveData.value =
-                            Resource.error(androidUtil.getString(R.string.common_error_login_again))
+                        Resource.error(androidUtil.getString(R.string.common_error_login_again))
                     errorLiveData
                 }
                 isInputValid(comment) -> {
@@ -103,10 +107,10 @@ class SessionDetailViewModel(
     }
 
     private fun submitComment(
-            session: Session,
-            comment: Comment,
-            user: User,
-            fromAlterEgo: Boolean
+        session: Session,
+        comment: Comment,
+        user: User,
+        fromAlterEgo: Boolean
     ): LiveData<Resource<Comment>> {
         // Put in user details
         comment.userNickname = user.nickname
@@ -128,9 +132,9 @@ class SessionDetailViewModel(
     }
 
     private fun saveComment(
-            addCommentLiveData: MediatorLiveData<Resource<Comment>>,
-            session: Session,
-            comment: Comment
+        addCommentLiveData: MediatorLiveData<Resource<Comment>>,
+        session: Session,
+        comment: Comment
     ) {
         if (editingComment) {
             val updateCommentLiveData = commentRepository.updateComment(session, comment)
@@ -169,10 +173,10 @@ class SessionDetailViewModel(
     }
 
     private fun uploadFiles(
-            addCommentLiveData: MediatorLiveData<Resource<Comment>>,
-            fileWrappers: List<FileRepository.FileWrapper>,
-            session: Session,
-            comment: Comment
+        addCommentLiveData: MediatorLiveData<Resource<Comment>>,
+        fileWrappers: List<FileRepository.FileWrapper>,
+        session: Session,
+        comment: Comment
     ) {
         val uploadLiveData = fileRepository.uploadFiles(fileWrappers)
         addCommentLiveData.addSource(uploadLiveData) { filesResource ->
@@ -205,19 +209,19 @@ class SessionDetailViewModel(
         val wrapperList = mutableListOf<FileRepository.FileWrapper>()
         if (comment.audioUrl != null) {
             wrapperList.add(
-                    FileRepository.FileWrapper(
-                            File(comment.audioUrl),
-                            FileRepository.FileType.AUDIO
-                    )
+                FileRepository.FileWrapper(
+                    File(comment.audioUrl),
+                    FileRepository.FileType.AUDIO
+                )
             )
         }
 
         for (imageUrl in comment.imageUrls) {
             wrapperList.add(
-                    FileRepository.FileWrapper(
-                            File(imageUrl),
-                            FileRepository.FileType.PHOTO
-                    )
+                FileRepository.FileWrapper(
+                    File(imageUrl),
+                    FileRepository.FileType.PHOTO
+                )
             )
         }
 
@@ -277,7 +281,12 @@ class SessionDetailViewModel(
             session.respondentUserId = userId
         }
         session.timeLastActivity = null
-        sessionRepository.updateSession(session, userId, UserActivityType.COMMENT, fromAlterEgo = fromAlterEgo)
+        sessionRepository.updateSession(
+            session,
+            userId,
+            UserActivityType.COMMENT,
+            fromAlterEgo = fromAlterEgo
+        )
         sessionLiveData.value = session
     }
 

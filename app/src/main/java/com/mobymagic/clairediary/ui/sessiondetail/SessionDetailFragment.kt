@@ -104,40 +104,40 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
 
     private fun openAudioRecordPage() {
         Dexter.withContext(requireActivity())
-                .withPermission(Manifest.permission.RECORD_AUDIO)
-                .withListener(object : PermissionListener {
-                    override fun onPermissionGranted(response: PermissionGrantedResponse?) {
-                        val color = ContextCompat.getColor(context!!, R.color.theme_primary)
-                        AndroidAudioRecorder.with(activity)
-                                .setFilePath(audioFile.absolutePath)
-                                .setColor(color)
-                                .setRequestCode(REQUEST_CODE_RECORD_AUDIO)
-                                .setSource(AudioSource.MIC)
-                                .setAutoStart(true)
-                                .setKeepDisplayOn(true)
-                                .record()
-                    }
+            .withPermission(Manifest.permission.RECORD_AUDIO)
+            .withListener(object : PermissionListener {
+                override fun onPermissionGranted(response: PermissionGrantedResponse?) {
+                    val color = ContextCompat.getColor(context!!, R.color.theme_primary)
+                    AndroidAudioRecorder.with(activity)
+                        .setFilePath(audioFile.absolutePath)
+                        .setColor(color)
+                        .setRequestCode(REQUEST_CODE_RECORD_AUDIO)
+                        .setSource(AudioSource.MIC)
+                        .setAutoStart(true)
+                        .setKeepDisplayOn(true)
+                        .record()
+                }
 
-                    override fun onPermissionRationaleShouldBeShown(
-                            permission: PermissionRequest,
-                            token: PermissionToken
-                    ) {
-                        token.continuePermissionRequest()
-                        Toast.makeText(
-                                context!!,
-                                R.string.common_audio_permission_needed,
-                                Toast.LENGTH_LONG
-                        ).show()
-                    }
+                override fun onPermissionRationaleShouldBeShown(
+                    permission: PermissionRequest,
+                    token: PermissionToken
+                ) {
+                    token.continuePermissionRequest()
+                    Toast.makeText(
+                        context!!,
+                        R.string.common_audio_permission_needed,
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
 
-                    override fun onPermissionDenied(response: PermissionDeniedResponse?) {
-                        Toast.makeText(
-                                context!!,
-                                R.string.common_audio_permission_denied,
-                                Toast.LENGTH_LONG
-                        ).show()
-                    }
-                }).check()
+                override fun onPermissionDenied(response: PermissionDeniedResponse?) {
+                    Toast.makeText(
+                        context!!,
+                        R.string.common_audio_permission_denied,
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }).check()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -168,14 +168,17 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
             sessionDetailPlayer.seekTo(sessionDetailPlayer.currentPosition)
             sessionDetailPlayer.playWhenReady = true
             it.visibility = GONE
-            binding.sessionAudioView.player.findViewById<ImageButton>(R.id.exo_pause)!!.visibility = VISIBLE
+            binding.sessionAudioView.player.findViewById<ImageButton>(R.id.exo_pause)!!.visibility =
+                VISIBLE
         }
 
-        binding.sessionAudioView.player.findViewById<ImageButton>(R.id.exo_pause)?.setOnClickListener {
-            sessionDetailPlayer.playWhenReady = false
-            binding.sessionAudioView.player.findViewById<ImageButton>(R.id.exo_play)!!.visibility = VISIBLE
-            it.visibility = GONE
-        }
+        binding.sessionAudioView.player.findViewById<ImageButton>(R.id.exo_pause)
+            ?.setOnClickListener {
+                sessionDetailPlayer.playWhenReady = false
+                binding.sessionAudioView.player.findViewById<ImageButton>(R.id.exo_play)!!.visibility =
+                    VISIBLE
+                it.visibility = GONE
+            }
 
 
 
@@ -194,18 +197,22 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
         }
 
         binding.sessionDetailUserImage.setOnClickListener {
-            getNavController().navigateToWithAuth(GuestEgoFragment.newInstance(binding.session!!.userId.toString(),
+            getNavController().navigateToWithAuth(
+                GuestEgoFragment.newInstance(
+                    binding.session!!.userId.toString(),
                     "", binding.session!!.userNickname.toString(),
-                    binding.session!!.userAvatarUrl.toString(), SessionListType.EGO))
+                    binding.session!!.userAvatarUrl.toString(), SessionListType.EGO
+                )
+            )
         }
 
 
 
         fragmentUtil.addIfNotExist(
-                childFragmentManager,
-                R.id.session_detail_comment_list_container,
-                CommentListFragment.newInstance(session, userId, tabType),
-                "CommentListFragment"
+            childFragmentManager,
+            R.id.session_detail_comment_list_container,
+            CommentListFragment.newInstance(session, userId, tabType),
+            "CommentListFragment"
         )
 
         setupMeTooControls()
@@ -227,8 +234,12 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
         if (shouldOpenCommentBox) {
             try {
                 binding.sessionDetailCommentInput.requestFocus()
-                val imm: InputMethodManager = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
+                val imm: InputMethodManager =
+                    requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.toggleSoftInput(
+                    InputMethodManager.SHOW_FORCED,
+                    InputMethodManager.HIDE_IMPLICIT_ONLY
+                )
             } catch (ex: Exception) {
                 Timber.d("Error Opening Keyboard: %s", ex.message)
             }
@@ -250,8 +261,11 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
 
             binding.session?.let { session ->
                 if (userId == session.userId) {
-                    Toast.makeText(binding.root.context,
-                            binding.root.context.getString(R.string.cannot_follow_your_own_session), Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        binding.root.context,
+                        binding.root.context.getString(R.string.cannot_follow_your_own_session),
+                        Toast.LENGTH_LONG
+                    ).show()
                 } else {
                     showFollowingDialog(binding)
                 }
@@ -271,15 +285,21 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
         val builder = AlertDialog.Builder(binding.root.context)
         builder.setTitle(R.string.app_name)
         builder.setIcon(R.drawable.ic_product_logo_144dp)
-        builder.setTitle(String.format(binding.root.context
-                .getString(R.string.do_you_want_to_follow_this_session), binding.followText))
+        builder.setTitle(
+            String.format(
+                binding.root.context
+                    .getString(R.string.do_you_want_to_follow_this_session), binding.followText
+            )
+        )
         builder.setPositiveButton("Yes") { dialogInterface: DialogInterface, _: Int ->
             sessionDetailViewModel.toggleFollowers(userId, binding.session!!)
-            Toast.makeText(binding.root.context,
-                    if (binding.followText == "Unfollow")
-                        "UnFollowed Diary Session. (Thanks for everything)" else {
-                        "Following Diary Session. (You'll be notified of new comments)"
-                    }, Toast.LENGTH_LONG).show()
+            Toast.makeText(
+                binding.root.context,
+                if (binding.followText == "Unfollow")
+                    "UnFollowed Diary Session. (Thanks for everything)" else {
+                    "Following Diary Session. (You'll be notified of new comments)"
+                }, Toast.LENGTH_LONG
+            ).show()
             updateFollowText(binding, binding.session!!)
             dialogInterface.dismiss()
         }
@@ -315,14 +335,20 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
                     binding.sessionDetailTrendingButton.visibility = VISIBLE
                     binding.sessionDetailTrendingButton.setImageResource(R.drawable.round_star_white_24)
                     binding.sessionDetailTrendingButton.contentDescription =
-                            context?.getString(R.string.session_list_action_unfeature)
+                        context?.getString(R.string.session_list_action_unfeature)
                 } else {
-                    val drawable = context?.let { ContextCompat.getDrawable(it, R.drawable.round_star_white_24) }!!
-                    val color = ContextCompat.getColor(requireContext(), R.color.inactive_icon_light)
+                    val drawable = context?.let {
+                        ContextCompat.getDrawable(
+                            it,
+                            R.drawable.round_star_white_24
+                        )
+                    }!!
+                    val color =
+                        ContextCompat.getColor(requireContext(), R.color.inactive_icon_light)
                     val tintedDrawable = ViewUtil.tintDrawable(drawable, color)
                     binding.sessionDetailTrendingButton.setImageDrawable(tintedDrawable)
                     binding.sessionDetailTrendingButton.contentDescription =
-                            requireContext().getString(R.string.session_list_action_feature)
+                        requireContext().getString(R.string.session_list_action_feature)
                 }
             }
         } else {
@@ -345,11 +371,13 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
                     builder.setPositiveButton("Yes") { _, _ ->
                         // Toggle featured
                         session.featured = !session.featured
-                        Toast.makeText(binding.root.context,
-                                if (binding.showUnFeatureView == showUnFeatureView)
-                                    "Session removed from Trending. (Still Public to only Ego guests)" else {
-                                    "Session is still Trending. (Expect public advises)"
-                                }, Toast.LENGTH_LONG).show()
+                        Toast.makeText(
+                            binding.root.context,
+                            if (binding.showUnFeatureView == showUnFeatureView)
+                                "Session removed from Trending. (Still Public to only Ego guests)" else {
+                                "Session is still Trending. (Expect public advises)"
+                            }, Toast.LENGTH_LONG
+                        ).show()
                         sessionRepository.updateSession(session, userId)
                     }
                     builder.setNegativeButton("No") { dialog, _ -> dialog.dismiss() }
@@ -359,8 +387,11 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
 
                 } else {
                     // Show toast telling user to ask Claire to trend the session.
-                    Toast.makeText(binding.root.context,
-                            binding.root.context.getString(R.string.ask_claire_to_trend_this_session), Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        binding.root.context,
+                        binding.root.context.getString(R.string.ask_claire_to_trend_this_session),
+                        Toast.LENGTH_LONG
+                    ).show()
                     sessionRepository.updateSession(session, userId)
                 }
             }
@@ -381,21 +412,30 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
         binding.sessionDetailShareButton.setOnClickListener {
             val subject = session.title
             val message =
-                    getString(R.string.session_detail_session_share_message, session.message)
+                getString(R.string.session_detail_session_share_message, session.message)
             androidUtil.shareText(requireContext(), subject!!, message)
 
             binding.session?.let { session ->
                 if (session.userId == userId) {
-                    Toast.makeText(binding.root.context,
-                            binding.root.context.getString(R.string.share_this_public_session), Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        binding.root.context,
+                        binding.root.context.getString(R.string.share_this_public_session),
+                        Toast.LENGTH_LONG
+                    ).show()
                 } else {
                     if (session.featured) {
-                        Toast.makeText(binding.root.context,
-                                binding.root.context.getString(R.string.share_this_public_session), Toast.LENGTH_LONG).show()
+                        Toast.makeText(
+                            binding.root.context,
+                            binding.root.context.getString(R.string.share_this_public_session),
+                            Toast.LENGTH_LONG
+                        ).show()
 
                     } else {
-                        Toast.makeText(binding.root.context,
-                                binding.root.context.getString(R.string.cannot_share_non_trending_session), Toast.LENGTH_LONG).show()
+                        Toast.makeText(
+                            binding.root.context,
+                            binding.root.context.getString(R.string.cannot_share_non_trending_session),
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
                 }
 
@@ -424,22 +464,23 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
     }
 
     private fun setupCreateCommentPhotoList() {
-        val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        val layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.sessionDetailCommentPhotoList.layoutManager = layoutManager
         binding.sessionDetailCommentPhotoList.addItemDecoration(
-                ItemOffsetDecoration(requireContext(), R.dimen.grid_spacing_regular)
+            ItemOffsetDecoration(requireContext(), R.dimen.grid_spacing_regular)
         )
 
         commentPhotoListAdapter = CreateCommentPhotoListAdapter(
-                appExecutors,
-                {
-                    // When image is clicked, open gallery
-                    openImageGallery()
-                },
-                { imageUrl ->
-                    // When image remove button is clicked, remove it from list
-                    sessionDetailViewModel.removePhoto(imageUrl)
-                }
+            appExecutors,
+            {
+                // When image is clicked, open gallery
+                openImageGallery()
+            },
+            { imageUrl ->
+                // When image remove button is clicked, remove it from list
+                sessionDetailViewModel.removePhoto(imageUrl)
+            }
         )
 
         binding.sessionDetailCommentPhotoList.adapter = commentPhotoListAdapter
@@ -452,19 +493,21 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
     }
 
     private fun observeSubmitStatus() {
-        sessionDetailViewModel.getSubmitStatus().observe(viewLifecycleOwner, Observer { commentResource ->
-            Timber.d("Submit comment: %s", commentResource)
-            // Show loading view when loading
-            binding.loadingResource = commentResource
+        sessionDetailViewModel.getSubmitStatus()
+            .observe(viewLifecycleOwner, Observer { commentResource ->
+                Timber.d("Submit comment: %s", commentResource)
+                // Show loading view when loading
+                binding.loadingResource = commentResource
 
-            if (commentResource?.status == Status.ERROR) {
-                // Show error SnackBar
-                Snackbar.make(binding.root, commentResource.message!!, Snackbar.LENGTH_LONG).show()
-            } else if (commentResource?.status == Status.SUCCESS) {
-                // Clear input when session is successfully submitted
-                binding.sessionDetailCommentInput.text = null
-            }
-        })
+                if (commentResource?.status == Status.ERROR) {
+                    // Show error SnackBar
+                    Snackbar.make(binding.root, commentResource.message!!, Snackbar.LENGTH_LONG)
+                        .show()
+                } else if (commentResource?.status == Status.SUCCESS) {
+                    // Clear input when session is successfully submitted
+                    binding.sessionDetailCommentInput.text = null
+                }
+            })
     }
 
     private fun setupCommentInput() {
@@ -480,11 +523,11 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
                 if (isCommentInputEmpty()) {
                     binding.sessionDetailCommentButton.setImageResource(R.drawable.ic_round_keyboard_voice_white_24)
                     binding.sessionDetailCommentButton.contentDescription =
-                            getString(R.string.session_detail_content_desc_record_audio)
+                        getString(R.string.session_detail_content_desc_record_audio)
                 } else {
                     binding.sessionDetailCommentButton.setImageResource(R.drawable.ic_round_send_24)
                     binding.sessionDetailCommentButton.contentDescription =
-                            getString(R.string.session_detail_content_desc_submit_comment)
+                        getString(R.string.session_detail_content_desc_submit_comment)
                 }
             }
 
@@ -505,7 +548,11 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
                 val shouldAskToFollowPost: Boolean = !session.followers.contains(userId)
                         && session.userId != userId && !SessionListType.isAlterEgo(tabType)
                 sessionDetailViewModel.setMessage(binding.sessionDetailCommentInput.text.toString())
-                sessionDetailViewModel.submitComment(session, userId, SessionListType.isAlterEgo(tabType))
+                sessionDetailViewModel.submitComment(
+                    session,
+                    userId,
+                    SessionListType.isAlterEgo(tabType)
+                )
 
                 //ask to follow post if it is his first comment
                 if (shouldAskToFollowPost) {
@@ -537,16 +584,20 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
     }
 
     private fun setupSessionPhotoList() {
-        val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        val layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.sessionDetailPhotoList.isNestedScrollingEnabled = false
         binding.sessionDetailPhotoList.layoutManager = layoutManager
         binding.sessionDetailPhotoList.addItemDecoration(
-                ItemOffsetDecoration(requireContext(), R.dimen.grid_spacing_regular)
+            ItemOffsetDecoration(requireContext(), R.dimen.grid_spacing_regular)
         )
 
         adapter = SessionDetailImageAdapter(appExecutors) {
             val intent = Intent(activity, GalleryActivity::class.java).apply {
-                putStringArrayListExtra(GalleryActivity.ARG_IMAGES, session.imageUrls as ArrayList<String>)
+                putStringArrayListExtra(
+                    GalleryActivity.ARG_IMAGES,
+                    session.imageUrls as ArrayList<String>
+                )
             }
             startActivity(intent)
         }
@@ -557,9 +608,9 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
 
     private fun setupEmojiPopup() {
         emojiPopup = inputUtil.setupEmojiPopup(
-                binding.root,
-                binding.sessionDetailEmojiToggleButton,
-                binding.sessionDetailCommentInput
+            binding.root,
+            binding.sessionDetailEmojiToggleButton,
+            binding.sessionDetailCommentInput
         )
 
         // Toggle emoji popup when clicked
@@ -607,10 +658,10 @@ class SessionDetailFragment : DataBoundNavFragment<FragmentSessionDetailBinding>
         private const val SHOULD_OPEN_COMMENT_BOX = "SHOULD_OPEN_COMMENT_BOX"
 
         fun newInstance(
-                session: Session,
-                userId: String,
-                tabType: SessionListType,
-                openCommentBox: Boolean = false
+            session: Session,
+            userId: String,
+            tabType: SessionListType,
+            openCommentBox: Boolean = false
         ): SessionDetailFragment {
             Answers.getInstance().logCustom(CustomEvent("Session Detail Opened"))
             val sessionDetailFragment = SessionDetailFragment()

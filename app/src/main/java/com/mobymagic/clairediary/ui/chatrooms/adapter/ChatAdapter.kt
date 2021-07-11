@@ -20,7 +20,8 @@ import com.mobymagic.clairediary.ui.chatrooms.pojo.ChatRoom
 import com.mobymagic.clairediary.vo.User
 import com.vanniktech.emoji.EmojiTextView
 
-class ChatAdapter(private val context: Context, private val chatRoomList: List<ChatRoom>) : RecyclerView.Adapter<ChatAdapter.ChatViewHolder>() {
+class ChatAdapter(private val context: Context, private val chatRoomList: List<ChatRoom>) :
+    RecyclerView.Adapter<ChatAdapter.ChatViewHolder>() {
 
 
     private val firebaseAuth = FirebaseAuth.getInstance()
@@ -40,9 +41,11 @@ class ChatAdapter(private val context: Context, private val chatRoomList: List<C
         var view: View? = null
         //Based on view type decide which type of view to supply with viewHolder
         when (viewType) {
-            sentMessage -> view = LayoutInflater.from(parent.context).inflate(R.layout.text_message_chat, parent, false)
+            sentMessage -> view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.text_message_chat, parent, false)
 
-            receivedMessage -> view = LayoutInflater.from(parent.context).inflate(R.layout.image_message_chat, parent, false)
+            receivedMessage -> view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.image_message_chat, parent, false)
         }
         return ChatViewHolder(view!!)
     }
@@ -71,14 +74,14 @@ class ChatAdapter(private val context: Context, private val chatRoomList: List<C
         }
 
         Glide.with(context)
-                .load(chatRoom.image_message)
-                .apply(RequestOptions().placeholder(R.drawable.placeholder_image))
-                .into(holder.postImage)
+            .load(chatRoom.image_message)
+            .apply(RequestOptions().placeholder(R.drawable.placeholder_image))
+            .into(holder.postImage)
 
         Glide.with(context)
-                .load(chatRoom.userAvatarUrl)
-                .apply(RequestOptions().placeholder(R.drawable.brown_boy_mask).centerCrop().fitCenter())
-                .into(holder.userAvatarUrl)
+            .load(chatRoom.userAvatarUrl)
+            .apply(RequestOptions().placeholder(R.drawable.brown_boy_mask).centerCrop().fitCenter())
+            .into(holder.userAvatarUrl)
 
     }
 
@@ -96,24 +99,24 @@ class ChatAdapter(private val context: Context, private val chatRoomList: List<C
 
     private fun checkForThanks(chatRoom: ChatRoom) {
         firebaseDatabase
-                .getReference("messages")
-                .child("group_message")
-                .child(chatRoom.node!!)
-                .child(chatRoom.key!!)
-                .child("likes")
-                .addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onCancelled(p0: DatabaseError) {
+            .getReference("messages")
+            .child("group_message")
+            .child(chatRoom.node!!)
+            .child(chatRoom.key!!)
+            .child("likes")
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onCancelled(p0: DatabaseError) {
 
-                    }
+                }
 
-                    override fun onDataChange(p0: DataSnapshot) {
-                        if (p0.hasChild(firebaseAuth.currentUser!!.uid)) {
-                            removeThanks(chatRoom)
-                        } else {
-                            sendThanks(chatRoom)
-                        }
+                override fun onDataChange(p0: DataSnapshot) {
+                    if (p0.hasChild(firebaseAuth.currentUser!!.uid)) {
+                        removeThanks(chatRoom)
+                    } else {
+                        sendThanks(chatRoom)
                     }
-                })
+                }
+            })
     }
 
     private fun sendThanks(chatRoom: ChatRoom) {
@@ -122,51 +125,55 @@ class ChatAdapter(private val context: Context, private val chatRoomList: List<C
         map["from"] = firebaseAuth.currentUser!!.uid
 
         firebaseDatabase
-                .getReference("messages")
-                .child("group_message")
-                .child(chatRoom.node!!)
-                .child(chatRoom.key!!)
-                .child("likes")
-                .child(firebaseAuth.currentUser!!.uid)
-                .setValue(map)
-                .addOnCompleteListener {
-                    if (!it.isSuccessful) {
-                        Toast.makeText(context, "unable to send thanks at this time, please try again later.", Toast.LENGTH_LONG).show()
-                    }
+            .getReference("messages")
+            .child("group_message")
+            .child(chatRoom.node!!)
+            .child(chatRoom.key!!)
+            .child("likes")
+            .child(firebaseAuth.currentUser!!.uid)
+            .setValue(map)
+            .addOnCompleteListener {
+                if (!it.isSuccessful) {
+                    Toast.makeText(
+                        context,
+                        "unable to send thanks at this time, please try again later.",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
+            }
     }
 
     private fun removeThanks(chatRoom: ChatRoom) {
         firebaseDatabase
-                .getReference("messages")
-                .child("group_message")
-                .child(chatRoom.node!!)
-                .child(chatRoom.key!!)
-                .child("likes")
-                .child(firebaseAuth.currentUser!!.uid)
-                .removeValue()
-                .addOnCompleteListener {
-                    if (!it.isSuccessful) {
-                        Toast.makeText(context, "${it.exception!!.message}", Toast.LENGTH_LONG).show()
-                    }
+            .getReference("messages")
+            .child("group_message")
+            .child(chatRoom.node!!)
+            .child(chatRoom.key!!)
+            .child("likes")
+            .child(firebaseAuth.currentUser!!.uid)
+            .removeValue()
+            .addOnCompleteListener {
+                if (!it.isSuccessful) {
+                    Toast.makeText(context, "${it.exception!!.message}", Toast.LENGTH_LONG).show()
                 }
+            }
     }
 
     private fun getThanks(holder: ChatViewHolder, chatRoom: ChatRoom) {
         firebaseDatabase
-                .getReference("messages")
-                .child("group_message")
-                .child(chatRoom.node!!)
-                .child(chatRoom.key!!)
-                .child("likes")
-                .addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onCancelled(p0: DatabaseError) {
-                    }
+            .getReference("messages")
+            .child("group_message")
+            .child(chatRoom.node!!)
+            .child(chatRoom.key!!)
+            .child("likes")
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onCancelled(p0: DatabaseError) {
+                }
 
-                    override fun onDataChange(p0: DataSnapshot) {
-                        holder.commentThanksCountText.text = "${p0.childrenCount}"
-                    }
-                })
+                override fun onDataChange(p0: DataSnapshot) {
+                    holder.commentThanksCountText.text = "${p0.childrenCount}"
+                }
+            })
     }
 
     class ChatViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

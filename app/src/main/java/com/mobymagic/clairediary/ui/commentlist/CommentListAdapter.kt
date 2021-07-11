@@ -17,17 +17,17 @@ import timber.log.Timber
 import java.util.*
 
 class CommentListAdapter(
-        private val appExecutors: AppExecutors,
-        private val userId: String,
-        private val tabType: SessionListType,
-        private val audioUtil: AudioUtil,
-        private val exoPlayerUtil: ExoPlayerUtil,
-        private val commentClickCallback: ((Comment) -> Unit),
-        private val shareClickCallback: ((Comment) -> Unit),
-        private val editClickCallback: ((Comment) -> Unit),
-        private val thanksCallback: ((Comment) -> Unit),
-        private val sourceFragment: androidx.fragment.app.Fragment,
-        private val avatarClickedCallBack: ((Comment) -> Unit)
+    private val appExecutors: AppExecutors,
+    private val userId: String,
+    private val tabType: SessionListType,
+    private val audioUtil: AudioUtil,
+    private val exoPlayerUtil: ExoPlayerUtil,
+    private val commentClickCallback: ((Comment) -> Unit),
+    private val shareClickCallback: ((Comment) -> Unit),
+    private val editClickCallback: ((Comment) -> Unit),
+    private val thanksCallback: ((Comment) -> Unit),
+    private val sourceFragment: androidx.fragment.app.Fragment,
+    private val avatarClickedCallBack: ((Comment) -> Unit)
 ) : DataBoundListAdapter<Comment, ItemCommentBinding>(appExecutors) {
 
 
@@ -73,29 +73,33 @@ class CommentListAdapter(
                 binding.commentNicknameText.text = item.userNickname
             }
         } else if (item.isUserAdmin) {
-            binding.commentNicknameText.text = binding.root.context.getString(R.string.app_name_as_claire)
+            binding.commentNicknameText.text =
+                binding.root.context.getString(R.string.app_name_as_claire)
         } else {
             binding.commentNicknameText.text = item.userNickname
         }
 
         val adapter = CommentListImageAdapter(appExecutors) { imageUrl ->
             val intent = Intent(binding.root.context, GalleryActivity::class.java).apply {
-                putStringArrayListExtra(GalleryActivity.ARG_IMAGES, binding.comment?.imageUrls as ArrayList<String>)
+                putStringArrayListExtra(
+                    GalleryActivity.ARG_IMAGES,
+                    binding.comment?.imageUrls as ArrayList<String>
+                )
             }
             binding.root.context.startActivity(intent)
         }
 
         val layoutManager = LinearLayoutManager(
-                binding.root.context,
-                LinearLayoutManager.HORIZONTAL, false
+            binding.root.context,
+            LinearLayoutManager.HORIZONTAL, false
         )
         //binding.photoList.isNestedScrollingEnabled = false
         binding.commentPhotoList.layoutManager = layoutManager
         binding.commentPhotoList.addItemDecoration(
-                ItemOffsetDecoration(
-                        binding.root.context,
-                        R.dimen.grid_spacing_regular
-                )
+            ItemOffsetDecoration(
+                binding.root.context,
+                R.dimen.grid_spacing_regular
+            )
         )
 
         binding.commentPhotoList.adapter = adapter

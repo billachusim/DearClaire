@@ -27,11 +27,11 @@ import java.util.*
 var SPLASH_LAST_UNLOCKED_TIME: Long = 0
 
 class AuthViewModel(
-        private val androidUtil: AndroidUtil,
-        private val appExecutors: AppExecutors,
-        private val prefUtil: PrefUtil,
-        private val firebaseAuth: FirebaseAuth,
-        private val userRepository: UserRepository
+    private val androidUtil: AndroidUtil,
+    private val appExecutors: AppExecutors,
+    private val prefUtil: PrefUtil,
+    private val firebaseAuth: FirebaseAuth,
+    private val userRepository: UserRepository
 ) : ViewModel() {
 
     val MILLIS_PER_DAY = 24 * 60 * 60 * 1000L
@@ -41,7 +41,7 @@ class AuthViewModel(
 
         // Set resource into loading state
         splashLiveData.value =
-                Resource.loading(androidUtil.getString(R.string.splash_loading_message))
+            Resource.loading(androidUtil.getString(R.string.splash_loading_message))
 
         val user = userRepository.getLoggedInUser()
         val firebaseUser = firebaseAuth.currentUser
@@ -59,23 +59,24 @@ class AuthViewModel(
 
             val twentyFourHoursAgo = Date(Date().time - MILLIS_PER_DAY)
             if (user.timeLastUnlocked != null
-                    && user.timeLastUnlocked?.after(twentyFourHoursAgo)!!) {
+                && user.timeLastUnlocked?.after(twentyFourHoursAgo)!!
+            ) {
                 userLoggedIn = true
                 Timber.d("User is logged in, open  destination")
                 splashLiveData.postValue(
-                        getSuccessResource(
-                                user,
-                                SplashResult.SplashAction.OPEN_DESTINATION
-                        )
+                    getSuccessResource(
+                        user,
+                        SplashResult.SplashAction.OPEN_DESTINATION
+                    )
                 )
             } else {
                 // when the user is already logged in just open the Lock scree
                 Timber.d("User is logged in, open lock screen")
                 splashLiveData.postValue(
-                        getSuccessResource(
-                                user,
-                                SplashResult.SplashAction.OPEN_LOCK_SCREEN
-                        )
+                    getSuccessResource(
+                        user,
+                        SplashResult.SplashAction.OPEN_LOCK_SCREEN
+                    )
                 )
             }
         }
@@ -88,16 +89,16 @@ class AuthViewModel(
     }
 
     private fun getSuccessResource(
-            user: User,
-            splashAction: SplashResult.SplashAction
+        user: User,
+        splashAction: SplashResult.SplashAction
     ): Resource<SplashResult> {
         return Resource.success(
-                SplashResult(
-                        user.userId,
-                        user.userType,
-                        user.secretCode,
-                        splashAction
-                )
+            SplashResult(
+                user.userId,
+                user.userType,
+                user.secretCode,
+                splashAction
+            )
         )
     }
 
@@ -115,22 +116,21 @@ class AuthViewModel(
                 }
                 SplashResult.SplashAction.OPEN_LOCK_SCREEN -> {
                     owner.navigate(
-                            LockScreenFragment.newInstance(
-                                    splashResult.userId!!,
-                                    splashResult.secretCode!!,
-                                    finalDestination
-                            )
-                            , true
+                        LockScreenFragment.newInstance(
+                            splashResult.userId!!,
+                            splashResult.secretCode!!,
+                            finalDestination
+                        ), true
                     )
                 }
                 SplashResult.SplashAction.OPEN_SESSIONS_HOME -> {
                     owner.navigate(
-                            SessionsHomeFragment.newInstance(
-                                    splashResult.userId!!,
-                                    splashResult.userType,
-                                    true,
-                                    null
-                            )
+                        SessionsHomeFragment.newInstance(
+                            splashResult.userId!!,
+                            splashResult.userType,
+                            true,
+                            null
+                        )
                     )
                 }
 
@@ -159,21 +159,21 @@ class AuthViewModel(
                 }
                 SplashResult.SplashAction.OPEN_LOCK_SCREEN -> {
                     owner.navigate(
-                            LockScreenFragment.newInstance(
-                                    splashResult.userId!!,
-                                    splashResult.secretCode!!,
-                                    finalDestination
-                            ), true
+                        LockScreenFragment.newInstance(
+                            splashResult.userId!!,
+                            splashResult.secretCode!!,
+                            finalDestination
+                        ), true
                     )
                 }
                 SplashResult.SplashAction.OPEN_SESSIONS_HOME -> {
                     owner.navigate(
-                            SessionsHomeFragment.newInstance(
-                                    splashResult.userId!!,
-                                    splashResult.userType,
-                                    true,
-                                    null
-                            )
+                        SessionsHomeFragment.newInstance(
+                            splashResult.userId!!,
+                            splashResult.userType,
+                            true,
+                            null
+                        )
                     )
                 }
                 else -> {
@@ -191,7 +191,7 @@ class AuthViewModel(
 
         // Set resource into loading state
         splashLiveData.value =
-                Resource.loading(androidUtil.getString(R.string.splash_loading_message))
+            Resource.loading(androidUtil.getString(R.string.splash_loading_message))
 
         val user = userRepository.getLoggedInUser()
         val firebaseUser = firebaseAuth.currentUser
@@ -208,10 +208,10 @@ class AuthViewModel(
             // when the user is already logged in just open destination
             Timber.d("User is logged in, open lock screen")
             splashLiveData.postValue(
-                    getSuccessResource(
-                            user,
-                            SplashResult.SplashAction.OPEN_DESTINATION
-                    )
+                getSuccessResource(
+                    user,
+                    SplashResult.SplashAction.OPEN_DESTINATION
+                )
             )
         }
 

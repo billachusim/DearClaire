@@ -13,17 +13,17 @@ import java.util.concurrent.ScheduledExecutorService
  * webservice requests).
  */
 open class AppExecutors(
-        private val diskIO: Executor,
-        private val networkIO: Executor,
-        private val mainThread: Executor,
-        private val scheduledThread: ScheduledExecutorService
+    private val diskIO: Executor,
+    private val networkIO: Executor,
+    private val mainThread: Executor,
+    private val scheduledThread: ScheduledExecutorService
 ) {
 
     constructor() : this(
-            Executors.newSingleThreadExecutor(),
-            Executors.newFixedThreadPool(3),
-            MainThreadExecutor(),
-            Executors.newSingleThreadScheduledExecutor()
+        Executors.newSingleThreadExecutor(),
+        Executors.newFixedThreadPool(3),
+        MainThreadExecutor(),
+        Executors.newSingleThreadScheduledExecutor()
     )
 
     fun diskIO(): Executor {

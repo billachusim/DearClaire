@@ -51,9 +51,9 @@ class AlterEgoLoginFragment : DataBoundNavFragment<FragmentAlterEgoLoginBinding>
         binding.alterEgoLoginContainer.setBackgroundColor(alterEgoTheme.primaryColor)
 
         fragmentUtil.addIfNotExist(
-                childFragmentManager,
-                R.id.alter_ego_login_splash_container,
-                AlterEgoSplashFragment.newInstance()
+            childFragmentManager,
+            R.id.alter_ego_login_splash_container,
+            AlterEgoSplashFragment.newInstance()
         )
     }
 
@@ -80,8 +80,8 @@ class AlterEgoLoginFragment : DataBoundNavFragment<FragmentAlterEgoLoginBinding>
         }
 
         val clearErrorTextWatcher = ClearErrorTextWatcher(
-                binding.alterEgoLoginIdInputLayout,
-                binding.alterEgoLoginAccessCodeInputLayout
+            binding.alterEgoLoginIdInputLayout,
+            binding.alterEgoLoginAccessCodeInputLayout
         )
         binding.alterEgoLoginIdInput.addTextChangedListener(clearErrorTextWatcher)
         binding.alterEgoLoginAccessCodeInput.addTextChangedListener(clearErrorTextWatcher)
@@ -91,12 +91,12 @@ class AlterEgoLoginFragment : DataBoundNavFragment<FragmentAlterEgoLoginBinding>
         return when {
             claireId.length < 6 -> {
                 binding.alterEgoLoginIdInputLayout.error =
-                        getString(R.string.alter_ego_input_error_claire_id_invalid)
+                    getString(R.string.alter_ego_input_error_claire_id_invalid)
                 false
             }
             accessCode.length < 4 -> {
                 binding.alterEgoLoginAccessCodeInputLayout.error =
-                        getString(R.string.alter_ego_input_error_access_code_invalid)
+                    getString(R.string.alter_ego_input_error_access_code_invalid)
                 false
             }
             else -> {
@@ -106,21 +106,30 @@ class AlterEgoLoginFragment : DataBoundNavFragment<FragmentAlterEgoLoginBinding>
     }
 
     private fun observeLoginResult() {
-        signInViewModel.getLoginResultLiveData().observe(viewLifecycleOwner, Observer { userResource ->
-            Timber.d("Login resource: %s", userResource)
-            binding.resource = userResource
-            handleSignUpResult(userResource!!)
-        })
+        signInViewModel.getLoginResultLiveData()
+            .observe(viewLifecycleOwner, Observer { userResource ->
+                Timber.d("Login resource: %s", userResource)
+                binding.resource = userResource
+                handleSignUpResult(userResource!!)
+            })
     }
 
     private fun handleSignUpResult(userResource: Resource<User>) {
         if (userResource.status == Status.SUCCESS) {
             if (userResource.data == null) {
-                Toast.makeText(requireContext(), R.string.alter_ego_login_incorrect, Toast.LENGTH_LONG)
-                        .show()
+                Toast.makeText(
+                    requireContext(),
+                    R.string.alter_ego_login_incorrect,
+                    Toast.LENGTH_LONG
+                )
+                    .show()
             } else {
-                Toast.makeText(requireContext(), R.string.alter_ego_login_correct, Toast.LENGTH_LONG)
-                        .show()
+                Toast.makeText(
+                    requireContext(),
+                    R.string.alter_ego_login_correct,
+                    Toast.LENGTH_LONG
+                )
+                    .show()
 
                 val intent = Intent(Constants.EVENT_OPEN_ALTER_EGO)
                 LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)

@@ -66,7 +66,7 @@ class CreateSessionFragment : DataBoundNavFragment<FragmentCreateSessionBinding>
         hasShownInactivityMessage = true
         if (isAdded) {
             Toast.makeText(context, R.string.create_session_inactivity_message, Toast.LENGTH_LONG)
-                    .show()
+                .show()
         }
     }
 
@@ -93,9 +93,9 @@ class CreateSessionFragment : DataBoundNavFragment<FragmentCreateSessionBinding>
         observeSession()
         observeSubmitStatus()
         inputUtil.setupAutoResizeInput(
-                binding.createSessionMessageInvisibleText,
-                binding.createSessionMessageInput,
-                getString(R.string.create_session_hint_type_message)
+            binding.createSessionMessageInvisibleText,
+            binding.createSessionMessageInput,
+            getString(R.string.create_session_hint_type_message)
         )
     }
 
@@ -143,7 +143,7 @@ class CreateSessionFragment : DataBoundNavFragment<FragmentCreateSessionBinding>
             Timber.d("Draft session gotten: %s", session)
             binding.draftSession = session
             binding.createSessionMessageInput.typeface =
-                    fontFactory.getFontWithName(session?.font).typeface
+                fontFactory.getFontWithName(session?.font).typeface
 
             // Update photo list
             photoListAdapter.submitList(session?.imageUrls)
@@ -156,45 +156,52 @@ class CreateSessionFragment : DataBoundNavFragment<FragmentCreateSessionBinding>
     }
 
     private fun observeSubmitStatus() {
-        createSessionViewModel.getSubmitStatus().observe(viewLifecycleOwner, Observer { sessionResource ->
-            Timber.d("Submit session: %s", sessionResource)
-            // Show loading view when loading
-            binding.loadingResource = sessionResource
+        createSessionViewModel.getSubmitStatus()
+            .observe(viewLifecycleOwner, Observer { sessionResource ->
+                Timber.d("Submit session: %s", sessionResource)
+                // Show loading view when loading
+                binding.loadingResource = sessionResource
 
-            if (sessionResource?.status == Status.ERROR) {
-                // Show error SnackBar
-                Snackbar.make(binding.root, sessionResource.message!!, Snackbar.LENGTH_LONG).show()
-            } else if (sessionResource?.status == Status.SUCCESS) {
-                // When session is successfully submitted, open session detail page
-                navigateToSessionLoadPage(sessionResource.data!!)
-            }
-        })
+                if (sessionResource?.status == Status.ERROR) {
+                    // Show error SnackBar
+                    Snackbar.make(binding.root, sessionResource.message!!, Snackbar.LENGTH_LONG)
+                        .show()
+                } else if (sessionResource?.status == Status.SUCCESS) {
+                    // When session is successfully submitted, open session detail page
+                    navigateToSessionLoadPage(sessionResource.data!!)
+                }
+            })
     }
 
     private fun navigateToSessionLoadPage(session: Session) {
         getNavController().removeFromBackstack(this)
-        val sessionLoadFragment = LoadSessionFragment.newInstance(session.userId.toString(), session.sessionId.toString(), "false")
+        val sessionLoadFragment = LoadSessionFragment.newInstance(
+            session.userId.toString(),
+            session.sessionId.toString(),
+            "false"
+        )
         getNavController().navigate(sessionLoadFragment, true)
         getNavController().remove(this)
     }
 
     private fun initPhotoList() {
-        val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        val layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.createSessionPhotoList.layoutManager = layoutManager
         binding.createSessionPhotoList.addItemDecoration(
-                ItemOffsetDecoration(requireContext(), R.dimen.grid_spacing_regular)
+            ItemOffsetDecoration(requireContext(), R.dimen.grid_spacing_regular)
         )
 
         photoListAdapter = CreateSessionPhotoListAdapter(
-                appExecutors,
-                { imageUrl ->
-                    // When image is clicked, open gallery
-                    openImageGallery(imageUrl)
-                },
-                { imageUrl ->
-                    // When image remove button is clicked, remove it from list
-                    createSessionViewModel.removePhoto(imageUrl)
-                }
+            appExecutors,
+            { imageUrl ->
+                // When image is clicked, open gallery
+                openImageGallery(imageUrl)
+            },
+            { imageUrl ->
+                // When image remove button is clicked, remove it from list
+                createSessionViewModel.removePhoto(imageUrl)
+            }
         )
 
         binding.createSessionPhotoList.adapter = photoListAdapter
@@ -261,9 +268,9 @@ class CreateSessionFragment : DataBoundNavFragment<FragmentCreateSessionBinding>
 
     private fun initEmojiPopup() {
         emojiPopup = inputUtil.setupEmojiPopup(
-                binding.root,
-                binding.createSessionEmojiToggleButton,
-                binding.createSessionMessageInput
+            binding.root,
+            binding.createSessionEmojiToggleButton,
+            binding.createSessionMessageInput
         )
 
         // Toggle emoji popup when clicked
@@ -276,22 +283,28 @@ class CreateSessionFragment : DataBoundNavFragment<FragmentCreateSessionBinding>
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle(R.string.create_session_title_enter_title)
 
-        val binding = DataBindingUtil.inflate<LayoutDialogCreateSessionBinding>(requireActivity().layoutInflater,
-                R.layout.layout_dialog_create_session, null, false)
+        val binding = DataBindingUtil.inflate<LayoutDialogCreateSessionBinding>(
+            requireActivity().layoutInflater,
+            R.layout.layout_dialog_create_session, null, false
+        )
         binding.createSessionTitleInput.setText(title)
         builder.setView(binding.root)
 
         val arrayAdapter = activity?.let {
             ArrayAdapter(
-                    it,
-                    android.R.layout.simple_spinner_dropdown_item,
-                    Mood.MOODS
+                it,
+                android.R.layout.simple_spinner_dropdown_item,
+                Mood.MOODS
             )
         }
         binding.createSessionMoodSpinner.adapter = arrayAdapter
 
-        builder.setPositiveButton(getDialogText(binding.createSessionPrivacySwitch,
-                binding.createSessionRepliesSwitch)) { dialog, _ ->
+        builder.setPositiveButton(
+            getDialogText(
+                binding.createSessionPrivacySwitch,
+                binding.createSessionRepliesSwitch
+            )
+        ) { dialog, _ ->
             // When submit is clicked save the input values and call submit
             // If user checked privacy, then session is not private, else session is private
             val isPrivate = !binding.createSessionPrivacySwitch.isChecked
@@ -307,7 +320,8 @@ class CreateSessionFragment : DataBoundNavFragment<FragmentCreateSessionBinding>
         val dialog = builder.show()
         dialog.setCanceledOnTouchOutside(false)
         dialog.setOnShowListener {
-            dialog.getButton(Dialog.BUTTON_POSITIVE).isEnabled = binding.createSessionTitleInput.text.length >= 5
+            dialog.getButton(Dialog.BUTTON_POSITIVE).isEnabled =
+                binding.createSessionTitleInput.text.length >= 5
         }
 
         binding.createSessionTitleInput.addTextChangedListener(object : TextWatcher {
@@ -323,18 +337,23 @@ class CreateSessionFragment : DataBoundNavFragment<FragmentCreateSessionBinding>
         })
 
         val createSessionToggleChanged: CompoundButton.OnCheckedChangeListener =
-                CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
-                    dialog.getButton(Dialog.BUTTON_POSITIVE).text = getDialogText(binding.createSessionPrivacySwitch,
-                            binding.createSessionRepliesSwitch)
-                }
+            CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+                dialog.getButton(Dialog.BUTTON_POSITIVE).text = getDialogText(
+                    binding.createSessionPrivacySwitch,
+                    binding.createSessionRepliesSwitch
+                )
+            }
         binding.createSessionPrivacySwitch.setOnCheckedChangeListener(createSessionToggleChanged)
         binding.createSessionRepliesSwitch.setOnCheckedChangeListener(createSessionToggleChanged)
     }
 
-    private fun getDialogText(createSessionPrivacySwitch: Switch,
-                              createSessionRepliesSwitch: Switch): String {
+    private fun getDialogText(
+        createSessionPrivacySwitch: Switch,
+        createSessionRepliesSwitch: Switch
+    ): String {
         return if (createSessionPrivacySwitch.isChecked ||
-                createSessionRepliesSwitch.isChecked) {
+            createSessionRepliesSwitch.isChecked
+        ) {
             getString(R.string.create_session_action_submit_and_save)
         } else {
             getString(R.string.create_session_action_submit)
@@ -377,41 +396,41 @@ class CreateSessionFragment : DataBoundNavFragment<FragmentCreateSessionBinding>
 
     private fun openAudioRecordPage() {
         Dexter.withContext(requireActivity())
-                .withPermission(Manifest.permission.RECORD_AUDIO)
-                .withListener(object : PermissionListener {
-                    override fun onPermissionGranted(response: PermissionGrantedResponse?) {
-                        val color = ContextCompat.getColor(context!!, R.color.theme_primary)
-                        AndroidAudioRecorder.with(activity)
-                                .setFilePath(audioFile.absolutePath)
-                                .setColor(color)
-                                .setRequestCode(REQUEST_CODE_RECORD_AUDIO)
-                                .setSource(AudioSource.MIC)
-                                .setSampleRate(AudioSampleRate.HZ_16000)
-                                .setAutoStart(true)
-                                .setKeepDisplayOn(true)
-                                .record()
-                    }
+            .withPermission(Manifest.permission.RECORD_AUDIO)
+            .withListener(object : PermissionListener {
+                override fun onPermissionGranted(response: PermissionGrantedResponse?) {
+                    val color = ContextCompat.getColor(context!!, R.color.theme_primary)
+                    AndroidAudioRecorder.with(activity)
+                        .setFilePath(audioFile.absolutePath)
+                        .setColor(color)
+                        .setRequestCode(REQUEST_CODE_RECORD_AUDIO)
+                        .setSource(AudioSource.MIC)
+                        .setSampleRate(AudioSampleRate.HZ_16000)
+                        .setAutoStart(true)
+                        .setKeepDisplayOn(true)
+                        .record()
+                }
 
-                    override fun onPermissionRationaleShouldBeShown(
-                            permission: PermissionRequest,
-                            token: PermissionToken
-                    ) {
-                        token.continuePermissionRequest()
-                        Toast.makeText(
-                                context!!,
-                                R.string.common_audio_permission_needed,
-                                Toast.LENGTH_LONG
-                        ).show()
-                    }
+                override fun onPermissionRationaleShouldBeShown(
+                    permission: PermissionRequest,
+                    token: PermissionToken
+                ) {
+                    token.continuePermissionRequest()
+                    Toast.makeText(
+                        context!!,
+                        R.string.common_audio_permission_needed,
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
 
-                    override fun onPermissionDenied(response: PermissionDeniedResponse?) {
-                        Toast.makeText(
-                                context!!,
-                                R.string.common_audio_permission_denied,
-                                Toast.LENGTH_LONG
-                        ).show()
-                    }
-                }).check()
+                override fun onPermissionDenied(response: PermissionDeniedResponse?) {
+                    Toast.makeText(
+                        context!!,
+                        R.string.common_audio_permission_denied,
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }).check()
     }
 
     companion object {

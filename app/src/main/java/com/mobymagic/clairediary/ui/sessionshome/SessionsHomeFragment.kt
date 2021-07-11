@@ -37,7 +37,7 @@ import timber.log.Timber
 
 
 class SessionsHomeFragment : DataBoundNavFragment<FragmentSessionsHomeBinding>(),
-        NavigationView.OnNavigationItemSelectedListener {
+    NavigationView.OnNavigationItemSelectedListener {
 
     override var requiresAuthentication: Boolean = false
     override var openToNewUsers: Boolean = true
@@ -81,11 +81,11 @@ class SessionsHomeFragment : DataBoundNavFragment<FragmentSessionsHomeBinding>()
 
     private fun setupNavDrawer() {
         val toggle = ActionBarDrawerToggle(
-                activity,
-                binding.drawerLayout,
-                toolbar,
-                R.string.navigation_drawer_open,
-                R.string.navigation_drawer_close
+            activity,
+            binding.drawerLayout,
+            toolbar,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
         )
 
         binding.sessionsHomeNavView.setNavigationItemSelectedListener(this)
@@ -106,7 +106,7 @@ class SessionsHomeFragment : DataBoundNavFragment<FragmentSessionsHomeBinding>()
     private fun toggleSessionTypesFragment(clickedOnButton: Boolean) {
         Timber.d("Toggle session types")
         val curFragment =
-                childFragmentManager.findFragmentById(R.id.sessions_home_fragment_container)
+            childFragmentManager.findFragmentById(R.id.sessions_home_fragment_container)
 
         if (curFragment != null && !clickedOnButton) {
             return
@@ -114,7 +114,8 @@ class SessionsHomeFragment : DataBoundNavFragment<FragmentSessionsHomeBinding>()
 
         Timber.d("Actually toggling session types")
 
-        var sessionTypesFragment: androidx.fragment.app.Fragment = UserSessionTypesFragment.newInstance(userId, selectedPage!!)
+        var sessionTypesFragment: androidx.fragment.app.Fragment =
+            UserSessionTypesFragment.newInstance(userId, selectedPage!!)
 
         val primaryColor = Colorful().getPrimaryColor().getColorPack().normal().asInt()
         binding.appBar.toolbar.setBackgroundColor(primaryColor)
@@ -128,26 +129,28 @@ class SessionsHomeFragment : DataBoundNavFragment<FragmentSessionsHomeBinding>()
             sessionTypesFragment = AdminSessionTypesFragment.newInstance(userId)
 
             if (!AuthViewModel.userLoggedIn) {
-                authViewModel.getAuthRoute(newInstance(
+                authViewModel.getAuthRoute(
+                    newInstance(
                         "",
                         User.UserType.ADMIN,
                         false,
                         R.id.nav_session_type_assigned
-                ), activity as MainActivity)
+                    ), activity as MainActivity
+                )
             } else {
                 fragmentUtil.replace(
-                        childFragmentManager,
-                        R.id.sessions_home_fragment_container,
-                        sessionTypesFragment,
-                        true
-                )
-            }
-        } else {
-            fragmentUtil.replace(
                     childFragmentManager,
                     R.id.sessions_home_fragment_container,
                     sessionTypesFragment,
                     true
+                )
+            }
+        } else {
+            fragmentUtil.replace(
+                childFragmentManager,
+                R.id.sessions_home_fragment_container,
+                sessionTypesFragment,
+                true
             )
         }
 
@@ -175,7 +178,7 @@ class SessionsHomeFragment : DataBoundNavFragment<FragmentSessionsHomeBinding>()
 
     override fun onBackPressed(): Boolean {
         val curFragment =
-                childFragmentManager.findFragmentById(R.id.sessions_home_fragment_container) as NavFragment
+            childFragmentManager.findFragmentById(R.id.sessions_home_fragment_container) as NavFragment
         return if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
             binding.drawerLayout.closeDrawer(GravityCompat.START)
             true
@@ -190,8 +193,12 @@ class SessionsHomeFragment : DataBoundNavFragment<FragmentSessionsHomeBinding>()
             R.id.nav_share -> {
                 val appName = getString(R.string.app_name)
                 androidUtil.shareText(
-                        requireContext(), appName,
-                        getString(R.string.common_message_share_app, appName, Constants.APP_DYNAMIC_LINK)
+                    requireContext(), appName,
+                    getString(
+                        R.string.common_message_share_app,
+                        appName,
+                        Constants.APP_DYNAMIC_LINK
+                    )
                 )
             }
             R.id.nav_how_to_use -> {
@@ -217,17 +224,18 @@ class SessionsHomeFragment : DataBoundNavFragment<FragmentSessionsHomeBinding>()
 
     private fun setupAppRateDialog() {
         AppRate.with(context)
-                .setInstallDays(3)
-                .setRemindInterval(15)
-                .monitor()
+            .setInstallDays(3)
+            .setRemindInterval(15)
+            .monitor()
 
         AppRate.showRateDialogIfMeetsConditions(activity)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        LocalBroadcastManager.getInstance(requireContext()).registerReceiver(alterEgoReceiver,
-                IntentFilter(Constants.EVENT_OPEN_ALTER_EGO)
+        LocalBroadcastManager.getInstance(requireContext()).registerReceiver(
+            alterEgoReceiver,
+            IntentFilter(Constants.EVENT_OPEN_ALTER_EGO)
         )
         selectedPage = arguments?.getInt(PAGE_SELECTED)
     }
@@ -252,8 +260,10 @@ class SessionsHomeFragment : DataBoundNavFragment<FragmentSessionsHomeBinding>()
         private const val PAGE_SELECTED = "PAGE_SELECTED"
 
 
-        fun newInstance(userId: String, userType: User.UserType, userLoggedIn: Boolean,
-                        selectedPageId: Int?): SessionsHomeFragment {
+        fun newInstance(
+            userId: String, userType: User.UserType, userLoggedIn: Boolean,
+            selectedPageId: Int?
+        ): SessionsHomeFragment {
             val sessionsHomeFragment = SessionsHomeFragment()
             val args = Bundle()
             args.putString(ARG_USER_ID, userId)

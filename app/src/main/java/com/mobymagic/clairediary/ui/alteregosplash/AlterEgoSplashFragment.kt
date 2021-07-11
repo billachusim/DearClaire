@@ -26,12 +26,14 @@ class AlterEgoSplashFragment : DataBoundNavFragment<FragmentAlterEgoSplashBindin
         } catch (ex: Exception) {
             // go back home
             Timber.e(ex)
-            getNavController().navigate(SessionsHomeFragment.newInstance(
+            getNavController().navigate(
+                SessionsHomeFragment.newInstance(
                     "",
                     User.UserType.REGULAR,
                     false,
                     R.id.nav_session_type_featured
-            ))
+                )
+            )
         }
     }
 

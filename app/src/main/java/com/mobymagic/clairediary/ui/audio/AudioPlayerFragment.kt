@@ -36,11 +36,15 @@ class AudioPlayerFragment : androidx.fragment.app.DialogFragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(LayoutInflater.from(context),
-                R.layout.fragment_audio_player, null, false)
+        binding = DataBindingUtil.inflate(
+            LayoutInflater.from(context),
+            R.layout.fragment_audio_player, null, false
+        )
         return binding.root
 
     }
@@ -89,10 +93,10 @@ class AudioPlayerFragment : androidx.fragment.app.DialogFragment() {
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(audioUrl: String) =
-                AudioPlayerFragment().apply {
-                    arguments = Bundle().apply {
-                        putString(AUDIO_URL, audioUrl)
-                    }
+            AudioPlayerFragment().apply {
+                arguments = Bundle().apply {
+                    putString(AUDIO_URL, audioUrl)
                 }
+            }
     }
 }

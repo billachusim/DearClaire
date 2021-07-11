@@ -61,7 +61,8 @@ class SessionListFragment : DataBoundNavFragment<FragmentSessionListBinding>() {
         rv = view.findViewById(R.id.session_list)
         rv.layoutManager = LinearLayoutManager(context)
         rv.itemAnimator = DefaultItemAnimator()
-        sessionListType = requireArguments().getSerializable(ARG_SESSION_LIST_TYPE) as SessionListType
+        sessionListType =
+            requireArguments().getSerializable(ARG_SESSION_LIST_TYPE) as SessionListType
         userId = requireArguments().getString(ARG_USER_ID).toString()
         sessionListViewModel.userId = userId
 
@@ -95,36 +96,55 @@ class SessionListFragment : DataBoundNavFragment<FragmentSessionListBinding>() {
 
     private fun initRecyclerViewAdapter() {
         val fromAlterEgo = SessionListType.isAlterEgo(sessionListType)
-        adapter = SessionListAdapter(appExecutors, fromAlterEgo, userId, { session, shouldOpenCommentBox ->
-            val sessionDetailFragment =
-                    SessionDetailFragment.newInstance(session, userId, sessionListType, shouldOpenCommentBox)
-            getNavController().navigateTo(sessionDetailFragment)
-        },
-                { session ->
-                    @StringRes val dialogMessageRes: Int = if (fromAlterEgo) {
-                        if (session.featured) {
-                            R.string.session_list_confirmation_set_unfeatured
-                        } else {
-                            R.string.session_list_confirmation_set_featured
-                        }
+        adapter = SessionListAdapter(appExecutors,
+            fromAlterEgo,
+            userId,
+            { session, shouldOpenCommentBox ->
+                val sessionDetailFragment =
+                    SessionDetailFragment.newInstance(
+                        session,
+                        userId,
+                        sessionListType,
+                        shouldOpenCommentBox
+                    )
+                getNavController().navigateTo(sessionDetailFragment)
+            },
+            { session ->
+                @StringRes val dialogMessageRes: Int = if (fromAlterEgo) {
+                    if (session.featured) {
+                        R.string.session_list_confirmation_set_unfeatured
                     } else {
-                        if (session.archived) {
-                            R.string.session_list_confirmation_set_unarchived
-                        } else {
-                            R.string.session_list_confirmation_set_archived
-                        }
+                        R.string.session_list_confirmation_set_featured
                     }
-
-                    showSessionActionDialog(dialogMessageRes, session)
-                },
-                sessionDetailViewModel, audioUtil, sessionListImageAdapter, this, { session ->
-            getNavController().navigateToWithAuth(GuestEgoFragment.newInstance(session.userId.toString(),
-                    "", session.userNickname.toString(), session.userAvatarUrl.toString(), sessionListType))
-        },
-
-                {
-                    sessionListViewModel.getNumberOfCommentsForSessions(it)
+                } else {
+                    if (session.archived) {
+                        R.string.session_list_confirmation_set_unarchived
+                    } else {
+                        R.string.session_list_confirmation_set_archived
+                    }
                 }
+
+                showSessionActionDialog(dialogMessageRes, session)
+            },
+            sessionDetailViewModel,
+            audioUtil,
+            sessionListImageAdapter,
+            this,
+            { session ->
+                getNavController().navigateToWithAuth(
+                    GuestEgoFragment.newInstance(
+                        session.userId.toString(),
+                        "",
+                        session.userNickname.toString(),
+                        session.userAvatarUrl.toString(),
+                        sessionListType
+                    )
+                )
+            },
+
+            {
+                sessionListViewModel.getNumberOfCommentsForSessions(it)
+            }
         )
 
         binding.sessionList.adapter = adapter
@@ -133,21 +153,21 @@ class SessionListFragment : DataBoundNavFragment<FragmentSessionListBinding>() {
 
     private fun showSessionActionDialog(@StringRes messageRes: Int, session: Session) {
         AlertDialog.Builder(requireContext())
-                .setMessage(messageRes)
-                .setNegativeButton(android.R.string.cancel) { dialogInterface, _ ->
-                    dialogInterface.dismiss()
+            .setMessage(messageRes)
+            .setNegativeButton(android.R.string.cancel) { dialogInterface, _ ->
+                dialogInterface.dismiss()
+            }
+            .setPositiveButton(android.R.string.ok) { _, _ ->
+                if (SessionListType.isAlterEgo(sessionListType)) {
+                    // Toggle featured
+                    session.featured = !session.featured
+                } else {
+                    // Toggle archived
+                    session.archived = !session.archived
                 }
-                .setPositiveButton(android.R.string.ok) { _, _ ->
-                    if (SessionListType.isAlterEgo(sessionListType)) {
-                        // Toggle featured
-                        session.featured = !session.featured
-                    } else {
-                        // Toggle archived
-                        session.archived = !session.archived
-                    }
-                    sessionRepository.updateSession(session, userId)
-                }
-                .show()
+                sessionRepository.updateSession(session, userId)
+            }
+            .show()
     }
 
     private fun observeSessions() {
@@ -178,29 +198,49 @@ class SessionListFragment : DataBoundNavFragment<FragmentSessionListBinding>() {
         val diaryIconRes = R.drawable.ic_diary_72dp
         return when (sessionListType) {
             SessionListType.EGO -> {
-                Empty.create(requireContext(), diaryIconRes, R.string.session_list_empty_archived, 0)
+                Empty.create(
+                    requireContext(),
+                    diaryIconRes,
+                    R.string.session_list_empty_archived,
+                    0
+                )
             }
             SessionListType.TRENDING -> {
-                Empty.create(requireContext(), diaryIconRes, R.string.session_list_empty_featured, 0)
+                Empty.create(
+                    requireContext(),
+                    diaryIconRes,
+                    R.string.session_list_empty_featured,
+                    0
+                )
             }
             SessionListType.DIARY -> {
                 Empty.create(
-                        requireContext(), diaryIconRes, R.string.session_list_empty_diary,
-                        R.string.session_list_action_start_session
+                    requireContext(), diaryIconRes, R.string.session_list_empty_diary,
+                    R.string.session_list_action_start_session
                 )
             }
 
             SessionListType.FOLLOWING -> {
                 Empty.create(
-                        requireContext(), diaryIconRes, R.string.session_list_empty_following,
-                        0
+                    requireContext(), diaryIconRes, R.string.session_list_empty_following,
+                    0
                 )
             }
             SessionListType.NON_ASSIGNED -> {
-                Empty.create(requireContext(), diaryIconRes, R.string.session_list_empty_non_assigned, 0)
+                Empty.create(
+                    requireContext(),
+                    diaryIconRes,
+                    R.string.session_list_empty_non_assigned,
+                    0
+                )
             }
             SessionListType.ASSIGNED -> {
-                Empty.create(requireContext(), diaryIconRes, R.string.session_list_empty_assigned, 0)
+                Empty.create(
+                    requireContext(),
+                    diaryIconRes,
+                    R.string.session_list_empty_assigned,
+                    0
+                )
             }
             SessionListType.FLAGGED -> {
                 Empty.create(requireContext(), diaryIconRes, R.string.session_list_empty_flagged, 0)
@@ -271,8 +311,8 @@ class SessionListFragment : DataBoundNavFragment<FragmentSessionListBinding>() {
         private const val ARG_USER_ID = "ARG_USER_ID"
 
         fun newInstance(
-                sessionListType: SessionListType,
-                userId: String
+            sessionListType: SessionListType,
+            userId: String
         ): SessionListFragment {
             return SessionListFragment().apply {
                 val args = Bundle()

@@ -12,7 +12,7 @@ class ArchiveSessionViewModel(private val sessionRepository: SessionRepository) 
     lateinit var userId: String
 
     fun getUserSessionsByDate(
-            startDate: Date
+        startDate: Date
     ): LiveData<Resource<List<Session>>> {
         return sessionRepository.getUserSessionsByDate(userId, startDate)
     }

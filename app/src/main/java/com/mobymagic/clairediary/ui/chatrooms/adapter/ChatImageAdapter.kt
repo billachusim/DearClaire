@@ -12,10 +12,12 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.mobymagic.clairediary.R
 
-class ChatImageAdapter(private val mCtx: Context, private val mImageList: MutableList<String>) : RecyclerView.Adapter<ChatImageAdapter.ChatImageViewHolder>() {
+class ChatImageAdapter(private val mCtx: Context, private val mImageList: MutableList<String>) :
+    RecyclerView.Adapter<ChatImageAdapter.ChatImageViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatImageViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.chat_room_image, parent, false)
+        val itemView =
+            LayoutInflater.from(parent.context).inflate(R.layout.chat_room_image, parent, false)
         return ChatImageViewHolder(itemView)
     }
 
@@ -23,9 +25,9 @@ class ChatImageAdapter(private val mCtx: Context, private val mImageList: Mutabl
         val mImage = mImageList[position]
 
         Glide.with(mCtx)
-                .load(mImage)
-                .apply(RequestOptions().placeholder(R.drawable.placeholder_image))
-                .into(holder.mImage)
+            .load(mImage)
+            .apply(RequestOptions().placeholder(R.drawable.placeholder_image))
+            .into(holder.mImage)
 
 //        holder.mImage.setImageURI(Uri.parse(mImage))
         holder.mClear.setOnClickListener {

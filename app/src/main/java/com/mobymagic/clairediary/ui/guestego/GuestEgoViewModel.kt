@@ -17,10 +17,11 @@ import com.mobymagic.clairediary.vo.User
 import timber.log.Timber
 
 class GuestEgoViewModel(
-        private val androidUtil: AndroidUtil,
-        private val sessionRepository: SessionRepository,
-        private val prefUtil: PrefUtil,
-        private val userRepository: UserRepository) : ViewModel() {
+    private val androidUtil: AndroidUtil,
+    private val sessionRepository: SessionRepository,
+    private val prefUtil: PrefUtil,
+    private val userRepository: UserRepository
+) : ViewModel() {
 
     private val sessionRequestLiveData: MutableLiveData<SessionRequest> = MutableLiveData()
     private val sessionListLiveData: LiveData<Resource<List<Session>>>
@@ -35,23 +36,23 @@ class GuestEgoViewModel(
         }
 
         sessionAlertLiveData =
-                Transformations.switchMap(alertSessionTypeLiveData) { sessionListType ->
-                    val alertLiveData: MutableLiveData<Resource<Alert>> = MutableLiveData()
+            Transformations.switchMap(alertSessionTypeLiveData) { sessionListType ->
+                val alertLiveData: MutableLiveData<Resource<Alert>> = MutableLiveData()
 
-                    // Set resource into loading state
-                    alertLiveData.value =
-                            Resource.loading(androidUtil.getString(R.string.common_message_loading))
+                // Set resource into loading state
+                alertLiveData.value =
+                    Resource.loading(androidUtil.getString(R.string.common_message_loading))
 
-                    alertLiveData.value = Resource.success(null)
+                alertLiveData.value = Resource.success(null)
 
-                    alertLiveData
-                }
+                alertLiveData
+            }
     }
 
     fun setSessionRequest(sessionListType: SessionListType, userId: String, lastSession: Session?) {
         Timber.d(
-                "Loading sessions. UserId: %s, SessionListType: %s, LastSession: %s",
-                userId, sessionListType, lastSession
+            "Loading sessions. UserId: %s, SessionListType: %s, LastSession: %s",
+            userId, sessionListType, lastSession
         )
         val newSessionRequest = SessionRequest(userId, sessionListType, lastSession)
 
@@ -91,7 +92,10 @@ class GuestEgoViewModel(
      * @return LiveData
      */
     private fun getSessionListLiveData(sessionRequest: SessionRequest): LiveData<Resource<List<Session>>> {
-        return sessionRepository.getPublicSessions(sessionRequest.lastSession, sessionRequest.userId)
+        return sessionRepository.getPublicSessions(
+            sessionRequest.lastSession,
+            sessionRequest.userId
+        )
     }
 
     fun getUser(userId: String): LiveData<Resource<User>> {
@@ -99,9 +103,9 @@ class GuestEgoViewModel(
     }
 
     data class SessionRequest(
-            val userId: String,
-            val sessionListType: SessionListType,
-            val lastSession: Session?
+        val userId: String,
+        val sessionListType: SessionListType,
+        val lastSession: Session?
     )
 
 }

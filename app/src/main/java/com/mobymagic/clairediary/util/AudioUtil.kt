@@ -19,8 +19,8 @@ import java.lang.ref.WeakReference
 private const val SEEK_BAR_RUNNABLE_DELAY = 1000L
 
 class AudioUtil(
-        private val context: Context,
-        private val storage: FirebaseStorage
+    private val context: Context,
+    private val storage: FirebaseStorage
 ) {
 
     private lateinit var audioUri: String
@@ -57,12 +57,12 @@ class AudioUtil(
     }
 
     fun playAudio(
-            audioUri: String,
-            startAudioButton: ImageButton,
-            playButton: ImageButton,
-            pauseButton: ImageButton,
-            progressBar: SpinKitView,
-            seekBar: SeekBar
+        audioUri: String,
+        startAudioButton: ImageButton,
+        playButton: ImageButton,
+        pauseButton: ImageButton,
+        progressBar: SpinKitView,
+        seekBar: SeekBar
     ) {
         Timber.d("Playing audio uri: %s", audioUri)
         this.audioUri = audioUri
@@ -131,13 +131,13 @@ class AudioUtil(
         val localFile = File.createTempFile("downloaded", "audio")
         Timber.d("Saving online audio to: %s", localFile.absolutePath)
         storage.getReferenceFromUrl(audioUri).getFile(localFile)
-                .addOnSuccessListener {
-                    Timber.d("Audio downloaded: %s", it)
-                    loadFromFile(localFile)
-                }.addOnFailureListener {
-                    Timber.e(it, "Audio download failed")
-                    onError(R.string.audio_error_download_failed)
-                }
+            .addOnSuccessListener {
+                Timber.d("Audio downloaded: %s", it)
+                loadFromFile(localFile)
+            }.addOnFailureListener {
+                Timber.e(it, "Audio download failed")
+                onError(R.string.audio_error_download_failed)
+            }
     }
 
     private fun onError(@StringRes errorMsgRes: Int) {

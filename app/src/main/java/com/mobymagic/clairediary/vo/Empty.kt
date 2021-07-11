@@ -11,10 +11,10 @@ data class Empty(val icon: Drawable, val message: String, val buttonText: String
     companion object {
 
         fun create(
-                context: Context,
-                @DrawableRes iconRes: Int,
-                @StringRes messageRes: Int,
-                @StringRes buttonTextRes: Int
+            context: Context,
+            @DrawableRes iconRes: Int,
+            @StringRes messageRes: Int,
+            @StringRes buttonTextRes: Int
         ): Empty {
             val icon = ContextCompat.getDrawable(context, iconRes)!!
             val message = context.getString(messageRes)

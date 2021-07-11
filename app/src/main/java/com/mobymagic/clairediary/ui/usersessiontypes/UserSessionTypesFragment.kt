@@ -49,7 +49,13 @@ class UserSessionTypesFragment : DataBoundNavFragment<FragmentUserSessionTypesBi
     }
 
     private fun setupBottomNav() {
-        binding.sessionTypesPager.addOnPageChangeListener(UserTypeSessionOnPageChangeListener(authViewModel, context, binding.sessionTypesPager))
+        binding.sessionTypesPager.addOnPageChangeListener(
+            UserTypeSessionOnPageChangeListener(
+                authViewModel,
+                context,
+                binding.sessionTypesPager
+            )
+        )
         binding.sessionTypesTab.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_session_type_featured -> {
@@ -81,28 +87,28 @@ class UserSessionTypesFragment : DataBoundNavFragment<FragmentUserSessionTypesBi
 
     private fun setupPager(userId: String) {
         val sessionTypeItems = listOf(
-                PagerAdapter.Item(
-                        getString(R.string.session_type_advised),
-                        SessionListFragment.newInstance(SessionListType.TRENDING, userId)
-                ),
-                PagerAdapter.Item(
-                        getString(R.string.session_type_following),
-                        SessionListFragment.newInstance(SessionListType.FOLLOWING, userId)
-                ),
-                PagerAdapter.Item(
-                        getString(R.string.session_type_diary),
-                        SessionListFragment.newInstance(SessionListType.DIARY, userId)
-                ),
+            PagerAdapter.Item(
+                getString(R.string.session_type_advised),
+                SessionListFragment.newInstance(SessionListType.TRENDING, userId)
+            ),
+            PagerAdapter.Item(
+                getString(R.string.session_type_following),
+                SessionListFragment.newInstance(SessionListType.FOLLOWING, userId)
+            ),
+            PagerAdapter.Item(
+                getString(R.string.session_type_diary),
+                SessionListFragment.newInstance(SessionListType.DIARY, userId)
+            ),
 
-                PagerAdapter.Item(
-                        getString(R.string.session_type_chatrooms),
-                        ChatroomsFragment.newInstance(userId)
-                ),
+            PagerAdapter.Item(
+                getString(R.string.session_type_chatrooms),
+                ChatroomsFragment.newInstance(userId)
+            ),
 
-                PagerAdapter.Item(
-                        getString(R.string.session_type_Ego),
-                        EgoFragment.newInstance(userId)
-                )
+            PagerAdapter.Item(
+                getString(R.string.session_type_Ego),
+                EgoFragment.newInstance(userId)
+            )
 
         )
 
@@ -114,9 +120,9 @@ class UserSessionTypesFragment : DataBoundNavFragment<FragmentUserSessionTypesBi
             override fun onPageScrollStateChanged(state: Int) {}
 
             override fun onPageScrolled(
-                    position: Int,
-                    positionOffset: Float,
-                    positionOffsetPixels: Int
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
             ) {
             }
 
@@ -148,8 +154,6 @@ class UserSessionTypesFragment : DataBoundNavFragment<FragmentUserSessionTypesBi
             sessionTypesFragment.arguments = arguments
             return sessionTypesFragment
         }
-
-
     }
 
 }

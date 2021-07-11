@@ -38,10 +38,10 @@ private fun createOkHttpClient(context: Context, isDebugMode: Boolean): OkHttpCl
 
 private fun createWebService(okHttpClient: OkHttpClient, baseUrl: String): ApiService {
     val retrofit = Retrofit.Builder()
-            .baseUrl(baseUrl)
-            .client(okHttpClient)
-            .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(LiveDataCallAdapterFactory()).build()
+        .baseUrl(baseUrl)
+        .client(okHttpClient)
+        .addConverterFactory(GsonConverterFactory.create())
+        .addCallAdapterFactory(LiveDataCallAdapterFactory()).build()
     return retrofit.create(ApiService::class.java)
 }
 

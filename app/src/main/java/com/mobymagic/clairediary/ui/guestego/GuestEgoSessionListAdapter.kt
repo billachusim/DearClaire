@@ -24,14 +24,14 @@ import java.util.*
 
 
 class GuestEgoSessionListAdapter(
-        private val appExecutors: AppExecutors,
-        private val isFromAlterEgo: Boolean,
-        private val userId: String,
-        private val sessionClickCallback: (Session, Boolean) -> Unit,
-        private val sessionDetailViewModel: SessionDetailViewModel,
-        private val audioUtil: AudioUtil,
-        private var sessionListImageAdapter: SessionDetailImageAdapter,
-        private val parentFragment: Fragment
+    private val appExecutors: AppExecutors,
+    private val isFromAlterEgo: Boolean,
+    private val userId: String,
+    private val sessionClickCallback: (Session, Boolean) -> Unit,
+    private val sessionDetailViewModel: SessionDetailViewModel,
+    private val audioUtil: AudioUtil,
+    private var sessionListImageAdapter: SessionDetailImageAdapter,
+    private val parentFragment: Fragment
 
 ) : DataBoundListAdapter<Session, GuestEgoSessionItemBinding>(appExecutors) {
 
@@ -101,17 +101,24 @@ class GuestEgoSessionListAdapter(
         })
     }
 
-    private fun setupSessionPhotoList(binding: GuestEgoSessionItemBinding, context: Context?, appExecutors: AppExecutors) {
+    private fun setupSessionPhotoList(
+        binding: GuestEgoSessionItemBinding,
+        context: Context?,
+        appExecutors: AppExecutors
+    ) {
         val layoutManager = LinearLayoutManager(context!!, LinearLayoutManager.HORIZONTAL, false)
         binding.sessionListPhotoList.isNestedScrollingEnabled = false
         binding.sessionListPhotoList.layoutManager = layoutManager
         binding.sessionListPhotoList.addItemDecoration(
-                ItemOffsetDecoration(context, R.dimen.grid_spacing_regular)
+            ItemOffsetDecoration(context, R.dimen.grid_spacing_regular)
         )
 
         sessionListImageAdapter = SessionDetailImageAdapter(appExecutors) {
             val intent = Intent(context, GalleryActivity::class.java).apply {
-                putStringArrayListExtra(GalleryActivity.ARG_IMAGES, binding.session?.imageUrls as ArrayList<String>)
+                putStringArrayListExtra(
+                    GalleryActivity.ARG_IMAGES,
+                    binding.session?.imageUrls as ArrayList<String>
+                )
             }
             context.startActivity(intent)
         }

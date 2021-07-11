@@ -8,8 +8,8 @@ import com.mobymagic.clairediary.vo.ClaireVartar
 import timber.log.Timber
 
 class ClaireVartarAdapter(
-        private val appExecutors: AppExecutors,
-        private val avartarItemClickCallback: ((ClaireVartar) -> Unit)
+    private val appExecutors: AppExecutors,
+    private val avartarItemClickCallback: ((ClaireVartar) -> Unit)
 ) : DataBoundListAdapter<ClaireVartar, ClairevartarItemBinding>(appExecutors) {
 
 

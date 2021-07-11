@@ -9,9 +9,10 @@ import com.mobymagic.clairediary.vo.UserActivityType
 
 
 class EgoActivityAdapter(
-        appExecutors: AppExecutors,
-        private val itemClickedCallBack: ((String?) -> Unit),
-        private val userId: String?) : DataBoundListAdapter<UserActivity, EgoActivityItemBinding>(appExecutors) {
+    appExecutors: AppExecutors,
+    private val itemClickedCallBack: ((String?) -> Unit),
+    private val userId: String?
+) : DataBoundListAdapter<UserActivity, EgoActivityItemBinding>(appExecutors) {
 
     override fun getLayoutRes() = R.layout.ego_activity_item
     override fun attachListeners(binding: EgoActivityItemBinding) {

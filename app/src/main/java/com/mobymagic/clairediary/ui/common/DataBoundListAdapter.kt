@@ -17,23 +17,23 @@ import com.mobymagic.clairediary.AppExecutors
  * @param <V> The type of the ViewDataBinding
 </V></T> */
 abstract class DataBoundListAdapter<T, V : ViewDataBinding>(
-        appExecutors: AppExecutors
+    appExecutors: AppExecutors
 ) : ListAdapter<T, DataBoundViewHolder<V>>(
-        AsyncDifferConfig.Builder<T>(
-                object : DiffUtil.ItemCallback<T>() {
+    AsyncDifferConfig.Builder<T>(
+        object : DiffUtil.ItemCallback<T>() {
 
-                    override fun areItemsTheSame(oldItem: T, newItem: T): Boolean {
-                        return oldItem == newItem
-                    }
+            override fun areItemsTheSame(oldItem: T, newItem: T): Boolean {
+                return oldItem == newItem
+            }
 
-                    override fun areContentsTheSame(oldItem: T, newItem: T): Boolean {
-                        return oldItem == newItem
-                    }
+            override fun areContentsTheSame(oldItem: T, newItem: T): Boolean {
+                return oldItem == newItem
+            }
 
-                }
-        )
-                .setBackgroundThreadExecutor(appExecutors.diskIO())
-                .build()
+        }
+    )
+        .setBackgroundThreadExecutor(appExecutors.diskIO())
+        .build()
 ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataBoundViewHolder<V> {

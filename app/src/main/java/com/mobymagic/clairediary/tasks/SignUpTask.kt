@@ -11,8 +11,8 @@ import com.mobymagic.clairediary.vo.User
 import timber.log.Timber
 
 class SignUpTask(
-        private val authRepository: AuthRepository,
-        private val userRepository: UserRepository
+    private val authRepository: AuthRepository,
+    private val userRepository: UserRepository
 ) {
 
     fun run(user: User): LiveData<Resource<FirebaseUser>> {

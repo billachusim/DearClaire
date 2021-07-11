@@ -40,9 +40,9 @@ class AdminSessionTypesFragment : DataBoundNavFragment<FragmentAdminSessionTypes
         if (savedInstanceState == null) {
             Timber.d("Showing alter ego splash")
             fragmentUtil.addIfNotExist(
-                    childFragmentManager,
-                    R.id.alter_ego_session_splash_container,
-                    AlterEgoSplashFragment.newInstance()
+                childFragmentManager,
+                R.id.alter_ego_session_splash_container,
+                AlterEgoSplashFragment.newInstance()
             )
         }
     }
@@ -50,12 +50,14 @@ class AdminSessionTypesFragment : DataBoundNavFragment<FragmentAdminSessionTypes
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (!AuthViewModel.userLoggedIn) {
-            authViewModel.getAuthRoute(SessionsHomeFragment.newInstance(
+            authViewModel.getAuthRoute(
+                SessionsHomeFragment.newInstance(
                     "",
                     User.UserType.ADMIN,
                     false,
                     R.id.nav_session_type_assigned
-            ), activity as MainActivity)
+                ), activity as MainActivity
+            )
         }
     }
 
@@ -85,23 +87,28 @@ class AdminSessionTypesFragment : DataBoundNavFragment<FragmentAdminSessionTypes
 
             true
         }
-        binding.sessionTypesPager.addOnPageChangeListener(AdminPageChangeListener(authViewModel, activity))
+        binding.sessionTypesPager.addOnPageChangeListener(
+            AdminPageChangeListener(
+                authViewModel,
+                activity
+            )
+        )
     }
 
     private fun setupPager(userId: String) {
         val sessionTypeItems = listOf(
-                PagerAdapter.Item(
-                        getString(R.string.session_type_advised),
-                        SessionListFragment.newInstance(SessionListType.ASSIGNED, userId)
-                ),
-                PagerAdapter.Item(
-                        getString(R.string.session_type_new),
-                        SessionListFragment.newInstance(SessionListType.NON_ASSIGNED, userId)
-                ),
-                PagerAdapter.Item(
-                        getString(R.string.session_type_all),
-                        SessionListFragment.newInstance(SessionListType.ALL, userId)
-                )
+            PagerAdapter.Item(
+                getString(R.string.session_type_advised),
+                SessionListFragment.newInstance(SessionListType.ASSIGNED, userId)
+            ),
+            PagerAdapter.Item(
+                getString(R.string.session_type_new),
+                SessionListFragment.newInstance(SessionListType.NON_ASSIGNED, userId)
+            ),
+            PagerAdapter.Item(
+                getString(R.string.session_type_all),
+                SessionListFragment.newInstance(SessionListType.ALL, userId)
+            )
         )
 
         val pagerAdapter = PagerAdapter(childFragmentManager, sessionTypeItems)
@@ -112,9 +119,9 @@ class AdminSessionTypesFragment : DataBoundNavFragment<FragmentAdminSessionTypes
             override fun onPageScrollStateChanged(state: Int) {}
 
             override fun onPageScrolled(
-                    position: Int,
-                    positionOffset: Float,
-                    positionOffsetPixels: Int
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
             ) {
             }
 
