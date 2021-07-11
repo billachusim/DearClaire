@@ -14,8 +14,10 @@ class WindowUtils {
         // remove title and make fullScreen
         activity.requestWindowFeature(Window.FEATURE_NO_TITLE)
 
-        activity.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        activity.window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
     }
 
 }

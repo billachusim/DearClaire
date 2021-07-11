@@ -7,7 +7,7 @@ import com.mobymagic.clairediary.vo.ClaireVartar
 import com.mobymagic.clairediary.vo.Resource
 
 class ClaireVartarViewModel(
-        private val claireVartarRepository: ClaireVartarRepository
+    private val claireVartarRepository: ClaireVartarRepository
 ) : ViewModel() {
 
     private lateinit var claireVartarLiveData: LiveData<Resource<List<ClaireVartar>>>

@@ -12,8 +12,8 @@ import com.mobymagic.clairediary.vo.User
 import timber.log.Timber
 
 class AlterEgoLoginViewModel(
-        private val androidUtil: AndroidUtil,
-        private val userRepository: UserRepository
+    private val androidUtil: AndroidUtil,
+    private val userRepository: UserRepository
 ) : ViewModel() {
 
     private val credentialLiveData: MutableLiveData<Credential> = MutableLiveData()
@@ -22,14 +22,14 @@ class AlterEgoLoginViewModel(
     init {
         resultLiveData.addSource(credentialLiveData) { login ->
             resultLiveData.value =
-                    Resource.loading(androidUtil.getString(R.string.common_message_loading))
+                Resource.loading(androidUtil.getString(R.string.common_message_loading))
             loginIntoAlterEgo(login!!)
         }
     }
 
     private fun loginIntoAlterEgo(credential: Credential) {
         val getAdminLiveData =
-                userRepository.getAdmin(credential.claireId, credential.accessCode)
+            userRepository.getAdmin(credential.claireId, credential.accessCode)
         resultLiveData.addSource(getAdminLiveData) { adminResource ->
             Timber.d("Get profile resource changed: %s", adminResource)
             when (adminResource!!.status) {

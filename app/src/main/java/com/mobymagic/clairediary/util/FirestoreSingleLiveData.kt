@@ -7,9 +7,9 @@ import com.mobymagic.clairediary.vo.Resource
 import timber.log.Timber
 
 class FirestoreSingleLiveData<T>(
-        private val androidUtil: AndroidUtil,
-        private val query: Query,
-        private val type: Class<T>
+    private val androidUtil: AndroidUtil,
+    private val query: Query,
+    private val type: Class<T>
 ) : LiveData<Resource<T>>(), EventListener<QuerySnapshot> {
 
     private var registration: ListenerRegistration? = null

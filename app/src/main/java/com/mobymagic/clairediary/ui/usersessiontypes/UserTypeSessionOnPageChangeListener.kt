@@ -8,8 +8,10 @@ import com.mobymagic.clairediary.ui.auth.AuthViewModel
 import com.mobymagic.clairediary.ui.sessionshome.SessionsHomeFragment
 import com.mobymagic.clairediary.vo.User
 
-class UserTypeSessionOnPageChangeListener(val authViewModel: AuthViewModel,
-                                          val activity: Context?, val pager: ViewPager) : ViewPager.OnPageChangeListener {
+class UserTypeSessionOnPageChangeListener(
+    val authViewModel: AuthViewModel,
+    val activity: Context?, val pager: ViewPager
+) : ViewPager.OnPageChangeListener {
 
     override fun onPageScrollStateChanged(state: Int) {
         if (state == ViewPager.SCROLL_STATE_SETTLING) {
@@ -29,12 +31,14 @@ class UserTypeSessionOnPageChangeListener(val authViewModel: AuthViewModel,
             1 -> {
                 if (!AuthViewModel.userLoggedIn) {
                     pager.setCurrentItem(0, true)
-                    authViewModel.getAuthRoute(SessionsHomeFragment.newInstance(
+                    authViewModel.getAuthRoute(
+                        SessionsHomeFragment.newInstance(
                             "",
                             User.UserType.REGULAR,
                             false,
                             R.id.nav_session_type_following
-                    ), activity as MainActivity)
+                        ), activity as MainActivity
+                    )
                 } else {
                     pager.setCurrentItem(1, true)
                 }
@@ -42,12 +46,14 @@ class UserTypeSessionOnPageChangeListener(val authViewModel: AuthViewModel,
             2 -> {
                 if (!AuthViewModel.userLoggedIn) {
                     pager.setCurrentItem(0, true)
-                    authViewModel.getAuthRoute(SessionsHomeFragment.newInstance(
+                    authViewModel.getAuthRoute(
+                        SessionsHomeFragment.newInstance(
                             "",
                             User.UserType.REGULAR,
                             false,
                             R.id.nav_session_type_diary
-                    ), activity as MainActivity)
+                        ), activity as MainActivity
+                    )
                 } else {
                     pager.setCurrentItem(2, true)
                 }
@@ -56,12 +62,14 @@ class UserTypeSessionOnPageChangeListener(val authViewModel: AuthViewModel,
             3 -> {
                 if (!AuthViewModel.userLoggedIn) {
                     pager.setCurrentItem(0, true)
-                    authViewModel.getAuthRoute(SessionsHomeFragment.newInstance(
+                    authViewModel.getAuthRoute(
+                        SessionsHomeFragment.newInstance(
                             "",
                             User.UserType.REGULAR,
                             false,
                             R.id.nav_session_type_chatrooms
-                    ), activity as MainActivity)
+                        ), activity as MainActivity
+                    )
                 } else {
                     pager.setCurrentItem(3, true)
                 }
@@ -70,12 +78,14 @@ class UserTypeSessionOnPageChangeListener(val authViewModel: AuthViewModel,
             4 -> {
                 if (!AuthViewModel.userLoggedIn) {
                     pager.setCurrentItem(0, true)
-                    authViewModel.getAuthRoute(SessionsHomeFragment.newInstance(
+                    authViewModel.getAuthRoute(
+                        SessionsHomeFragment.newInstance(
                             "",
                             User.UserType.REGULAR,
                             false,
                             R.id.nav_session_type_ego
-                    ), activity as MainActivity)
+                        ), activity as MainActivity
+                    )
                 } else {
                     pager.setCurrentItem(4, true)
                 }

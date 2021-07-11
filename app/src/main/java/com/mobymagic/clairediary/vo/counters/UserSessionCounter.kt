@@ -5,12 +5,14 @@ package com.mobymagic.clairediary.vo.counters
  * We would not need a distributed counter for this since sessions are not created frequently
  **/
 
-data class UserSessionCounter(@field:JvmField var userId: String,
-                              @field:JvmField var numberOfSessions: Int) {
+data class UserSessionCounter(
+    @field:JvmField var userId: String,
+    @field:JvmField var numberOfSessions: Int
+) {
 
     constructor() : this(
-            "",
-            0
+        "",
+        0
     )
 
 }

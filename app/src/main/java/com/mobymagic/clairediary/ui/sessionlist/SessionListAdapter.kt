@@ -33,17 +33,17 @@ import java.util.*
 
 
 class SessionListAdapter(
-        private val appExecutors: AppExecutors,
-        private val isFromAlterEgo: Boolean,
-        private val userId: String,
-        private val sessionClickCallback: (Session, Boolean) -> Unit,
-        private val actionClickCallback: (Session) -> Unit,
-        private val sessionDetailViewModel: SessionDetailViewModel,
-        private val audioUtil: AudioUtil,
-        private var sessionListImageAdapter: SessionDetailImageAdapter,
-        private val parentFragment: Fragment,
-        private val avatarClickCallback: (Session) -> Unit,
-        private val getCommentCountCallBack: (String) -> LiveData<Resource<Int>>
+    private val appExecutors: AppExecutors,
+    private val isFromAlterEgo: Boolean,
+    private val userId: String,
+    private val sessionClickCallback: (Session, Boolean) -> Unit,
+    private val actionClickCallback: (Session) -> Unit,
+    private val sessionDetailViewModel: SessionDetailViewModel,
+    private val audioUtil: AudioUtil,
+    private var sessionListImageAdapter: SessionDetailImageAdapter,
+    private val parentFragment: Fragment,
+    private val avatarClickCallback: (Session) -> Unit,
+    private val getCommentCountCallBack: (String) -> LiveData<Resource<Int>>
 
 ) : DataBoundListAdapter<Session, ItemSessionBinding>(appExecutors) {
 
@@ -141,14 +141,15 @@ class SessionListAdapter(
                     binding.sessionListTrendingButton.visibility = View.VISIBLE
                     binding.sessionListTrendingButton.setImageResource(R.drawable.round_star_white_24)
                     binding.sessionListTrendingButton.contentDescription =
-                            context.getString(R.string.session_list_action_unfeature)
+                        context.getString(R.string.session_list_action_unfeature)
                 } else {
-                    val drawable = ContextCompat.getDrawable(context, R.drawable.round_star_white_24)!!
+                    val drawable =
+                        ContextCompat.getDrawable(context, R.drawable.round_star_white_24)!!
                     val color = ContextCompat.getColor(context, R.color.inactive_icon_light)
                     val tintedDrawable = ViewUtil.tintDrawable(drawable, color)
                     binding.sessionListTrendingButton.setImageDrawable(tintedDrawable)
                     binding.sessionListTrendingButton.contentDescription =
-                            context.getString(R.string.session_list_action_feature)
+                        context.getString(R.string.session_list_action_feature)
                 }
             }
         } else {
@@ -159,11 +160,17 @@ class SessionListAdapter(
 
         binding.sessionListTrendingButton.setOnClickListener {
             if (item.featured) {
-                Toast.makeText(binding.root.context,
-                        binding.root.context.getString(R.string.your_session_is_trending), Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    binding.root.context,
+                    binding.root.context.getString(R.string.your_session_is_trending),
+                    Toast.LENGTH_LONG
+                ).show()
             } else {
-                Toast.makeText(binding.root.context,
-                        binding.root.context.getString(R.string.ask_claire_to_trend_this_session), Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    binding.root.context,
+                    binding.root.context.getString(R.string.ask_claire_to_trend_this_session),
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
 
@@ -175,62 +182,71 @@ class SessionListAdapter(
                     binding.sessionActionButton.visibility = View.VISIBLE
                     binding.sessionActionButton.setImageResource(R.drawable.round_star_white_24)
                     binding.sessionActionButton.contentDescription =
-                            context.getString(R.string.session_list_action_unfeature)
+                        context.getString(R.string.session_list_action_unfeature)
                 } else {
-                    val drawable = ContextCompat.getDrawable(context, R.drawable.round_star_white_24)!!
+                    val drawable =
+                        ContextCompat.getDrawable(context, R.drawable.round_star_white_24)!!
                     val color = ContextCompat.getColor(context, R.color.inactive_icon_light)
                     val tintedDrawable = ViewUtil.tintDrawable(drawable, color)
                     binding.sessionActionButton.setImageDrawable(tintedDrawable)
                     binding.sessionActionButton.contentDescription =
-                            context.getString(R.string.session_list_action_feature)
+                        context.getString(R.string.session_list_action_feature)
                 }
             }
         } else {
             if (item.archived) {
                 binding.sessionActionButton.setImageResource(R.drawable.ic_round_unarchive_24)
                 binding.sessionActionButton.contentDescription =
-                        context.getString(R.string.session_list_action_unarchive)
+                    context.getString(R.string.session_list_action_unarchive)
             } else {
                 val drawable = ContextCompat.getDrawable(context, R.drawable.ic_round_archive_24)!!
                 val color = ContextCompat.getColor(context, R.color.inactive_icon_light)
                 val tintedDrawable = ViewUtil.tintDrawable(drawable, color)
                 binding.sessionActionButton.setImageDrawable(tintedDrawable)
                 binding.sessionActionButton.contentDescription =
-                        context.getString(R.string.session_list_action_archive)
+                    context.getString(R.string.session_list_action_archive)
             }
 
             binding.sessionActionButton.setVisibleOrGone(item.userId == userId)
         }
         try {
-            getCommentCountCallBack.invoke(item.sessionId.toString()).observe(context as LifecycleOwner, Observer {
-                when (it?.status) {
-                    Status.SUCCESS -> {
-                        if (it.data != null) {
-                            binding.sessionListCommentCountText.visibility = View.VISIBLE
-                            binding.sessionListCommentCountText.text = it.data.toString() + "+"
+            getCommentCountCallBack.invoke(item.sessionId.toString())
+                .observe(context as LifecycleOwner, Observer {
+                    when (it?.status) {
+                        Status.SUCCESS -> {
+                            if (it.data != null) {
+                                binding.sessionListCommentCountText.visibility = View.VISIBLE
+                                binding.sessionListCommentCountText.text = it.data.toString() + "+"
+                            }
+                        }
+                        else -> {
+                            binding.sessionListCommentCountText.visibility = View.GONE
                         }
                     }
-                    else -> {
-                        binding.sessionListCommentCountText.visibility = View.GONE
-                    }
-                }
-            })
+                })
         } catch (ex: Exception) {
 
         }
     }
 
-    private fun setupSessionPhotoList(binding: ItemSessionBinding, context: Context?, appExecutors: AppExecutors) {
+    private fun setupSessionPhotoList(
+        binding: ItemSessionBinding,
+        context: Context?,
+        appExecutors: AppExecutors
+    ) {
         val layoutManager = LinearLayoutManager(context!!, LinearLayoutManager.HORIZONTAL, false)
         binding.sessionListPhotoList.isNestedScrollingEnabled = false
         binding.sessionListPhotoList.layoutManager = layoutManager
         binding.sessionListPhotoList.addItemDecoration(
-                ItemOffsetDecoration(context, R.dimen.grid_spacing_regular)
+            ItemOffsetDecoration(context, R.dimen.grid_spacing_regular)
         )
 
         sessionListImageAdapter = SessionDetailImageAdapter(appExecutors) {
             val intent = Intent(context, GalleryActivity::class.java).apply {
-                putStringArrayListExtra(GalleryActivity.ARG_IMAGES, binding.session?.imageUrls as ArrayList<String>)
+                putStringArrayListExtra(
+                    GalleryActivity.ARG_IMAGES,
+                    binding.session?.imageUrls as ArrayList<String>
+                )
             }
             context.startActivity(intent)
         }

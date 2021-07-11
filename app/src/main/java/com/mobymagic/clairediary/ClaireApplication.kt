@@ -29,16 +29,17 @@ class ClaireApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         Fresco.initialize(
-                applicationContext,
-                ImagePipelineConfig.newBuilder(applicationContext)
-                        .setMemoryChunkType(MemoryChunkType.BUFFER_MEMORY)
-                        .setImageTranscoderType(ImageTranscoderType.JAVA_TRANSCODER)
-                        .experiment().setNativeCodeDisabled(true).build())
+            applicationContext,
+            ImagePipelineConfig.newBuilder(applicationContext)
+                .setMemoryChunkType(MemoryChunkType.BUFFER_MEMORY)
+                .setImageTranscoderType(ImageTranscoderType.JAVA_TRANSCODER)
+                .experiment().setNativeCodeDisabled(true).build()
+        )
         startKoin(
-                this, listOf(
+            this, listOf(
                 apiModule, appModule, repositoryModule, utilModule, taskModule,
                 viewModelModule
-        )
+            )
         )
 
         initAppComponents(BuildConfig.DEBUG)
@@ -68,7 +69,7 @@ class ClaireApplication : Application() {
         initTheme()
         val appJobCreator = AppJobCreator(appExecutors, prefUtil, userRepository, notificationUtil)
         val dailyReminderHour =
-                prefUtil.getInt(PREF_KEY_DAILY_REMINDER_HOUR, RemindDailyJob.DEFAULT_HOUR).toLong()
+            prefUtil.getInt(PREF_KEY_DAILY_REMINDER_HOUR, RemindDailyJob.DEFAULT_HOUR).toLong()
         initJobs(jobManager, appJobCreator, dailyReminderHour)
     }
 
@@ -80,10 +81,10 @@ class ClaireApplication : Application() {
 
     private fun initTheme() {
         val defaults = Defaults(
-                primaryColor = ThemeColor.PINK,
-                accentColor = ThemeColor.RED,
-                useDarkTheme = false,
-                translucent = false
+            primaryColor = ThemeColor.PINK,
+            accentColor = ThemeColor.RED,
+            useDarkTheme = false,
+            translucent = false
         )
         initColorful(this, defaults)
     }

@@ -96,11 +96,13 @@ fun ImageView.setImageUrl(imageUrl: String) {
     if (imageUrl.startsWith("gs")) {
         val storageRef = FirebaseStorage.getInstance().getReferenceFromUrl(imageUrl)
         GlideApp.with(this).applyDefaultRequestOptions(RequestOptions().centerCrop())
-                .load(storageRef).into(this)
+            .load(storageRef).into(this)
     } else {
         GlideApp.with(this)
-                .applyDefaultRequestOptions(RequestOptions().centerCrop().placeholder(R.drawable.default_thumbnail))
-                .load(imageUrl).into(this)
+            .applyDefaultRequestOptions(
+                RequestOptions().centerCrop().placeholder(R.drawable.default_thumbnail)
+            )
+            .load(imageUrl).into(this)
     }
 }
 
@@ -108,8 +110,10 @@ fun ImageView.setImageUrl(imageUrl: String) {
 fun ImageView.setAvatarUrl(imageUrl: String) {
     Timber.d("Avatar url: %s", imageUrl)
     GlideApp.with(this)
-            .applyDefaultRequestOptions(RequestOptions().placeholder(R.drawable.brown_boy_mask).centerCrop().fitCenter())
-            .load(imageUrl).into(this)
+        .applyDefaultRequestOptions(
+            RequestOptions().placeholder(R.drawable.brown_boy_mask).centerCrop().fitCenter()
+        )
+        .load(imageUrl).into(this)
 }
 
 @BindingAdapter("timeAgo")
@@ -117,7 +121,7 @@ fun TextView.setTimeAgo(date: Date?) {
     if (date != null) {
         val now = System.currentTimeMillis()
         val timeAgo =
-                DateUtils.getRelativeTimeSpanString(date.time, now, DateUtils.MINUTE_IN_MILLIS)
+            DateUtils.getRelativeTimeSpanString(date.time, now, DateUtils.MINUTE_IN_MILLIS)
         text = timeAgo
     }
 }
@@ -171,11 +175,11 @@ fun TextView.setTimeAgoWithDate(date: Date?) {
 @BindingAdapter("badgedText")
 fun TextView.setBadgedText(text: String) {
     background = BadgeDrawable.Builder()
-            .type(BadgeDrawable.TYPE_ONLY_ONE_TEXT)
-            .badgeColor(R.color.theme_primary)
-            .text1(text)
-            .textSize(60.00f)
-            .build()
+        .type(BadgeDrawable.TYPE_ONLY_ONE_TEXT)
+        .badgeColor(R.color.theme_primary)
+        .text1(text)
+        .textSize(60.00f)
+        .build()
 
 }
 
@@ -190,8 +194,10 @@ fun ImageView.setUserAdminAvatarUrl(image: Any) {
     if (image is String) {
         Timber.d("Avatar url: %s", image)
         GlideApp.with(this)
-                .applyDefaultRequestOptions(RequestOptions().placeholder(R.mipmap.ic_launcher).centerCrop())
-                .load(image).into(this)
+            .applyDefaultRequestOptions(
+                RequestOptions().placeholder(R.mipmap.ic_launcher).centerCrop()
+            )
+            .load(image).into(this)
     } else if (image is BitmapDrawable) {
         setImageDrawable(image)
     }

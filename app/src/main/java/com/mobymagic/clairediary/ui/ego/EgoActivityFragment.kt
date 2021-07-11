@@ -46,7 +46,13 @@ class EgoActivityFragment : DataBoundNavFragment<FragmentEgoActivityBinding>() {
                         Status.SUCCESS -> {
                             if (it.data != null) {
                                 getNavController()
-                                        .navigateTo(SessionDetailFragment.newInstance(it.data, userId, SessionListType.EGO))
+                                    .navigateTo(
+                                        SessionDetailFragment.newInstance(
+                                            it.data,
+                                            userId,
+                                            SessionListType.EGO
+                                        )
+                                    )
                             }
 
                         }
@@ -65,7 +71,13 @@ class EgoActivityFragment : DataBoundNavFragment<FragmentEgoActivityBinding>() {
                         Status.SUCCESS -> {
                             if (it.data != null) {
                                 getNavController()
-                                        .navigateTo(SessionDetailFragment.newInstance(it.data, userId, SessionListType.EGO))
+                                    .navigateTo(
+                                        SessionDetailFragment.newInstance(
+                                            it.data,
+                                            userId,
+                                            SessionListType.EGO
+                                        )
+                                    )
                             }
 
                         }

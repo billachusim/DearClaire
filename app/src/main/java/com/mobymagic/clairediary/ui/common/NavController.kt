@@ -5,10 +5,10 @@ import com.mobymagic.clairediary.util.FragmentUtils
 interface NavController {
 
     fun navigate(
-            destination: NavFragment,
-            addToBackStack: Boolean = false,
-            onlyAddIfNotExist: Boolean = false,
-            fragmentAnimation: FragmentUtils.FragmentAnimation = FragmentUtils.FragmentAnimation()
+        destination: NavFragment,
+        addToBackStack: Boolean = false,
+        onlyAddIfNotExist: Boolean = false,
+        fragmentAnimation: FragmentUtils.FragmentAnimation = FragmentUtils.FragmentAnimation()
     )
 
     fun navigateTo(destination: NavFragment)

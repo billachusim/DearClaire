@@ -18,10 +18,11 @@ import com.mobymagic.clairediary.vo.counters.UserSessionCounter
 import java.util.*
 
 class EgoViewModel(
-        private val androidUtil: AndroidUtil,
-        private val sessionRepository: SessionRepository,
-        private val commentRepository: CommentRepository,
-        private val prefUtil: PrefUtil) : ViewModel() {
+    private val androidUtil: AndroidUtil,
+    private val sessionRepository: SessionRepository,
+    private val commentRepository: CommentRepository,
+    private val prefUtil: PrefUtil
+) : ViewModel() {
 
     lateinit var userId: String
     lateinit var resultingResource: Resource<Int>
@@ -47,7 +48,8 @@ class EgoViewModel(
                 Status.SUCCESS -> {
                     // try getting the shard count from the resource and post it to the result live data
                     if (it.data != null && it.data.isNotEmpty()) {
-                        resultingResource = Resource(Status.SUCCESS, it.data.sumBy { it.count.toInt() }, it.message)
+                        resultingResource =
+                            Resource(Status.SUCCESS, it.data.sumBy { it.count.toInt() }, it.message)
                         userFollowCountLiveData.postValue(resultingResource)
                     }
 
@@ -122,16 +124,18 @@ class EgoViewModel(
     }
 
     fun getUserSessionsByDate(
-            userId: String,
-            startDate: Date,
-            endDate: Date
+        userId: String,
+        startDate: Date,
+        endDate: Date
     ): LiveData<Resource<List<Session>>> {
         return sessionRepository.getUserSessionsByDate(userId, startDate, endDate)
     }
 
-    fun retryLoadingUserSessionsByDate(userId: String,
-                                       startDate: Date,
-                                       endDate: Date): LiveData<Resource<List<Session>>> {
+    fun retryLoadingUserSessionsByDate(
+        userId: String,
+        startDate: Date,
+        endDate: Date
+    ): LiveData<Resource<List<Session>>> {
         return getUserSessionsByDate(userId, startDate, endDate)
     }
 

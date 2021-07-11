@@ -29,21 +29,23 @@ class SplashFragment : DataBoundNavFragment<FragmentSplashBinding>() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         //just simulate the splash screen and navigate to the home screen, irrespective of the user log in status
-        splashViewModel.simulateSplashScreen().observe(this, Observer { splashResource ->
-            val splashResult = splashResource!!.data
-            when (splashResult?.action) {
-                SplashResult.SplashAction.OPEN_SESSIONS_HOME -> {
-                    getNavController().navigate(OnboardingFragment.newInstance())
-                    getNavController().navigate(
+        splashViewModel.simulateSplashScreen()
+            .observe(requireActivity(), Observer { splashResource ->
+                val splashResult = splashResource!!.data
+                when (splashResult?.action) {
+                    SplashResult.SplashAction.OPEN_SESSIONS_HOME -> {
+                        getNavController().navigate(OnboardingFragment.newInstance())
+                        getNavController().navigate(
                             SessionsHomeFragment.newInstance(
-                                    "",
-                                    User.UserType.REGULAR,
-                                    false,
-                                    null
-                            ))
+                                "",
+                                User.UserType.REGULAR,
+                                false,
+                                null
+                            )
+                        )
+                    }
                 }
-            }
-        })
+            })
 //        splashViewModel.getSplashResult(justUnlocked).observe(this, Observer { splashResource ->
 //            Timber.d("Splash resource: %s", splashResource)
 //            val splashResult = splashResource!!.data

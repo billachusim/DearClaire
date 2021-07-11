@@ -19,9 +19,9 @@ import java.util.*
 private const val COLLECTION_USER = "users"
 
 class UserRepository(
-        private val androidUtil: AndroidUtil,
-        private val firestore: FirebaseFirestore,
-        private val prefUtil: PrefUtil
+    private val androidUtil: AndroidUtil,
+    private val firestore: FirebaseFirestore,
+    private val prefUtil: PrefUtil
 ) {
 
     fun getLoggedInUser(): User? {
@@ -37,26 +37,26 @@ class UserRepository(
         val alterEgoId = prefUtil.getString(Constants.PREF_KEY_ALTER_EGO_ID, null)
         val alterEgoAccessCode = prefUtil.getString(Constants.PREF_KEY_ALTER_EGO_ACCESS_CODE, null)
         val userType = User.UserType.valueOf(
-                prefUtil.getString(
-                        Constants.PREF_KEY_USER_USER_TYPE,
-                        User.UserType.REGULAR.name
-                )!!
+            prefUtil.getString(
+                Constants.PREF_KEY_USER_USER_TYPE,
+                User.UserType.REGULAR.name
+            )!!
         )
 
         return if (gender != null && nickname != null && email != null && secretCode != null) {
             User(
-                    avatarUrl,
-                    fcmId,
-                    gender,
-                    nickname,
-                    email,
-                    secretCode,
-                    userType,
-                    lastUnlockedTime,
-                    registeredTime,
-                    userId,
-                    alterEgoId ?: "",
-                    alterEgoAccessCode ?: ""
+                avatarUrl,
+                fcmId,
+                gender,
+                nickname,
+                email,
+                secretCode,
+                userType,
+                lastUnlockedTime,
+                registeredTime,
+                userId,
+                alterEgoId ?: "",
+                alterEgoAccessCode ?: ""
             )
         } else {
             null
@@ -87,8 +87,8 @@ class UserRepository(
     fun getUserWithEmail(email: String): LiveData<Resource<User>> {
         Timber.d("Getting user with email: %s", email)
         val query = firestore.collection(COLLECTION_USER)
-                .whereEqualTo("email", email)
-                .limit(1)
+            .whereEqualTo("email", email)
+            .limit(1)
 
         return FirestoreSingleLiveData(androidUtil, query, User::class.java)
     }
@@ -96,9 +96,9 @@ class UserRepository(
     fun getAdmin(alterEgoId: String, accessCode: String): LiveData<Resource<User>> {
         Timber.d("Getting admin with id: %s and accessCode: %s", alterEgoId, accessCode)
         val query = firestore.collection(COLLECTION_USER)
-                .whereEqualTo("alterEgoId", alterEgoId)
-                .whereEqualTo("alterEgoAccessCode", accessCode)
-                .limit(1)
+            .whereEqualTo("alterEgoId", alterEgoId)
+            .whereEqualTo("alterEgoAccessCode", accessCode)
+            .limit(1)
 
         return FirestoreSingleLiveData(androidUtil, query, User::class.java)
     }
@@ -111,8 +111,8 @@ class UserRepository(
     fun getUserWithNickname(nickname: String): LiveData<Resource<User>> {
         Timber.d("Getting user with nickname: %s", nickname)
         val query = firestore.collection(COLLECTION_USER)
-                .whereEqualTo("nickname", nickname)
-                .limit(1)
+            .whereEqualTo("nickname", nickname)
+            .limit(1)
 
         return FirestoreSingleLiveData(androidUtil, query, User::class.java)
     }
@@ -125,8 +125,8 @@ class UserRepository(
     fun getUserWithId(userId: String): LiveData<Resource<User>> {
         Timber.d("Getting user with id: %s", userId)
         val query = firestore.collection(COLLECTION_USER)
-                .whereEqualTo("userId", userId)
-                .limit(1)
+            .whereEqualTo("userId", userId)
+            .limit(1)
 
         return FirestoreSingleLiveData(androidUtil, query, User::class.java)
     }
@@ -142,8 +142,8 @@ class UserRepository(
 
         // Set resource into loading state
         addUserRequestLiveData.value = Resource.loading(
-                androidUtil
-                        .getString(R.string.new_user_saving)
+            androidUtil
+                .getString(R.string.new_user_saving)
         )
 
         // Set the user document id
@@ -151,17 +151,17 @@ class UserRepository(
 
         // Save user into the Firestore database
         newUserRef.set(user)
-                .addOnSuccessListener { documentReference ->
-                    Timber.d("User successfully added: %s", documentReference)
-                    addUserRequestLiveData.value = Resource.success(user)
-                }
-                .addOnFailureListener { exception ->
-                    Timber.e(exception, "Error saving new user")
-                    addUserRequestLiveData.value = Resource.error(
-                            androidUtil
-                                    .getString(R.string.new_user_save_error)
-                    )
-                }
+            .addOnSuccessListener { documentReference ->
+                Timber.d("User successfully added: %s", documentReference)
+                addUserRequestLiveData.value = Resource.success(user)
+            }
+            .addOnFailureListener { exception ->
+                Timber.e(exception, "Error saving new user")
+                addUserRequestLiveData.value = Resource.error(
+                    androidUtil
+                        .getString(R.string.new_user_save_error)
+                )
+            }
 
         return addUserRequestLiveData
     }
@@ -177,8 +177,8 @@ class UserRepository(
 
         // Set resource into loading state
         addUserRequestLiveData.value = Resource.loading(
-                androidUtil
-                        .getString(R.string.user_updating)
+            androidUtil
+                .getString(R.string.user_updating)
         )
 
         // Get a reference to the user to update
@@ -186,18 +186,18 @@ class UserRepository(
 
         // Save user into the Firestore database
         userToUpdateRef.set(user)
-                .addOnSuccessListener { documentReference ->
-                    Timber.d("User successfully updated: %s", documentReference)
-                    setLoggedInUser(user)
-                    addUserRequestLiveData.value = Resource.success(AsyncRequest())
-                }
-                .addOnFailureListener { exception ->
-                    Timber.e(exception, "Error updating user")
-                    addUserRequestLiveData.value = Resource.error(
-                            androidUtil
-                                    .getString(R.string.user_update_error)
-                    )
-                }
+            .addOnSuccessListener { documentReference ->
+                Timber.d("User successfully updated: %s", documentReference)
+                setLoggedInUser(user)
+                addUserRequestLiveData.value = Resource.success(AsyncRequest())
+            }
+            .addOnFailureListener { exception ->
+                Timber.e(exception, "Error updating user")
+                addUserRequestLiveData.value = Resource.error(
+                    androidUtil
+                        .getString(R.string.user_update_error)
+                )
+            }
 
         return addUserRequestLiveData
     }
@@ -208,10 +208,11 @@ class UserRepository(
 
     fun getUserType(): User.UserType {
         return User.UserType.valueOf(
-                prefUtil.getString(
-                        Constants.PREF_KEY_USER_USER_TYPE,
-                        User.UserType.REGULAR.name
-                )!!)
+            prefUtil.getString(
+                Constants.PREF_KEY_USER_USER_TYPE,
+                User.UserType.REGULAR.name
+            )!!
+        )
 
     }
 

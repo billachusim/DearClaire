@@ -11,7 +11,7 @@ import androidx.preference.PreferenceManager
 class PrefUtil(context: Context) {
 
     private val sp: SharedPreferences =
-            PreferenceManager.getDefaultSharedPreferences(context)
+        PreferenceManager.getDefaultSharedPreferences(context)
 
     fun setString(key: String, value: String?) {
         sp.edit().putString(key, value).apply()

@@ -74,34 +74,34 @@ class AlterEgoIntroFragment : DataBoundNavFragment<FragmentAlterEgoIntroBinding>
 
     private fun getPages(): List<PagerAdapter.Item> {
         return listOf(
-                PagerAdapter.Item(
-                        null,
-                        AlterEgoIntroSlideFragment.newInstance(
-                                R.drawable.alter_ego_slide_1,
-                                R.string.alter_ego_intro_slide_1_text
-                        )
-                ),
-                PagerAdapter.Item(
-                        null,
-                        AlterEgoIntroSlideFragment.newInstance(
-                                R.drawable.alter_ego_slide_2,
-                                R.string.alter_ego_intro_slide_2_text
-                        )
-                ),
-                PagerAdapter.Item(
-                        null,
-                        AlterEgoIntroSlideFragment.newInstance(
-                                R.drawable.alter_ego_slide_3,
-                                R.string.alter_ego_intro_slide_3_text
-                        )
-                ),
-                PagerAdapter.Item(
-                        null,
-                        AlterEgoIntroSlideFragment.newInstance(
-                                R.drawable.alter_ego_slide_4,
-                                R.string.alter_ego_intro_slide_4_text
-                        )
+            PagerAdapter.Item(
+                null,
+                AlterEgoIntroSlideFragment.newInstance(
+                    R.drawable.alter_ego_slide_1,
+                    R.string.alter_ego_intro_slide_1_text
                 )
+            ),
+            PagerAdapter.Item(
+                null,
+                AlterEgoIntroSlideFragment.newInstance(
+                    R.drawable.alter_ego_slide_2,
+                    R.string.alter_ego_intro_slide_2_text
+                )
+            ),
+            PagerAdapter.Item(
+                null,
+                AlterEgoIntroSlideFragment.newInstance(
+                    R.drawable.alter_ego_slide_3,
+                    R.string.alter_ego_intro_slide_3_text
+                )
+            ),
+            PagerAdapter.Item(
+                null,
+                AlterEgoIntroSlideFragment.newInstance(
+                    R.drawable.alter_ego_slide_4,
+                    R.string.alter_ego_intro_slide_4_text
+                )
+            )
         )
     }
 
